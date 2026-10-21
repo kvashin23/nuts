@@ -268,7 +268,7 @@
   }
 
   /* ---------- brief form ---------- */
-  const form = $('#brief');
+  const form = $('form.brief');
   form && form.addEventListener('submit', e => {
     e.preventDefault();
     let ok = true;

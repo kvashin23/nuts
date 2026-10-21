@@ -8,36 +8,18 @@
   <meta name="theme-color" content="#0d0d0d">
   <link rel="stylesheet" href="vendor/fonts/fonts.css">
   <link rel="stylesheet" href="css/style.css">
-  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="assets/logo-mark.png" type="image/png">
 </head>
 <body>
 
 <!-- ============ PRELOADER ============ -->
 <div class="loader" id="loader">
   <div class="loader__nut">
-    <svg viewBox="0 0 100 120" class="loader__svg"><use href="#nut-mark"/></svg>
+    <img src="assets/logo-mark.png" class="loader__svg" alt="">
   </div>
   <div class="loader__count"><span id="loaderCount">0</span>%</div>
   <div class="loader__hint">колем орех…</div>
 </div>
-
-<!-- SVG sprite -->
-<svg width="0" height="0" style="position:absolute" aria-hidden="true">
-  <defs>
-    <linearGradient id="nutGrad" x1="0" y1="1" x2="1" y2="0">
-      <stop offset="0" stop-color="#FF4D00"/><stop offset="1" stop-color="#FFB000"/>
-    </linearGradient>
-  </defs>
-  <symbol id="nut-mark" viewBox="0 0 100 120">
-    <g fill="none" stroke="url(#nutGrad)" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
-      <path d="M50 6c6 4 9 4 15 6 18 7 29 27 29 50 0 30-20 52-44 52S6 92 6 62C6 39 17 19 35 12c6-2 9-2 15-6z"/>
-      <path d="M50 18v88"/>
-      <path d="M50 30c-8-6-22-2-24 10-8 2-10 14-4 20-4 8 2 18 10 18 2 8 12 12 18 6"/>
-      <path d="M50 30c8-6 22-2 24 10 8 2 10 14 4 20 4 8-2 18-10 18-2 8-12 12-18 6"/>
-      <path d="M30 50c6 0 10 4 10 10M70 50c-6 0-10 4-10 10M36 74c4-4 10-4 14 0M64 74c-4-4-10-4-14 0"/>
-    </g>
-  </symbol>
-</svg>
 
 <!-- ============ CURSOR ============ -->
 <div class="cursor" id="cursor"><span class="cursor__label" id="cursorLabel"></span></div>
@@ -45,14 +27,13 @@
 <!-- ============ HEADER ============ -->
 <header class="header" id="header">
   <a href="#top" class="logo" aria-label="NUTS — на главную">
-    <svg viewBox="0 0 100 120" class="logo__mark"><use href="#nut-mark"/></svg>
-    <span class="logo__text">NUTS<small>digital agency</small></span>
+    <img src="assets/logo-mark.png" class="logo__mark" alt="" width="161" height="188"><img src="assets/logo-word.png" class="logo__word" alt="NUTS digital agency" width="325" height="188">
   </a>
   <nav class="nav" id="nav">
-    <a href="#services" data-cursor="hover">Услуги</a>
+    <a href="services/index.html" data-cursor="hover">Услуги</a>
     <a href="#cases" data-cursor="hover">Кейсы</a>
-    <a href="#about" data-cursor="hover">О нас</a>
-    <a href="blog.html" data-cursor="hover">Блог</a>
+    <a href="about.html" data-cursor="hover">О нас</a>
+    <a href="blog/index.html" data-cursor="hover">Блог</a>
     <a href="#contact" data-cursor="hover">Контакты</a>
   </nav>
   <div class="header__right">
@@ -64,7 +45,7 @@
 
 <div class="menu" id="menu">
   <nav class="menu__nav">
-    <a href="#services">Услуги</a><a href="#cases">Кейсы</a><a href="#about">О нас</a><a href="blog.html">Блог</a><a href="#contact">Контакты</a>
+    <a href="services/index.html">Услуги</a><a href="#cases">Кейсы</a><a href="about.html">О нас</a><a href="blog/index.html">Блог</a><a href="#contact">Контакты</a>
   </nav>
   <div class="menu__foot">
     <a href="tel:88002224604">8 800 222-46-04</a>
@@ -215,7 +196,7 @@
       <div class="svc__body"><div>
         <p>Корпоративные и мультирегиональные сайты, интернет-магазины, мобильные приложения, порталы. Понятный интерфейс, быстрый код, админка без боли.</p>
         <ul><li>Разработка сайта</li><li>Landing Page</li><li>Интернет-магазины</li><li>Мобильные приложения</li></ul>
-        <a href="service.html" class="link-arrow svc__more" data-cursor="hover">Подробнее об услуге →</a>
+        <a href="services/razrabatyvaem.html" class="link-arrow svc__more" data-cursor="hover">Подробнее об услуге →</a>
       </div></div>
     </article>
 
@@ -227,6 +208,7 @@
       <div class="svc__body"><div>
         <p>Настраиваем рекламу, которая приносит обращения, а не просто клики. Обращения по 36&nbsp;₽ в нише фитнеса — наш стандарт амбиций.</p>
         <ul><li>Контекстная реклама</li><li>Таргетированная реклама</li><li>Медийная реклама</li><li>Programmatic</li></ul>
+        <a href="services/reklamiryem.html" class="link-arrow svc__more" data-cursor="hover">Подробнее об услуге →</a>
       </div></div>
     </article>
 
@@ -238,6 +220,7 @@
       <div class="svc__body"><div>
         <p>Выводим в топ и держим там. Технический аудит, семантика, контент, ссылки — с прозрачной отчётностью по позициям и трафику.</p>
         <ul><li>SEO-оптимизация</li><li>Продвижение в Яндекс</li><li>Продвижение в Google</li><li>Аудит сайта</li></ul>
+        <a href="services/prodvigaem-v-poiskovikah.html" class="link-arrow svc__more" data-cursor="hover">Подробнее об услуге →</a>
       </div></div>
     </article>
 
@@ -249,6 +232,7 @@
       <div class="svc__body"><div>
         <p>Ведём соцсети под ключ, снимаем ролики и клипы, делаем посевы. Репозиционировали винодельню в премиальный курорт — и это лишь начало.</p>
         <ul><li>Ведение соцсетей под ключ</li><li>Посевы</li><li>VK-Клипы</li><li>Ролики Дзен</li></ul>
+        <a href="services/smm.html" class="link-arrow svc__more" data-cursor="hover">Подробнее об услуге →</a>
       </div></div>
     </article>
 
@@ -260,6 +244,7 @@
       <div class="svc__body"><div>
         <p>CRM с шахматкой для застройщиков, электронные торговые площадки, корпоративные порталы. Автоматизируем то, что съедает ваше время.</p>
         <ul><li>IT для застройщиков</li><li>CRM-системы</li><li>Тендерные площадки</li><li>Корпоративные порталы</li></ul>
+        <a href="services/it-resheniya.html" class="link-arrow svc__more" data-cursor="hover">Подробнее об услуге →</a>
       </div></div>
     </article>
 
@@ -271,6 +256,7 @@
       <div class="svc__body"><div>
         <p>Сайт — живой организм. Обновляем, защищаем, ускоряем, наполняем. Реагируем быстро, работаем по SLA.</p>
         <ul><li>Техническая поддержка</li><li>Информационная поддержка</li><li>Доработки</li><li>Мониторинг</li></ul>
+        <a href="services/podderzhivaem.html" class="link-arrow svc__more" data-cursor="hover">Подробнее об услуге →</a>
       </div></div>
     </article>
   </div>
@@ -293,62 +279,62 @@
   </div>
 
   <div class="cases__grid" id="casesGrid">
-    <a class="case case--wide" data-cat="dev" href="https://nuts-agency.ru/projects/web-razraborka/kak-my-razrabotali-sayt-dlya-korporatsii-development-yug/" target="_blank" rel="noopener" data-cursor="view">
+    <a class="case case--wide" data-cat="dev" href="cases/kak-my-razrabotali-sayt-dlya-korporatsii-development-yug.html" target="_blank" rel="noopener" data-cursor="view">
       <div class="case__media"><img src="assets/cases/dev-yug.jpg" alt="" loading="lazy"></div>
       <div class="case__meta"><span>Разработка</span><span>Девелопмент-Юг</span></div>
       <h3 class="case__title">Мультирегиональный сайт для корпорации «Девелопмент-Юг»</h3>
     </a>
-    <a class="case" data-cat="dev" href="https://nuts-agency.ru/projects/web-razraborka/metch-professii-i-prizvaniya-karernyy-portal-dlya-cherkizovo/" target="_blank" rel="noopener" data-cursor="view">
+    <a class="case" data-cat="dev" href="cases/metch-professii-i-prizvaniya-karernyy-portal-dlya-cherkizovo.html" target="_blank" rel="noopener" data-cursor="view">
       <div class="case__media"><img src="assets/cases/cherkizovo.jpg" alt="" loading="lazy"></div>
       <div class="case__meta"><span>Разработка</span><span>Черкизово</span></div>
       <h3 class="case__title">Мэтч профессии и призвания: карьерный портал</h3>
     </a>
-    <a class="case" data-cat="smm" href="case.html" data-cursor="view">
+    <a class="case" data-cat="smm" href="cases/kompleksnoe-prodvizhenie-federalnogo-developera-dogma-v-sotsialnykh-setyakh-.html" data-cursor="view">
       <div class="case__media"><img src="assets/cases/dogma.jpg" alt="" loading="lazy"></div>
       <div class="case__meta"><span>SMM</span><span>DOGMA</span></div>
       <h3 class="case__title">Комплексное продвижение федерального девелопера в соцсетях</h3>
     </a>
-    <a class="case" data-cat="ads" href="https://nuts-agency.ru/projects/reklama/kak-menshe-chem-za-god-nabrat-14-mln-prosmotrov-v-tiktok-/" target="_blank" rel="noopener" data-cursor="view">
+    <a class="case" data-cat="ads" href="cases/kak-menshe-chem-za-god-nabrat-14-mln-prosmotrov-v-tiktok-.html" target="_blank" rel="noopener" data-cursor="view">
       <div class="case__media"><img src="assets/cases/tiktok.jpg" alt="" loading="lazy"></div>
       <div class="case__meta"><span>Реклама</span><span class="case__kpi">14 млн</span></div>
       <h3 class="case__title">Как меньше чем за год набрать 14 млн просмотров в TikTok</h3>
     </a>
-    <a class="case case--wide" data-cat="smm" href="https://nuts-agency.ru/projects/smm/iz-vinodelni-v-premialnyy-kurort-kak-my-vystroili-novuyu-identichnost-doliny-lefkadiya-v-sotsialnykh/" target="_blank" rel="noopener" data-cursor="view">
+    <a class="case case--wide" data-cat="smm" href="cases/iz-vinodelni-v-premialnyy-kurort-kak-my-vystroili-novuyu-identichnost-doliny-lefkadiya-v-sotsialnykh.html" target="_blank" rel="noopener" data-cursor="view">
       <div class="case__media"><img src="assets/cases/lefkadia.jpg" alt="" loading="lazy"></div>
       <div class="case__meta"><span>SMM</span><span>Долина Лефкадия</span></div>
       <h3 class="case__title">Из винодельни — в премиальный курорт: репозиционирование в соцсетях</h3>
     </a>
-    <a class="case" data-cat="ads" href="https://nuts-agency.ru/projects/reklama/obrashcheniya-po-36-rubley-v-nishe-fitnes-klub/" target="_blank" rel="noopener" data-cursor="view">
+    <a class="case" data-cat="ads" href="cases/obrashcheniya-po-36-rubley-v-nishe-fitnes-klub.html" target="_blank" rel="noopener" data-cursor="view">
       <div class="case__media"><img src="assets/cases/gymatika.jpg" alt="" loading="lazy"></div>
       <div class="case__meta"><span>Реклама</span><span class="case__kpi">36 ₽</span></div>
       <h3 class="case__title">«Джиматика»: обращения по 36 рублей в нише фитнеса</h3>
     </a>
-    <a class="case" data-cat="ads" href="https://nuts-agency.ru/projects/reklama/25-otkrytykh-salonov-za-2-goda-optimizatsiya-reklamnogo-byudzheta-na-50-franshiza-muzhskikh-salonov-/" target="_blank" rel="noopener" data-cursor="view">
+    <a class="case" data-cat="ads" href="cases/25-otkrytykh-salonov-za-2-goda-optimizatsiya-reklamnogo-byudzheta-na-50-franshiza-muzhskikh-salonov-.html" target="_blank" rel="noopener" data-cursor="view">
       <div class="case__media"><img src="assets/cases/supermen.jpg" alt="" loading="lazy"></div>
       <div class="case__meta"><span>Реклама</span><span class="case__kpi">−50%</span></div>
       <h3 class="case__title">Франшиза «Супермен»: оптимизация бюджета на 50%</h3>
     </a>
-    <a class="case" data-cat="dev" href="https://nuts-agency.ru/projects/web-razraborka/sayt-dlya-mezhdunarodnoy-serii-pokernykh-turnirov-ea-poker-tour/" target="_blank" rel="noopener" data-cursor="view">
+    <a class="case" data-cat="dev" href="cases/sayt-dlya-mezhdunarodnoy-serii-pokernykh-turnirov-ea-poker-tour.html" target="_blank" rel="noopener" data-cursor="view">
       <div class="case__media"><img src="assets/cases/poker.jpg" alt="" loading="lazy"></div>
       <div class="case__meta"><span>Разработка</span><span>EA Poker Tour</span></div>
       <h3 class="case__title">Сайт для международной серии покерных турниров</h3>
     </a>
-    <a class="case" data-cat="seo" href="https://nuts-agency.ru/projects/seo/prodvizhenie-sayta-salona-krasoty-colba/" target="_blank" rel="noopener" data-cursor="view">
+    <a class="case" data-cat="seo" href="cases/prodvizhenie-sayta-salona-krasoty-colba.html" target="_blank" rel="noopener" data-cursor="view">
       <div class="case__media"><img src="assets/cases/colba.jpg" alt="" loading="lazy"></div>
       <div class="case__meta"><span>SEO</span><span>ColBa</span></div>
       <h3 class="case__title">Формула трафика: салон красоты в топе выдачи</h3>
     </a>
-    <a class="case" data-cat="smm" href="https://nuts-agency.ru/projects/smm/kompleksnoe-prodvizhenie-bara-videosalon-zakryt/" target="_blank" rel="noopener" data-cursor="view">
+    <a class="case" data-cat="smm" href="cases/kompleksnoe-prodvizhenie-bara-videosalon-zakryt.html" target="_blank" rel="noopener" data-cursor="view">
       <div class="case__media"><img src="assets/cases/videosalon.jpg" alt="" loading="lazy"></div>
       <div class="case__meta"><span>SMM</span><span>Видеосалон закрыт</span></div>
       <h3 class="case__title">Запасаемся попкорном: продвижение бара</h3>
     </a>
-    <a class="case" data-cat="seo" href="https://nuts-agency.ru/projects/seo/prodvizhenie-i-podderzhka-sayta-trk-sbs-megamoll/" target="_blank" rel="noopener" data-cursor="view">
+    <a class="case" data-cat="seo" href="cases/prodvizhenie-i-podderzhka-sayta-trk-sbs-megamoll.html" target="_blank" rel="noopener" data-cursor="view">
       <div class="case__media"><img src="assets/cases/sbs.jpg" alt="" loading="lazy"></div>
       <div class="case__meta"><span>SEO</span><span>СБС Мегамолл</span></div>
       <h3 class="case__title">Продвижение и поддержка сайта ТРК</h3>
     </a>
-    <a class="case" data-cat="dev" href="https://nuts-agency.ru/projects/web-razraborka/razrabotka-mobilnogo-prilozheniya-dlya-trts-grad/" target="_blank" rel="noopener" data-cursor="view">
+    <a class="case" data-cat="dev" href="cases/razrabotka-mobilnogo-prilozheniya-dlya-trts-grad.html" target="_blank" rel="noopener" data-cursor="view">
       <div class="case__media"><img src="assets/cases/grad.png" alt="" loading="lazy"></div>
       <div class="case__meta"><span>Разработка</span><span>Сити-парк «Град»</span></div>
       <h3 class="case__title">Мобильное приложение для крупнейшего ТРЦ Черноземья</h3>
@@ -356,7 +342,7 @@
   </div>
 
   <div class="cases__more">
-    <a href="https://nuts-agency.ru/projects/" target="_blank" rel="noopener" class="btn btn--ghost magnetic" data-cursor="hover"><span>Все проекты — 50+</span></a>
+    <a href="cases/index.html" target="_blank" rel="noopener" class="btn btn--ghost magnetic" data-cursor="hover"><span>Все проекты — 85</span></a>
   </div>
 </section>
 
@@ -436,20 +422,20 @@
       <span class="eyebrow">06 / Блог</span>
       <h2 class="h2">Орехи <span class="orange">для ума</span></h2>
     </div>
-    <a href="blog.html" class="link-arrow" data-cursor="hover">Все статьи →</a>
+    <a href="blog/index.html" class="link-arrow" data-cursor="hover">Все статьи →</a>
   </div>
   <div class="blog__grid">
-    <a href="article.html" class="post" data-cursor="read">
+    <a href="blog/gayd-pochemu-vash-sayt-rabotaet-neeffektivno.html" class="post" data-cursor="read">
       <div class="post__art post__art--1"><span>SEO</span></div>
       <div class="post__meta"><span>Продвижение</span><span>Гайд</span></div>
       <h3>Почему ваш сайт работает неэффективно</h3>
     </a>
-    <a href="https://nuts-agency.ru/articles/smm/legko-i-bystro-servisy-dlya-raboty-s-kontentom-/" target="_blank" rel="noopener" class="post" data-cursor="read">
+    <a href="blog/legko-i-bystro-servisy-dlya-raboty-s-kontentom-.html" class="post" data-cursor="read">
       <div class="post__art post__art--2"><span>SMM</span></div>
       <div class="post__meta"><span>SMM</span><span>Подборка</span></div>
       <h3>Легко и быстро: сервисы для работы с контентом</h3>
     </a>
-    <a href="https://nuts-agency.ru/articles/smm/osnovy-dizayn-v-didzhital-delimsya-sekretami/" target="_blank" rel="noopener" class="post" data-cursor="read">
+    <a href="blog/osnovy-dizayn-v-didzhital-delimsya-sekretami.html" class="post" data-cursor="read">
       <div class="post__art post__art--3"><span>UI</span></div>
       <div class="post__meta"><span>Дизайн</span><span>Основы</span></div>
       <h3>Основы дизайна в диджитал: делимся секретами</h3>
@@ -515,7 +501,7 @@
   <div class="footer__big" id="footerBig" aria-hidden="true"><span>N</span><span>U</span><span>T</span><span>S</span></div>
   <div class="footer__row">
     <span>© 2017–2026 Nuts Digital Agency</span>
-    <nav><a href="#services">Услуги</a><a href="#cases">Кейсы</a><a href="#about">О нас</a><a href="blog.html">Блог</a><a href="#contact">Контакты</a></nav>
+    <nav><a href="services/index.html">Услуги</a><a href="#cases">Кейсы</a><a href="about.html">О нас</a><a href="blog/index.html">Блог</a><a href="#contact">Контакты</a></nav>
     <a href="#top" class="footer__up" data-cursor="hover">Наверх ↑</a>
   </div>
 </footer>

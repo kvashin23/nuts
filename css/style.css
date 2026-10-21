@@ -54,7 +54,7 @@ em { font-style: normal; color: var(--orange); }
   position: fixed; inset: 0; z-index: 200; background: var(--black);
   display: grid; place-items: center; align-content: center; gap: 18px;
 }
-.loader__svg { width: 84px; height: 100px; animation: wobble 1.2s var(--ease) infinite; }
+.loader__svg { width: 86px; height: 100px; object-fit: contain; animation: wobble 1.2s var(--ease) infinite; }
 @keyframes wobble { 0%,100%{transform:rotate(-8deg) scale(1)} 50%{transform:rotate(8deg) scale(1.08)} }
 .loader__count { font-family: var(--f-display); font-weight: 900; font-size: clamp(56px, 12vw, 140px); line-height: 1; letter-spacing: -.04em; }
 .loader__hint { color: var(--muted); font-size: 14px; letter-spacing: .2em; text-transform: uppercase; }
@@ -82,11 +82,10 @@ em { font-style: normal; color: var(--orange); }
 }
 .header.is-scrolled { background: rgba(13,13,13,.55); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); }
 .header.is-hidden { transform: translateY(-110%); }
-.logo { display: flex; align-items: center; gap: 10px; }
-.logo__mark { width: 30px; height: 36px; transition: transform .6s var(--ease); }
+.logo { display: flex; align-items: center; gap: 4px; }
+.logo__mark { height: 40px; width: auto; transition: transform .6s var(--ease); }
+.logo__word { height: 40px; width: auto; }
 .logo:hover .logo__mark { transform: rotate(360deg); }
-.logo__text { font-family: var(--f-display); font-weight: 800; font-size: 20px; line-height: .9; letter-spacing: .02em; }
-.logo__text small { display: block; font-family: var(--f-body); font-weight: 600; font-size: 8.5px; letter-spacing: .28em; text-transform: uppercase; opacity: .7; margin-top: 4px; }
 .nav { display: flex; gap: 6px; padding: 6px; border-radius: 99px; background: rgba(255,255,255,.06); border: 1px solid var(--line); backdrop-filter: blur(10px); }
 .nav a { position: relative; padding: 8px 16px; border-radius: 99px; font-size: 14px; font-weight: 600; transition: background .3s, color .3s; }
 .nav a:hover, .nav a.is-active { background: var(--white); color: #000; }
@@ -413,6 +412,7 @@ em { font-style: normal; color: var(--orange); }
   .num:nth-child(n+3) { border-top: 1px solid var(--line); }
 }
 @media (max-width: 700px) {
+  .logo__mark, .logo__word { height: 34px; }
   body { font-size: 16px; }
   .header { padding: 14px 16px; }
   .header .btn--sm { display: none; }
