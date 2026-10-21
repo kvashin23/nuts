@@ -100,9 +100,9 @@ em { font-style: normal; color: var(--orange); }
 .menu {
   position: fixed; inset: 0; z-index: 99; background: var(--orange); color: #000;
   display: flex; flex-direction: column; justify-content: space-between; padding: 110px var(--pad) 40px;
-  clip-path: circle(0% at calc(100% - 40px) 40px); transition: clip-path .8s var(--ease); pointer-events: none;
+  clip-path: circle(0% at calc(100% - 40px) 40px); transition: clip-path .8s var(--ease), visibility 0s .8s; pointer-events: none; visibility: hidden;
 }
-.menu-open .menu { clip-path: circle(150% at calc(100% - 40px) 40px); pointer-events: auto; }
+.menu-open .menu { clip-path: circle(150% at calc(100% - 40px) 40px); pointer-events: auto; visibility: visible; transition: clip-path .8s var(--ease), visibility 0s; }
 .menu__nav { display: flex; flex-direction: column; }
 .menu__nav a { font-family: var(--f-display); font-weight: 900; font-size: clamp(40px, 11vw, 80px); line-height: 1.1; text-transform: uppercase; letter-spacing: -.03em; }
 .menu__foot { display: flex; flex-direction: column; gap: 6px; font-weight: 700; }
@@ -135,7 +135,7 @@ em { font-style: normal; color: var(--orange); }
 .round:hover { background: var(--black); color: var(--white); border-color: var(--black); }
 
 /* ---------- common ---------- */
-.section { position: relative; padding: clamp(80px, 12vw, 160px) var(--pad); }
+.section { position: relative; padding: clamp(72px, 9vw, 130px) var(--pad); }
 .section--light { background: var(--paper); color: var(--black); border-radius: var(--r) var(--r) 0 0; }
 .section__head { max-width: 1100px; margin-bottom: clamp(40px, 6vw, 80px); }
 .section__head--row { max-width: none; display: flex; justify-content: space-between; align-items: flex-end; gap: 24px; flex-wrap: wrap; }
@@ -191,7 +191,7 @@ em { font-style: normal; color: var(--orange); }
 
 /* ---------- why / cards ---------- */
 .why { overflow: hidden; }
-.hand { position: relative; display: flex; justify-content: center; align-items: flex-end; gap: 0; min-height: 520px; perspective: 1600px; }
+.hand { position: relative; display: flex; justify-content: center; align-items: flex-end; gap: 0; min-height: 480px; perspective: 1600px; }
 .pcard {
   --rot: calc((var(--i) - 1.5) * 9deg);
   width: clamp(220px, 22vw, 300px); aspect-ratio: 5 / 7; margin: 0 -22px;
@@ -217,7 +217,8 @@ em { font-style: normal; color: var(--orange); }
 .pcard__back p { margin: 0; font-size: 14.5px; line-height: 1.45; font-weight: 600; }
 
 /* ---------- numbers ---------- */
-.numbers { padding-top: 0; }
+.numbers { padding-top: 0; padding-bottom: clamp(56px, 7vw, 100px); }
+.why { padding-bottom: clamp(48px, 6vw, 90px); }
 .numbers__grid { display: grid; grid-template-columns: repeat(4, 1fr); border-top: 1px solid var(--line); }
 .num { padding: 40px 24px 40px 0; border-right: 1px solid var(--line); display: flex; flex-direction: column; gap: 14px; }
 .num + .num { padding-left: 24px; }
@@ -276,10 +277,11 @@ em { font-style: normal; color: var(--orange); }
 .case__meta { display: flex; justify-content: space-between; font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; color: var(--muted); }
 .case__kpi { color: var(--orange); font-family: var(--f-display); font-size: 15px; letter-spacing: 0; }
 .case__title { margin: 0; font-family: var(--f-display); font-weight: 600; font-size: clamp(18px, 1.6vw, 24px); line-height: 1.2; letter-spacing: -.02em; }
-.cases__more { display: flex; justify-content: center; margin-top: 64px; }
+.cases__more { display: flex; justify-content: center; margin-top: 48px; }
 
 /* ---------- clients ---------- */
-.clients { padding: 40px 0 100px; }
+.clients { padding: 0 0 clamp(64px, 8vw, 100px); }
+.cases { padding-bottom: clamp(56px, 7vw, 100px); }
 .clients__cap { text-align: center; color: var(--muted); font-size: 14px; letter-spacing: .18em; text-transform: uppercase; margin: 0 0 28px; }
 .ticker { overflow: hidden; border-block: 1px solid var(--line); padding: 26px 0; -webkit-mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent); mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent); }
 .ticker__track { display: flex; width: max-content; animation: marq 45s linear infinite; }
@@ -378,7 +380,7 @@ em { font-style: normal; color: var(--orange); }
 .field.is-error input { border-color: #ff3b3b; }
 .brief__note { margin: 0; font-size: 12px; color: var(--muted); }
 .brief__done { position: absolute; inset: 0; background: var(--grad); color: #000; display: grid; place-items: center; align-content: center; text-align: center; clip-path: circle(0% at 50% 100%); transition: clip-path .9s var(--ease); }
-.brief__done span { font-size: 80px; }
+.brief__done img { width: 72px; height: auto; animation: wobble 1.2s var(--ease) infinite; }
 .brief__done h3 { margin: 8px 0 4px; font-family: var(--f-display); font-weight: 900; font-size: 40px; text-transform: uppercase; }
 .brief__done p { margin: 0; font-weight: 600; }
 .brief.is-sent .brief__done { clip-path: circle(150% at 50% 100%); }
@@ -447,3 +449,18 @@ em { font-style: normal; color: var(--orange); }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: .001ms !important; animation-iteration-count: 1 !important; transition-duration: .001ms !important; }
 }
+
+/* real covers inside the homepage blog tiles */
+.post__art img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform .9s var(--ease); }
+.post:hover .post__art img { transform: scale(1.06); }
+
+/* keyboard focus: visible ring everywhere the custom cursor would normally help */
+:focus-visible { outline: 2px solid var(--orange); outline-offset: 3px; border-radius: 6px; }
+.btn:focus-visible, .filter:focus-visible, .round:focus-visible, .burger:focus-visible { outline-offset: 4px; border-radius: 99px; }
+.pcard:focus-visible { outline: none; }
+.pcard:focus-visible .pcard__front, .pcard:focus-visible .pcard__back { box-shadow: 0 0 0 3px var(--orange), 0 30px 60px -20px rgba(0,0,0,.6); }
+@media (min-width: 701px) { .pcard:focus-within { z-index: 5; transform: rotate(0) translateY(-40px) scale(1.06); } }
+.pcard:focus-within .pcard__inner { transform: rotateY(180deg); }
+body.menu-open { overflow: hidden; }
+.field[data-error].is-error::after { content: attr(data-error); display: block; margin-top: 6px; font-size: 13px; font-weight: 600; color: #ff6b5a; }
+.field.is-error label { color: #ff6b5a; }

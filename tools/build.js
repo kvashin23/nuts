@@ -3,6 +3,7 @@
 // it reads data/content.json and writes cases/, services/, blog/, about.html and contacts.html.
 
 const SAVE = 'http://localhost:5174/save?path=';
+const SITE = 'https://kvashin23.github.io/nuts/';
 
 const CASE_CATS = { 'web-razraborka': 'Разработка', reklama: 'Реклама', smm: 'SMM', seo: 'SEO' };
 const CASE_FILTER = { 'web-razraborka': 'dev', reklama: 'ads', smm: 'smm', seo: 'seo' };
@@ -45,6 +46,7 @@ function mapOldUrl(href) {
   if (seg[0] === 'projects') return seg[2] && D.cases.some(c => c.slug === seg[2]) ? `cases/${seg[2]}.html` : 'cases/index.html';
   if (seg[0] === 'articles') return seg[2] && D.articles.some(a => a.slug === seg[2]) ? `blog/${seg[2]}.html` : 'blog/index.html';
   if (seg[0] === 'services') { const k = seg[2] || seg[1]; return k && D.services.some(s => (s.slug || s.section) === k) ? `services/${k}.html` : 'services/index.html'; }
+  if (seg[0] === "upload") return `assets/files/${seg[seg.length - 1]}`;
   if (seg[0] === 'company') return 'about.html';
   if (seg[0] === 'contacts') return 'contacts.html';
   if (!seg.length) return 'index.html';
@@ -88,6 +90,9 @@ function normalize(html) {
     para.appendChild(n);
   });
   out.querySelectorAll('p').forEach(p => { if (!p.textContent.trim() && !p.querySelector('img')) p.remove(); });
+  // the old CMS sometimes repeats an intro paragraph
+  const seen = new Set();
+  out.querySelectorAll('p').forEach(p => { const t = p.textContent.trim(); if (t.length > 40 && seen.has(t)) p.remove(); else seen.add(t); });
   out.querySelectorAll('table').forEach(t => { const w = document.createElement('div'); w.className = 'table-wrap'; t.replaceWith(w); w.appendChild(t); });
   out.querySelectorAll('a[href^="http"]').forEach(a => { if (!/nuts-agency\.ru/.test(a.href)) { a.target = '_blank'; a.rel = 'noopener'; } });
   return out.innerHTML;
@@ -118,14 +123,18 @@ const shy = text => esc(text).replace(/[А-Яа-яЁёA-Za-z]{11,}/g, w => {
   }
   return out;
 });
-const longTitle =(t, n = 55) => t.length > n || Math.max(...t.split(/\s+/).map(w => w.length)) >= 13;
+// the old CMS glued the project props and buttons onto the task text
+const cleanTask = t => (t || '').replace(/\s*(Сфера|Сайт|Дата)\s.*$/s, '').replace(/\s*(Заказать проект|Задать вопрос).*$/s, '').trim();
+const longTitle = (t, n = 55) => t.length > n || Math.max(...t.split(/\s+/).map(w => w.length)) >= 13;
 const firstText = html => { const d = document.createElement('div'); d.innerHTML = html; const p = [...d.querySelectorAll('p')].find(x => x.textContent.trim().length > 60); return p ? p.textContent.trim() : ''; };
 
 /* ---------- chrome ---------- */
 const NAV = [['services/index.html', 'Услуги', 'services'], ['cases/index.html', 'Кейсы', 'cases'], ['about.html', 'О нас', 'about'], ['blog/index.html', 'Блог', 'blog'], ['contacts.html', 'Контакты', 'contacts']];
-function page({ path, title, desc, active, main, before = '', image }) {
-  const depth = path.split('/').length - 1;
+function page({ path, title, desc, active, main, before = '', image, base }) {
+  const depth = base ? 0 : path.split('/').length - 1;
   const p = depth ? '../'.repeat(depth) : '';
+  const url = SITE + path.replace(/(^|\/)index\.html$/, '$1');
+  const og = SITE + (image || 'assets/og.png');
   const nav = NAV.map(([href, label, key]) => `<a href="${p}${href}"${key === active ? ' class="is-active"' : ''} data-cursor="hover">${label}</a>`).join('\n    ');
   const html = `<!doctype html>
 <html lang="ru">
@@ -135,7 +144,13 @@ function page({ path, title, desc, active, main, before = '', image }) {
   <title>${esc(title)}</title>
   <meta name="description" content="${esc(desc)}">
   <meta property="og:title" content="${esc(title)}">
-  <meta property="og:description" content="${esc(desc)}">${image ? `\n  <meta property="og:image" content="${p}${image}">` : ''}
+  <meta property="og:description" content="${esc(desc)}">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="NUTS digital agency">
+  <meta property="og:url" content="${url}">
+  <meta property="og:image" content="${og}">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="canonical" href="${url}">${base ? `\n  <base href="${base}">` : ''}
   <meta name="theme-color" content="#0d0d0d">
   <link rel="stylesheet" href="${p}vendor/fonts/fonts.css">
   <link rel="stylesheet" href="${p}css/style.css">
@@ -256,15 +271,15 @@ const BRIEF = `
       <fieldset>
         <legend>Бюджет, ₽</legend>
         <div class="chips chips--radio">
-          ${['до 300к', '300к – 1м', '1м+', 'All-in 🃏'].map(v => `<label><input type="radio" name="budget" value="${v}"><span>${v}</span></label>`).join('\n          ')}
+          ${['до 300к', '300к – 1м', '1м+', 'All-in ♠'].map(v => `<label><input type="radio" name="budget" value="${v}"><span>${v}</span></label>`).join('\n          ')}
         </div>
       </fieldset>
-      <div class="field"><input id="fName" name="name" required placeholder=" "><label for="fName">Как вас зовут</label></div>
-      <div class="field"><input id="fContact" name="contact" required placeholder=" "><label for="fContact">Телефон или Telegram</label></div>
+      <div class="field" data-error="Как к вам обращаться?"><input id="fName" name="name" required placeholder=" " autocomplete="name"><label for="fName">Как вас зовут</label></div>
+      <div class="field" data-error="Телефон, @ник в Telegram или почта"><input id="fContact" name="contact" required placeholder=" " autocomplete="tel"><label for="fContact">Телефон или Telegram</label></div>
       <div class="field"><textarea id="fMsg" name="msg" rows="3" placeholder=" "></textarea><label for="fMsg">Пара слов о задаче</label></div>
       <button type="submit" class="btn btn--orange btn--wide magnetic" data-cursor="hover"><span>Отправить и расколоть</span><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
       <p class="brief__note">Нажимая кнопку, вы соглашаетесь с политикой обработки персональных данных.</p>
-      <div class="brief__done"><span>🌰</span><h3>Орех принят!</h3><p>Скоро свяжемся.</p></div>
+      <div class="brief__done"><img src="assets/logo-mark.png" alt=""><h3>Орех принят!</h3><p>Скоро свяжемся.</p></div>
     </form>
   </div>
 </section>`;
@@ -294,7 +309,8 @@ async function buildCases() {
 
   for (const [i, c] of cases.entries()) {
     const path = `cases/${c.slug}.html`;
-    const desc = cut(c.task || strip(c.html), 160);
+    const task = cleanTask(c.task);
+    const desc = cut([task, firstText(normalize(c.html))].filter(Boolean).join(" "), 160) || cut(strip(c.html), 160);
     let main = await custom(path);
     if (!main) {
       const body = normalize(c.html);
@@ -304,11 +320,11 @@ async function buildCases() {
       const sameCat = cases.filter(x => x.cat === c.cat && x !== c);
       const similar = [...c.similar.map(u => cases.find(x => x.url === u)).filter(Boolean), ...sameCat].filter((x, k, arr) => arr.indexOf(x) === k).slice(0, 3);
       const nextC = cases.slice(i + 1).find(x => x.cat === c.cat) || sameCat[0];
-      main = hero({ crumbs: [['cases/index.html', 'Кейсы'], [null, CASE_CATS[c.cat]]], tags: `<span class="is-hot">${CASE_CATS[c.cat]}</span>${c.props['Сфера'] ? `<span>${esc(c.props['Сфера'])}</span>` : ''}`, title: c.title, lead: c.task, sm: longTitle(c.title) }) + `
+      main = hero({ crumbs: [['cases/index.html', 'Кейсы'], [null, CASE_CATS[c.cat]]], tags: `<span class="is-hot">${CASE_CATS[c.cat]}</span>${c.props['Сфера'] ? `<span>${esc(c.props['Сфера'])}</span>` : ''}`, title: c.title, lead: task, sm: longTitle(c.title) }) + `
 <div class="facts" data-in>
   ${facts.slice(0, 4).map(([k, v]) => `<div class="fact"><b>${esc(k)}</b>${k === 'Сайт' && /^https?:/.test(v) ? `<a href="${esc(v)}" target="_blank" rel="noopener" data-cursor="hover">${esc(v.replace(/^https?:\/\/(www\.)?/, '').replace(/\/$/, ''))} ↗</a>` : `<span>${esc(v)}</span>`}</div>`).join('\n  ')}
 </div>
-${c.cover && FILES.has(c.cover.replace('assets/content/', '')) ? `<figure class="cover" data-cursor="view"><img src="${c.cover}" alt="${esc(c.title)}"></figure>` : ''}
+${c.cover && FILES.has(c.cover.replace('assets/content/', '')) ? `<figure class="cover cover--thumb" data-cursor="view"><img src="${c.cover}" alt="${esc(c.title)}"></figure>` : ''}
 ${list.length ? chapterHtml(list) : ''}
 ${gallery.length > 1 ? `<section class="gallery-wrap">
   <div class="section__head section__head--row"><h2 class="h3">Галерея проекта</h2><span class="gallery__hint">тяни <i></i></span></div>
@@ -357,6 +373,7 @@ ${sections.map((s, i) => `    <article class="svc-block">
     const sec = SECTIONS[s.section];
     const body = normalize(s.html);
     const lead = cut(firstText(body), 220);
+    const desc = cut(firstText(body), 160) || `${s.title} от NUTS: ${sec.short} Под задачи бизнеса — в Краснодаре и по всей России.`;
     let main = await custom(path);
     if (!main) {
       const subs = s.slug ? [] : S.filter(x => x.section === s.section && x.slug);
@@ -387,7 +404,7 @@ ${siblings.length ? `<section class="section" style="padding-top:0">
 </section>` : ''}
 ${BRIEF}`;
     }
-    page({ path, title: `${s.title} — NUTS`, desc: lead || sec.short, active: 'services', main });
+    page({ path, title: `${s.title} — NUTS`, desc, active: 'services', main });
   }
 }
 
@@ -566,6 +583,16 @@ async function run() {
   pages['index.html'] = home;
   // keep old flat URLs working
   for (const [old, now] of Object.entries(LEGACY)) pages[old] = `<!doctype html><meta charset="utf-8"><meta http-equiv="refresh" content="0; url=${now}"><link rel="canonical" href="${now}"><a href="${now}">${now}</a>\n`;
+  // 404: GitHub Pages serves it for any missing path, so links resolve from the site root via <base>
+  page({
+    path: '404.html', base: '/nuts/', title: 'Страница не найдена — NUTS', desc: 'Такой страницы нет. Зато есть кейсы, услуги и блог NUTS.',
+    main: hero({ crumbs: [[null, '404']], title: 'Орех не найден', lead: 'Похоже, эту страницу уже раскололи и съели. Вернитесь на главную или загляните в кейсы.',
+      after: `<div class="svc-hero__ctas" data-in style="position:relative;margin-top:32px"><a href="index.html" class="btn btn--orange magnetic" data-cursor="hover"><span>На главную</span></a><a href="cases/index.html" class="btn btn--ghost magnetic" data-cursor="hover"><span>Кейсы</span></a></div>` }),
+  });
+  const today = new Date().toISOString().slice(0, 10);
+  const indexable = Object.keys(pages).filter(p => !LEGACY[p] && p !== '404.html').sort();
+  pages['sitemap.xml'] = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${indexable.map(p => `  <url><loc>${SITE}${p.replace(/(^|\/)index\.html$/, '$1')}</loc><lastmod>${today}</lastmod></url>`).join('\n')}\n</urlset>\n`;
+  pages['robots.txt'] = `User-agent: *\nAllow: /\nDisallow: /tools/\nDisallow: /data/\n\nSitemap: ${SITE}sitemap.xml\n`;
   let n = 0;
   for (const [path, html] of Object.entries(pages)) {
     const r = await fetch(SAVE + encodeURIComponent(path), { method: 'POST', body: html });

@@ -20,7 +20,7 @@ try {
 renderer.setPixelRatio(Math.min(devicePixelRatio, isMobile ? 1.5 : 1.75));
 renderer.setClearColor(0x000000, 0);
 renderer.toneMapping = THREE.ACESFilmicToneMapping;
-renderer.toneMappingExposure = 1.1;
+renderer.toneMappingExposure = 1.0;
 
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(32, 1, 0.1, 100);
@@ -53,8 +53,9 @@ float snoise(vec3 v){
 }
 // ridged fbm -> brain-like folds
 float folds(vec3 p){
-  float f=0.,a=.55;
-  for(int i=0;i<4;i++){ float n=1.-abs(snoise(p)); f+=n*n*a; p=p*2.03+vec3(1.7,9.2,3.1); a*=.5; }
+  // three soft octaves: big rounded lobes like a walnut kernel, not spiky noise
+  float f=0.,a=.6;
+  for(int i=0;i<3;i++){ float n=1.-abs(snoise(p)); f+=n*n*a; p=p*2.05+vec3(1.7,9.2,3.1); a*=.45; }
   return f;
 }
 `;
@@ -67,8 +68,8 @@ ${noiseGLSL}
 float seam(vec3 n){ return smoothstep(.015,.11,abs(n.x)); }
 vec3 shape(vec3 n, out float h){
   float s=seam(n);
-  h=folds(n*1.9+vec3(0.,0.,uTime*uSpeed));
-  float r=1.+(h*.16*uAmp)*s-(1.-s)*.10;
+  h=folds(n*1.65+vec3(0.,0.,uTime*uSpeed));
+  float r=1.+(h*.13*uAmp)*s-(1.-s)*.10;
   r*=1.+.10*pow(max(n.y,0.),3.)-.04*pow(max(-n.y,0.),2.);   // pointed top like a walnut
   return n*r*vec3(.9,1.12,.95);
 }
@@ -104,20 +105,21 @@ void main(){
     return;
   }
   vec3 L=normalize(uLight);
-  float cav=smoothstep(.15,.95,vH);                // 0 = deep fold, 1 = ridge
-  vec3 deep=vec3(.09,.025,.005);
-  vec3 mid=vec3(.85,.24,.03);
-  vec3 top=vec3(1.,.62,.18);
-  vec3 base=mix(deep,mid,cav); base=mix(base,top,smoothstep(.75,1.,cav));
+  float cav=smoothstep(.2,1.,vH);                // 0 = deep fold, 1 = ridge
+  // walnut kernel: dark brown folds, caramel ridges with a brand-orange cast
+  vec3 deep=vec3(.08,.02,.006);
+  vec3 mid=vec3(.58,.18,.03);
+  vec3 top=vec3(.95,.46,.12);
+  vec3 base=mix(deep,mid,cav); base=mix(base,top,smoothstep(.7,1.,cav));
   float diff=max(dot(N,L),0.);
   float wrap=max(dot(N,L)*.5+.5,0.);
   vec3 H=normalize(L+V);
-  float spec=pow(max(dot(N,H),0.),48.)*cav;
+  float spec=pow(max(dot(N,H),0.),24.)*cav*.35;
   float fres=pow(1.-max(dot(N,V),0.),3.);
-  vec3 rimCol=vec3(1.,.45,.1);
-  vec3 col=base*(.12+diff*1.05+wrap*.25)+spec*vec3(1.,.85,.6)*.9+fres*rimCol*1.4;
+  vec3 rimCol=vec3(1.,.36,.08);
+  vec3 col=base*(.1+diff*.9+wrap*.3)+spec*vec3(1.,.8,.55)+fres*rimCol*.9;
   // fake ambient occlusion in folds
-  col*=mix(.35,1.,cav);
+  col*=mix(.4,1.,cav);
   gl_FragColor=vec4(col,1.);
 }`;
 
@@ -194,7 +196,7 @@ scene.add(dust);
 // ---------- post ----------
 const composer = new EffectComposer(renderer);
 composer.addPass(new RenderPass(scene, camera));
-const bloom = new UnrealBloomPass(new THREE.Vector2(1, 1), .35, .5, .86);
+const bloom = new UnrealBloomPass(new THREE.Vector2(1, 1), .2, .45, .9);
 composer.addPass(bloom);
 composer.addPass(new OutputPass());
 
@@ -290,7 +292,7 @@ function tick() {
   rings.children.forEach(r => (r.rotation.z += r.userData.speed * dt * (1 + mouse.vel * 3)));
 
   dust.rotation.y = mouse.x * .2;
-  bloom.strength = .3 + split * .55;
+  bloom.strength = .18 + split * .6;
 
   composer.render();
 }

@@ -33,7 +33,7 @@
     const el = $(id);
     if (!el) return;
     e.preventDefault();
-    document.body.classList.remove('menu-open');
+    if (document.body.classList.contains('menu-open')) setMenu(false);
     scrollTo(el);
   }));
 
@@ -55,7 +55,11 @@
     count.textContent = n;
     setTimeout(step, 28);
   };
-  if (loader) step();
+  // the counter plays once per visit; later returns to the homepage skip it
+  let seen = false;
+  try { seen = sessionStorage.getItem('nutsLoaderSeen') === '1'; sessionStorage.setItem('nutsLoaderSeen', '1'); } catch (e) { /* private mode */ }
+  if (loader && seen) { loader.remove(); requestAnimationFrame(() => { document.body.classList.remove('is-loading'); heroIn(); }); }
+  else if (loader) step();
 
   function heroIn() {
     if (!hasGsap) return;
@@ -120,7 +124,21 @@
     header.classList.toggle('is-hidden', y > lastY && y > 400 && !document.body.classList.contains('menu-open'));
     lastY = y;
   }, { passive: true });
-  $('#burger').addEventListener('click', () => document.body.classList.toggle('menu-open'));
+  const burger = $('#burger'), menu = $('#menu');
+  menu.inert = true; // closed menu links stay out of the tab order
+  const setMenu = open => {
+    document.body.classList.toggle('menu-open', open);
+    burger.setAttribute('aria-expanded', String(open));
+    menu.inert = !open;
+    if (lenis) open ? lenis.stop() : lenis.start();
+  };
+  burger.setAttribute('aria-controls', 'menu');
+  burger.setAttribute('aria-expanded', 'false');
+  burger.addEventListener('click', () => setMenu(!document.body.classList.contains('menu-open')));
+  $$('#menu a').forEach(a => a.addEventListener('click', () => setMenu(false)));
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && document.body.classList.contains('menu-open')) { setMenu(false); burger.focus(); }
+  });
 
   // active nav link
   const navLinks = $$('#nav a');
@@ -188,10 +206,17 @@
   });
 
   /* ---------- poker cards (tap on touch) ---------- */
-  $$('.pcard').forEach(c => c.addEventListener('click', () => {
-    if (finePointer) return;
-    c.classList.toggle('is-open');
-  }));
+  $$('.pcard').forEach(c => {
+    c.addEventListener('click', () => {
+      if (finePointer) return;
+      c.classList.toggle('is-open');
+    });
+    c.addEventListener('keydown', e => {
+      if (e.key !== 'Enter' && e.key !== ' ') return;
+      e.preventDefault();
+      c.classList.toggle('is-open');
+    });
+  });
 
   /* ---------- services accordion + floating preview ---------- */
   const preview = $('#svcPreview'), pimg = preview && $('.svc__img', preview);
@@ -272,10 +297,14 @@
   form && form.addEventListener('submit', e => {
     e.preventDefault();
     let ok = true;
-    ['name', 'contact'].forEach(n => {
+    // contact: a phone (10+ digits), a @telegram nick or an email
+    const contactOk = v => /^\+?[\d\s()-]{10,}$/.test(v) && v.replace(/\D/g, '').length >= 10 || /^(@|(https?:\/\/)?t\.me\/)[a-z0-9_]{5,32}$/i.test(v) || /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
+    const rules = { name: v => v.length >= 2, contact: contactOk };
+    Object.entries(rules).forEach(([n, test]) => {
       const f = form.elements[n];
-      const bad = !f.value.trim();
+      const bad = !test(f.value.trim());
       f.parentElement.classList.toggle('is-error', bad);
+      f.setAttribute('aria-invalid', String(bad));
       if (bad) ok = false;
     });
     if (!ok) {

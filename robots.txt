@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /tools/
+Disallow: /data/
+
+Sitemap: https://kvashin23.github.io/nuts/sitemap.xml
