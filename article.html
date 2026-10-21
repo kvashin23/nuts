@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Почему ваш сайт работает неэффективно — блог NUTS</title>
+  <meta name="description" content="Сайт создали, а заявок нет. Разбираем ошибки, которые убивают конверсию, и как их исправить.">
+  <meta name="theme-color" content="#0d0d0d">
+  <link rel="stylesheet" href="vendor/fonts/fonts.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/pages.css">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs><linearGradient id="nutGrad" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#FF4D00"/><stop offset="1" stop-color="#FFB000"/></linearGradient></defs>
+  <symbol id="nut-mark" viewBox="0 0 100 120"><g fill="none" stroke="url(#nutGrad)" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"><path d="M50 6c6 4 9 4 15 6 18 7 29 27 29 50 0 30-20 52-44 52S6 92 6 62C6 39 17 19 35 12c6-2 9-2 15-6z"/><path d="M50 18v88"/><path d="M50 30c-8-6-22-2-24 10-8 2-10 14-4 20-4 8 2 18 10 18 2 8 12 12 18 6"/><path d="M50 30c8-6 22-2 24 10 8 2 10 14 4 20 4 8-2 18-10 18-2 8-12 12-18 6"/><path d="M30 50c6 0 10 4 10 10M70 50c-6 0-10 4-10 10M36 74c4-4 10-4 14 0M64 74c-4-4-10-4-14 0"/></g></symbol>
+</svg>
+
+<div class="cursor" id="cursor"><span class="cursor__label" id="cursorLabel"></span></div>
+
+<header class="header" id="header">
+  <a href="index.html" class="logo" aria-label="NUTS — на главную">
+    <svg viewBox="0 0 100 120" class="logo__mark"><use href="#nut-mark"/></svg>
+    <span class="logo__text">NUTS<small>digital agency</small></span>
+  </a>
+  <nav class="nav" id="nav">
+    <a href="service.html" data-cursor="hover">Услуги</a>
+    <a href="index.html#cases" data-cursor="hover">Кейсы</a>
+    <a href="index.html#about" data-cursor="hover">О нас</a>
+    <a href="blog.html" class="is-active" data-cursor="hover">Блог</a>
+    <a href="index.html#contact" data-cursor="hover">Контакты</a>
+  </nav>
+  <div class="header__right">
+    <a href="tel:88002224604" class="header__phone">8 800 222-46-04</a>
+    <a href="index.html#contact" class="btn btn--sm magnetic" data-cursor="hover"><span>Обсудить проект</span></a>
+    <button class="burger" id="burger" aria-label="Меню"><i></i><i></i></button>
+  </div>
+</header>
+<div class="menu" id="menu">
+  <nav class="menu__nav"><a href="service.html">Услуги</a><a href="index.html#cases">Кейсы</a><a href="index.html#about">О нас</a><a href="blog.html">Блог</a><a href="index.html#contact">Контакты</a></nav>
+  <div class="menu__foot"><a href="tel:88002224604">8 800 222-46-04</a><a href="mailto:info@nuts-agency.ru">info@nuts-agency.ru</a></div>
+</div>
+
+
+<div class="readbar" id="readBar" aria-hidden="true"></div>
+<main>
+
+<section class="page-hero article-hero">
+  <div class="page-hero__glow" aria-hidden="true"></div>
+  <nav class="crumbs" data-in><a href="index.html">Главная</a><span><a href="blog.html">Блог</a></span><span>Продвижение</span></nav>
+  <div class="meta" data-in><span class="cat">Продвижение</span><span>22 ноября 2023</span><span>Гайд</span></div>
+  <h1 class="page-title page-title--sm">
+    <span class="line"><span class="split">Почему ваш сайт</span></span>
+    <span class="line"><span class="split orange">работает неэффективно</span></span>
+  </h1>
+  <div class="author" data-in>
+    <span class="author__ava">N</span>
+    <div><b>Команда NUTS</b><span>Digital-агентство полного цикла</span></div>
+  </div>
+</section>
+
+<figure class="cover"><img src="assets/blog/guide.jpg" alt=""></figure>
+
+<div class="article">
+  <aside class="toc">
+    <span class="toc__title">Содержание</span>
+    <a href="#s1" data-cursor="hover">3 секунды, чтобы остаться</a>
+    <a href="#s1-1" class="sub" data-cursor="hover">Скорость загрузки</a>
+    <a href="#s1-2" class="sub" data-cursor="hover">Первый экран</a>
+    <a href="#s1-3" class="sub" data-cursor="hover">Как задержать посетителя</a>
+    <a href="#s2" data-cursor="hover">Поговорим о SEO</a>
+    <a href="#s2-1" class="sub" data-cursor="hover">Структура и навигация</a>
+    <a href="#s2-2" class="sub" data-cursor="hover">Мобильная версия</a>
+    <a href="#s3" data-cursor="hover">Заключение</a>
+    <div class="share">
+      <a href="https://t.me/share/url?url=https://nuts-agency.ru/articles/prodvizhenie/gayd-pochemu-vash-sayt-rabotaet-neeffektivno/" target="_blank" rel="noopener" data-cursor="hover">Telegram</a>
+      <a href="https://vk.com/share.php?url=https://nuts-agency.ru/articles/prodvizhenie/gayd-pochemu-vash-sayt-rabotaet-neeffektivno/" target="_blank" rel="noopener" data-cursor="hover">VK</a>
+    </div>
+  </aside>
+
+  <article class="article__body">
+    <p>Сайт создали, а заявок нет. Вы вкладываете деньги в разработку и поддержку, но результата всё нет. Рассказываем, какие ошибки приводят к низкой — а иногда нулевой — конверсии и как их исправить.</p>
+    <p>К нам часто приходят клиенты, которые уже вложились в сайт, но вложения так и не окупились. Поэтому мы решили: пора.</p>
+
+    <h2 id="s1">У вас есть 3 секунды, чтобы посетитель остался</h2>
+    <p>На какую бы страницу ни попал пользователь, она должна быть лаконичной, современной и понятной. Главные факторы:</p>
+    <div class="factors">
+      <div class="factor"><b>Быстрая загрузка</b>Никто не любит ждать.</div>
+      <div class="factor"><b>Стиль и удобство</b>Дизайн отражает компанию и ориентирован на аудиторию.</div>
+      <div class="factor"><b>Понятный заголовок</b>Сразу ясно, о чём сайт и что вы предлагаете.</div>
+      <div class="factor"><b>Удобная навигация</b>Меню на виду, похожие ссылки сгруппированы.</div>
+    </div>
+
+    <h3 id="s1-1">Скорость загрузки</h3>
+    <p>Скорость загрузки напрямую влияет на доход. Медленный сайт запускает цепную реакцию:</p>
+    <ol>
+      <li><b>Потеря аудитории.</b> Пока страница грузится, пользователь уходит к конкурентам.</li>
+      <li><b>Снижение конверсии.</b> Меньше посетителей — меньше покупок и заявок.</li>
+      <li><b>Падение в выдаче.</b> Поисковики учитывают скорость, медленный сайт опускается ниже.</li>
+    </ol>
+
+    <h3 id="s1-2">Первый экран</h3>
+    <p>Увидев первый экран, пользователь решает — остаться или уйти. Успешнее всего сайты, которые с первых секунд предлагают решение проблемы.</p>
+    <figure class="figure">
+      <img src="assets/cases/dev-yug.jpg" alt="Первый экран сайта Девелопмент-Юг" loading="lazy">
+      <figcaption>Сайт «Девелопмент-Юг» — пример понятного первого экрана</figcaption>
+    </figure>
+    <p>У первого экрана три задачи:</p>
+    <ul>
+      <li><b>Произвести впечатление.</b> Как при знакомстве в жизни: современно и интересно — значит, остаёмся.</li>
+      <li><b>Познакомить с продуктом.</b> Если неясно, что вы предлагаете, человек уйдёт.</li>
+      <li><b>Задать настроение.</b> Это первые ноты песни: не зацепило — дальше не скроллят.</li>
+    </ul>
+    <div class="callout callout--tip">Что обычно есть на первом экране: название продукта, оффер с выгодой, заметная кнопка действия и визуал, который усиливает предложение, а не перегружает экран.</div>
+
+    <h3 id="s1-3">Как ещё задержать посетителя</h3>
+    <p>Нужны конверсионные элементы — то, что побуждает остаться и оставить контакты взамен на что-то полезное:</p>
+    <ul>
+      <li>Бесплатный продукт для знакомства с услугой</li>
+      <li>Щедрая скидка новому клиенту — 10–15% уже никого не удивляют</li>
+      <li>Всплывающее предложение, когда курсор тянется закрыть вкладку</li>
+      <li>Формы вопросов и заказ обратного звонка</li>
+    </ul>
+    <p class="pull">Такие элементы можно вписать хоть в каждый блок. Главная цель — получить лид.</p>
+
+    <h2 id="s2">Поговорим о SEO</h2>
+    <p>Технические моменты важны не меньше, чем главная страница и наполнение.</p>
+
+    <h3 id="s2-1">Почему структура и навигация должны быть понятными</h3>
+    <p>Если по сайту трудно перемещаться, растут отказы, падает посещаемость и копится упущенная прибыль. Сайт, на котором не находят нужное, не эффективен — даже если он красивый.</p>
+
+    <h3 id="s2-2">Уделите внимание мобильной версии</h3>
+    <p>По данным Яндекс Радара, в 2023 году на мобильный трафик приходилось больше 70% против 27% у десктопа — и разрыв растёт. Поисковики тоже в первую очередь смотрят на мобильную версию.</p>
+    <div class="callout">Проектируя мобильный интерфейс, учитывайте зону большого пальца: ключевые кнопки должны быть там, куда легко дотянуться одной рукой. Мелкие кнопки, стоящие вплотную друг к другу, — прямой путь к ошибочным нажатиям.</div>
+
+    <h2 id="s3">Заключение</h2>
+    <p>Эффективный сайт быстро загружается, с первого экрана объясняет, что вы предлагаете, удобен на телефоне и мягко подводит к заявке. Если ваш сайт не приносит лидов — скорее всего, проблема в одном из этих пунктов.</p>
+    <p><strong>Не уверены, что именно мешает вашему сайту? Мы проведём аудит и покажем, где трещина.</strong></p>
+  </article>
+
+  <aside class="article__aside">
+    <div class="aside-card">
+      <h3>Аудит сайта</h3>
+      <p>Найдём, почему сайт не приносит заявок, и предложим план.</p>
+      <a href="index.html#contact" class="btn magnetic" data-cursor="hover"><span>Хочу аудит</span></a>
+    </div>
+  </aside>
+</div>
+
+<section class="section">
+  <div class="section__head section__head--row" style="margin-bottom:36px">
+    <h2 class="h3">Читайте также</h2>
+    <a href="blog.html" class="link-arrow" data-cursor="hover">Все статьи →</a>
+  </div>
+  <div class="posts">
+    <a href="https://nuts-agency.ru/articles/smm/osnovy-dizayn-v-didzhital-delimsya-sekretami/" target="_blank" rel="noopener" class="post" data-cursor="read">
+      <div class="post__img"><img src="assets/blog/design.png" alt="" loading="lazy"></div>
+      <div class="meta"><span class="cat">Дизайн</span></div>
+      <h3>Основы дизайна в диджитал: делимся секретами</h3>
+    </a>
+    <a href="https://nuts-agency.ru/articles/smm/legko-i-bystro-servisy-dlya-raboty-s-kontentom-/" target="_blank" rel="noopener" class="post" data-cursor="read">
+      <div class="post__img"><img src="assets/blog/services.jpg" alt="" loading="lazy"></div>
+      <div class="meta"><span class="cat">SMM</span></div>
+      <h3>Легко и быстро: сервисы для работы с контентом</h3>
+    </a>
+    <a href="https://nuts-agency.ru/articles/smm/tonkaya-gran-mezhdu-pr-i-manipulyatsiey-keys-edvarda-berneysa/" target="_blank" rel="noopener" class="post" data-cursor="read">
+      <div class="post__img"><img src="assets/blog/pr.jpg" alt="" loading="lazy"></div>
+      <div class="meta"><span class="cat">SMM</span></div>
+      <h3>Тонкая грань между PR и манипуляцией</h3>
+    </a>
+  </div>
+</section>
+
+<section class="cta-band" style="margin-top:0">
+  <h2>Сайт не приносит заявок? Расколем</h2>
+  <a href="index.html#contact" class="btn magnetic" data-cursor="hover"><span>Обсудить проект</span><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+</section>
+
+</main>
+
+
+<footer class="footer">
+  <div class="footer__big" aria-hidden="true"><span>N</span><span>U</span><span>T</span><span>S</span></div>
+  <div class="footer__row">
+    <span>© 2017–2026 Nuts Digital Agency</span>
+    <nav><a href="service.html">Услуги</a><a href="index.html#cases">Кейсы</a><a href="index.html#about">О нас</a><a href="blog.html">Блог</a><a href="index.html#contact">Контакты</a></nav>
+    <a href="#" class="footer__up" data-cursor="hover">Наверх ↑</a>
+  </div>
+</footer>
+
+<div class="grain" aria-hidden="true"></div>
+<script src="vendor/gsap.min.js"></script>
+<script src="vendor/ScrollTrigger.min.js"></script>
+<script src="vendor/lenis.min.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,532 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>NUTS — безумцы в стиле digital</title>
+  <meta name="description" content="Nuts Digital Agency — разработка сайтов и приложений, реклама, SEO, SMM и видео. Краснодар, с 2017 года.">
+  <meta name="theme-color" content="#0d0d0d">
+  <link rel="stylesheet" href="vendor/fonts/fonts.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+</head>
+<body>
+
+<!-- ============ PRELOADER ============ -->
+<div class="loader" id="loader">
+  <div class="loader__nut">
+    <svg viewBox="0 0 100 120" class="loader__svg"><use href="#nut-mark"/></svg>
+  </div>
+  <div class="loader__count"><span id="loaderCount">0</span>%</div>
+  <div class="loader__hint">колем орех…</div>
+</div>
+
+<!-- SVG sprite -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <linearGradient id="nutGrad" x1="0" y1="1" x2="1" y2="0">
+      <stop offset="0" stop-color="#FF4D00"/><stop offset="1" stop-color="#FFB000"/>
+    </linearGradient>
+  </defs>
+  <symbol id="nut-mark" viewBox="0 0 100 120">
+    <g fill="none" stroke="url(#nutGrad)" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M50 6c6 4 9 4 15 6 18 7 29 27 29 50 0 30-20 52-44 52S6 92 6 62C6 39 17 19 35 12c6-2 9-2 15-6z"/>
+      <path d="M50 18v88"/>
+      <path d="M50 30c-8-6-22-2-24 10-8 2-10 14-4 20-4 8 2 18 10 18 2 8 12 12 18 6"/>
+      <path d="M50 30c8-6 22-2 24 10 8 2 10 14 4 20 4 8-2 18-10 18-2 8-12 12-18 6"/>
+      <path d="M30 50c6 0 10 4 10 10M70 50c-6 0-10 4-10 10M36 74c4-4 10-4 14 0M64 74c-4-4-10-4-14 0"/>
+    </g>
+  </symbol>
+</svg>
+
+<!-- ============ CURSOR ============ -->
+<div class="cursor" id="cursor"><span class="cursor__label" id="cursorLabel"></span></div>
+
+<!-- ============ HEADER ============ -->
+<header class="header" id="header">
+  <a href="#top" class="logo" aria-label="NUTS — на главную">
+    <svg viewBox="0 0 100 120" class="logo__mark"><use href="#nut-mark"/></svg>
+    <span class="logo__text">NUTS<small>digital agency</small></span>
+  </a>
+  <nav class="nav" id="nav">
+    <a href="#services" data-cursor="hover">Услуги</a>
+    <a href="#cases" data-cursor="hover">Кейсы</a>
+    <a href="#about" data-cursor="hover">О нас</a>
+    <a href="blog.html" data-cursor="hover">Блог</a>
+    <a href="#contact" data-cursor="hover">Контакты</a>
+  </nav>
+  <div class="header__right">
+    <a href="tel:88002224604" class="header__phone">8 800 222-46-04</a>
+    <a href="#contact" class="btn btn--sm magnetic" data-cursor="hover"><span>Обсудить проект</span></a>
+    <button class="burger" id="burger" aria-label="Меню"><i></i><i></i></button>
+  </div>
+</header>
+
+<div class="menu" id="menu">
+  <nav class="menu__nav">
+    <a href="#services">Услуги</a><a href="#cases">Кейсы</a><a href="#about">О нас</a><a href="blog.html">Блог</a><a href="#contact">Контакты</a>
+  </nav>
+  <div class="menu__foot">
+    <a href="tel:88002224604">8 800 222-46-04</a>
+    <a href="mailto:info@nuts-agency.ru">info@nuts-agency.ru</a>
+  </div>
+</div>
+
+<main id="top">
+
+<!-- ============ HERO ============ -->
+<section class="hero" id="hero">
+  <canvas id="gl" class="hero__gl"></canvas>
+  <div class="hero__rings" aria-hidden="true"><i></i><i></i><i></i></div>
+
+  <div class="hero__top">
+    <span class="tag"><b class="dot"></b> Digital-агентство полного цикла · с 2017</span>
+    <span class="hero__coords">45.04° N · 38.97° E<br>Краснодар → вся Россия</span>
+  </div>
+
+  <h1 class="hero__title" aria-label="Мы немного NUTS">
+    <span class="hero__line"><span class="split">Мы немного</span></span>
+    <span class="hero__line hero__line--big"><span class="split">NUTS</span></span>
+  </h1>
+
+  <div class="hero__bottom">
+    <p class="hero__lead">Безумцы в стиле digital. Разрабатываем сайты и приложения, запускаем рекламу, SEO и&nbsp;SMM — для бизнеса, который готов к успеху.</p>
+    <div class="hero__ctas">
+      <a href="#contact" class="btn btn--orange magnetic" data-cursor="hover"><span>Расколоть задачу</span><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="#cases" class="btn btn--ghost magnetic" data-cursor="hover"><span>Смотреть кейсы</span></a>
+    </div>
+    <div class="hero__scroll"><span>скролль</span><i></i></div>
+  </div>
+</section>
+
+<!-- ============ MARQUEE ============ -->
+<div class="marquee" aria-hidden="true">
+  <div class="marquee__track">
+    <span>Сайты</span><b>✦</b><span>Приложения</span><b>✦</b><span>Реклама</span><b>✦</b><span>SEO</span><b>✦</b><span>SMM</span><b>✦</b><span>Видео</span><b>✦</b><span>IT-решения</span><b>✦</b><span>CRM</span><b>✦</b>
+    <span>Сайты</span><b>✦</b><span>Приложения</span><b>✦</b><span>Реклама</span><b>✦</b><span>SEO</span><b>✦</b><span>SMM</span><b>✦</b><span>Видео</span><b>✦</b><span>IT-решения</span><b>✦</b><span>CRM</span><b>✦</b>
+  </div>
+</div>
+
+<!-- ============ MANIFESTO ============ -->
+<section class="manifesto section">
+  <p class="manifesto__text reveal-words">
+    Пока другие думают, мы уже делаем. Берёмся за&nbsp;крупные и сложные проекты, выходим за&nbsp;рамки и превращаем <em>нереальное</em> в&nbsp;реальное. Решаем любые задачи — <em>24/7</em>.
+  </p>
+</section>
+
+<!-- ============ WHY NUTS — CARDS ============ -->
+<section class="why section" id="why">
+  <div class="section__head">
+    <span class="eyebrow">01 / Почему NUTS</span>
+    <h2 class="h2">Одно слово —<br><span class="orange">четыре смысла</span></h2>
+    <p class="section__sub">Раскрой карты. Наведи или тапни — у нас на руках флеш-рояль.</p>
+  </div>
+
+  <div class="hand" id="hand">
+    <div class="pcard" data-cursor="flip" style="--i:0;--y:42px">
+      <div class="pcard__inner">
+        <div class="pcard__face pcard__front">
+          <span class="pcard__corner">A<br>♠</span>
+          <span class="pcard__big">♠</span>
+          <span class="pcard__name">Орех</span>
+          <span class="pcard__corner pcard__corner--b">A<br>♠</span>
+        </div>
+        <div class="pcard__face pcard__back">
+          <span class="pcard__num">01</span>
+          <h3>Умные</h3>
+          <p>Грецкий орех похож на мозг — и это не совпадение. Крепкая скорлупа процессов снаружи, аналитика и стратегия внутри.</p>
+        </div>
+      </div>
+    </div>
+    <div class="pcard" data-cursor="flip" style="--i:1;--y:12px">
+      <div class="pcard__inner">
+        <div class="pcard__face pcard__front">
+          <span class="pcard__corner">K<br>♥</span>
+          <span class="pcard__big">♥</span>
+          <span class="pcard__name">Безумные</span>
+          <span class="pcard__corner pcard__corner--b">K<br>♥</span>
+        </div>
+        <div class="pcard__face pcard__back">
+          <span class="pcard__num">02</span>
+          <h3>Сумасшедшие</h3>
+          <p>В хорошем смысле. Поймать коров для ролика, снять итальянца на Кубани, набрать 14&nbsp;млн просмотров — нормальный вторник.</p>
+        </div>
+      </div>
+    </div>
+    <div class="pcard pcard--hot" data-cursor="flip" style="--i:2;--y:12px">
+      <div class="pcard__inner">
+        <div class="pcard__face pcard__front">
+          <span class="pcard__corner">Q<br>♦</span>
+          <span class="pcard__big">♦</span>
+          <span class="pcard__name">The&nbsp;Nuts</span>
+          <span class="pcard__corner pcard__corner--b">Q<br>♦</span>
+        </div>
+        <div class="pcard__face pcard__back">
+          <span class="pcard__num">03</span>
+          <h3>Лучшая рука</h3>
+          <p>В покере «the nuts» — комбинация, которую невозможно побить. Мы играем на результат: заявки, деньги, окупаемость.</p>
+        </div>
+      </div>
+    </div>
+    <div class="pcard" data-cursor="flip" style="--i:3;--y:42px">
+      <div class="pcard__inner">
+        <div class="pcard__face pcard__front">
+          <span class="pcard__corner">J<br>♣</span>
+          <span class="pcard__big">♣</span>
+          <span class="pcard__name">Смелые</span>
+          <span class="pcard__corner pcard__corner--b">J<br>♣</span>
+        </div>
+        <div class="pcard__face pcard__back">
+          <span class="pcard__num">04</span>
+          <h3>Смелые</h3>
+          <p>Go nuts — значит идти до конца. Спорим с брифом, предлагаем дерзкие идеи и отвечаем за цифры.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ NUMBERS ============ -->
+<section class="numbers section">
+  <div class="numbers__grid">
+    <div class="num"><span class="num__v" data-count="2017">0</span><span class="num__l">год основания. Начинали втроём на 20&nbsp;м²</span></div>
+    <div class="num"><span class="num__v"><span data-count="18">0</span></span><span class="num__l">безумцев в команде и офис 160&nbsp;м² на&nbsp;Красной</span></div>
+    <div class="num"><span class="num__v"><span data-count="14">0</span><small>млн</small></span><span class="num__l">просмотров в TikTok меньше чем за год</span></div>
+    <div class="num"><span class="num__v">−<span data-count="59">0</span><small>%</small></span><span class="num__l">стоимость конверсии для клиники за 1 год</span></div>
+  </div>
+</section>
+
+<!-- ============ SERVICES ============ -->
+<section class="services section section--light" id="services">
+  <div class="section__head">
+    <span class="eyebrow">02 / Услуги</span>
+    <h2 class="h2">Что мы <span class="orange">колем</span></h2>
+    <p class="section__sub">Полный цикл: от стратегии и дизайна до трафика и поддержки. Можно целиком, можно по кусочку.</p>
+  </div>
+
+  <div class="svc" id="svc">
+    <div class="svc__preview" id="svcPreview" aria-hidden="true"><div class="svc__img"></div></div>
+
+    <article class="svc__item" data-img="assets/cases/dev-yug.jpg" data-cursor="open">
+      <button class="svc__row">
+        <span class="svc__n">01</span><span class="svc__t">Разработка</span>
+        <span class="svc__tags">сайты · лендинги · e-com · приложения</span><span class="svc__plus"></span>
+      </button>
+      <div class="svc__body"><div>
+        <p>Корпоративные и мультирегиональные сайты, интернет-магазины, мобильные приложения, порталы. Понятный интерфейс, быстрый код, админка без боли.</p>
+        <ul><li>Разработка сайта</li><li>Landing Page</li><li>Интернет-магазины</li><li>Мобильные приложения</li></ul>
+        <a href="service.html" class="link-arrow svc__more" data-cursor="hover">Подробнее об услуге →</a>
+      </div></div>
+    </article>
+
+    <article class="svc__item" data-img="assets/cases/gymatika.jpg" data-cursor="open">
+      <button class="svc__row">
+        <span class="svc__n">02</span><span class="svc__t">Реклама</span>
+        <span class="svc__tags">контекст · таргет · медийка · programmatic</span><span class="svc__plus"></span>
+      </button>
+      <div class="svc__body"><div>
+        <p>Настраиваем рекламу, которая приносит обращения, а не просто клики. Обращения по 36&nbsp;₽ в нише фитнеса — наш стандарт амбиций.</p>
+        <ul><li>Контекстная реклама</li><li>Таргетированная реклама</li><li>Медийная реклама</li><li>Programmatic</li></ul>
+      </div></div>
+    </article>
+
+    <article class="svc__item" data-img="assets/cases/colba.jpg" data-cursor="open">
+      <button class="svc__row">
+        <span class="svc__n">03</span><span class="svc__t">SEO</span>
+        <span class="svc__tags">Яндекс · Google · аудит</span><span class="svc__plus"></span>
+      </button>
+      <div class="svc__body"><div>
+        <p>Выводим в топ и держим там. Технический аудит, семантика, контент, ссылки — с прозрачной отчётностью по позициям и трафику.</p>
+        <ul><li>SEO-оптимизация</li><li>Продвижение в Яндекс</li><li>Продвижение в Google</li><li>Аудит сайта</li></ul>
+      </div></div>
+    </article>
+
+    <article class="svc__item" data-img="assets/cases/dogma.jpg" data-cursor="open">
+      <button class="svc__row">
+        <span class="svc__n">04</span><span class="svc__t">SMM и видео</span>
+        <span class="svc__tags">соцсети · клипы · продакшн</span><span class="svc__plus"></span>
+      </button>
+      <div class="svc__body"><div>
+        <p>Ведём соцсети под ключ, снимаем ролики и клипы, делаем посевы. Репозиционировали винодельню в премиальный курорт — и это лишь начало.</p>
+        <ul><li>Ведение соцсетей под ключ</li><li>Посевы</li><li>VK-Клипы</li><li>Ролики Дзен</li></ul>
+      </div></div>
+    </article>
+
+    <article class="svc__item" data-img="assets/cases/supermen.jpg" data-cursor="open">
+      <button class="svc__row">
+        <span class="svc__n">05</span><span class="svc__t">IT-решения</span>
+        <span class="svc__tags">CRM · тендеры · порталы</span><span class="svc__plus"></span>
+      </button>
+      <div class="svc__body"><div>
+        <p>CRM с шахматкой для застройщиков, электронные торговые площадки, корпоративные порталы. Автоматизируем то, что съедает ваше время.</p>
+        <ul><li>IT для застройщиков</li><li>CRM-системы</li><li>Тендерные площадки</li><li>Корпоративные порталы</li></ul>
+      </div></div>
+    </article>
+
+    <article class="svc__item" data-img="assets/cases/mntk.png" data-cursor="open">
+      <button class="svc__row">
+        <span class="svc__n">06</span><span class="svc__t">Поддержка</span>
+        <span class="svc__tags">техническая · информационная</span><span class="svc__plus"></span>
+      </button>
+      <div class="svc__body"><div>
+        <p>Сайт — живой организм. Обновляем, защищаем, ускоряем, наполняем. Реагируем быстро, работаем по SLA.</p>
+        <ul><li>Техническая поддержка</li><li>Информационная поддержка</li><li>Доработки</li><li>Мониторинг</li></ul>
+      </div></div>
+    </article>
+  </div>
+</section>
+
+<!-- ============ CASES ============ -->
+<section class="cases section" id="cases">
+  <div class="section__head section__head--row">
+    <div>
+      <span class="eyebrow">03 / Кейсы</span>
+      <h2 class="h2">Расколотые <span class="orange">орешки</span></h2>
+    </div>
+    <div class="filters" id="filters">
+      <button class="filter is-active" data-f="all">Все</button>
+      <button class="filter" data-f="dev">Разработка</button>
+      <button class="filter" data-f="ads">Реклама</button>
+      <button class="filter" data-f="smm">SMM</button>
+      <button class="filter" data-f="seo">SEO</button>
+    </div>
+  </div>
+
+  <div class="cases__grid" id="casesGrid">
+    <a class="case case--wide" data-cat="dev" href="https://nuts-agency.ru/projects/web-razraborka/kak-my-razrabotali-sayt-dlya-korporatsii-development-yug/" target="_blank" rel="noopener" data-cursor="view">
+      <div class="case__media"><img src="assets/cases/dev-yug.jpg" alt="" loading="lazy"></div>
+      <div class="case__meta"><span>Разработка</span><span>Девелопмент-Юг</span></div>
+      <h3 class="case__title">Мультирегиональный сайт для корпорации «Девелопмент-Юг»</h3>
+    </a>
+    <a class="case" data-cat="dev" href="https://nuts-agency.ru/projects/web-razraborka/metch-professii-i-prizvaniya-karernyy-portal-dlya-cherkizovo/" target="_blank" rel="noopener" data-cursor="view">
+      <div class="case__media"><img src="assets/cases/cherkizovo.jpg" alt="" loading="lazy"></div>
+      <div class="case__meta"><span>Разработка</span><span>Черкизово</span></div>
+      <h3 class="case__title">Мэтч профессии и призвания: карьерный портал</h3>
+    </a>
+    <a class="case" data-cat="smm" href="case.html" data-cursor="view">
+      <div class="case__media"><img src="assets/cases/dogma.jpg" alt="" loading="lazy"></div>
+      <div class="case__meta"><span>SMM</span><span>DOGMA</span></div>
+      <h3 class="case__title">Комплексное продвижение федерального девелопера в соцсетях</h3>
+    </a>
+    <a class="case" data-cat="ads" href="https://nuts-agency.ru/projects/reklama/kak-menshe-chem-za-god-nabrat-14-mln-prosmotrov-v-tiktok-/" target="_blank" rel="noopener" data-cursor="view">
+      <div class="case__media"><img src="assets/cases/tiktok.jpg" alt="" loading="lazy"></div>
+      <div class="case__meta"><span>Реклама</span><span class="case__kpi">14 млн</span></div>
+      <h3 class="case__title">Как меньше чем за год набрать 14 млн просмотров в TikTok</h3>
+    </a>
+    <a class="case case--wide" data-cat="smm" href="https://nuts-agency.ru/projects/smm/iz-vinodelni-v-premialnyy-kurort-kak-my-vystroili-novuyu-identichnost-doliny-lefkadiya-v-sotsialnykh/" target="_blank" rel="noopener" data-cursor="view">
+      <div class="case__media"><img src="assets/cases/lefkadia.jpg" alt="" loading="lazy"></div>
+      <div class="case__meta"><span>SMM</span><span>Долина Лефкадия</span></div>
+      <h3 class="case__title">Из винодельни — в премиальный курорт: репозиционирование в соцсетях</h3>
+    </a>
+    <a class="case" data-cat="ads" href="https://nuts-agency.ru/projects/reklama/obrashcheniya-po-36-rubley-v-nishe-fitnes-klub/" target="_blank" rel="noopener" data-cursor="view">
+      <div class="case__media"><img src="assets/cases/gymatika.jpg" alt="" loading="lazy"></div>
+      <div class="case__meta"><span>Реклама</span><span class="case__kpi">36 ₽</span></div>
+      <h3 class="case__title">«Джиматика»: обращения по 36 рублей в нише фитнеса</h3>
+    </a>
+    <a class="case" data-cat="ads" href="https://nuts-agency.ru/projects/reklama/25-otkrytykh-salonov-za-2-goda-optimizatsiya-reklamnogo-byudzheta-na-50-franshiza-muzhskikh-salonov-/" target="_blank" rel="noopener" data-cursor="view">
+      <div class="case__media"><img src="assets/cases/supermen.jpg" alt="" loading="lazy"></div>
+      <div class="case__meta"><span>Реклама</span><span class="case__kpi">−50%</span></div>
+      <h3 class="case__title">Франшиза «Супермен»: оптимизация бюджета на 50%</h3>
+    </a>
+    <a class="case" data-cat="dev" href="https://nuts-agency.ru/projects/web-razraborka/sayt-dlya-mezhdunarodnoy-serii-pokernykh-turnirov-ea-poker-tour/" target="_blank" rel="noopener" data-cursor="view">
+      <div class="case__media"><img src="assets/cases/poker.jpg" alt="" loading="lazy"></div>
+      <div class="case__meta"><span>Разработка</span><span>EA Poker Tour</span></div>
+      <h3 class="case__title">Сайт для международной серии покерных турниров</h3>
+    </a>
+    <a class="case" data-cat="seo" href="https://nuts-agency.ru/projects/seo/prodvizhenie-sayta-salona-krasoty-colba/" target="_blank" rel="noopener" data-cursor="view">
+      <div class="case__media"><img src="assets/cases/colba.jpg" alt="" loading="lazy"></div>
+      <div class="case__meta"><span>SEO</span><span>ColBa</span></div>
+      <h3 class="case__title">Формула трафика: салон красоты в топе выдачи</h3>
+    </a>
+    <a class="case" data-cat="smm" href="https://nuts-agency.ru/projects/smm/kompleksnoe-prodvizhenie-bara-videosalon-zakryt/" target="_blank" rel="noopener" data-cursor="view">
+      <div class="case__media"><img src="assets/cases/videosalon.jpg" alt="" loading="lazy"></div>
+      <div class="case__meta"><span>SMM</span><span>Видеосалон закрыт</span></div>
+      <h3 class="case__title">Запасаемся попкорном: продвижение бара</h3>
+    </a>
+    <a class="case" data-cat="seo" href="https://nuts-agency.ru/projects/seo/prodvizhenie-i-podderzhka-sayta-trk-sbs-megamoll/" target="_blank" rel="noopener" data-cursor="view">
+      <div class="case__media"><img src="assets/cases/sbs.jpg" alt="" loading="lazy"></div>
+      <div class="case__meta"><span>SEO</span><span>СБС Мегамолл</span></div>
+      <h3 class="case__title">Продвижение и поддержка сайта ТРК</h3>
+    </a>
+    <a class="case" data-cat="dev" href="https://nuts-agency.ru/projects/web-razraborka/razrabotka-mobilnogo-prilozheniya-dlya-trts-grad/" target="_blank" rel="noopener" data-cursor="view">
+      <div class="case__media"><img src="assets/cases/grad.png" alt="" loading="lazy"></div>
+      <div class="case__meta"><span>Разработка</span><span>Сити-парк «Град»</span></div>
+      <h3 class="case__title">Мобильное приложение для крупнейшего ТРЦ Черноземья</h3>
+    </a>
+  </div>
+
+  <div class="cases__more">
+    <a href="https://nuts-agency.ru/projects/" target="_blank" rel="noopener" class="btn btn--ghost magnetic" data-cursor="hover"><span>Все проекты — 50+</span></a>
+  </div>
+</section>
+
+<!-- ============ CLIENTS ============ -->
+<section class="clients">
+  <p class="clients__cap">Нас выбирают те, кто готов к успеху</p>
+  <div class="ticker"><div class="ticker__track">
+    <span>Девелопмент-Юг</span><span>Черкизово</span><span>DOGMA</span><span>КЛЮЧАВТО</span><span>СБС Мегамолл</span><span>МНТК «Микрохирургия глаза»</span><span>СК Семья</span><span>Алкотека</span><span>Лефкадия</span><span>Schaumann</span><span>Точка Молочка</span><span>Арт-Сайд</span>
+    <span>Девелопмент-Юг</span><span>Черкизово</span><span>DOGMA</span><span>КЛЮЧАВТО</span><span>СБС Мегамолл</span><span>МНТК «Микрохирургия глаза»</span><span>СК Семья</span><span>Алкотека</span><span>Лефкадия</span><span>Schaumann</span><span>Точка Молочка</span><span>Арт-Сайд</span>
+  </div></div>
+</section>
+
+<!-- ============ PROCESS (horizontal) ============ -->
+<section class="process" id="process">
+  <div class="process__pin">
+    <div class="process__head">
+      <span class="eyebrow">04 / Как мы работаем</span>
+      <h2 class="h2">Как колем<br><span class="orange">орехи</span></h2>
+    </div>
+    <div class="process__track" id="processTrack">
+      <div class="step"><span class="step__n">01</span><h3>Нащупываем</h3><p>Бриф, интервью, аудит, конкуренты. Находим, где у орешка трещина.</p><div class="step__bar"><i style="--w:25%"></i></div></div>
+      <div class="step"><span class="step__n">02</span><h3>Прицеливаемся</h3><p>Стратегия, прототипы, медиаплан, KPI. Считаем экономику до старта.</p><div class="step__bar"><i style="--w:50%"></i></div></div>
+      <div class="step"><span class="step__n">03</span><h3>Колем</h3><p>Дизайн, разработка, запуск кампаний и продакшн. Спринты и демо каждую неделю.</p><div class="step__bar"><i style="--w:75%"></i></div></div>
+      <div class="step"><span class="step__n">04</span><h3>Собираем ядро</h3><p>Аналитика, оптимизация, масштабирование. Результат — в рублях, а не в «охватах».</p><div class="step__bar"><i style="--w:100%"></i></div></div>
+      <div class="step step--cta"><h3>Ваш орех следующий?</h3><a href="#contact" class="btn btn--orange magnetic" data-cursor="hover"><span>Погнали</span></a></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ABOUT ============ -->
+<section class="about section section--light" id="about">
+  <div class="section__head">
+    <span class="eyebrow">05 / О нас</span>
+    <h2 class="h2">Привет! Мы <span class="orange">Nuts</span></h2>
+  </div>
+  <div class="about__grid">
+    <div class="about__story">
+      <p class="about__lead">В 2017 году Костя и&nbsp;Данил Квашины открыли digital-агентство полного цикла. С тех пор NUTS выросли с&nbsp;3 человек до&nbsp;18, а&nbsp;офис — с&nbsp;20&nbsp;квадратов до&nbsp;160.</p>
+      <p>Мы занимаемся продвинутым интернет-маркетингом 24/7: веб-разработка, медийная реклама, продвижение и поддержка сайтов, стратегии, рост прибыли и управление репутацией.</p>
+      <p>Пока вы думаете — ваши конкуренты уже едут в наш офис.</p>
+      <div class="about__chips">
+        <span>Стратегия</span><span>Дизайн</span><span>Frontend</span><span>Backend</span><span>Мобайл</span><span>Performance</span><span>SEO</span><span>Продакшн</span><span>SMM</span>
+      </div>
+    </div>
+    <div class="about__timeline">
+      <div class="tl"><b>2017</b><span>3 человека, 20 м², много амбиций</span></div>
+      <div class="tl"><b>2019</b><span>Первые федеральные клиенты и сложные IT-проекты</span></div>
+      <div class="tl"><b>2022</b><span>Свой видеопродакшн и SMM-направление</span></div>
+      <div class="tl"><b>Сейчас</b><span>18 безумцев, 160 м² на Красной, 155/2</span></div>
+    </div>
+  </div>
+
+  <!-- Reviews -->
+  <div class="reviews">
+    <div class="reviews__head">
+      <h3 class="h3">Что говорят клиенты</h3>
+      <div class="reviews__nav">
+        <button class="round" id="revPrev" aria-label="Назад" data-cursor="hover"><svg viewBox="0 0 24 24"><path d="M19 12H5M11 6l-6 6 6 6"/></svg></button>
+        <button class="round" id="revNext" aria-label="Вперёд" data-cursor="hover"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+      </div>
+    </div>
+    <div class="reviews__viewport"><div class="reviews__track" id="revTrack">
+      <figure class="review"><blockquote>Специалисты агентства продемонстрировали высокий уровень профессиональной подготовки и способность эффективно решать задачи в рамках установленных сроков.</blockquote><figcaption><b>София Семенова</b><span>Руководитель направления бренда работодателя, Группа «Черкизово»</span></figcaption></figure>
+      <figure class="review"><blockquote>Агентство показало высокий уровень профессионализма, очень качественно и невероятно быстро создав с нуля сайт для онлайн-голосования.</blockquote><figcaption><b>Андрей Голодный</b><span>Президент Фонда «Гуманитарный мир», фестиваль «Дорога на Ялту»</span></figcaption></figure>
+      <figure class="review"><blockquote>Решение внедрить электронную торговую площадку позволило нам сократить время принятия решений и обеспечить единый стандарт работы с подрядчиками.</blockquote><figcaption><b>М. А. Капцанов</b><span>Директор по централизованным закупкам, СК «Семья»</span></figcaption></figure>
+      <figure class="review"><blockquote>Тысячи людей узнали о нашей компании, мы ежедневно расширяем присутствие в цифровом пространстве. С радостью продолжаем сотрудничать!</blockquote><figcaption><b>Олег Заволока</b><span>Генеральный директор РА «Тренд-Юг» (DOGMA)</span></figcaption></figure>
+      <figure class="review"><blockquote>Сотрудничество с NUTS DIGITAL — это профессионализм и продуманный подход. Спасибо коллегам!</blockquote><figcaption><b>Александр Мирошников</b><span>Директор ООО «Шауманн Агри»</span></figcaption></figure>
+      <figure class="review"><blockquote>Искренняя благодарность команде за профессионализм и высокое качество работы при разработке мобильного приложения.</blockquote><figcaption><b>Ольга Сидоренко</b><span>Генеральный директор Сити-парка «Град»</span></figcaption></figure>
+    </div></div>
+  </div>
+</section>
+
+<!-- ============ BLOG ============ -->
+<section class="blog section" id="blog">
+  <div class="section__head section__head--row">
+    <div>
+      <span class="eyebrow">06 / Блог</span>
+      <h2 class="h2">Орехи <span class="orange">для ума</span></h2>
+    </div>
+    <a href="blog.html" class="link-arrow" data-cursor="hover">Все статьи →</a>
+  </div>
+  <div class="blog__grid">
+    <a href="article.html" class="post" data-cursor="read">
+      <div class="post__art post__art--1"><span>SEO</span></div>
+      <div class="post__meta"><span>Продвижение</span><span>Гайд</span></div>
+      <h3>Почему ваш сайт работает неэффективно</h3>
+    </a>
+    <a href="https://nuts-agency.ru/articles/smm/legko-i-bystro-servisy-dlya-raboty-s-kontentom-/" target="_blank" rel="noopener" class="post" data-cursor="read">
+      <div class="post__art post__art--2"><span>SMM</span></div>
+      <div class="post__meta"><span>SMM</span><span>Подборка</span></div>
+      <h3>Легко и быстро: сервисы для работы с контентом</h3>
+    </a>
+    <a href="https://nuts-agency.ru/articles/smm/osnovy-dizayn-v-didzhital-delimsya-sekretami/" target="_blank" rel="noopener" class="post" data-cursor="read">
+      <div class="post__art post__art--3"><span>UI</span></div>
+      <div class="post__meta"><span>Дизайн</span><span>Основы</span></div>
+      <h3>Основы дизайна в диджитал: делимся секретами</h3>
+    </a>
+  </div>
+</section>
+
+<!-- ============ CONTACT ============ -->
+<section class="contact section" id="contact">
+  <div class="contact__bg" aria-hidden="true">NUTS</div>
+  <div class="contact__grid">
+    <div class="contact__left">
+      <span class="eyebrow">07 / Контакты</span>
+      <h2 class="h2 contact__title">Есть крепкий<br><span class="orange">орешек?</span></h2>
+      <p class="section__sub">Расскажите о задаче — ответим в течение рабочего дня и предложим, как её расколоть.</p>
+      <div class="contact__links">
+        <a href="tel:88002224604" class="contact__big" data-cursor="hover">8 800 222-46-04</a>
+        <a href="mailto:info@nuts-agency.ru" class="contact__big" data-cursor="hover">info@nuts-agency.ru</a>
+        <p class="contact__addr">Краснодар, ул. Красная, 155/2, 7 этаж</p>
+        <div class="socials">
+          <a href="https://t.me/nutsdigitalagency" target="_blank" rel="noopener" class="social" data-cursor="hover">Telegram</a>
+          <a href="https://vk.com/nutsdigital" target="_blank" rel="noopener" class="social" data-cursor="hover">VK</a>
+        </div>
+      </div>
+    </div>
+
+    <form class="brief" id="brief" novalidate>
+      <fieldset>
+        <legend>Что нужно?</legend>
+        <div class="chips">
+          <label><input type="checkbox" name="svc" value="Сайт"><span>Сайт</span></label>
+          <label><input type="checkbox" name="svc" value="Приложение"><span>Приложение</span></label>
+          <label><input type="checkbox" name="svc" value="Реклама"><span>Реклама</span></label>
+          <label><input type="checkbox" name="svc" value="SEO"><span>SEO</span></label>
+          <label><input type="checkbox" name="svc" value="SMM"><span>SMM</span></label>
+          <label><input type="checkbox" name="svc" value="Видео"><span>Видео</span></label>
+          <label><input type="checkbox" name="svc" value="CRM"><span>CRM / IT</span></label>
+        </div>
+      </fieldset>
+      <fieldset>
+        <legend>Бюджет, ₽</legend>
+        <div class="chips chips--radio">
+          <label><input type="radio" name="budget" value="до 300к"><span>до 300к</span></label>
+          <label><input type="radio" name="budget" value="300к–1м"><span>300к – 1м</span></label>
+          <label><input type="radio" name="budget" value="1м+"><span>1м+</span></label>
+          <label><input type="radio" name="budget" value="all-in"><span>All-in 🃏</span></label>
+        </div>
+      </fieldset>
+      <div class="field"><input id="fName" name="name" required placeholder=" "><label for="fName">Как вас зовут</label></div>
+      <div class="field"><input id="fContact" name="contact" required placeholder=" "><label for="fContact">Телефон или Telegram</label></div>
+      <div class="field"><textarea id="fMsg" name="msg" rows="3" placeholder=" "></textarea><label for="fMsg">Пара слов о задаче</label></div>
+      <button type="submit" class="btn btn--orange btn--wide magnetic" data-cursor="hover"><span>Отправить и расколоть</span><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+      <p class="brief__note">Нажимая кнопку, вы соглашаетесь с политикой обработки персональных данных.</p>
+      <div class="brief__done" id="briefDone"><span>🌰</span><h3>Орех принят!</h3><p>Скоро свяжемся.</p></div>
+    </form>
+  </div>
+</section>
+
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer class="footer">
+  <div class="footer__big" id="footerBig" aria-hidden="true"><span>N</span><span>U</span><span>T</span><span>S</span></div>
+  <div class="footer__row">
+    <span>© 2017–2026 Nuts Digital Agency</span>
+    <nav><a href="#services">Услуги</a><a href="#cases">Кейсы</a><a href="#about">О нас</a><a href="blog.html">Блог</a><a href="#contact">Контакты</a></nav>
+    <a href="#top" class="footer__up" data-cursor="hover">Наверх ↑</a>
+  </div>
+</footer>
+
+<div class="grain" aria-hidden="true"></div>
+
+<script src="vendor/gsap.min.js"></script>
+<script src="vendor/ScrollTrigger.min.js"></script>
+<script src="vendor/lenis.min.js"></script>
+<script type="importmap">{ "imports": { "three": "./vendor/three/three.module.js", "three/addons/": "./vendor/three/addons/" } }</script>
+<script type="module" src="js/nut.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
