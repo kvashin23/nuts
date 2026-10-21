@@ -211,10 +211,10 @@ em { font-style: normal; color: var(--orange); }
 .pcard__big { font-size: clamp(90px, 9vw, 130px); line-height: 1; color: var(--black); }
 .pcard:nth-child(2) .pcard__big, .pcard:nth-child(3) .pcard__big, .pcard:nth-child(2) .pcard__corner, .pcard:nth-child(3) .pcard__corner { color: var(--orange); }
 .pcard__name { position: absolute; bottom: 52px; left: 0; right: 0; text-align: center; font-family: var(--f-display); font-weight: 800; font-size: 18px; text-transform: uppercase; letter-spacing: .02em; }
-.pcard__back { background: var(--grad); color: #000; transform: rotateY(180deg); display: flex; flex-direction: column; justify-content: flex-end; }
+.pcard__back { container-type: inline-size; background: var(--grad); color: #000; transform: rotateY(180deg); display: flex; flex-direction: column; justify-content: flex-end; }
 .pcard--hot .pcard__back { background: var(--black); color: var(--white); border: 1.5px solid var(--orange); }
 .pcard__num { position: absolute; top: 18px; left: 22px; font-family: var(--f-display); font-weight: 900; font-size: 64px; line-height: 1; opacity: .25; }
-.pcard__back h3 { margin: 0 0 10px; font-family: var(--f-display); font-weight: 900; font-size: 26px; text-transform: uppercase; letter-spacing: -.02em; }
+.pcard__back h3 { margin: 0 0 10px; font-family: var(--f-display); font-weight: 900; font-size: min(26px, 8cqi); overflow-wrap: anywhere; text-transform: uppercase; letter-spacing: -.02em; }
 .pcard__back p { margin: 0; font-size: 14.5px; line-height: 1.45; font-weight: 600; }
 
 /* ---------- numbers ---------- */
