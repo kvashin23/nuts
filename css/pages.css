@@ -33,7 +33,7 @@
 .cover { margin: clamp(40px, 5vw, 72px) var(--pad) 0; border-radius: var(--r); overflow: hidden; aspect-ratio: 16 / 7; position: relative; background: var(--ink-2); }
 .cover img { width: 100%; height: 120%; object-fit: cover; will-change: transform; }
 .cover__badge { position: absolute; left: 24px; bottom: 24px; display: flex; gap: 8px; flex-wrap: wrap; }
-.cover__badge span { padding: 10px 16px; border-radius: 99px; background: rgba(13,13,13,.6); backdrop-filter: blur(10px); font-size: 13px; font-weight: 700; }
+.cover__badge span { padding: 10px 16px; border-radius: 99px; background: rgba(13,13,13,.6); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); font-size: 13px; font-weight: 700; }
 
 /* ---------- chapters (sticky heading + body) ---------- */
 .chapters { padding: clamp(80px, 10vw, 140px) var(--pad); display: flex; flex-direction: column; gap: clamp(64px, 8vw, 120px); }

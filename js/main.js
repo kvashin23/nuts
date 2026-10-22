@@ -77,12 +77,22 @@
   /* ---------- cursor ---------- */
   const cursor = $('#cursor'), label = $('#cursorLabel');
   const labels = { drag: 'Тяни', view: 'Смотреть', open: 'Открыть', flip: 'Флип', read: 'Читать', crack: 'Колоть!', close: 'Собрать' };
-  if (finePointer) {
-    let cx = innerWidth / 2, cy = innerHeight / 2, x = cx, y = cy;
-    addEventListener('pointermove', e => { cx = e.clientX; cy = e.clientY; });
+  if (finePointer && cursor) {
+    let cx = innerWidth / 2, cy = innerHeight / 2, x = cx, y = cy, live = false;
+    // mousemove as well as pointermove: older Safari builds deliver only one of them reliably
+    const move = e => {
+      if (e.pointerType && e.pointerType !== 'mouse') return;
+      cx = e.clientX; cy = e.clientY;
+      if (!live) { live = true; x = cx; y = cy; document.documentElement.classList.add('has-cursor'); }
+      cursor.classList.remove('is-out');
+    };
+    addEventListener('pointermove', move, { passive: true });
+    addEventListener('mousemove', move, { passive: true });
+    document.addEventListener('mouseleave', () => cursor.classList.add('is-out'));
+    addEventListener('blur', () => cursor.classList.add('is-out'));
     const loop = () => {
       x += (cx - x) * .2; y += (cy - y) * .2;
-      cursor.style.transform = `translate3d(${x}px, ${y}px, 0)`;
+      cursor.style.webkitTransform = cursor.style.transform = `translate3d(${x}px, ${y}px, 0)`;
       requestAnimationFrame(loop);
     };
     loop();
@@ -91,10 +101,12 @@
       cursor.classList.toggle('is-label', !!labels[type]);
       label.textContent = labels[type] || '';
     };
-    document.addEventListener('pointerover', e => {
-      const t = e.target.closest('[data-cursor]');
-      setState(t ? t.dataset.cursor : null);
-    });
+    const over = e => {
+      const t = e.target instanceof Element ? e.target.closest('[data-cursor]') : null;
+      setState(t ? t.getAttribute('data-cursor') : null);
+    };
+    document.addEventListener('pointerover', over);
+    document.addEventListener('mouseover', over);
     addEventListener('nut:hover', e => {
       if (e.detail.hit) setState(e.detail.open ? 'close' : 'crack');
       else if (!document.querySelector('[data-cursor]:hover')) setState(null);

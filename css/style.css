@@ -37,8 +37,10 @@ img { display: block; max-width: 100%; }
 .orange { color: var(--orange); }
 em { font-style: normal; color: var(--orange); }
 
+/* the native cursor is hidden only once JS has the custom one following the mouse (html.has-cursor),
+   so any browser where that fails (older Safari, blocked scripts) keeps the normal arrow */
 @media (hover: hover) and (pointer: fine) {
-  body, a, button, label { cursor: none; }
+  html.has-cursor body, html.has-cursor a, html.has-cursor button, html.has-cursor label, html.has-cursor [data-cursor] { cursor: none; }
 }
 
 /* ---------- grain ---------- */
@@ -64,14 +66,17 @@ em { font-style: normal; color: var(--orange); }
   position: fixed; left: 0; top: 0; z-index: 150; pointer-events: none;
   width: 14px; height: 14px; margin: -7px 0 0 -7px; border-radius: 50%;
   background: var(--orange); mix-blend-mode: normal;
-  display: grid; place-items: center;
-  transition: width .35s var(--ease), height .35s var(--ease), margin .35s var(--ease), background .3s;
+  display: -webkit-box; display: flex; align-items: center; justify-content: center;
+  opacity: 0; will-change: transform;
+  transition: width .35s var(--ease), height .35s var(--ease), margin .35s var(--ease), background .3s, opacity .2s;
 }
+html.has-cursor .cursor { opacity: 1; }
+html.has-cursor .cursor.is-out { opacity: 0; }
 .cursor__label { font-size: 12px; font-weight: 700; color: #000; text-transform: uppercase; letter-spacing: .06em; opacity: 0; transition: opacity .2s; white-space: nowrap; }
 .cursor.is-hover { width: 44px; height: 44px; margin: -22px 0 0 -22px; background: transparent; border: 2px solid var(--orange); }
 .cursor.is-label { width: 96px; height: 96px; margin: -48px 0 0 -48px; background: var(--orange); }
 .cursor.is-label .cursor__label { opacity: 1; }
-@media not ((hover: hover) and (pointer: fine)) { .cursor { display: none; } }
+@media (hover: none), (pointer: coarse) { .cursor { display: none; } }
 
 /* ---------- header ---------- */
 .header {
@@ -86,7 +91,7 @@ em { font-style: normal; color: var(--orange); }
 .logo__mark { height: 40px; width: auto; transition: transform .6s var(--ease); }
 .logo__word { height: 40px; width: auto; }
 .logo:hover .logo__mark { transform: rotate(360deg); }
-.nav { display: flex; gap: 6px; padding: 6px; border-radius: 99px; background: rgba(255,255,255,.06); border: 1px solid var(--line); backdrop-filter: blur(10px); }
+.nav { display: flex; gap: 6px; padding: 6px; border-radius: 99px; background: rgba(255,255,255,.06); border: 1px solid var(--line); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); }
 .nav a { position: relative; padding: 8px 16px; border-radius: 99px; font-size: 14px; font-weight: 600; transition: background .3s, color .3s; }
 .nav a:hover, .nav a.is-active { background: var(--white); color: #000; }
 .header__right { display: flex; align-items: center; gap: 18px; }
@@ -143,7 +148,7 @@ em { font-style: normal; color: var(--orange); }
 .h2 { font-family: var(--f-display); font-weight: 900; font-size: clamp(40px, 7.4vw, 120px); line-height: .95; letter-spacing: -.04em; text-transform: uppercase; margin: 0; }
 .h3 { font-family: var(--f-display); font-weight: 800; font-size: clamp(24px, 3vw, 40px); letter-spacing: -.02em; margin: 0; text-transform: uppercase; }
 .section__sub { max-width: 520px; margin: 24px 0 0; font-size: 18px; opacity: .7; }
-.tag { display: inline-flex; align-items: center; gap: 10px; padding: 10px 16px; border-radius: 99px; border: 1px solid var(--line); background: rgba(255,255,255,.04); backdrop-filter: blur(8px); font-size: 13px; font-weight: 600; }
+.tag { display: inline-flex; align-items: center; gap: 10px; padding: 10px 16px; border-radius: 99px; border: 1px solid var(--line); background: rgba(255,255,255,.04); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); font-size: 13px; font-weight: 600; }
 .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--orange); box-shadow: 0 0 0 0 rgba(255,90,20,.7); animation: ping 1.8s infinite; }
 @keyframes ping { 70% { box-shadow: 0 0 0 10px rgba(255,90,20,0); } 100% { box-shadow: 0 0 0 0 rgba(255,90,20,0); } }
 .link-arrow { font-weight: 700; border-bottom: 2px solid var(--orange); padding-bottom: 4px; }
