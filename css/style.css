@@ -464,3 +464,7 @@ em { font-style: normal; color: var(--orange); }
 body.menu-open { overflow: hidden; }
 .field[data-error].is-error::after { content: attr(data-error); display: block; margin-top: 6px; font-size: 13px; font-weight: 600; color: #ff6b5a; }
 .field.is-error label { color: #ff6b5a; }
+.brief__hp { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; }
+.brief__error { margin: 0; padding: 14px 16px; border-radius: 14px; background: rgba(255,107,90,.12); border: 1px solid rgba(255,107,90,.4); color: #ffb3a8; font-size: 14px; }
+.brief__error a { color: inherit; text-decoration: underline; }
+.brief.is-sending button[type=submit] { opacity: .7; pointer-events: none; }

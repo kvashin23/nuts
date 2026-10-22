@@ -293,9 +293,33 @@
   }
 
   /* ---------- brief form ---------- */
+  // Static hosting has no backend, so requests go through FormSubmit, which emails them to the inbox below.
+  // The very first submission makes FormSubmit send an "Activate form" email there — click it once.
+  const FORM_INBOX = 'info@nuts-agency.ru';
+  const FORM_ENDPOINT = `https://formsubmit.co/ajax/${FORM_INBOX}`;
   const form = $('form.brief');
-  form && form.addEventListener('submit', e => {
+  const sendBrief = async () => {
+    const fd = new FormData(form);
+    const services = fd.getAll('svc').join(', ');
+    const payload = {
+      'Имя': fd.get('name').trim(),
+      'Контакт': fd.get('contact').trim(),
+      'Что нужно': services || '—',
+      'Бюджет': fd.get('budget') || '—',
+      'Задача': (fd.get('msg') || '').trim() || '—',
+      'Страница': location.href,
+      _subject: `Заявка с сайта NUTS: ${fd.get('name').trim()}${services ? ' — ' + services : ''}`,
+      _template: 'table',
+      _captcha: 'false',
+      _honey: fd.get('_honey') || '',
+    };
+    const r = await fetch(FORM_ENDPOINT, { method: 'POST', headers: { 'Content-Type': 'application/json', Accept: 'application/json' }, body: JSON.stringify(payload) });
+    const data = await r.json().catch(() => ({}));
+    if (!r.ok || String(data.success) !== 'true') throw new Error(data.message || `HTTP ${r.status}`);
+  };
+  form && form.addEventListener('submit', async e => {
     e.preventDefault();
+    if (form.classList.contains('is-sending')) return;
     let ok = true;
     // contact: a phone (10+ digits), a @telegram nick or an email
     const contactOk = v => /^\+?[\d\s()-]{10,}$/.test(v) && v.replace(/\D/g, '').length >= 10 || /^(@|(https?:\/\/)?t\.me\/)[a-z0-9_]{5,32}$/i.test(v) || /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
@@ -311,8 +335,24 @@
       hasGsap && gsap.fromTo(form, { x: -8 }, { x: 0, duration: .5, ease: 'elastic.out(1.2, .3)' });
       return;
     }
-    // TODO: подключить отправку (CRM / Telegram-бот / почта)
-    form.classList.add('is-sent');
+    const btn = form.querySelector('button[type=submit] span');
+    const label = btn.textContent;
+    const err = form.querySelector('.brief__error');
+    form.classList.add('is-sending');
+    btn.textContent = 'Отправляем…';
+    err.hidden = true;
+    try {
+      // bots fill the hidden field; pretend success and drop it
+      if (!form.elements._honey.value) await sendBrief();
+      form.classList.add('is-sent');
+      form.reset();
+    } catch (ex) {
+      console.warn('brief:', ex);
+      err.hidden = false;
+    } finally {
+      form.classList.remove('is-sending');
+      btn.textContent = label;
+    }
   });
 
   /* ---------- article: reading progress + table of contents ---------- */
