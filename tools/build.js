@@ -357,7 +357,7 @@ async function buildServices() {
 <section class="section" style="padding-top:0">
   <div class="svc-list">
 ${sections.map((s, i) => `    <article class="svc-block">
-      <a href="services/${s.key}.html" class="svc-block__head" data-cursor="open">
+      <a href="services/${s.key}.html" class="svc-block__head" data-cursor="hover">
         <span class="svc__n">${String(i + 1).padStart(2, '0')}</span>
         <h2 class="svc-block__title">${esc(SECTIONS[s.key].label)}</h2>
         <p>${esc(SECTIONS[s.key].short)}</p>
@@ -387,7 +387,7 @@ ${sections.map((s, i) => `    <article class="svc-block">
 ${subs.length ? `<section class="section section--light" style="margin-top:clamp(40px,6vw,80px)">
   <div class="section__head"><span class="eyebrow">Направления</span><h2 class="h2">Выберите<br><span class="orange">свой орех</span></h2></div>
   <div class="kinds">${subs.map((x, i) => `
-    <a class="kind" href="services/${x.slug}.html" data-cursor="open">
+    <a class="kind" href="services/${x.slug}.html" data-cursor="hover">
       <span class="kind__ico">${String(i + 1).padStart(2, '0')}</span>
       <h3>${esc(x.title)}</h3>
       <p>${esc(cut(firstText(normalize(x.html)), 130))}</p>

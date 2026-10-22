@@ -218,8 +218,7 @@
     });
   });
 
-  /* ---------- services accordion + floating preview ---------- */
-  const preview = $('#svcPreview'), pimg = preview && $('.svc__img', preview);
+  /* ---------- services accordion ---------- */
   $$('.svc__item').forEach(item => {
     $('.svc__row', item).addEventListener('click', () => {
       const open = item.classList.contains('is-open');
@@ -227,16 +226,7 @@
       if (!open) item.classList.add('is-open');
       setTimeout(() => hasGsap && ScrollTrigger.refresh(), 650);
     });
-    if (!preview) return;
-    item.addEventListener('pointerenter', () => { pimg.style.backgroundImage = `url(${item.dataset.img})`; preview.classList.add('is-on'); });
-    item.addEventListener('pointerleave', () => preview.classList.remove('is-on'));
   });
-  if (finePointer && preview) {
-    let px = 0, py = 0, tx = 0, ty = 0;
-    $('#svc').addEventListener('pointermove', e => { tx = e.clientX; ty = e.clientY; });
-    const loop = () => { px += (tx - px) * .12; py += (ty - py) * .12; preview.style.left = px + 'px'; preview.style.top = py + 'px'; requestAnimationFrame(loop); };
-    loop();
-  }
 
   /* ---------- case filters ---------- */
   $$('.filter').forEach(btn => btn.addEventListener('click', () => {
