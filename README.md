@@ -40,5 +40,8 @@ powershell -ExecutionPolicy Bypass -File tools/save-server.ps1 -Root .
 
 и откройте http://localhost:5173/tools/build.html.
 
-## Что осталось подключить
-- Отправка формы брифа — `js/main.js`, блок `brief form` (TODO).
+## Заявки с формы
+
+Бэкенда у статичного сайта нет, поэтому форма брифа отправляет заявки на info@nuts-agency.ru через сервис FormSubmit (formsubmit.co). Адрес ящика и состав полей — в `js/main.js`, блок `brief form`.
+
+Первая отправленная заявка вызовет письмо «Activate Form» на этот ящик. По ссылке из него форму нужно один раз подтвердить, иначе заявки приходить не будут.
