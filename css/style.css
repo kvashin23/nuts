@@ -55,7 +55,10 @@ em { font-style: normal; color: var(--orange); }
 .loader {
   position: fixed; inset: 0; z-index: 200; background: var(--black);
   display: grid; place-items: center; align-content: center; gap: 18px;
+  /* fail-safe: if main.js never arrives (slow or filtered network), the curtain still lifts by itself */
+  animation: loader-failsafe .8s cubic-bezier(.7,0,.2,1) 5s forwards;
 }
+@keyframes loader-failsafe { to { transform: translateY(-100%); visibility: hidden; } }
 .loader__svg { width: 86px; height: 100px; object-fit: contain; animation: wobble 1.2s var(--ease) infinite; }
 @keyframes wobble { 0%,100%{transform:rotate(-8deg) scale(1)} 50%{transform:rotate(8deg) scale(1.08)} }
 .loader__count { font-family: var(--f-display); font-weight: 900; font-size: clamp(56px, 12vw, 140px); line-height: 1; letter-spacing: -.04em; }
