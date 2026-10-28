@@ -4,6 +4,7 @@
 
 const SAVE = 'http://localhost:5174/save?path=';
 const SITE = 'https://kvashin23.github.io/nuts/';
+const VER = Date.now().toString(36); // appended to our CSS/JS URLs on every build
 
 const CASE_CATS = { 'web-razraborka': 'Разработка', reklama: 'Реклама', smm: 'SMM', seo: 'SEO' };
 const CASE_FILTER = { 'web-razraborka': 'dev', reklama: 'ads', smm: 'smm', seo: 'seo' };
@@ -189,8 +190,8 @@ function page({ path, title, desc, active, main, before = '', image, base }) {
   <link rel="canonical" href="${url}">${base ? `\n  <base href="${base}">` : ''}
   <meta name="theme-color" content="#0d0d0d">
   <link rel="stylesheet" href="${p}vendor/fonts/fonts.css">
-  <link rel="stylesheet" href="${p}css/style.css">
-  <link rel="stylesheet" href="${p}css/pages.css">
+  <link rel="stylesheet" href="${p}css/style.css?v=${VER}">
+  <link rel="stylesheet" href="${p}css/pages.css?v=${VER}">
   <link rel="icon" href="${p}assets/logo-mark.png" type="image/png">
 </head>
 <body>
@@ -231,7 +232,7 @@ ${relink(main, depth)}
 <script src="${p}vendor/gsap.min.js"></script>
 <script src="${p}vendor/ScrollTrigger.min.js"></script>
 <script src="${p}vendor/lenis.min.js"></script>
-<script src="${p}js/main.js"></script>
+<script src="${p}js/main.js?v=${VER}"></script>
 </body>
 </html>
 `;
@@ -623,6 +624,8 @@ async function run() {
     .replace(/<a href="#about"( data-cursor="hover")?>О нас<\/a>/g, '<a href="about.html"$1>О нас</a>')
     .replace(/Все проекты — \d+\+?/, `Все проекты — ${D.cases.length}`)
     .replace(/ target="_blank" rel="noopener"( class="(?:case|post)[^"]*")/g, '$1');
+  // cache-bust our own CSS/JS so visitors never mix fresh HTML with stale styles or scripts
+  home = home.replace(/(href|src)="((?:css|js)\/[^"?]+)(?:\?v=[^"]*)?"/g, (m, a, f) => `${a}="${f}?v=${VER}"`);
   pages['index.html'] = home;
   // keep old flat URLs working
   for (const [old, now] of Object.entries(LEGACY)) pages[old] = `<!doctype html><meta charset="utf-8"><meta http-equiv="refresh" content="0; url=${now}"><link rel="canonical" href="${now}"><a href="${now}">${now}</a>\n`;
