@@ -345,6 +345,29 @@
     g.addEventListener('wheel', e => { if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) return; e.stopPropagation(); }, { passive: true });
   });
 
+  /* ---------- auto-scrolling photo sliders ---------- */
+  $$('.autoslider').forEach(box => {
+    const track = $('.autoslider__track', box), slides = track.children.length;
+    const dots = document.createElement('div');
+    dots.className = 'autoslider__dots';
+    dots.innerHTML = Array.from({ length: slides }, (_, i) => `<button type="button" aria-label="Фото ${i + 1}"></button>`).join('');
+    box.appendChild(dots);
+    let i = 0, timer = null;
+    const show = n => {
+      i = (n + slides) % slides;
+      track.style.transform = `translateX(${-i * 100}%)`;
+      $$('button', dots).forEach((b, k) => b.classList.toggle('is-active', k === i));
+    };
+    const play = () => { if (!reduced) { clearInterval(timer); timer = setInterval(() => show(i + 1), 3500); } };
+    $$('button', dots).forEach((b, k) => b.addEventListener('click', () => { show(k); play(); }));
+    box.addEventListener('pointerenter', () => clearInterval(timer));
+    box.addEventListener('pointerleave', play);
+    let sx = null;
+    box.addEventListener('pointerdown', e => (sx = e.clientX));
+    box.addEventListener('pointerup', e => { if (sx !== null && Math.abs(e.clientX - sx) > 40) { show(i + (e.clientX < sx ? 1 : -1)); play(); } sx = null; });
+    show(0); play();
+  });
+
   /* ---------- FAQ ---------- */
   $$('.faq__q').forEach(q => q.addEventListener('click', () => {
     q.parentElement.classList.toggle('is-open');

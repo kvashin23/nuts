@@ -97,6 +97,42 @@ function normalize(html) {
   out.querySelectorAll('a[href^="http"]').forEach(a => { if (!/nuts-agency\.ru/.test(a.href)) { a.target = '_blank'; a.rel = 'noopener'; } });
   return out.innerHTML;
 }
+// client edits 28.10: service texts lose their images and the old "cases / articles" link blocks;
+// on the developer-IT page runs of photos become an auto-scrolling slider instead
+const SLIDER_PAGES = new Set(['it-reshenie-dlya-zastroyshchikov']);
+function cleanService(html, key) {
+  const root = document.createElement('div'); root.innerHTML = html;
+  [...root.children].forEach(h => {
+    if (!/^H3$/.test(h.tagName) || !/кейсы|статьи про/i.test(h.textContent)) return;
+    let n = h.nextElementSibling;
+    while (n && !/^H[23]$/.test(n.tagName)) { const next = n.nextElementSibling; n.remove(); n = next; }
+    h.remove();
+  });
+  if (SLIDER_PAGES.has(key)) {
+    // lists that hold nothing but pictures (one per item) are galleries — unwrap them into figures
+    root.querySelectorAll('ul, ol').forEach(l => {
+      const imgs = l.querySelectorAll('img');
+      if (imgs.length < 2 || l.textContent.trim()) return;
+      const figs = [...imgs].map(img => { const f = img.closest('figure') || Object.assign(document.createElement('figure'), {}); if (!f.contains(img)) f.appendChild(img); return f; });
+      l.replaceWith(...figs);
+    });
+    let run = [];
+    const flush = () => {
+      if (run.length > 1) {
+        const box = document.createElement('div'); box.className = 'autoslider';
+        const track = document.createElement('div'); track.className = 'autoslider__track';
+        run[0].before(box); box.appendChild(track); run.forEach(f => track.appendChild(f));
+      }
+      run = [];
+    };
+    [...root.children].forEach(n => { if (n.tagName === 'FIGURE') run.push(n); else flush(); });
+    flush();
+  } else {
+    root.querySelectorAll('figure, img').forEach(f => f.remove());
+  }
+  root.querySelectorAll('p').forEach(p => { if (!p.textContent.trim() && !p.querySelector('img')) p.remove(); });
+  return root.innerHTML;
+}
 // split body into [{title, html}] by h2
 function chapters(html, firstTitle) {
   const root = document.createElement('div'); root.innerHTML = html;
@@ -203,13 +239,13 @@ ${relink(main, depth)}
 }
 
 /* ---------- shared blocks ---------- */
-const hero = ({ crumbs, tags = '', title, lead = '', after = '', sm }) => `
+const hero = ({ crumbs, tags = '', title, titleHtml, lead = '', after = '', sm }) => `
 <section class="page-hero">
   <div class="page-hero__glow" aria-hidden="true"></div>
   <div class="page-hero__rings" aria-hidden="true"><i></i><i></i></div>
   <nav class="crumbs" data-in><a href="index.html">Главная</a>${crumbs.map(([h, t]) => h ? `<span><a href="${h}">${esc(t)}</a></span>` : `<span>${esc(t)}</span>`).join('')}</nav>
   ${tags ? `<div class="tags" data-in style="position:relative;margin-bottom:28px">${tags}</div>` : ''}
-  <h1 class="page-title${sm ? ' page-title--sm' : ''}"><span class="line"><span class="split">${shy(title)}</span></span></h1>
+  <h1 class="page-title${sm ? ' page-title--sm' : ''}"><span class="line"><span class="split">${titleHtml || shy(title)}</span></span></h1>
   ${lead ? `<p class="page-lead" data-in>${esc(lead)}</p>` : ''}
   ${after}
 </section>`;
@@ -352,17 +388,16 @@ async function buildServices() {
   const sections = SECTION_ORDER.map(k => ({ key: k, page: S.find(s => s.section === k && !s.slug), subs: S.filter(s => s.section === k && s.slug) }));
   page({
     path: 'services/index.html', title: 'Услуги — NUTS', desc: 'Разработка сайтов и приложений, реклама, SEO, SMM, IT-решения и поддержка. Полный цикл digital.', active: 'services',
-    main: hero({ crumbs: [[null, 'Услуги']], title: 'Что мы колем', lead: 'Полный цикл: от стратегии и дизайна до трафика и поддержки. Можно целиком, можно по кусочку.' }) + `
+    main: hero({ crumbs: [[null, 'Услуги']], title: 'Что мы колем', titleHtml: 'Что мы <span class="orange">колем</span>', lead: 'Полный цикл: от стратегии и дизайна до трафика и поддержки. Можно целиком, можно по кусочку.' }) + `
 <section class="section" style="padding-top:0">
   <div class="svc-list">
 ${sections.map((s, i) => `    <article class="svc-block">
-      <a href="services/${s.key}.html" class="svc-block__head" data-cursor="hover">
+      <div class="svc-block__head">
         <span class="svc__n">${String(i + 1).padStart(2, '0')}</span>
-        <h2 class="svc-block__title">${esc(SECTIONS[s.key].label)}</h2>
-        <p>${esc(SECTIONS[s.key].short)}</p>
-        <span class="svc-block__arrow">→</span>
-      </a>
-      ${s.subs.length ? `<div class="svc-block__subs">${s.subs.map(x => `<a href="services/${x.slug}.html" data-cursor="hover">${esc(x.title)}</a>`).join('')}</div>` : ''}
+        <h2 class="svc-block__title"><a href="services/${s.key}.html">${esc(SECTIONS[s.key].label)}</a></h2>
+        <div class="svc-block__subs">${s.subs.length ? s.subs.map(x => `<a href="services/${x.slug}.html">${esc(x.title)}</a>`).join('') : `<p>${esc(SECTIONS[s.key].short)}</p>`}</div>
+        <a href="services/${s.key}.html" class="svc-block__arrow" aria-label="${esc(SECTIONS[s.key].label)}">→</a>
+      </div>
     </article>`).join('\n')}
   </div>
 </section>` + ctaBand(),
@@ -372,7 +407,7 @@ ${sections.map((s, i) => `    <article class="svc-block">
     const key = s.slug || s.section;
     const path = `services/${key}.html`;
     const sec = SECTIONS[s.section];
-    const body = normalize(s.html);
+    const body = cleanService(normalize(s.html), key);
     const lead = cut(firstText(body), 220);
     const desc = cut(firstText(body), 160) || `${s.title} от NUTS: ${sec.short} Под задачи бизнеса — в Краснодаре и по всей России.`;
     let main = await custom(path);
@@ -395,13 +430,20 @@ ${subs.length ? `<section class="section section--light" style="margin-top:clamp
   </div>
 </section>` : ''}
 ${list.length ? chapterHtml(list) : ''}
-${rel.length ? `<section class="section" id="svc-cases" style="padding-top:0">
+${rel.length ? `<section class="section" id="svc-cases"${list.length ? ' style="padding-top:0"' : ''}>
   <div class="section__head section__head--row"><div><span class="eyebrow">Кейсы</span><h2 class="h2">Уже <span class="orange">раскололи</span></h2></div><a href="cases/index.html" class="link-arrow" data-cursor="hover">Все кейсы →</a></div>
   <div class="cases__grid">${rel.slice(0, 3).map(c => caseCard(c)).join('')}</div>
 </section>` : ''}
 ${siblings.length ? `<section class="section" style="padding-top:0">
-  <div class="section__head" style="margin-bottom:28px"><h2 class="h3">Ещё в разделе «${esc(sec.label)}»</h2></div>
-  <div class="tags tags--big">${siblings.map(x => `<a href="services/${x.slug}.html" data-cursor="hover">${esc(x.title)}</a>`).join('')}</div>
+  <div class="section__head" style="margin-bottom:36px"><h2 class="h3">Ещё в разделе «${esc(sec.label)}»</h2></div>
+  <div class="kinds kinds--dark">${siblings.map((x, i) => `
+    <a class="kind" href="services/${x.slug}.html">
+      <span class="kind__ico">${String(i + 1).padStart(2, '0')}</span>
+      <h3>${esc(x.title)}</h3>
+      <p>${esc(cut(firstText(cleanService(normalize(x.html), x.slug)), 130))}</p>
+      <div class="kind__term"><span>Подробнее</span><b>→</b></div>
+    </a>`).join('')}
+  </div>
 </section>` : ''}
 ${BRIEF}`;
     }
@@ -495,7 +537,7 @@ function buildAbout() {
   const reviews = D.cases.filter(c => c.review);
   page({
     path: 'about.html', title: 'О компании — NUTS', desc: 'Nuts Digital Agency — digital-агентство полного цикла из Краснодара. С 2017 года делаем сайты, рекламу, SEO и SMM.', active: 'about',
-    main: hero({ crumbs: [[null, 'О нас']], title: 'Привет! Мы Nuts', lead: 'Безумцы в стиле digital. В 2017 году Костя и Данил Квашины открыли агентство полного цикла — и с тех пор превращаем нереальное в реальное.' }) + `
+    main: hero({ crumbs: [[null, 'О нас']], title: 'Привет! Мы Nuts', titleHtml: 'Привет! <span class="orange">Мы Nuts</span>', lead: 'Безумцы в стиле digital. В 2017 году Костя и Данил Квашины открыли агентство полного цикла — и с тех пор превращаем нереальное в реальное.' }) + `
 <section class="section" style="padding-top:0">
   <div class="bigstats" style="padding:0">
     <div class="bigstat"><b>2017</b><span>год основания. Начинали втроём на 20 м²</span></div>
@@ -543,7 +585,7 @@ ${reviews.length ? `<section class="section section--light">
     </div></div>
   </div>
 </section>` : ''}
-<section class="clients">
+<section class="clients" style="padding-top:clamp(64px,8vw,110px)">
   <p class="clients__cap">Нас выбирают те, кто готов к успеху</p>
   <div class="ticker"><div class="ticker__track">
     ${(() => { const l = ['Девелопмент-Юг', 'Черкизово', 'DOGMA', 'КЛЮЧАВТО', 'СБС Мегамолл', 'МНТК «Микрохирургия глаза»', 'СК Семья', 'Алкотека', 'Лефкадия', 'Schaumann', 'Точка Молочка', 'Арт-Сайд'].map(x => `<span>${x}</span>`).join(''); return l + l; })()}
