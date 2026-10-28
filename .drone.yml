@@ -1,0 +1,22 @@
+# .drone.yml для проекта песочницы: push → devenv up на test.devnuts (devenv-ci, sandbox.yml).
+# Положить в корень репозитория как .drone.yml, ПРОЕКТ — имя projects/ПРОЕКТ.yml (там drone_up: true, stage_work: false).
+# В Drone: включить репозиторий → Settings → Secrets → deploy_key = приватный ключ drone-deploy (Vaultwarden).
+kind: pipeline
+type: docker
+name: песочница
+
+trigger:
+  event: [push, custom]     # custom — кнопка «New build» в Drone
+
+steps:
+  - name: devenv up
+    # образ клонирования Drone (git + ssh) — уже есть на сервере; apk/apt из сборки через офисный VPN не скачиваются
+    image: drone/git
+    pull: if-not-exists
+    environment:
+      DEPLOY_KEY: { from_secret: deploy_key }
+    commands:
+      # ключ — явно файлом (домашняя папка в образе может быть не /root); отпечаток — сверить с keys/service/drone-deploy.pub
+      - (umask 077; printf '%s\n' "$DEPLOY_KEY" | tr -d '\r' > /tmp/deploy_key) && ssh-keygen -lf /tmp/deploy_key
+      # стейдж — devenv up ПРОЕКТ; другие ветки — только если их окружение уже есть
+      - ssh -i /tmp/deploy_key -o IdentitiesOnly=yes -o StrictHostKeyChecking=accept-new -o ServerAliveInterval=30 root@62.109.20.26 nuts "$DRONE_BRANCH"
