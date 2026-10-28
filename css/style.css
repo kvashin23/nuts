@@ -454,8 +454,10 @@ body.menu-open { overflow: hidden; }
 .svc__chips span { padding: 8px 14px; border-radius: 99px; border: 1px solid currentColor; font-size: 13px; font-weight: 700; white-space: nowrap; opacity: .85; }
 @media (max-width: 1100px) {
   .svc__row .svc__chips { display: flex; grid-column: 2 / 3; justify-content: flex-start; margin-top: -6px; }
+  .svc__row .svc__plus { grid-row: 1; grid-column: 3; }
 }
 @media (max-width: 700px) {
   .svc__row .svc__chips { grid-column: 1 / -1; }
+  .svc__row .svc__plus { grid-column: 2; }
   .svc__chips span { font-size: 12px; padding: 6px 12px; }
 }
