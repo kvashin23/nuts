@@ -6,7 +6,7 @@ type: docker
 name: песочница
 
 trigger:
-  event: [push]
+  event: [push, custom]     # custom — кнопка «New build» в Drone
 
 steps:
   - name: devenv up
