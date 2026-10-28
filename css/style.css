@@ -37,19 +37,11 @@ img { display: block; max-width: 100%; }
 .orange { color: var(--orange); }
 em { font-style: normal; color: var(--orange); }
 
-/* the native cursor is hidden only once JS has the custom one following the mouse (html.has-cursor),
-   so any browser where that fails (older Safari, blocked scripts) keeps the normal arrow */
-@media (hover: hover) and (pointer: fine) {
-  html.has-cursor body, html.has-cursor a, html.has-cursor button, html.has-cursor label, html.has-cursor [data-cursor] { cursor: none; }
-}
-
 /* ---------- grain ---------- */
 .grain {
   position: fixed; inset: -50%; z-index: 90; pointer-events: none; opacity: .06;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-  animation: grain 1s steps(6) infinite;
 }
-@keyframes grain { 0%{transform:translate(0,0)} 25%{transform:translate(-5%,3%)} 50%{transform:translate(4%,-4%)} 75%{transform:translate(-3%,-2%)} 100%{transform:translate(2%,4%)} }
 
 /* ---------- loader ---------- */
 .loader {
@@ -64,22 +56,6 @@ em { font-style: normal; color: var(--orange); }
 .loader__count { font-family: var(--f-display); font-weight: 900; font-size: clamp(56px, 12vw, 140px); line-height: 1; letter-spacing: -.04em; }
 .loader__hint { color: var(--muted); font-size: 14px; letter-spacing: .2em; text-transform: uppercase; }
 
-/* ---------- cursor ---------- */
-.cursor {
-  position: fixed; left: 0; top: 0; z-index: 150; pointer-events: none;
-  width: 14px; height: 14px; margin: -7px 0 0 -7px; border-radius: 50%;
-  background: var(--orange); mix-blend-mode: normal;
-  display: -webkit-box; display: flex; align-items: center; justify-content: center;
-  opacity: 0; will-change: transform;
-  transition: width .35s var(--ease), height .35s var(--ease), margin .35s var(--ease), background .3s, opacity .2s;
-}
-html.has-cursor .cursor { opacity: 1; }
-html.has-cursor .cursor.is-out { opacity: 0; }
-.cursor__label { font-size: 12px; font-weight: 700; color: #000; text-transform: uppercase; letter-spacing: .06em; opacity: 0; transition: opacity .2s; white-space: nowrap; }
-.cursor.is-hover { width: 44px; height: 44px; margin: -22px 0 0 -22px; background: transparent; border: 2px solid var(--orange); }
-.cursor.is-label { width: 96px; height: 96px; margin: -48px 0 0 -48px; background: var(--orange); }
-.cursor.is-label .cursor__label { opacity: 1; }
-@media (hover: none), (pointer: coarse) { .cursor { display: none; } }
 
 /* ---------- header ---------- */
 .header {
@@ -458,7 +434,7 @@ html.has-cursor .cursor.is-out { opacity: 0; }
 .post__art img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform .9s var(--ease); }
 .post:hover .post__art img { transform: scale(1.06); }
 
-/* keyboard focus: visible ring everywhere the custom cursor would normally help */
+/* keyboard focus: visible ring */
 :focus-visible { outline: 2px solid var(--orange); outline-offset: 3px; border-radius: 6px; }
 .btn:focus-visible, .filter:focus-visible, .round:focus-visible, .burger:focus-visible { outline-offset: 4px; border-radius: 99px; }
 .pcard:focus-visible { outline: none; }

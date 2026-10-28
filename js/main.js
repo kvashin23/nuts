@@ -74,45 +74,6 @@
     gsap.from('.hero__rings i', { scale: .6, opacity: 0, duration: 1.8, ease: 'expo.out', stagger: .1, delay: .4 });
   }
 
-  /* ---------- cursor ---------- */
-  const cursor = $('#cursor'), label = $('#cursorLabel');
-  const labels = { drag: 'Тяни', view: 'Смотреть', open: 'Открыть', flip: 'Флип', read: 'Читать', crack: 'Колоть!', close: 'Собрать' };
-  if (finePointer && cursor) {
-    let cx = innerWidth / 2, cy = innerHeight / 2, x = cx, y = cy, live = false;
-    // mousemove as well as pointermove: older Safari builds deliver only one of them reliably
-    const move = e => {
-      if (e.pointerType && e.pointerType !== 'mouse') return;
-      cx = e.clientX; cy = e.clientY;
-      if (!live) { live = true; x = cx; y = cy; document.documentElement.classList.add('has-cursor'); }
-      cursor.classList.remove('is-out');
-    };
-    addEventListener('pointermove', move, { passive: true });
-    addEventListener('mousemove', move, { passive: true });
-    document.addEventListener('mouseleave', () => cursor.classList.add('is-out'));
-    addEventListener('blur', () => cursor.classList.add('is-out'));
-    const loop = () => {
-      x += (cx - x) * .2; y += (cy - y) * .2;
-      cursor.style.webkitTransform = cursor.style.transform = `translate3d(${x}px, ${y}px, 0)`;
-      requestAnimationFrame(loop);
-    };
-    loop();
-    const setState = type => {
-      cursor.classList.toggle('is-hover', type === 'hover');
-      cursor.classList.toggle('is-label', !!labels[type]);
-      label.textContent = labels[type] || '';
-    };
-    const over = e => {
-      const t = e.target instanceof Element ? e.target.closest('[data-cursor]') : null;
-      setState(t ? t.getAttribute('data-cursor') : null);
-    };
-    document.addEventListener('pointerover', over);
-    document.addEventListener('mouseover', over);
-    addEventListener('nut:hover', e => {
-      if (e.detail.hit) setState(e.detail.open ? 'close' : 'crack');
-      else if (!document.querySelector('[data-cursor]:hover')) setState(null);
-    });
-  }
-
   /* ---------- magnetic buttons ---------- */
   if (finePointer) $$('.magnetic').forEach(el => {
     el.addEventListener('pointermove', e => {

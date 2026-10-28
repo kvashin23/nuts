@@ -159,7 +159,6 @@ function page({ path, title, desc, active, main, before = '', image, base }) {
 </head>
 <body>
 
-<div class="cursor" id="cursor"><span class="cursor__label" id="cursorLabel"></span></div>
 
 <header class="header" id="header">
   <a href="${p}index.html" class="logo" aria-label="NUTS — на главную">

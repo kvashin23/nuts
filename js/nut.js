@@ -1,9 +1,7 @@
 // NUTS hero: procedural walnut-brain that cracks open on scroll / click.
+// Performance notes: the folds are baked once on the CPU (no noise on the GPU per frame),
+// there is no post-processing, pixel ratio is capped, and the scene drops to ~30 fps when idle.
 import * as THREE from 'three';
-import { EffectComposer } from 'three/addons/postprocessing/EffectComposer.js';
-import { RenderPass } from 'three/addons/postprocessing/RenderPass.js';
-import { UnrealBloomPass } from 'three/addons/postprocessing/UnrealBloomPass.js';
-import { OutputPass } from 'three/addons/postprocessing/OutputPass.js';
 
 const canvas = document.getElementById('gl');
 const hero = document.getElementById('hero');
@@ -12,12 +10,12 @@ const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 let renderer;
 try {
-  renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true, powerPreference: 'high-performance' });
+  renderer = new THREE.WebGLRenderer({ canvas, antialias: !isMobile, alpha: true, powerPreference: 'default' });
 } catch (e) {
   canvas.remove();
   throw e;
 }
-renderer.setPixelRatio(Math.min(devicePixelRatio, isMobile ? 1.5 : 1.75));
+renderer.setPixelRatio(Math.min(devicePixelRatio, isMobile ? 1.25 : 1.5));
 renderer.setClearColor(0x000000, 0);
 renderer.toneMapping = THREE.ACESFilmicToneMapping;
 renderer.toneMappingExposure = 1.0;
@@ -26,66 +24,113 @@ const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(32, 1, 0.1, 100);
 camera.position.set(0, 0, 7);
 
-// ---------- shaders ----------
-const noiseGLSL = /* glsl */`
-vec3 mod289(vec3 x){return x-floor(x*(1./289.))*289.;}
-vec4 mod289(vec4 x){return x-floor(x*(1./289.))*289.;}
-vec4 permute(vec4 x){return mod289(((x*34.)+1.)*x);}
-vec4 taylorInvSqrt(vec4 r){return 1.79284291400159-.85373472095314*r;}
-float snoise(vec3 v){
-  const vec2 C=vec2(1./6.,1./3.);const vec4 D=vec4(0.,.5,1.,2.);
-  vec3 i=floor(v+dot(v,C.yyy));vec3 x0=v-i+dot(i,C.xxx);
-  vec3 g=step(x0.yzx,x0.xyz);vec3 l=1.-g;vec3 i1=min(g.xyz,l.zxy);vec3 i2=max(g.xyz,l.zxy);
-  vec3 x1=x0-i1+C.xxx;vec3 x2=x0-i2+C.yyy;vec3 x3=x0-D.yyy;
-  i=mod289(i);
-  vec4 p=permute(permute(permute(i.z+vec4(0.,i1.z,i2.z,1.))+i.y+vec4(0.,i1.y,i2.y,1.))+i.x+vec4(0.,i1.x,i2.x,1.));
-  float n_=.142857142857;vec3 ns=n_*D.wyz-D.xzx;
-  vec4 j=p-49.*floor(p*ns.z*ns.z);vec4 x_=floor(j*ns.z);vec4 y_=floor(j-7.*x_);
-  vec4 x=x_*ns.x+ns.yyyy;vec4 y=y_*ns.x+ns.yyyy;vec4 h=1.-abs(x)-abs(y);
-  vec4 b0=vec4(x.xy,y.xy);vec4 b1=vec4(x.zw,y.zw);
-  vec4 s0=floor(b0)*2.+1.;vec4 s1=floor(b1)*2.+1.;vec4 sh=-step(h,vec4(0.));
-  vec4 a0=b0.xzyw+s0.xzyw*sh.xxyy;vec4 a1=b1.xzyw+s1.xzyw*sh.zzww;
-  vec3 p0=vec3(a0.xy,h.x);vec3 p1=vec3(a0.zw,h.y);vec3 p2=vec3(a1.xy,h.z);vec3 p3=vec3(a1.zw,h.w);
-  vec4 norm=taylorInvSqrt(vec4(dot(p0,p0),dot(p1,p1),dot(p2,p2),dot(p3,p3)));
-  p0*=norm.x;p1*=norm.y;p2*=norm.z;p3*=norm.w;
-  vec4 m=max(.6-vec4(dot(x0,x0),dot(x1,x1),dot(x2,x2),dot(x3,x3)),0.);m=m*m;
-  return 42.*dot(m*m,vec4(dot(p0,x0),dot(p1,x1),dot(p2,x2),dot(p3,x3)));
-}
-// ridged fbm -> brain-like folds
-float folds(vec3 p){
-  // three soft octaves: big rounded lobes like a walnut kernel, not spiky noise
-  float f=0.,a=.6;
-  for(int i=0;i<3;i++){ float n=1.-abs(snoise(p)); f+=n*n*a; p=p*2.05+vec3(1.7,9.2,3.1); a*=.45; }
+// ---------- simplex noise (CPU, used once to bake the folds) ----------
+const snoise = (() => {
+  const grad = [[1,1,0],[-1,1,0],[1,-1,0],[-1,-1,0],[1,0,1],[-1,0,1],[1,0,-1],[-1,0,-1],[0,1,1],[0,-1,1],[0,1,-1],[0,-1,-1]];
+  const perm = new Uint8Array(512);
+  let seed = 7;
+  const p = Array.from({ length: 256 }, (_, i) => i);
+  for (let i = 255; i > 0; i--) { seed = (seed * 16807) % 2147483647; const j = seed % (i + 1); [p[i], p[j]] = [p[j], p[i]]; }
+  for (let i = 0; i < 512; i++) perm[i] = p[i & 255];
+  const F3 = 1 / 3, G3 = 1 / 6;
+  return (x, y, z) => {
+    const s = (x + y + z) * F3, i = Math.floor(x + s), j = Math.floor(y + s), k = Math.floor(z + s);
+    const t = (i + j + k) * G3, x0 = x - i + t, y0 = y - j + t, z0 = z - k + t;
+    let i1, j1, k1, i2, j2, k2;
+    if (x0 >= y0) { if (y0 >= z0) { i1 = 1; j1 = 0; k1 = 0; i2 = 1; j2 = 1; k2 = 0; } else if (x0 >= z0) { i1 = 1; j1 = 0; k1 = 0; i2 = 1; j2 = 0; k2 = 1; } else { i1 = 0; j1 = 0; k1 = 1; i2 = 1; j2 = 0; k2 = 1; } }
+    else { if (y0 < z0) { i1 = 0; j1 = 0; k1 = 1; i2 = 0; j2 = 1; k2 = 1; } else if (x0 < z0) { i1 = 0; j1 = 1; k1 = 0; i2 = 0; j2 = 1; k2 = 1; } else { i1 = 0; j1 = 1; k1 = 0; i2 = 1; j2 = 1; k2 = 0; } }
+    const c = [[x0, y0, z0, 0, 0, 0], [x0 - i1 + G3, y0 - j1 + G3, z0 - k1 + G3, i1, j1, k1], [x0 - i2 + 2 * G3, y0 - j2 + 2 * G3, z0 - k2 + 2 * G3, i2, j2, k2], [x0 - 1 + 3 * G3, y0 - 1 + 3 * G3, z0 - 1 + 3 * G3, 1, 1, 1]];
+    const ii = i & 255, jj = j & 255, kk = k & 255;
+    let n = 0;
+    for (const [dx, dy, dz, oi, oj, ok] of c) {
+      let tt = .6 - dx * dx - dy * dy - dz * dz;
+      if (tt < 0) continue;
+      const g = grad[perm[ii + oi + perm[jj + oj + perm[kk + ok]]] % 12];
+      tt *= tt; n += tt * tt * (g[0] * dx + g[1] * dy + g[2] * dz);
+    }
+    return 32 * n;
+  };
+})();
+// ridged fbm -> brain-like folds (three soft octaves)
+const folds = (x, y, z) => {
+  let f = 0, a = .6;
+  for (let i = 0; i < 3; i++) { const n = 1 - Math.abs(snoise(x, y, z)); f += n * n * a; x = x * 2.05 + 1.7; y = y * 2.05 + 9.2; z = z * 2.05 + 3.1; a *= .45; }
   return f;
+};
+const smooth = (a, b, x) => { const t = Math.min(Math.max((x - a) / (b - a), 0), 1); return t * t * (3 - 2 * t); };
+
+// ---------- baked walnut geometry ----------
+// per vertex we store the sphere direction, fold height and seam mask; the vertex shader only
+// rebuilds the radius from them, so the "craziness" on mouse shake stays almost free
+// indexed icosphere built directly (three's IcosahedronGeometry + mergeVertices took ~0.5 s)
+function icosphere(n) {
+  const t = (1 + Math.sqrt(5)) / 2;
+  const V = [[-1,t,0],[1,t,0],[-1,-t,0],[1,-t,0],[0,-1,t],[0,1,t],[0,-1,-t],[0,1,-t],[t,0,-1],[t,0,1],[-t,0,-1],[-t,0,1]];
+  const F = [[0,11,5],[0,5,1],[0,1,7],[0,7,10],[0,10,11],[1,5,9],[5,11,4],[11,10,2],[10,7,6],[7,1,8],[3,9,4],[3,4,2],[3,2,6],[3,6,8],[3,8,9],[4,9,5],[2,4,11],[6,2,10],[8,6,7],[9,8,1]];
+  const pos = [], idx = [], seen = new Map();
+  const vert = (x, y, z) => {
+    const l = Math.hypot(x, y, z); x /= l; y /= l; z /= l;
+    const key = `${Math.round(x * 1e5)},${Math.round(y * 1e5)},${Math.round(z * 1e5)}`;
+    let i = seen.get(key);
+    if (i === undefined) { i = pos.length / 3; pos.push(x, y, z); seen.set(key, i); }
+    return i;
+  };
+  for (const [a, b, c] of F) {
+    const A = V[a], B = V[b], C = V[c], row = [];
+    for (let i = 0; i <= n; i++) {
+      row[i] = [];
+      for (let j = 0; j <= n - i; j++) {
+        const u = i / n, w = j / n, k = 1 - u - w;
+        row[i][j] = vert(A[0] * k + B[0] * u + C[0] * w, A[1] * k + B[1] * u + C[1] * w, A[2] * k + B[2] * u + C[2] * w);
+      }
+    }
+    for (let i = 0; i < n; i++) for (let j = 0; j < n - i; j++) {
+      idx.push(row[i][j], row[i + 1][j], row[i][j + 1]);
+      if (j < n - i - 1) idx.push(row[i + 1][j], row[i + 1][j + 1], row[i][j + 1]);
+    }
+  }
+  const g = new THREE.BufferGeometry();
+  g.setAttribute('position', new THREE.Float32BufferAttribute(pos, 3));
+  g.setIndex(idx);
+  return g;
 }
-`;
+
+function buildNut(detail) {
+  const g = icosphere(detail);
+  const pos = g.attributes.position, n = pos.count;
+  const hArr = new Float32Array(n), sArr = new Float32Array(n), dir = new Float32Array(n * 3);
+  const v = new THREE.Vector3();
+  for (let i = 0; i < n; i++) {
+    v.fromBufferAttribute(pos, i).normalize();
+    dir.set([v.x, v.y, v.z], i * 3);
+    const h = folds(v.x * 1.65, v.y * 1.65, v.z * 1.65);
+    const s = smooth(.015, .11, Math.abs(v.x));
+    hArr[i] = h; sArr[i] = s;
+    let r = 1 + h * .13 * s - (1 - s) * .10;
+    r *= 1 + .10 * Math.pow(Math.max(v.y, 0), 3) - .04 * Math.pow(Math.max(-v.y, 0), 2);
+    pos.setXYZ(i, v.x * r * .9, v.y * r * 1.12, v.z * r * .95);
+  }
+  g.setAttribute('aDir', new THREE.BufferAttribute(dir, 3));
+  g.setAttribute('aH', new THREE.BufferAttribute(hArr, 1));
+  g.setAttribute('aS', new THREE.BufferAttribute(sArr, 1));
+  g.computeVertexNormals();
+  return g;
+}
 
 const vert = /* glsl */`
-uniform float uTime, uAmp, uSpeed;
+uniform float uAmp;
+attribute vec3 aDir; attribute float aH, aS;
 varying vec3 vWNormal, vWPos, vObj;
 varying float vH;
-${noiseGLSL}
-float seam(vec3 n){ return smoothstep(.015,.11,abs(n.x)); }
-vec3 shape(vec3 n, out float h){
-  float s=seam(n);
-  h=folds(n*1.65+vec3(0.,0.,uTime*uSpeed));
-  float r=1.+(h*.13*uAmp)*s-(1.-s)*.10;
-  r*=1.+.10*pow(max(n.y,0.),3.)-.04*pow(max(-n.y,0.),2.);   // pointed top like a walnut
-  return n*r*vec3(.9,1.12,.95);
-}
 void main(){
-  vec3 n=normalize(position);
-  float h; vec3 p=shape(n,h);
-  vec3 t1=normalize(cross(n,abs(n.y)<.99?vec3(0.,1.,0.):vec3(1.,0.,0.)));
-  vec3 t2=cross(n,t1);
-  float e=.006, hh;
-  vec3 pa=shape(normalize(n+t1*e),hh), pb=shape(normalize(n+t2*e),hh);
-  vec3 nn=normalize(cross(pa-p,pb-p));
-  if(dot(nn,n)<0.) nn=-nn;
-  vH=h; vObj=n;
+  vec3 n=aDir;
+  float r=1.+(aH*.13*uAmp)*aS-(1.-aS)*.10;
+  r*=1.+.10*pow(max(n.y,0.),3.)-.04*pow(max(-n.y,0.),2.);
+  vec3 p=n*r*vec3(.9,1.12,.95);
+  vH=aH; vObj=n;
   vec4 wp=modelMatrix*vec4(p,1.);
   vWPos=wp.xyz;
-  vWNormal=normalize(mat3(modelMatrix)*nn);
+  vWNormal=normalize(mat3(modelMatrix)*normal);
   gl_Position=projectionMatrix*viewMatrix*wp;
 }`;
 
@@ -106,37 +151,29 @@ void main(){
   }
   vec3 L=normalize(uLight);
   float cav=smoothstep(.2,1.,vH);                // 0 = deep fold, 1 = ridge
-  // walnut kernel: dark brown folds, caramel ridges with a brand-orange cast
   vec3 deep=vec3(.08,.02,.006);
   vec3 mid=vec3(.58,.18,.03);
   vec3 top=vec3(.95,.46,.12);
   vec3 base=mix(deep,mid,cav); base=mix(base,top,smoothstep(.7,1.,cav));
   float diff=max(dot(N,L),0.);
-  float wrap=max(dot(N,L)*.5+.5,0.);
+  float wrap=dot(N,L)*.5+.5;
   vec3 H=normalize(L+V);
   float spec=pow(max(dot(N,H),0.),24.)*cav*.35;
   float fres=pow(1.-max(dot(N,V),0.),3.);
-  vec3 rimCol=vec3(1.,.36,.08);
-  vec3 col=base*(.1+diff*.9+wrap*.3)+spec*vec3(1.,.8,.55)+fres*rimCol*.9;
-  // fake ambient occlusion in folds
-  col*=mix(.4,1.,cav);
+  vec3 col=base*(.1+diff*.9+wrap*.3)+spec*vec3(1.,.8,.55)+fres*vec3(1.,.36,.08)*1.1;
+  col*=mix(.4,1.,cav);                            // fake ambient occlusion in folds
   gl_FragColor=vec4(col,1.);
 }`;
 
-const detail = isMobile ? 48 : 90;
-const geo = new THREE.IcosahedronGeometry(1, detail);
+const geo = buildNut(isMobile ? 40 : 64);
 const uniforms = {
-  uTime: { value: 0 }, uAmp: { value: 1 }, uSpeed: { value: .06 },
+  uTime: { value: 0 }, uAmp: { value: 1 },
   uLight: { value: new THREE.Vector3(-2.5, 3, 4) },
   uSplit: { value: 0 },
 };
 const makeHalf = side => {
-  const m = new THREE.ShaderMaterial({
-    vertexShader: vert, fragmentShader: frag, side: THREE.DoubleSide,
-    uniforms: { ...uniforms, uSide: { value: side } },
-  });
-  // share live uniforms
-  Object.keys(uniforms).forEach(k => (m.uniforms[k] = uniforms[k]));
+  const m = new THREE.ShaderMaterial({ vertexShader: vert, fragmentShader: frag, side: THREE.DoubleSide, uniforms: { ...uniforms, uSide: { value: side } } });
+  Object.keys(uniforms).forEach(k => (m.uniforms[k] = uniforms[k])); // share live uniforms
   return new THREE.Mesh(geo, m);
 };
 const nut = new THREE.Group();
@@ -145,7 +182,7 @@ nut.add(left, right);
 
 // glowing kernel revealed when cracked
 const core = new THREE.Mesh(
-  new THREE.SphereGeometry(.42, 48, 48),
+  new THREE.SphereGeometry(.42, 32, 24),
   new THREE.ShaderMaterial({
     transparent: true, depthWrite: false, blending: THREE.AdditiveBlending,
     uniforms: { uSplit: uniforms.uSplit, uTime: uniforms.uTime },
@@ -156,15 +193,25 @@ const core = new THREE.Mesh(
 nut.add(core);
 scene.add(nut);
 
+// soft halo behind the nut — replaces the full-screen bloom pass at a fraction of the cost
+const halo = new THREE.Mesh(
+  new THREE.PlaneGeometry(4.4, 4.4),
+  new THREE.ShaderMaterial({
+    transparent: true, depthWrite: false, blending: THREE.AdditiveBlending,
+    uniforms: { uSplit: uniforms.uSplit },
+    vertexShader: `varying vec2 vUv; void main(){ vUv=uv; gl_Position=projectionMatrix*modelViewMatrix*vec4(position,1.); }`,
+    fragmentShader: `uniform float uSplit; varying vec2 vUv; void main(){ float d=length(vUv-.5)*2.; float a=pow(max(1.-d,0.),2.2)*(.22+uSplit*.35); gl_FragColor=vec4(1.,.38,.08,a); }`,
+  })
+);
+halo.position.z = -1.2;
+scene.add(halo);
+
 // orbit rings (echo of the brand arcs)
-const ringMat = new THREE.MeshBasicMaterial({ color: 0xff5a14, transparent: true, opacity: .55 });
 const rings = new THREE.Group();
 [[1.75, .3, 0], [2.1, -.5, .6], [2.5, .9, -.3]].forEach(([r, rx, rz], i) => {
-  const ring = new THREE.Mesh(new THREE.TorusGeometry(r, .006 + i * .002, 8, 220), ringMat.clone());
+  const ring = new THREE.Mesh(new THREE.TorusGeometry(r, .006 + i * .002, 6, 160), new THREE.MeshBasicMaterial({ color: 0xff5a14, transparent: true, opacity: .5 - i * .12 }));
   ring.rotation.set(Math.PI / 2 + rx, 0, rz);
-  ring.material.opacity = .5 - i * .12;
-  // a little "planet" bead on each ring
-  const bead = new THREE.Mesh(new THREE.SphereGeometry(.035 + i * .01, 16, 16), new THREE.MeshBasicMaterial({ color: i === 1 ? 0xffffff : 0xffa040 }));
+  const bead = new THREE.Mesh(new THREE.SphereGeometry(.035 + i * .01, 12, 12), new THREE.MeshBasicMaterial({ color: i === 1 ? 0xffffff : 0xffa040 }));
   bead.position.x = r;
   ring.add(bead);
   ring.userData.speed = .25 - i * .06;
@@ -173,7 +220,7 @@ const rings = new THREE.Group();
 scene.add(rings);
 
 // dust particles
-const P = isMobile ? 500 : 1400;
+const P = isMobile ? 300 : 700;
 const pPos = new Float32Array(P * 3), pSeed = new Float32Array(P);
 for (let i = 0; i < P; i++) {
   const r = 2.2 + Math.random() * 5, a = Math.random() * Math.PI * 2, y = (Math.random() - .5) * 6;
@@ -193,67 +240,65 @@ const dust = new THREE.Points(pGeo, new THREE.ShaderMaterial({
 }));
 scene.add(dust);
 
-// ---------- post ----------
-const composer = new EffectComposer(renderer);
-composer.addPass(new RenderPass(scene, camera));
-const bloom = new UnrealBloomPass(new THREE.Vector2(1, 1), .2, .45, .9);
-composer.addPass(bloom);
-composer.addPass(new OutputPass());
-
 // ---------- layout ----------
 const layout = { x: 0, y: 0, s: 1 };
 function resize() {
   const w = hero.clientWidth, h = hero.clientHeight;
   renderer.setSize(w, h, false);
-  composer.setSize(w, h);
   camera.aspect = w / h;
   camera.updateProjectionMatrix();
   const wide = w / h > 1.1;
   layout.x = wide ? 1.35 : 0;
   layout.y = wide ? .1 : .55;
   layout.s = wide ? 1 : .78;
+  wake();
 }
 addEventListener('resize', resize);
-resize();
 
 // ---------- interaction ----------
+let lastInput = performance.now();
+const wake = () => (lastInput = performance.now());
 const mouse = { x: 0, y: 0, tx: 0, ty: 0, vel: 0 };
 addEventListener('pointermove', e => {
   const nx = e.clientX / innerWidth * 2 - 1, ny = -(e.clientY / innerHeight * 2 - 1);
   mouse.vel = Math.min(mouse.vel + Math.hypot(nx - mouse.tx, ny - mouse.ty) * 2, 1.2);
   mouse.tx = nx; mouse.ty = ny;
-});
+  wake();
+}, { passive: true });
+addEventListener('scroll', wake, { passive: true });
 
+// hit test against a bounding sphere — the old per-triangle raycast cost a lot of CPU on every mouse move
 let clickSplit = 0, clickTarget = 0;
-const raycaster = new THREE.Raycaster();
+const raycaster = new THREE.Raycaster(), hitSphere = new THREE.Sphere();
+const hitNut = e => {
+  const r = hero.getBoundingClientRect();
+  raycaster.setFromCamera(new THREE.Vector2((e.clientX - r.left) / r.width * 2 - 1, -((e.clientY - r.top) / r.height * 2 - 1)), camera);
+  hitSphere.set(nut.position, 1.05 * nut.scale.x);
+  return raycaster.ray.intersectsSphere(hitSphere);
+};
 hero.addEventListener('click', e => {
-  if (e.target.closest('a,button')) return;
-  const r = hero.getBoundingClientRect();
-  const v = new THREE.Vector2((e.clientX - r.left) / r.width * 2 - 1, -((e.clientY - r.top) / r.height * 2 - 1));
-  raycaster.setFromCamera(v, camera);
-  if (raycaster.intersectObject(nut, true).length) {
-    clickTarget = clickTarget ? 0 : 1;
-    window.dispatchEvent(new CustomEvent('nut:crack', { detail: clickTarget }));
-  }
+  if (e.target.closest('a,button') || !hitNut(e)) return;
+  clickTarget = clickTarget ? 0 : 1;
+  wake();
+  window.dispatchEvent(new CustomEvent('nut:crack', { detail: clickTarget }));
 });
-// tell the custom cursor what's under it
 hero.addEventListener('pointermove', e => {
-  const r = hero.getBoundingClientRect();
-  const v = new THREE.Vector2((e.clientX - r.left) / r.width * 2 - 1, -((e.clientY - r.top) / r.height * 2 - 1));
-  raycaster.setFromCamera(v, camera);
-  const hit = raycaster.intersectObject(left, false).length || raycaster.intersectObject(right, false).length;
-  window.dispatchEvent(new CustomEvent('nut:hover', { detail: { hit: !!hit, open: clickTarget } }));
-});
+  hero.style.cursor = !e.target.closest('a,button') && hitNut(e) ? 'pointer' : '';
+}, { passive: true });
 
 let visible = true;
-new IntersectionObserver(([en]) => (visible = en.isIntersecting)).observe(hero);
+new IntersectionObserver(([en]) => { visible = en.isIntersecting; if (visible) wake(); }).observe(hero);
 
 // ---------- loop ----------
+// 60 fps while the user interacts or the intro plays, ~30 fps when idle, nothing off-screen
 const clock = new THREE.Clock();
-let intro = 0;
-function tick() {
+let intro = 0, last = 0;
+function tick(now) {
   requestAnimationFrame(tick);
-  if (!visible) return;
+  if (!visible || document.hidden) { clock.getDelta(); return; }
+  const active = now - lastInput < 2500 || intro < 1 || Math.abs(clickTarget - clickSplit) > .01;
+  if (!active && now - last < 32) return;
+  last = now;
   const dt = Math.min(clock.getDelta(), .05);
   const t = clock.elapsedTime;
   uniforms.uTime.value = t;
@@ -264,9 +309,8 @@ function tick() {
   mouse.y += (mouse.ty - mouse.y) * .06;
   mouse.vel *= .94;
 
-  // crazier when you shake the mouse
+  // swells a little when you shake the mouse
   uniforms.uAmp.value = 1 + mouse.vel * .55 + Math.sin(t * 1.3) * .05;
-  uniforms.uSpeed.value = .06 + mouse.vel * .25;
 
   // scroll progress through hero
   const sp = Math.min(Math.max(scrollY / (hero.offsetHeight * .8), 0), 1);
@@ -284,6 +328,8 @@ function tick() {
   nut.scale.setScalar(layout.s * (.4 + .6 * ei) * (1 + sp * .15));
   nut.rotation.y = t * .18 * (reduced ? 0 : 1) + mouse.x * .6 + (1 - ei) * 3;
   nut.rotation.x = -mouse.y * .35 + .15;
+  halo.position.x = nut.position.x; halo.position.y = nut.position.y;
+  halo.scale.setScalar(nut.scale.x);
 
   rings.position.copy(nut.position);
   rings.scale.setScalar(layout.s * ei * (1 + split * .25));
@@ -292,9 +338,8 @@ function tick() {
   rings.children.forEach(r => (r.rotation.z += r.userData.speed * dt * (1 + mouse.vel * 3)));
 
   dust.rotation.y = mouse.x * .2;
-  bloom.strength = .18 + split * .6;
-
-  composer.render();
+  renderer.render(scene, camera);
 }
-tick();
+resize();
+requestAnimationFrame(tick);
 document.documentElement.classList.add('has-gl');
