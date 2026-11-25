@@ -6,6 +6,12 @@
       "runtimeExecutable": "powershell",
       "runtimeArgs": ["-NoProfile", "-ExecutionPolicy", "Bypass", "-File", "server.ps1", "-Port", "5173"],
       "port": 5173
+    },
+    {
+      "name": "save-server",
+      "runtimeExecutable": "powershell",
+      "runtimeArgs": ["-NoProfile", "-ExecutionPolicy", "Bypass", "-File", "tools/save-server.ps1", "-Root", ".", "-Port", "5174"],
+      "port": 5174
     }
   ]
 }

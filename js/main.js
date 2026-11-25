@@ -256,29 +256,32 @@
   }
 
   /* ---------- brief form ---------- */
-  // Static hosting has no backend, so requests go through FormSubmit, which emails them to the inbox below.
-  // The very first submission makes FormSubmit send an "Activate form" email there — click it once.
-  const FORM_INBOX = 'info@nuts-agency.ru';
-  const FORM_ENDPOINT = `https://formsubmit.co/ajax/${FORM_INBOX}`;
+  // Requests go to the agency's own form service «Приёмная» (feedback.nuts-agency.ru): it keeps every request
+  // and emails it from no-reply@nuts-agency.ru to info@nuts-agency.ru. The site key only works on the domains
+  // listed for it there (nuts-agency.ru, www, nuts.test.devnuts.ru, kvashin23.github.io) — not on localhost.
+  const FORM_API = 'https://feedback.nuts-agency.ru/api/submit/';
+  const FORM_SITE = 'pk_wHuETewXiBIOH2ey';
   const form = $('form.brief');
   const sendBrief = async () => {
     const fd = new FormData(form);
     const services = fd.getAll('svc').join(', ');
-    const payload = {
-      'Имя': fd.get('name').trim(),
-      'Контакт': fd.get('contact').trim(),
-      'Что нужно': services || '—',
-      'Бюджет': fd.get('budget') || '—',
-      'Задача': (fd.get('msg') || '').trim() || '—',
-      'Страница': location.href,
-      _subject: `Заявка с сайта NUTS: ${fd.get('name').trim()}${services ? ' — ' + services : ''}`,
-      _template: 'table',
-      _captcha: 'false',
-      _honey: fd.get('_honey') || '',
-    };
-    const r = await fetch(FORM_ENDPOINT, { method: 'POST', headers: { 'Content-Type': 'application/json', Accept: 'application/json' }, body: JSON.stringify(payload) });
+    const contact = fd.get('contact').trim();
+    const body = new FormData();
+    body.append('site', FORM_SITE);
+    body.append('form', 'main');
+    body.append('tag', services);
+    body.append('page', location.href);
+    body.append('company_website', fd.get('_honey') || '');
+    body.append('name', fd.get('name').trim());
+    if (/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(contact)) body.append('email', contact);
+    else if (/^\+?[\d\s()-]{10,}$/.test(contact)) body.append('phone', contact);
+    body.append('contact', contact);
+    body.append('services', services || '—');
+    body.append('budget', fd.get('budget') || '—');
+    body.append('message', (fd.get('msg') || '').trim() || '—');
+    const r = await fetch(FORM_API, { method: 'POST', body });
     const data = await r.json().catch(() => ({}));
-    if (!r.ok || String(data.success) !== 'true') throw new Error(data.message || `HTTP ${r.status}`);
+    if (!r.ok) throw new Error(data.error || `HTTP ${r.status}`);
   };
   form && form.addEventListener('submit', async e => {
     e.preventDefault();
@@ -362,11 +365,82 @@
     $$('button', dots).forEach((b, k) => b.addEventListener('click', () => { show(k); play(); }));
     box.addEventListener('pointerenter', () => clearInterval(timer));
     box.addEventListener('pointerleave', play);
-    let sx = null;
-    box.addEventListener('pointerdown', e => (sx = e.clientX));
-    box.addEventListener('pointerup', e => { if (sx !== null && Math.abs(e.clientX - sx) > 40) { show(i + (e.clientX < sx ? 1 : -1)); play(); } sx = null; });
+    // swipe: touch events on phones (pointer events get cancelled by the browser's own scrolling), pointer drag with a mouse
+    let sx = null, sy = null;
+    const end = x => { if (sx !== null && Math.abs(x - sx) > 40) { show(i + (x < sx ? 1 : -1)); play(); } sx = sy = null; };
+    box.addEventListener('touchstart', e => { sx = e.touches[0].clientX; sy = e.touches[0].clientY; clearInterval(timer); }, { passive: true });
+    box.addEventListener('touchmove', e => { if (sx !== null && Math.abs(e.touches[0].clientX - sx) > Math.abs(e.touches[0].clientY - sy)) e.preventDefault(); }, { passive: false });
+    box.addEventListener('touchend', e => end(e.changedTouches[0].clientX));
+    box.addEventListener('pointerdown', e => { if (e.pointerType === 'mouse') sx = e.clientX; });
+    box.addEventListener('pointerup', e => { if (e.pointerType === 'mouse') end(e.clientX); });
     show(0); play();
   });
+
+  /* ---------- pictures in texts open in a popup ---------- */
+  const shots = $$('.prose figure img, .prose > p img');
+  if (shots.length) {
+    const lb = document.createElement('div');
+    lb.className = 'lightbox';
+    lb.setAttribute('role', 'dialog');
+    lb.setAttribute('aria-modal', 'true');
+    lb.innerHTML = '<figure><img alt=""><figcaption></figcaption></figure><button type="button" class="lightbox__close" aria-label="Закрыть">×</button><button type="button" class="lightbox__nav lightbox__nav--prev" aria-label="Предыдущая">←</button><button type="button" class="lightbox__nav lightbox__nav--next" aria-label="Следующая">→</button>';
+    document.body.appendChild(lb);
+    const big = $('img', lb), cap = $('figcaption', lb), prev = $('.lightbox__nav--prev', lb), next = $('.lightbox__nav--next', lb);
+    let cur = 0, opener = null;
+    const show = k => {
+      cur = (k + shots.length) % shots.length;
+      const img = shots[cur];
+      big.src = img.currentSrc || img.src;
+      big.alt = img.alt || '';
+      const c = img.closest('figure')?.querySelector('figcaption');
+      cap.textContent = c ? c.textContent : '';
+      cap.hidden = !c;
+    };
+    const open = k => { opener = document.activeElement; show(k); prev.hidden = next.hidden = shots.length < 2; lb.classList.add('is-open'); lenis && lenis.stop(); $('.lightbox__close', lb).focus(); };
+    const close = () => { lb.classList.remove('is-open'); lenis && lenis.start(); opener && opener.focus && opener.focus(); };
+    shots.forEach((img, k) => {
+      const link = img.closest('a');
+      (link || img).addEventListener('click', e => { e.preventDefault(); open(k); });
+    });
+    lb.addEventListener('click', e => { if (e.target === lb || e.target.closest('.lightbox__close') || e.target === big) close(); });
+    prev.addEventListener('click', e => { e.stopPropagation(); show(cur - 1); });
+    next.addEventListener('click', e => { e.stopPropagation(); show(cur + 1); });
+    document.addEventListener('keydown', e => {
+      if (!lb.classList.contains('is-open')) return;
+      if (e.key === 'Escape') close();
+      if (e.key === 'ArrowLeft') show(cur - 1);
+      if (e.key === 'ArrowRight') show(cur + 1);
+    });
+    let tx = null;
+    lb.addEventListener('touchstart', e => (tx = e.touches[0].clientX), { passive: true });
+    lb.addEventListener('touchend', e => { if (tx !== null && Math.abs(e.changedTouches[0].clientX - tx) > 50) show(cur + (e.changedTouches[0].clientX < tx ? 1 : -1)); tx = null; });
+  }
+
+  /* ---------- headings never break words: shrink the type until the longest word fits ---------- */
+  const FIT = '.page-title, .chapter__head h2, .h2, .h3, .case__title, .feature__body h2, .post h3, .kind h3, .svc-block__title, .step h3, .cta-band h2, .next__title, .contact__title, .hero__line, .pcard__back h3, .subscribe h2';
+  const fitHeadings = () => $$(FIT).forEach(h => {
+    h.style.fontSize = '';
+    const box = h.clientWidth;
+    if (!box) return;
+    // widest single word of the heading
+    const words = (h.textContent || '').split(/\s+/).filter(Boolean);
+    if (!words.length) return;
+    const probe = document.createElement('span');
+    probe.style.cssText = 'position:absolute;visibility:hidden;white-space:nowrap;left:-9999px;top:0';
+    h.appendChild(probe);
+    let widest = 0;
+    words.forEach(w => { probe.textContent = w; widest = Math.max(widest, probe.getBoundingClientRect().width); });
+    probe.remove();
+    if (widest > box) {
+      const size = parseFloat(getComputedStyle(h).fontSize);
+      h.style.fontSize = Math.max(12, Math.floor(size * (box / widest) * 0.98)) + 'px';
+    }
+  });
+  let ft;
+  const refit = () => { clearTimeout(ft); ft = setTimeout(fitHeadings, 120); };
+  fitHeadings();
+  document.fonts && document.fonts.ready.then(fitHeadings);
+  addEventListener('resize', refit);
 
   /* ---------- FAQ ---------- */
   $$('.faq__q').forEach(q => q.addEventListener('click', () => {

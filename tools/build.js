@@ -20,7 +20,6 @@ const SECTIONS = {
 const SECTION_ORDER = ['razrabatyvaem', 'reklamiryem', 'prodvigaem-v-poiskovikah', 'smm', 'it-resheniya', 'podderzhivaem'];
 // handcrafted bodies that replace the generated ones
 const CUSTOM = {
-  'cases/kompleksnoe-prodvizhenie-federalnogo-developera-dogma-v-sotsialnykh-setyakh-.html': 'case--kompleksnoe-prodvizhenie-federalnogo-developera-dogma-v-sotsialnykh-setyakh-',
   'services/razrabatyvaem.html': 'service--razrabatyvaem',
   'blog/gayd-pochemu-vash-sayt-rabotaet-neeffektivno.html': 'article--gayd-pochemu-vash-sayt-rabotaet-neeffektivno',
 };
@@ -66,7 +65,8 @@ function relink(html, depth) {
 }
 
 /* ---------- content normalising ---------- */
-function normalize(html) {
+// isCase: case texts are imported 1:1 (tools/import-cases.js), so their lists are never treated as old TOCs
+function normalize(html, isCase) {
   const root = document.createElement('div');
   root.innerHTML = html;
   // drop images that failed to download
@@ -74,8 +74,9 @@ function normalize(html) {
     const f = img.getAttribute('src').replace('assets/content/', '');
     if (!FILES.has(f)) (img.closest('figure') || img).remove();
   });
+  root.querySelectorAll('figure').forEach(f => { if (!f.querySelector('img,iframe')) f.remove(); });
   // old in-page TOCs: lists made only of bold items
-  root.querySelectorAll('ul,ol').forEach(l => {
+  if (!isCase) root.querySelectorAll('ul,ol').forEach(l => {
     const lis = [...l.children];
     if (lis.length > 2 && lis.every(li => { const t = li.textContent.trim(); const b = [...li.querySelectorAll('strong')].map(s => s.textContent.trim()).join(' ').trim(); return t && b && t.startsWith(b) && t.length - b.length < 60; }) && root.querySelector('h2')) l.remove();
   });
@@ -83,7 +84,7 @@ function normalize(html) {
   const out = document.createElement('div');
   let para = null;
   [...root.childNodes].forEach(n => {
-    const block = n.nodeType === 1 && /^(H2|H3|P|UL|OL|BLOCKQUOTE|FIGURE|TABLE)$/.test(n.tagName);
+    const block = n.nodeType === 1 && /^(H2|H3|P|UL|OL|BLOCKQUOTE|FIGURE|TABLE|DIV|HR)$/.test(n.tagName);
     if (block) { para = null; out.appendChild(n); return; }
     if (n.nodeType === 3 && !n.textContent.trim()) return;
     if (n.nodeType === 1 && n.tagName === 'BR') { para = null; return; }
@@ -95,20 +96,49 @@ function normalize(html) {
   const seen = new Set();
   out.querySelectorAll('p').forEach(p => { const t = p.textContent.trim(); if (t.length > 40 && seen.has(t)) p.remove(); else seen.add(t); });
   out.querySelectorAll('table').forEach(t => { const w = document.createElement('div'); w.className = 'table-wrap'; t.replaceWith(w); w.appendChild(t); });
+  // numbers like "30 000 ₽" never break across lines
+  const tw = document.createTreeWalker(out, NodeFilter.SHOW_TEXT); let tn;
+  while ((tn = tw.nextNode())) if (/\d /.test(tn.textContent)) tn.textContent = tn.textContent.replace(/(\d) (?=\d{3}(?!\d))/g, '$1 ').replace(/(\d) (?=₽|руб|р\.)/g, '$1 ');
   out.querySelectorAll('a[href^="http"]').forEach(a => { if (!/nuts-agency\.ru/.test(a.href)) { a.target = '_blank'; a.rel = 'noopener'; } });
   return out.innerHTML;
 }
 // client edits 28.10: service texts lose their images and the old "cases / articles" link blocks;
 // on the developer-IT page runs of photos become an auto-scrolling slider instead
 const SLIDER_PAGES = new Set(['it-reshenie-dlya-zastroyshchikov']);
+// client edits 25.11: pictures that stay in service texts after all (by file name)
+const KEEP_IMAGES = new Set(['553091ea20422546a7054423dbb2bdcb.png']); // audit: example of the competitor table
+// client edits 25.11: point fixes in old service texts, applied to the raw HTML before cleaning
+const SERVICE_FIXES = {
+  'informatsionnaya-podderzhka-sayta': [['Развитие и обновление сайта<br>', '<h3>Развитие и обновление сайта</h3>']],
+  smm: [['<em><strong>Познакомьтесь с нашим кейсом</strong></em><a', '<em><strong>Познакомьтесь с нашим кейсом:</strong></em> <a']],
+  'vedenie-sotssetey-pod-klyuch': [
+    ['<p><strong>Наш шоурил (посмотрите, классный же, и тут всего 30 секунд)</strong>:</p>', '<p><strong>Наш шоурил (посмотрите, классный же, и тут всего 30 секунд)</strong>:</p><div class="embed embed--vk"><iframe src="https://vk.ru/video_ext.php?oid=-211142825&amp;id=456239033&amp;hash=7250f1986fc84f81" title="Шоурил NUTS" allow="autoplay; encrypted-media; fullscreen; picture-in-picture; screen-wake-lock" allowfullscreen loading="lazy"></iframe></div>'],
+  ],
+};
+const fixService = (html, key) => (SERVICE_FIXES[key] || []).reduce((h, [from, to]) => { if (!h.includes(from)) log(`WARN fix not applied on ${key}: ${from.slice(0, 50)}`); return h.split(from).join(to); }, html);
+// the "Техническая и контентная поддержка" price table came without its header cells merged — rebuild it
+function fixPackTable(t) {
+  const rows = [...t.rows].map(r => [...r.cells].map(c => c.textContent.replace(/\s+/g, ' ').trim()));
+  const [cap, head, sub, ...data] = rows;
+  if (!head || !sub || sub.length !== (head.length - 1) * 3) return;
+  t.outerHTML = `<table class="table--price"><caption>${esc(cap[0])}</caption>
+<thead><tr><th rowspan="2" scope="col">${esc(head[0])}</th>${head.slice(1).map(h => `<th colspan="3" scope="colgroup">${esc(h)}</th>`).join('')}</tr>
+<tr>${sub.map(s => `<th scope="col">${esc(s)}</th>`).join('')}</tr></thead>
+<tbody>${data.map(r => `<tr><th scope="row">${esc(r[0])}</th>${r.slice(1).map(v => `<td><span class="num">${esc(v)}</span></td>`).join('')}</tr>`).join('\n')}</tbody></table>`;
+}
 function cleanService(html, key) {
   const root = document.createElement('div'); root.innerHTML = html;
   [...root.children].forEach(h => {
-    if (!/^H3$/.test(h.tagName) || !/кейсы|статьи про/i.test(h.textContent)) return;
+    if (!/^H3$/.test(h.tagName) || !/кейсы|статьи про|^\s*содержание\s*$/i.test(h.textContent)) return;
     let n = h.nextElementSibling;
     while (n && !/^H[23]$/.test(n.tagName)) { const next = n.nextElementSibling; n.remove(); n = next; }
     h.remove();
   });
+  // old "Оформите заявку … / Заказать …" strips (one-row tables) — the page has its own brief form
+  root.querySelectorAll('table').forEach(t => {
+    if (t.rows.length === 1 && t.rows[0].cells.length === 2 && /заявк/i.test(t.rows[0].cells[0].textContent)) (t.closest('.table-wrap') || t).remove();
+  });
+  root.querySelectorAll('table').forEach(t => { if (/Пакет 10 часов/.test(t.textContent)) fixPackTable(t); });
   if (SLIDER_PAGES.has(key)) {
     // lists that hold nothing but pictures (one per item) are galleries — unwrap them into figures
     root.querySelectorAll('ul, ol').forEach(l => {
@@ -129,7 +159,19 @@ function cleanService(html, key) {
     [...root.children].forEach(n => { if (n.tagName === 'FIGURE') run.push(n); else flush(); });
     flush();
   } else {
-    root.querySelectorAll('figure, img').forEach(f => f.remove());
+    root.querySelectorAll('figure, img').forEach(f => {
+      const img = f.tagName === 'IMG' ? f : f.querySelector('img');
+      if (img && KEEP_IMAGES.has((img.getAttribute('src') || '').split('/').pop())) {
+        // an italic line right under a kept picture is its caption
+        const fig = f.tagName === 'FIGURE' ? f : f.closest('figure');
+        const n = fig && fig.nextElementSibling;
+        if (n && n.tagName === 'P' && n.textContent.trim() && n.textContent.trim() === [...n.querySelectorAll('em,i')].map(e => e.textContent).join('').trim()) {
+          const cap = document.createElement('figcaption'); cap.textContent = n.textContent.trim(); fig.appendChild(cap); n.remove();
+        }
+        return;
+      }
+      f.remove();
+    });
   }
   root.querySelectorAll('p').forEach(p => { if (!p.textContent.trim() && !p.querySelector('img')) p.remove(); });
   return root.innerHTML;
@@ -145,23 +187,21 @@ function chapters(html, firstTitle) {
   if (cur.html.trim()) list.push(cur);
   return list;
 }
-// soft hyphens for long Russian words in big display type (browser hyphenation is unreliable here):
-// break V|CV inside words of 11+ letters, keeping at least 3 letters on each side
-const VOW = 'аеёиоуыэюяaeiouy';
-const shy = text => esc(text).replace(/[А-Яа-яЁёA-Za-z]{11,}/g, w => {
-  let out = '';
-  for (let i = 0; i < w.length; i++) {
-    out += w[i];
-    const isV = c => c && VOW.includes(c.toLowerCase());
-    if (i < 2 || i > w.length - 4 || 'ьъй'.includes(w[i + 1].toLowerCase())) continue;
-    const vcv = isV(w[i]) && !isV(w[i + 1]) && isV(w[i + 2]);          // ве|ди
-    const vccv = isV(w[i - 1]) && !isV(w[i]) && !isV(w[i + 1]) && isV(w[i + 2]); // из|во
-    if (vcv || vccv) out += '&shy;';
-  }
-  return out;
-});
+const shy = text => esc(text); // client edits 25.11: no word breaks in headings at all — main.js shrinks long words instead
 // the old CMS glued the project props and buttons onto the task text
 const cleanTask = t => (t || '').replace(/\s*(Сфера|Сайт|Дата)\s.*$/s, '').replace(/\s*(Заказать проект|Задать вопрос).*$/s, '').trim();
+// client edits 25.11: typos fixed on top of the 1:1 case texts (the old site has them too)
+const CASE_FIXES = {
+  'obrashcheniya-po-36-rubley-v-nishe-fitnes-klub': [['450-650 ₽.На данный момент', '450-650 ₽. На данный момент'], ['Фитнес-кубы', 'Фитнес-клубы']],
+};
+function fixCases(cases) {
+  for (const c of cases) for (const [from, to] of CASE_FIXES[c.slug] || []) {
+    const before = JSON.stringify(c);
+    c.html = c.html.split(from).join(to);
+    Object.keys(c.props).forEach(k => (c.props[k] = c.props[k].split(from).join(to)));
+    if (JSON.stringify(c) === before) log(`WARN case fix not applied on ${c.slug}: ${from}`);
+  }
+}
 const longTitle = (t, n = 55) => t.length > n || Math.max(...t.split(/\s+/).map(w => w.length)) >= 13;
 const firstText = html => { const d = document.createElement('div'); d.innerHTML = html; const p = [...d.querySelectorAll('p')].find(x => x.textContent.trim().length > 60); return p ? p.textContent.trim() : ''; };
 
@@ -258,6 +298,23 @@ const caseCard = (c, wide) => `
       <h3 class="case__title">${esc(c.title)}</h3>
     </a>`;
 
+// client review on a case page: compact card, with the thank-you letter attached when the old site had one
+const reviewCard = r => `
+<section class="review-card" data-in>
+  <span class="eyebrow">Отзыв клиента</span>
+  <blockquote>${(r.paras && r.paras.length ? r.paras : [r.text]).map(t => `<p>${esc(t)}</p>`).join('')}</blockquote>
+  <div class="review-card__foot">
+    <div class="review-card__who"><b>${esc(r.name)}</b><span>${esc(r.role)}</span></div>
+    ${(r.docs || []).map(d => `<a class="doc-link" href="${esc(d.href)}" target="_blank" rel="noopener" data-cursor="hover"><i aria-hidden="true">PDF</i><span><b>${esc(d.title)}</b>${d.size ? `<small>${esc(d.size)}</small>` : ''}</span></a>`).join('')}
+  </div>
+</section>`;
+
+const nextCard = n => `
+<a class="next next--sm" href="cases/${n.slug}.html" data-cursor="view">
+  <div class="next__img"><img src="${n.cover}" alt="" loading="lazy"></div>
+  <div><span class="next__label">Следующий кейс →</span><h2 class="next__title">${esc(n.title)}</h2></div>
+</a>`;
+
 const postCard = a => `
     <a href="blog/${a.slug}.html" class="post" data-cat="${a.cat}" data-cursor="read">
       <div class="post__img">${a.cover && FILES.has(a.cover.replace('assets/content/', '')) ? `<img src="${a.cover}" alt="" loading="lazy">` : `<div class="post__art post__art--1"><span>${esc((POST_CATS[a.cat] || '').slice(0, 3))}</span></div>`}</div>
@@ -340,7 +397,7 @@ async function buildCases() {
     ${Object.entries(CASE_FILTER).map(([k, f]) => `<button class="filter" data-f="${f}">${CASE_CATS[k]} · ${cases.filter(c => c.cat === k).length}</button>`).join('\n    ')}
   </div>` }) + `
 <section class="section" style="padding-top:0">
-  <div class="cases__grid">${cases.map((c, i) => caseCard(c, i % 7 === 0)).join('')}
+  <div class="cases__grid">${cases.map(c => caseCard(c)).join('')}
   </div>
 </section>` + ctaBand(),
   });
@@ -348,13 +405,12 @@ async function buildCases() {
   for (const [i, c] of cases.entries()) {
     const path = `cases/${c.slug}.html`;
     const task = cleanTask(c.task);
-    const desc = cut([task, firstText(normalize(c.html))].filter(Boolean).join(" "), 160) || cut(strip(c.html), 160);
+    const desc = cut([task, firstText(normalize(c.html, true))].filter(Boolean).join(" "), 160) || cut(strip(c.html), 160);
     let main = await custom(path);
     if (!main) {
-      const body = normalize(c.html);
+      const body = normalize(c.html, true);
       const list = chapters(body, 'О проекте');
       const facts = [['Направление', CASE_CATS[c.cat]], ...Object.entries(c.props)].filter(([, v]) => v);
-      const gallery = c.gallery.filter(g => FILES.has(g.replace('assets/content/', '')) && g !== c.cover);
       const sameCat = cases.filter(x => x.cat === c.cat && x !== c);
       const similar = [...c.similar.map(u => cases.find(x => x.url === u)).filter(Boolean), ...sameCat].filter((x, k, arr) => arr.indexOf(x) === k).slice(0, 3);
       const nextC = cases.slice(i + 1).find(x => x.cat === c.cat) || sameCat[0];
@@ -362,18 +418,9 @@ async function buildCases() {
 <div class="facts" data-in>
   ${facts.slice(0, 4).map(([k, v]) => `<div class="fact"><b>${esc(k)}</b>${k === 'Сайт' && /^https?:/.test(v) ? `<a href="${esc(v)}" target="_blank" rel="noopener" data-cursor="hover">${esc(v.replace(/^https?:\/\/(www\.)?/, '').replace(/\/$/, ''))} ↗</a>` : `<span>${esc(v)}</span>`}</div>`).join('\n  ')}
 </div>
-${c.cover && FILES.has(c.cover.replace('assets/content/', '')) ? `<figure class="cover cover--thumb" data-cursor="view"><img src="${c.cover}" alt="${esc(c.title)}"></figure>` : ''}
 ${list.length ? chapterHtml(list) : ''}
-${gallery.length > 1 ? `<section class="gallery-wrap">
-  <div class="section__head section__head--row"><h2 class="h3">Галерея проекта</h2><span class="gallery__hint">тяни <i></i></span></div>
-  <div class="gallery" data-cursor="drag">${gallery.map(g => `<figure><img src="${g}" alt="" loading="lazy"></figure>`).join('')}</div>
-</section>` : ''}
-${c.review ? `<figure class="bigquote"><blockquote>${esc(c.review.text)}</blockquote><figcaption><b>${esc(c.review.name)}</b><span>${esc(c.review.role)}</span></figcaption></figure>` : ''}
-${nextC && nextC !== c ? `<a class="next" href="cases/${nextC.slug}.html" data-cursor="view">
-  <span class="next__label">Следующий кейс →</span>
-  <h2 class="next__title">${shy(nextC.title)}</h2>
-  <div class="next__img"><img src="${nextC.cover}" alt=""></div>
-</a>` : ''}
+${c.review ? reviewCard(c.review) : ''}
+${nextC && nextC !== c ? nextCard(nextC) : ''}
 ${similar.length ? `<section class="section" style="padding-top:clamp(40px,5vw,80px);padding-bottom:0">
   <div class="section__head section__head--row" style="margin-bottom:36px"><h2 class="h3">Похожие проекты</h2><a href="cases/index.html" class="link-arrow" data-cursor="hover">Все кейсы →</a></div>
   <div class="cases__grid">${similar.map(x => caseCard(x)).join('')}</div>
@@ -408,7 +455,7 @@ ${sections.map((s, i) => `    <article class="svc-block">
     const key = s.slug || s.section;
     const path = `services/${key}.html`;
     const sec = SECTIONS[s.section];
-    const body = cleanService(normalize(s.html), key);
+    const body = cleanService(normalize(fixService(s.html, key)), key);
     const lead = cut(firstText(body), 220);
     const desc = cut(firstText(body), 160) || `${s.title} от NUTS: ${sec.short} Под задачи бизнеса — в Краснодаре и по всей России.`;
     let main = await custom(path);
@@ -616,6 +663,7 @@ async function run() {
   D = await (await fetch('../data/content.json?' + Date.now())).json();
   FILES = new Set(await (await fetch('../data/files.json?' + Date.now())).json());
   log(`content: ${D.cases.length} cases, ${D.services.length} services, ${D.articles.length} articles`);
+  fixCases(D.cases);
   await buildCases(); await buildServices(); await buildBlog(); buildAbout(); buildContacts();
   // homepage: point old-site and legacy links at the generated pages
   let home = await (await fetch('../index.html?' + Date.now())).text();

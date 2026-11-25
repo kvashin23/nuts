@@ -15,8 +15,8 @@
   <link rel="canonical" href="https://kvashin23.github.io/nuts/cases/sayt-dlya-mezhdunarodnoy-serii-pokernykh-turnirov-ea-poker-tour.html">
   <meta name="theme-color" content="#0d0d0d">
   <link rel="stylesheet" href="../vendor/fonts/fonts.css">
-  <link rel="stylesheet" href="../css/style.css?v=mvs4qjzl">
-  <link rel="stylesheet" href="../css/pages.css?v=mvs4qjzl">
+  <link rel="stylesheet" href="../css/style.css?v=mww832dx">
+  <link rel="stylesheet" href="../css/pages.css?v=mww832dx">
   <link rel="icon" href="../assets/logo-mark.png" type="image/png">
 </head>
 <body>
@@ -51,7 +51,7 @@
   <div class="page-hero__rings" aria-hidden="true"><i></i><i></i></div>
   <nav class="crumbs" data-in><a href="../index.html">Главная</a><span><a href="../cases/index.html">Кейсы</a></span><span>Разработка</span></nav>
   <div class="tags" data-in style="position:relative;margin-bottom:28px"><span class="is-hot">Разработка</span><span>Организация покерных серий</span></div>
-  <h1 class="page-title page-title--sm"><span class="line"><span class="split">Сайт для меж&shy;ду&shy;на&shy;род&shy;ной серии покерных турниров EA Poker Tour</span></span></h1>
+  <h1 class="page-title page-title--sm"><span class="line"><span class="split">Сайт для международной серии покерных турниров EA Poker Tour</span></span></h1>
   <p class="page-lead" data-in>Разработать сайт для EA Poker Tour с возможностью отображения турнирных серий, онлайн-трансляции игровых данных через интеграцию с kHold'em API и гибкой админ-панелью для управления контентом.</p>
   
 </section>
@@ -61,7 +61,6 @@
   <div class="fact"><b>Сайт</b><a href="https://eapokertour.com/" target="_blank" rel="noopener" data-cursor="hover">eapokertour.com ↗</a></div>
   <div class="fact"><b>Дата</b><span>03.07.2025</span></div>
 </div>
-<figure class="cover cover--thumb" data-cursor="view"><img src="../assets/content/7727cc6e2bd0b10cc5da6c7869c20d2e.jpg" alt="Сайт для международной серии покерных турниров EA Poker Tour"></figure>
 
 <section class="chapters">
   <article class="chapter">
@@ -70,42 +69,94 @@
   </article>
   <article class="chapter">
     <div class="chapter__head"><span class="chapter__n">02</span><h2>Оглавление</h2></div>
-    <div class="chapter__body prose"><ol><li>Клиент</li> <li>Задача</li> <li>Аналитика</li> <li>Прототип и дизайн</li> <li>Используемый стек</li> <li>Результат</li></ol></div>
+    <div class="chapter__body prose"><ol>
+	<li><a href="#client">Клиент</a></li>
+	<li><a href="#task">Задача</a></li>
+	<li><a href="#analyze">Аналитика</a></li>
+	<li><a href="#design">Прототип и дизайн</a></li>
+	<li> <a href="#stack">Используемый стек</a> </li>
+	<li> <a href="#result">Результат</a> </li>
+</ol></div>
   </article>
   <article class="chapter">
     <div class="chapter__head"><span class="chapter__n">03</span><h2>Клиент</h2></div>
-    <div class="chapter__body prose"><p>EA Poker Tour — серия международных покерных турниров, которые проходят в крупных казино по всему евразийскому региону: на Кипре, в Мадриде, Братиславе, Грузии, Барселоне, Милане. Каждая серия длится по нескольку недель, собирает сотни участников, десятки событий и тысячи деталей: расписания, бай-ины, стек-лидеры, блайнды, отели, регистрационные формы.</p><p>Мы в агентстве любим покер, периодически даже устраиваем мини-турниры с коллегами, и, конечно, следим за телеграм-каналом сооснователя агентства и талантливого покериста Константина Квашина <a href="https://t.me/kvashin_k" target="_blank" rel="noopener">@kvashin_k</a>. Благодаря этому мы быстро нашли общий язык с EA Poker Tour, когда они обратились к нам с задачей разработать сайт.</p></div>
+    <div class="chapter__body prose"><p>
+	 EA Poker Tour — серия международных покерных турниров, которые проходят в крупных казино по всему евразийскому региону: на Кипре, в Мадриде, Братиславе, Грузии, Барселоне, Милане. Каждая серия длится по нескольку недель, собирает сотни участников, десятки событий и тысячи деталей: расписания, бай-ины, стек-лидеры, блайнды, отели, регистрационные формы.
+</p><p>
+	 Мы в агентстве любим покер, периодически даже устраиваем мини-турниры с коллегами, и, конечно, следим за телеграм-каналом сооснователя агентства и талантливого покериста Константина Квашина <a href="https://t.me/kvashin_k" target="_blank" rel="noopener">@kvashin_k</a>. Благодаря этому мы быстро нашли общий язык с EA Poker Tour, когда они обратились к нам с задачей разработать сайт.
+</p></div>
   </article>
   <article class="chapter">
     <div class="chapter__head"><span class="chapter__n">04</span><h2>Задача</h2></div>
-    <div class="chapter__body prose"><ul><li><p>Структурировать информацию о всех сериях (прошедших и будущих);</p></li> <li><p>Транслировать информацию по текущим турнирам, которая будет обновляться в режиме реального времени: количество количество игроков, блайнды, чипкаунт и т.д.;</p></li> <li><p>Организовать регистрацию на серию и функционал подбора гостиниц для приезжающих игроков;</p></li> <li><p>Адаптировать визуал под бренд EA Poker Tour и сделать интерфейс максимально удобным.</p></li></ul></div>
+    <div class="chapter__body prose"><ul>
+	<li>
+	<p>
+		 Структурировать информацию о всех сериях (прошедших и будущих);
+	</p>
+ </li>
+	<li>
+	<p>
+		 Транслировать информацию по текущим турнирам, которая будет обновляться в режиме реального времени: количество количество игроков, блайнды, чипкаунт и т.д.;
+	</p>
+ </li>
+	<li>
+	<p>
+		 Организовать регистрацию на серию и функционал подбора гостиниц для приезжающих игроков;
+	</p>
+ </li>
+	<li>
+	<p>
+		 Адаптировать визуал под бренд EA Poker Tour и сделать интерфейс максимально удобным.
+	</p>
+ </li>
+</ul></div>
   </article>
   <article class="chapter">
     <div class="chapter__head"><span class="chapter__n">05</span><h2>Аналитика</h2></div>
-    <div class="chapter__body prose"><p>Перед проектированием мы изучили сайты крупнейших серий: EPT, WPT, Triton Poker, Kings Resort, PokerGO, Hendon Mob.</p><p>Многие из них визуально перегружены, имеют неудобные для пользователя многоуровневые меню и устаревший дизайн. Мы предложили другое решение — логичную, «плоскую» структуру и чёткие интерфейсы.</p></div>
+    <div class="chapter__body prose"><p>
+	 Перед проектированием мы изучили сайты крупнейших серий: EPT, WPT, Triton Poker, Kings Resort, PokerGO, Hendon Mob.
+</p><p>
+	 Многие из них визуально перегружены, имеют неудобные для пользователя многоуровневые меню и устаревший дизайн. Мы предложили другое решение — логичную, «плоскую» структуру и чёткие интерфейсы.
+</p></div>
   </article>
   <article class="chapter">
     <div class="chapter__head"><span class="chapter__n">06</span><h2>Прототип и дизайн</h2></div>
-    <div class="chapter__body prose"><p>Информации по каждой серии много, вся она специфическая. Прототипирование шло с участием команды из разработчиков-покеристов и веб-дизайнера. Мы продумывали, как должна выглядеть карточка серии, какие блоки обязательны, какие блоки и в каком порядке выводить пользователю. В результате прототип с первого раза получил согласование.</p><p>На этапе дизайна вдохновлялись актуальными трендами на Behance и хорошим UI в играх: на момент разработки проекта в моде были темные фоны и яркие акценты.</p><p>Для UX-тестов мы собрали кликабельный макет и попросили покеристов пройти полный путь: выбрать турнир, посмотреть расписание, зарегистрироваться, найти результаты прошедших серий. 5 из 5 тестировавших справились с первого раза.</p><figure><img src="../assets/content/fe2d855f80ff28995b12b7623f5f1699.jpg" alt="Трансляция серии.jpg" loading="lazy"></figure><p><em>Трансляция серии</em></p><figure><img src="../assets/content/0e06c04de78537a2eeab5f1ca058284a.jpg" alt="Забронировать отель.jpg" loading="lazy"></figure><p><em>Бронирование отелей</em></p><figure><img src="../assets/content/4d7a831e85e52e0a8aafaedfdf89903e.jpg" alt="Раздел новостей.png" loading="lazy"></figure><p><em>Раздел новостей</em></p><p>Отдельно прорабатывали мобильную версию. Большинство участников следит за сериями и регистрируется со смартфона — это основной сценарий использования.</p><figure><img src="../assets/content/c4bc48f9ba40c777af1a50d81adae1c3.jpg" alt="Мобильная версия1.jpg" loading="lazy"></figure><figure><img src="../assets/content/a79f722ecfa8f20c8ed5f867494366c1.jpg" alt="Мобильная версия2.jpg" loading="lazy"></figure><figure><img src="../assets/content/a1a5bf452fbb0bb003cb38d4c508d97e.jpg" alt="Мобильная версия3.jpg" loading="lazy"></figure><p><em>Мобильная версия</em></p></div>
+    <div class="chapter__body prose"><p>
+	 Информации по каждой серии много, вся она специфическая. Прототипирование шло с участием команды из разработчиков-покеристов и веб-дизайнера. Мы продумывали, как должна выглядеть карточка серии, какие блоки обязательны, какие блоки и в каком порядке выводить пользователю. В результате прототип с первого раза получил согласование.
+</p><p>
+	 На этапе дизайна вдохновлялись актуальными трендами на Behance и хорошим UI в играх: на момент разработки проекта в моде были темные фоны и яркие акценты.
+</p><p>
+	 Для UX-тестов мы собрали кликабельный макет и попросили покеристов пройти полный путь: выбрать турнир, посмотреть расписание, зарегистрироваться, найти результаты прошедших серий. 5 из 5 тестировавших справились с первого раза.
+</p><figure><img src="../assets/content/fe2d855f80ff28995b12b7623f5f1699.jpg" alt="Трансляция серии.jpg" loading="lazy"><figcaption>Трансляция серии</figcaption></figure><figure><img src="../assets/content/0e06c04de78537a2eeab5f1ca058284a.jpg" alt="Забронировать отель.jpg" loading="lazy"><figcaption>Бронирование отелей</figcaption></figure><figure><img src="../assets/content/4d7a831e85e52e0a8aafaedfdf89903e.png" alt="Раздел новостей.png" loading="lazy"><figcaption>Раздел новостей</figcaption></figure><p>
+	 Отдельно прорабатывали мобильную версию. Большинство участников следит за сериями и регистрируется со смартфона — это основной сценарий использования.
+</p><figure><img src="../assets/content/c4bc48f9ba40c777af1a50d81adae1c3.jpg" alt="Мобильная версия1.jpg" loading="lazy"></figure><figure><img src="../assets/content/a79f722ecfa8f20c8ed5f867494366c1.jpg" alt="Мобильная версия2.jpg" loading="lazy"></figure><figure><img src="../assets/content/a1a5bf452fbb0bb003cb38d4c508d97e.jpg" alt="Мобильная версия3.jpg" loading="lazy"><figcaption>Мобильная версия</figcaption></figure></div>
   </article>
   <article class="chapter">
-    <div class="chapter__head"><span class="chapter__n">07</span><h2>Используе&shy;мый стек</h2></div>
-    <div class="chapter__body prose"><p>Сайт построен на <a href="../about.html">Winter CMS</a>. В админке лежит полноценная система управления турнирами: десятки вкладок, каждая серия — отдельная сущность с десятками параметров и вкладок.</p><figure><img src="../assets/content/b048e0e316f191336eac296cb344d8e2.jpg" alt="Административная панель" loading="lazy"></figure><p><em>Административная панель</em><br></p><p>Чтобы выводить на сайт информацию по действующей серии в реальном времени, мы интегрировались с системой <a href="https://www.kholdem.net/en/" target="_blank" rel="noopener">kHold’em</a>. Это профессиональное ПО для покерных серий, которое используется крупными площадками по всему миру.</p><p>Интеграция была не самой простой, плюс накладывались сложности в виде периодической геоблокировки. Тем не менее, всё реализовано: теперь на сайте можно смотреть трансляцию активной серии в реальном времени.</p><p>Параллельно с разработкой сайта мы заложили архитектуру под будущее мобильное приложение через RESTful API.</p></div>
+    <div class="chapter__head"><span class="chapter__n">07</span><h2>Используемый стек</h2></div>
+    <div class="chapter__body prose"><p>
+	 Сайт построен на <a href="../about.html">Winter CMS</a>. В админке лежит полноценная система управления турнирами: десятки вкладок, каждая серия — отдельная сущность с десятками параметров и вкладок.
+</p><figure><img src="../assets/content/b048e0e316f191336eac296cb344d8e2.png" alt="Административная панель" loading="lazy"><figcaption>Административная панель</figcaption></figure><p>
+	 Чтобы выводить на сайт информацию по действующей серии в реальном времени, мы интегрировались с системой <a href="https://www.kholdem.net/en/" target="_blank" rel="noopener">kHold’em</a>. Это профессиональное ПО для покерных серий, которое используется крупными площадками по всему миру.
+</p><p>
+	 Интеграция была не самой простой, плюс накладывались сложности в виде периодической геоблокировки. Тем не менее, всё реализовано: теперь на сайте можно смотреть трансляцию активной серии в реальном времени.
+</p><p>
+	 Параллельно с разработкой сайта мы заложили архитектуру под будущее мобильное приложение через RESTful API.
+</p></div>
   </article>
   <article class="chapter">
     <div class="chapter__head"><span class="chapter__n">08</span><h2>Результат</h2></div>
-    <div class="chapter__body prose"><p>Это наш<strong>второй англоязычный проект</strong> (после сайта для экскурсий по Португалии <a href="../cases/razrabotka-sayta-dlya-ekskursiy-po-portugalii.html">Happy Sardine</a>) — и полезный опыт. Мы собрали фулл-хаус из дизайна, технологий, структуры, пользовательского опыта и понимания игры, чтобы разработать функциональный сайт для профессионалов и любителей покера.</p><p>Если этот кейс вызвал интерес и вы тоже хотите удобный и живой сайт, будем рады встрече. Приходите, обсудим ваши идеи и вместе сделаем что-то классное.</p></div>
+    <div class="chapter__body prose"><p>
+	 Это&nbsp;наш<strong> второй англоязычный проект</strong> (после сайта для экскурсий по Португалии <a href="../cases/razrabotka-sayta-dlya-ekskursiy-po-portugalii.html">Happy Sardine</a>) — и полезный опыт. Мы собрали фулл-хаус из дизайна, технологий, структуры, пользовательского опыта и понимания игры, чтобы разработать функциональный сайт для профессионалов и любителей покера.
+</p><p>
+	 Если этот кейс вызвал интерес и вы тоже хотите удобный и живой сайт, будем рады встрече. Приходите, обсудим ваши идеи и вместе сделаем что-то классное.
+</p></div>
   </article>
 </section>
-<section class="gallery-wrap">
-  <div class="section__head section__head--row"><h2 class="h3">Галерея проекта</h2><span class="gallery__hint">тяни <i></i></span></div>
-  <div class="gallery" data-cursor="drag"><figure><img src="../assets/content/498cca6bf0c9b408e062050b2b37feeb.jpg" alt="" loading="lazy"></figure><figure><img src="../assets/content/2acf97e28c1509771bcf9944bd19bf6c.jpg" alt="" loading="lazy"></figure><figure><img src="../assets/content/8874b0fad7c505b7c6227568c22c90d9.jpg" alt="" loading="lazy"></figure><figure><img src="../assets/content/920c27087ea75598ff8c708a3876fdcc.jpg" alt="" loading="lazy"></figure></div>
-</section>
 
-<a class="next" href="../cases/mobilnoe-prilozhenie-partnyer-development-yug.html" data-cursor="view">
-  <span class="next__label">Следующий кейс →</span>
-  <h2 class="next__title">Разработка мобильного приложения для партнеров корпорации «Деве&shy;лоп&shy;мент-Юг»</h2>
-  <div class="next__img"><img src="../assets/content/1299c2d89b31bc28c3bb72562654e709.jpg" alt=""></div>
+
+<a class="next next--sm" href="../cases/mobilnoe-prilozhenie-partnyer-development-yug.html" data-cursor="view">
+  <div class="next__img"><img src="../assets/content/1299c2d89b31bc28c3bb72562654e709.jpg" alt="" loading="lazy"></div>
+  <div><span class="next__label">Следующий кейс →</span><h2 class="next__title">Разработка мобильного приложения для партнеров корпорации «Девелопмент-Юг»</h2></div>
 </a>
 <section class="section" style="padding-top:clamp(40px,5vw,80px);padding-bottom:0">
   <div class="section__head section__head--row" style="margin-bottom:36px"><h2 class="h3">Похожие проекты</h2><a href="../cases/index.html" class="link-arrow" data-cursor="hover">Все кейсы →</a></div>
@@ -146,6 +197,6 @@
 <script src="../vendor/gsap.min.js"></script>
 <script src="../vendor/ScrollTrigger.min.js"></script>
 <script src="../vendor/lenis.min.js"></script>
-<script src="../js/main.js?v=mvs4qjzl"></script>
+<script src="../js/main.js?v=mww832dx"></script>
 </body>
 </html>

@@ -115,7 +115,7 @@
 .kind:hover::before { clip-path: circle(150% at 100% 0%); }
 .kind:hover { color: var(--white); transform: translateY(-8px); }
 .kind__ico { width: 64px; height: 64px; border-radius: 18px; background: var(--grad); display: grid; place-items: center; font-family: var(--f-display); font-weight: 900; font-size: 22px; color: #000; }
-.kind h3 { margin: auto 0 0; font-family: var(--f-display); font-weight: 900; font-size: clamp(18px, 1.55vw, 24px); hyphens: auto; overflow-wrap: anywhere; line-height: 1; text-transform: uppercase; letter-spacing: -.03em; }
+.kind h3 { margin: auto 0 0; font-family: var(--f-display); font-weight: 900; font-size: clamp(18px, 1.55vw, 24px); line-height: 1; text-transform: uppercase; letter-spacing: -.03em; }
 .kind p { margin: 0; font-size: 15px; opacity: .75; }
 .kind__term { display: flex; justify-content: space-between; align-items: center; padding-top: 14px; border-top: 1px solid currentColor; border-color: rgba(128,128,128,.3); font-weight: 700; font-size: 14px; }
 .kind__term b { font-family: var(--f-display); color: var(--orange); }
@@ -154,8 +154,8 @@
    ========================================================== */
 .blog-top { display: flex; justify-content: space-between; align-items: flex-end; gap: 24px; flex-wrap: wrap; }
 .feature { display: grid; grid-template-columns: 1.3fr 1fr; gap: clamp(24px, 4vw, 60px); align-items: center; padding: 0 var(--pad); }
-.feature__img { border-radius: var(--r); overflow: hidden; aspect-ratio: 16 / 10; background: var(--ink-2); }
-.feature__img img { width: 100%; height: 100%; object-fit: cover; transition: transform 1s var(--ease); }
+.feature__img { border-radius: var(--r); overflow: hidden; aspect-ratio: 16 / 9; background: var(--ink-2); }
+.feature__img img { width: 100%; height: 100%; object-fit: contain; transition: transform 1s var(--ease); }
 .feature:hover .feature__img img { transform: scale(1.04); }
 .feature__body { display: flex; flex-direction: column; gap: 20px; }
 .feature__body h2 { margin: 0; font-family: var(--f-display); font-weight: 900; font-size: clamp(28px, 3.4vw, 54px); line-height: 1; letter-spacing: -.035em; text-transform: uppercase; }
@@ -164,8 +164,8 @@
 .meta .cat { color: var(--orange); }
 .posts { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(20px, 2.4vw, 36px) clamp(16px, 2vw, 28px); }
 .posts .post.is-hidden { display: none; }
-.post__img { aspect-ratio: 16 / 10; border-radius: 20px; overflow: hidden; background: var(--ink-2); position: relative; transition: border-radius .5s var(--ease); }
-.post__img img { width: 100%; height: 100%; object-fit: cover; transition: transform .9s var(--ease); }
+.post__img { aspect-ratio: 16 / 9; border-radius: 20px; overflow: hidden; background: var(--ink-2); position: relative; transition: border-radius .5s var(--ease); }
+.post__img img { width: 100%; height: 100%; object-fit: contain; transition: transform .9s var(--ease); }
 .post:hover .post__img { border-radius: 50% 20px 20px 20px; }
 .post:hover .post__img img { transform: scale(1.06); }
 .post__img .post__art { position: absolute; inset: 0; aspect-ratio: auto; border-radius: 0; }
@@ -248,7 +248,7 @@
 @media (max-width: 700px) {
   .facts { grid-template-columns: 1fr; }
   .fact + .fact { border-left: 0; padding-left: 0; border-top: 1px solid var(--line); }
-  .page-title { font-size: clamp(26px, 7.6vw, 40px); hyphens: auto; }
+  .page-title { font-size: clamp(26px, 7.6vw, 40px); }
   .page-title--sm { font-size: clamp(24px, 7vw, 36px); }
   .cover { aspect-ratio: 4 / 3; }
   .bigstats, .kinds, .posts, .factors { grid-template-columns: 1fr; }
@@ -313,14 +313,11 @@
   .contact-cards { grid-template-columns: 1fr; }
 }
 
-/* long Russian words in big display type: hyphenate instead of overflowing */
-.page-title, .chapter__head h2, .h2, .h3, .next__title, .case__title, .feature__body h2, .post h3, .kind h3, .svc-block__title { hyphens: manual; -webkit-hyphens: manual; overflow-wrap: break-word; }
-.chapter__head h2, .prose { overflow-wrap: anywhere; }
+/* headings never break words (client edits 25.11): long words shrink the type instead — see fitHeadings() in main.js */
+h1, h2, h3, .page-title, .chapter__head h2, .h2, .h3, .next__title, .case__title, .feature__body h2, .post h3, .kind h3, .svc-block__title, .step h3 { hyphens: none; -webkit-hyphens: none; overflow-wrap: normal; word-break: normal; }
+.prose { overflow-wrap: break-word; }
 @media (max-width: 1100px) { .chapter { grid-template-columns: minmax(0, 1fr); } }
 @media (max-width: 700px) { .cta-band h2 { font-size: clamp(24px, 7vw, 32px); } }
-@media (max-width: 700px) {
-  .page-title, .chapter__head h2, .h2, .next__title, .case__title, .feature__body h2, .post h3, .kind h3, .svc-block__title { hyphens: auto; -webkit-hyphens: auto; }
-}
 
 /* imported case covers are 800px thumbnails: keep their own proportions and never upscale far */
 .cover--thumb { aspect-ratio: 3 / 2; max-width: 1040px; margin-left: auto; margin-right: auto; }
@@ -349,3 +346,90 @@
 .stack-row span:nth-child(3n+2) { background: var(--black); color: var(--white); }
 .stack-row span:hover { transform: rotate(-4deg) scale(1.06); }
 @media (prefers-reduced-motion: reduce) { .stack-row { animation: none; flex-wrap: wrap; width: auto; } }
+
+/* ==========================================================
+   Client edits 25.11 (Реинкарнация NUTS.docx)
+   ========================================================== */
+/* pictures in texts: a caption reads as a caption, a click opens the picture in a popup */
+.prose figure img { cursor: zoom-in; }
+.prose figcaption { display: flex; gap: 10px; align-items: baseline; margin-top: 10px; font-size: 14px; line-height: 1.45; color: var(--muted); font-style: italic; }
+.prose figcaption::before { content: ""; flex: 0 0 18px; height: 1px; background: var(--orange); transform: translateY(-4px); }
+.prose .figure-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; }
+.prose .figure-row figcaption { grid-column: 1 / -1; }
+.prose .embed { position: relative; aspect-ratio: var(--ratio, 16 / 9); margin: 1.4em 0; border-radius: 18px; overflow: hidden; background: #000; }
+.prose .figure-embed .embed { margin: 0; }
+.prose .embed iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+.prose hr { border: 0; border-top: 1px solid var(--line); margin: 2em 0; }
+
+.lightbox { position: fixed; inset: 0; z-index: 300; display: grid; place-items: center; padding: clamp(16px, 4vw, 56px); background: rgba(8,8,8,.92); opacity: 0; visibility: hidden; transition: opacity .3s, visibility .3s; cursor: zoom-out; }
+.lightbox.is-open { opacity: 1; visibility: visible; }
+.lightbox figure { margin: 0; display: flex; flex-direction: column; align-items: center; gap: 12px; max-width: 100%; max-height: 100%; }
+.lightbox img { max-width: 100%; max-height: calc(100svh - 120px); width: auto; height: auto; border-radius: 12px; background: #fff; object-fit: contain; }
+.lightbox figcaption { color: var(--muted); font-size: 14px; text-align: center; }
+.lightbox__close { position: absolute; top: 16px; right: 16px; width: 48px; height: 48px; border-radius: 50%; border: 1.5px solid rgba(255,255,255,.4); color: #fff; font-size: 26px; line-height: 1; display: grid; place-items: center; background: rgba(0,0,0,.4); }
+.lightbox__nav { position: absolute; top: 50%; transform: translateY(-50%); width: 48px; height: 48px; border-radius: 50%; border: 1.5px solid rgba(255,255,255,.4); color: #fff; font-size: 22px; display: grid; place-items: center; background: rgba(0,0,0,.4); }
+.lightbox__nav--prev { left: 16px; } .lightbox__nav--next { right: 16px; }
+.lightbox__nav[hidden] { display: none; }
+
+/* case page: compact client review with the letter attached */
+.review-card { margin: clamp(48px, 6vw, 90px) var(--pad) 0; max-width: 980px; padding: clamp(24px, 3vw, 40px); border-radius: var(--r); background: var(--paper); color: var(--black); position: relative; overflow: hidden; }
+.review-card .eyebrow { color: var(--orange); }
+.review-card blockquote { margin: 14px 0 0; font-size: clamp(16px, 1.3vw, 19px); line-height: 1.55; font-weight: 500; }
+.review-card blockquote p { margin: 0 0 .7em; }
+.review-card blockquote::before { content: "“"; position: absolute; right: 20px; top: -10px; font-family: var(--f-display); font-weight: 900; font-size: 120px; line-height: 1; color: var(--orange); }
+.review-card__foot { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 16px 32px; margin-top: 18px; padding-top: 18px; border-top: 1px solid rgba(0,0,0,.12); }
+.review-card__who { display: flex; flex-direction: column; gap: 2px; }
+.review-card__who b { font-family: var(--f-display); font-weight: 800; font-size: 16px; }
+.review-card__who span { font-size: 14px; opacity: .6; }
+.doc-link { display: inline-flex; align-items: center; gap: 12px; padding: 10px 18px 10px 10px; border-radius: 14px; border: 1.5px solid rgba(0,0,0,.15); transition: background .3s, border-color .3s; }
+.doc-link:hover { background: #fff; border-color: var(--orange); }
+.doc-link i { width: 40px; height: 40px; border-radius: 10px; background: var(--orange); color: #000; display: grid; place-items: center; font-style: normal; font-weight: 800; font-size: 11px; letter-spacing: .04em; }
+.doc-link span { display: flex; flex-direction: column; gap: 2px; }
+.doc-link b { font-size: 14px; }
+.doc-link small { font-size: 12px; opacity: .6; }
+
+/* case page: small "next case" strip instead of the giant title */
+.next--sm { display: grid; grid-template-columns: 140px minmax(0, 1fr); align-items: center; gap: clamp(16px, 2vw, 28px); margin: clamp(48px, 6vw, 80px) var(--pad) 0; padding: 24px 0; }
+.next--sm .next__img { position: static; width: 100%; aspect-ratio: 4 / 3; opacity: 1; transform: none; border-radius: 14px; }
+.next--sm:hover .next__img { transform: none; }
+.next--sm .next__title { margin-top: 8px; font-size: clamp(18px, 1.8vw, 26px); line-height: 1.1; letter-spacing: -.02em; max-width: 900px; }
+.next--sm:hover .next__title { transform: none; }
+@media (max-width: 700px) { .next--sm { grid-template-columns: 96px minmax(0, 1fr); } .next--sm .next__img { display: block; } }
+
+/* tables (prices, support packages): numbers stay on one line, every cell is framed, wide tables scroll sideways */
+.table-wrap { -webkit-overflow-scrolling: touch; }
+.prose table { overflow-wrap: normal; word-break: normal; }
+.prose .table-wrap th, .prose .table-wrap td { border: 1px solid var(--line); }
+.prose .table-wrap tr:first-child > * { border-top: 0; }
+.prose .table-wrap tr > :first-child { border-left: 0; }
+.prose .table-wrap tr > :last-child { border-right: 0; }
+.prose .table-wrap tr:last-child > * { border-bottom: 0; }
+.prose td .num, .prose th .num { white-space: nowrap; }
+.prose table.table--price { min-width: 640px; }
+.prose table.table--price thead th, .prose table.table--price tr.is-head > * { background: rgba(255,90,20,.1); color: var(--white); font-weight: 700; vertical-align: bottom; }
+.prose table.table--price td:first-child { min-width: 170px; }
+@media (max-width: 700px) { .prose table { font-size: 14px; } .prose th, .prose td { padding: 10px 12px; } }
+
+/* "Выберите свой орех": tiles that open a page look like buttons; info-only tiles stay flat */
+.kind--static { cursor: default; background: transparent; color: var(--black); border: 1.5px dashed rgba(0,0,0,.25); }
+.kind--static::before { display: none; }
+.kind--static:hover { transform: none; color: var(--black); }
+.kind__more { display: inline-flex; align-items: center; gap: 8px; font-weight: 800; font-size: 14px; color: var(--orange); }
+.kind__more b { width: 32px; height: 32px; border-radius: 50%; background: var(--orange); color: #000; display: grid; place-items: center; transition: transform .4s var(--ease); }
+.kind:hover .kind__more b { transform: rotate(-45deg); }
+
+/* auto-slider: horizontal swipes belong to the slider, vertical ones still scroll the page */
+.autoslider { touch-action: pan-y; user-select: none; }
+.autoslider img { -webkit-user-drag: none; pointer-events: none; }
+.prose caption { caption-side: top; text-align: left; padding: 14px 16px; font-family: var(--f-display); font-weight: 700; font-size: 16px; color: var(--white); border-bottom: 1px solid var(--line); }
+.prose table.table--price tbody th[scope=row] { text-align: left; font-weight: 600; color: var(--white); background: var(--ink); position: sticky; left: 0; z-index: 1; }
+.prose table.table--price thead th:first-child { position: sticky; left: 0; z-index: 2; background: #2a1a12; }
+.prose table.table--price td { white-space: nowrap; text-align: right; font-variant-numeric: tabular-nums; }
+.prose table.table--price th[scope=colgroup] { text-align: center; }
+.prose .embed--vk { max-width: 720px; aspect-ratio: 16 / 9; }
+.prose table.table--price tbody th[scope=row] { min-width: 190px; }
+.prose table.table--price tbody tr:first-child td { font-weight: 400; color: inherit; }
+@media (max-width: 700px) { .prose table.table--price tbody th[scope=row] { min-width: 150px; } }
+
+/* rotated marquee strips must never widen the page on phones */
+main { overflow-x: clip; }

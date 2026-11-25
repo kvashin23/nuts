@@ -461,3 +461,21 @@ body.menu-open { overflow: hidden; }
   .svc__row .svc__plus { grid-column: 2; }
   .svc__chips span { font-size: 12px; padding: 6px 12px; }
 }
+
+/* client edits 25.11: blog covers carry their own lettering — show them whole (16:9 like the files), never cropped */
+.post__art { aspect-ratio: 16 / 9; background: var(--ink-2); }
+.post__art img { object-fit: contain; }
+
+/* client edits 25.11: on iOS Safari a gradient clipped to text vanishes when a child is animated (own layer),
+   so the big NUTS paints its gradient on the animated span itself */
+.hero__line--big { background: none; -webkit-background-clip: border-box; background-clip: border-box; color: var(--orange); mix-blend-mode: normal; }
+.hero__line--big .split { background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent; -webkit-text-fill-color: transparent; padding-right: .04em; }
+
+/* client edits 25.11: process cards on phones — text stays inside the card */
+@media (max-width: 700px) {
+  .step { padding: 26px 22px; overflow: hidden; }
+  .step h3 { font-size: clamp(20px, 7vw, 28px); }
+  .step--cta h3 { font-size: clamp(22px, 8vw, 32px); }
+  .step__n { font-size: 56px; }
+  .hero__line:first-child { white-space: nowrap; }
+}
