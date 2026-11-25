@@ -431,10 +431,15 @@
     let widest = 0;
     words.forEach(w => { probe.textContent = w; widest = Math.max(widest, probe.getBoundingClientRect().width); });
     probe.remove();
-    if (widest > box) {
-      const size = parseFloat(getComputedStyle(h).fontSize);
-      h.style.fontSize = Math.max(12, Math.floor(size * (box / widest) * 0.98)) + 'px';
+    const cs = getComputedStyle(h);
+    const room = box - parseFloat(cs.paddingLeft) - parseFloat(cs.paddingRight);
+    let size = parseFloat(cs.fontSize);
+    if (widest > room) {
+      size = Math.max(12, Math.floor(size * (room / widest) * 0.97));
+      h.style.fontSize = size + 'px';
     }
+    // final check against the real layout (letter-spacing, nested spans): step down until nothing sticks out
+    for (let k = 0; k < 8 && size > 12 && h.scrollWidth > h.clientWidth + 1; k++) { size = Math.max(12, Math.floor(size * 0.95)); h.style.fontSize = size + 'px'; }
   });
   let ft;
   const refit = () => { clearTimeout(ft); ft = setTimeout(fitHeadings, 120); };
