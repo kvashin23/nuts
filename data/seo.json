@@ -1,1753 +1,1775 @@
 {
- "origin": "https://nuts-agency.ru",
- "crawled": "2026-11-25",
- "pages": {
-  "/": {
-   "title": "Разработка и продвижение сайтов в Краснодаре - Nuts Agency",
-   "description": "Занимаемся интернет-маркетингом 24/7.  Беремся за крупные и сложные проекты. Выходим за рамки и превращаем нереальные варианты в реальные.  Решаем любые задачи.",
-   "keywords": "",
-   "robots": "",
-   "canonical": "https://nuts-agency.ru/",
-   "h1": [
-    "Разработка и оптимизация сайтов"
-   ],
-   "file": "page1.html"
-  },
-  "/articles/": {
-   "title": "Блог разработчика сайтов - Nuts Agency",
-   "description": "Интересные статьи по разработке и продвижению сайтов, а также по интернет рекламе. Конкретные примеры и исследования.",
-   "keywords": "",
-   "robots": "",
-   "canonical": "https://nuts-agency.ru/articles/",
-   "h1": [
-    "Блог"
-   ],
-   "file": "page2.html"
-  },
-  "/company/": {
-   "title": "О компании Nuts Digital: разработка и продвижение сайтов",
-   "description": "Nuts — digital-агентство полного цикла с упором на веб-разработку и создание сложных проектов. SEO-продвижение, поддержка сайтов и интернет-маркетинг.",
-   "keywords": "",
-   "robots": "",
-   "canonical": "https://nuts-agency.ru/company/",
-   "h1": [
-    "О компании"
-   ],
-   "file": "page3.html"
-  },
-  "/contacts/": {
-   "title": "Контакты Digital Nuts Agency в Краснодаре",
-   "description": "Наш адрес: г. Краснодар, ул. Красная 155/2, 7 этаж. Режим работы:  Пн – Пт.: с 9:00 до 18:00. Телефон: 8(800)222-4-604. Нужен сайт? Приходите к нам в офис.",
-   "keywords": "",
-   "robots": "",
-   "canonical": "https://nuts-agency.ru/contacts/",
-   "h1": [],
-   "file": "page4.html"
-  },
-  "/projects/": {
-   "title": "Кейсы Nuts Agency",
-   "description": "Посмотрите несколько наших проектов, чтобы вы знали, что мы тут действительно работаем. Разработка, реклама или SEO — всё можем. И можем на 10/10.",
-   "keywords": "",
-   "robots": "",
-   "canonical": "https://nuts-agency.ru/projects/",
-   "h1": [
-    "Кейсы"
-   ],
-   "file": "page5.html"
-  },
-  "/services/": {
-   "title": "Услуги digital агентства Nuts Agency",
-   "description": "Наша команда трудится для того, чтобы предоставить решение сложных вопросов для будущего вашего бизнеса. Мы создаем только качественные сайты, которые будут приносить вам прибыль.",
-   "keywords": "",
-   "robots": "",
-   "canonical": "https://nuts-agency.ru/services/",
-   "h1": [
-    "Услуги"
-   ],
-   "file": "page6.html"
-  },
-  "/company/partners/": {
-   "title": "Технологии разработки в компании Nuts Agency",
-   "description": "Собираем сайты в основном на Laravel, админка OctoberCMS (она на русском, при этом не перегружена ненужными вещами, в отличие от Битрикса, ModX, WordPress).",
-   "keywords": "",
-   "robots": "",
-   "canonical": "https://nuts-agency.ru/company/partners/",
-   "h1": [
-    "Технологии разработки"
-   ],
-   "file": "page8.html"
-  },
-  "/company/requisites/": {
-   "title": "Реквизиты компании Nuts - разработка и оптимизация сайта",
-   "description": "Компания Nuts Agency занимается созданием и продвижением сайтов. Для получения дополнительных документов вы можете обратиться в бухгалтерию нашей компании.",
-   "keywords": "",
-   "robots": "",
-   "canonical": "https://nuts-agency.ru/company/requisites/",
-   "h1": [
-    "Наши реквизиты"
-   ],
-   "file": "page9.html"
-  },
-  "/company/reviews/": {
-   "title": "Отзывы клиентов о компании Nuts Digital Agency",
-   "description": "Мы стремимся оказывать качественные услуги с высоким уровнем сервиса. Мы благодарны нашим клиентам за оказанное доверие и положительные отзывы о совместной работе.",
-   "keywords": "",
-   "robots": "",
-   "canonical": "https://nuts-agency.ru/company/reviews/",
-   "h1": [
-    "Отзывы клиентов"
-   ],
-   "file": "page10.html"
-  },
-  "/company/vacancy/": {
-   "title": "Вакансии компании Nuts Agency в Краснодаре",
-   "description": "Ищем специалиста, который имеет опыт самостоятельного создания, ведения и анализа рекламных кампаний. Работа в офисе по адресу: Краснодар, Красная 155/2.",
-   "keywords": "",
-   "robots": "",
-   "canonical": "https://nuts-agency.ru/company/vacancy/",
-   "h1": [
-    "Вакансии"
-   ],
-   "file": "page11.html"
-  },
-  "/company/vacancy/spetsialist-po-kontekstnoy-reklame/": {
-   "title": "Вакансии компании Nuts Agency в Краснодаре",
-   "description": "Ищем специалиста, который имеет опыт самостоятельного создания, ведения и анализа рекламных кампаний. Работа в офисе по адресу: Краснодар, Красная 155/2.",
-   "keywords": "",
-   "robots": "",
-   "canonical": "https://nuts-agency.ru/company/vacancy/spetsialist-po-kontekstnoy-reklame/",
-   "h1": [
-    "Вакансии"
-   ],
-   "file": "page12.html"
-  },
-  "/company/vacancy/veb-razrabotchik/": {
-   "title": "Вакансии компании Nuts Agency в Краснодаре",
-   "description": "Ищем специалиста, который имеет опыт самостоятельного создания, ведения и анализа рекламных кампаний. Работа в офисе по адресу: Краснодар, Красная 155/2.",
-   "keywords": "",
-   "robots": "",
-   "canonical": "https://nuts-agency.ru/company/vacancy/veb-razrabotchik/",
-   "h1": [
-    "Вакансии"
-   ],
-   "file": "page13.html"
-  },
-  "/company/vacancy/rukovoditel-proektov/": {
-   "title": "Менеджер проектов",
-   "description": "Ищем специалиста, который имеет опыт самостоятельного создания, ведения и анализа рекламных кампаний. Работа в офисе по адресу: Краснодар, Красная 155/2.",
-   "keywords": "",
-   "robots": "",
-   "canonical": "https://nuts-agency.ru/company/vacancy/rukovoditel-proektov/",
-   "h1": [
-    "Менеджер проектов"
-   ],
-   "file": "page14.html"
-  },
-  "/projects/web-razraborka/": {
-   "title": "Примеры работ по разработке сайтов - Nuts Agency",
-   "description": "Наше агентство занимается разработкой сайтов и мобильных приложений. Большое количество интересных кейсов, с которыми можно ознакомиться на нашем сайте.",
-   "keywords": "",
-   "robots": "",
-   "canonical": "https://nuts-agency.ru/projects/web-razraborka/",
-   "h1": [
-    "Разработка"
-   ],
-   "file": "page15.html"
-  },
-  "/projects/web-razraborka/aprel/": {
-   "title": "Разработка интернет-магазина для сети аптек - Nuts Agency",
-   "description": "Наши специалисты разработали сложный и современный интернет-магазин, который покажет в какой аптеке сети какие товары и в каком количестве есть в наличии.",
-   "keywords": "",
-   "robots": "",
-   "canonical": "https://nuts-agency.ru/projects/web-razraborka/aprel/",
-   "h1": [
-    "Разработка интернет-магазина для сети аптек «Апрель»"
-   ],
-   "file": "page16.html"
-  },
-  "/projects/web-razraborka/ais/": {
-   "title": "Создание интернет-магазина халяльной косметики AIS — Nuts Agency",
-   "description": "Nuts Agency разработает сайт совместно с самой лучшей дизайн-студией на Юге России Eleven. Фирменный стиль и дизайн от них, вся разработка полностью наша.",
-   "keywords": "",
-   "robots": "",
-   "canonical": "https://nuts-agency.ru/projects/web-razraborka/ais/",
-   "h1": [
-    "Создание интернет-магазина халяльной косметики AIS"
-   ],
-   "file": "page17.html"
-  },
-  "/projects/web-razraborka/razrabotka-sayta-reklamno-proizvodstvennoy-kompanii-art-sayd/": {
-   "title": "Разработка сайта рекламной компании «Арт Сайд» — Nuts Agency",
-   "description": "Nuts Agency создал удобный и функциональный сайт для компании «Арт Сайд», где клиенты самостоятельно могут выбрать рекламную поверхность и оформить заказ.",
-   "keywords": "",
-   "robots": "",
-   "canonical": "https://nuts-agency.ru/projects/web-razraborka/razrabotka-sayta-reklamno-proizvodstvennoy-kompanii-art-sayd/",
-   "h1": [
-    "Разработка сайта рекламно-производственной компании «Арт Сайд»"
-   ],
-   "file": "page18.html"
-  },
-  "/projects/web-razraborka/razrabotka-sayta-glavstroyblok-gazobetonnye-bloki-ot-proizvoditelya/": {
-   "title": "Разработка сайта «ГлавСтройБлок» — Nuts Agency",
-   "description": "«ГлавСтройБлок» занимается производством газобетонных блоков собственной торговой марки. И мы хотим помочь Вам предоставить возможность пользователю совершить онлайн-заказ и оплатить необходимое количество газоблоков и сопутствующих материалов.",
-   "keywords": "",
-   "robots": "",
-   "canonical": "https://nuts-agency.ru/projects/web-razraborka/razrabotka-sayta-glavstroyblok-gazobetonnye-bloki-ot-proizvoditelya/",
-   "h1": [
-    "Разработка сайта «ГлавСтройБлок»"
-   ],
-   "file": "page19.html"
-  },
-  "/projects/web-razraborka/redizayn-i-podderzhka-sayta-development-yug/": {
-   "title": "Редизайн и поддержка сайта «Девелопмент Юг» — Nuts Agency",
-   "description": "В рамках поддержки сайта были проведены следующие работы: редизайн главной страницы; разработка фильтра для подбора квартир по параметрам; интеграция каталога с 1С.",
-   "keywords": "",
-   "robots": "",
-   "canonical": "https://nuts-agency.ru/projects/web-razraborka/redizayn-i-podderzhka-sayta-development-yug/",
-   "h1": [
-    "Редизайн и поддержка сайта «Девелопмент-Юг»"
-   ],
-   "file": "page20.html"
-  },
-  "/projects/web-razraborka/razrabotka-interaktivnoy-3d-karty-sbs/": {
-   "title": "Разработка интерактивной 3D-карты СБС — Nuts Agency",
-   "description": "Поможем разработать удобную и понятную интерактивную карту комплекса, с возможностью поиска нужного магазина и фильтрацией магазинов по категориям.",
-   "keywords": "",
-   "robots": "",
-   "canonical": "https://nuts-agency.ru/projects/web-razraborka/razrabotka-interaktivnoy-3d-karty-sbs/",
-   "h1": [
-    "Разработка интерактивной 3D-карты СБС"
-   ],
-   "file": "page21.html"
-  },
-  "/projects/web-razraborka/razrabotka-i-podderzhka-dentalmagazine-/": {
-   "title": "Разработка и поддержка Dental Magazine - Nuts Agency",
-   "description": "Гармоничный дизайн. Интуитивно понятная структура. Корректная и быстрая работа на любых устройствах. За месяц работы, сайт посетило более 10 000 человек.",
-   "keywords": "",
-   "robots": "",
-   "canonical": "https://nuts-agency.ru/projects/web-razraborka/razrabotka-i-podderzhka-dentalmagazine-/",
-   "h1": [
-    "Разработка и поддержка интернет-журнала Dentalmagazine"
-   ],
-   "file": "page22.html"
-  },
-  "/projects/web-razraborka/razrabotka-i-vnedrenie-shakhmatki-v-crm-dlya-development-yug/": {
-   "title": "Разработка и внедрение шахматки с CRM для «Девелопмент-Юг»",
-   "description": "Шахматка в строительной организации — один из основных инструментов менеджера по продажам. Теперь актуальные данные о квартирах прямо в CRM. Шахматка квартир.",
-   "keywords": "",
-   "robots": "",
-   "canonical": "https://nuts-agency.ru/projects/web-razraborka/razrabotka-i-vnedrenie-shakhmatki-v-crm-dlya-development-yug/",
-   "h1": [
-    "CRM с шахматкой для корпорации «Девелопмент-Юг»"
-   ],
-   "file": "page23.html"
-  },
-  "/projects/web-razraborka/razrabotka-sayta-dlya-laboratorii-krasoty-colba-color-bar/": {
-   "title": "Разработка сайта для салона красоты Colba Color Bar",
-   "description": "Сайт получился динамичным, ярким и запоминающимся. Среднее время пользования сайтом увеличилось в 3,5 раза, а количество просматриваемых страниц - в 2 раза.",
-   "keywords": "",
-   "robots": "",
-   "canonical": "https://nuts-agency.ru/projects/web-razraborka/razrabotka-sayta-dlya-laboratorii-krasoty-colba-color-bar/",
-   "h1": [
-    "Разработка сайта для лаборатории красоты Colba Color Bar"
-   ],
-   "file": "page24.html"
-  },
-  "/projects/web-razraborka/razrabotka-mobilnogo-prilozheniya-dlya-torgovogo-tsentra-sbs-megamoll/": {
-   "title": "Разработка мобильного приложения для торгового центра СБС Мегамолл",
-   "description": "Приложение позволяет ознакомиться со всей информацией о событиях торгового центра, купить билеты в кино, найти нужный магазин на карте, оставить отзыв о работе ТРК.",
-   "keywords": "",
-   "robots": "",
-   "canonical": "https://nuts-agency.ru/projects/web-razraborka/razrabotka-mobilnogo-prilozheniya-dlya-torgovogo-tsentra-sbs-megamoll/",
-   "h1": [
-    "Разработка мобильного приложения для торгового центра СБС Мегамолл"
-   ],
-   "file": "page25.html"
-  },
-  "/projects/web-razraborka/redizayn-sayta-sbs-megamoll/": {
-   "title": "Редизайн сайта СБС Мегамолл. Создание нового дизайна",
-   "description": "Создание нового сайта: современного, комфортного, интуитивно понятного для пользователей, с удобным интерфейсом для просмотра информации о ТРК «СБС Мегамолл».",
-   "keywords": "",
-   "robots": "",
-   "canonical": "https://nuts-agency.ru/projects/web-razraborka/redizayn-sayta-sbs-megamoll/",
-   "h1": [
-    "Редизайн сайта СБС Мегамолл"
-   ],
-   "file": "page26.html"
-  },
-  "/projects/web-razraborka/dizayn-mobilnogo-prilozheniya-alkoteka/": {
-   "title": "Разработка дизайна для мобильного приложения Алкотека",
-   "description": "Кейс по дизайну мобильного приложения, которым будут активно пользоваться не только для резерва товаров — в нём есть бесконечная лента товаров, конструктор коктейлей, правила сочетания еды и напитков.",
-   "keywords": "",
-   "robots": "",
-   "canonical": "https://nuts-agency.ru/projects/web-razraborka/dizayn-mobilnogo-prilozheniya-alkoteka/",
-   "h1": [
-    "Дизайн мобильного приложения Алкотека"
-   ],
-   "file": "page27.html"
-  },
-  "/projects/web-razraborka/razrabotka-sayta-dlya-ekskursiy-po-portugalii/": {
-   "title": "Разработка сайта для экскурсий по Португалии - Nuts Agency",
-   "description": "Кейс по разработке сайта для экскурсионных туров. Разработка векторной карты, дизайн сайта и иконок городов, подбор фотографий — сайт получился огонь!",
-   "keywords": "",
-   "robots": "",
-   "canonical": "https://nuts-agency.ru/projects/web-razraborka/razrabotka-sayta-dlya-ekskursiy-po-portugalii/",
-   "h1": [
-    "Разработка сайта для экскурсий по Португалии"
-   ],
-   "file": "page28.html"
-  },
-  "/projects/web-razraborka/razrabotka-sayta-dlya-aktsii-lays/": {
-   "title": "Создание лендинга для акции Lays под ключ - Nuts Agency",
-   "description": "Кейс по созданию промо-сайта для Lays. Здесь вы увидите механику регистрации, интерактивные элементы, а таже сочный дизайн, разработанный нашим агентством.",
-   "keywords": "",
-   "robots": "",
-   "canonical": "https://nuts-agency.ru/projects/web-razraborka/razrabotka-sayta-dlya-aktsii-lays/",
-   "h1": [
-    "Разработка сайта для акции Lays"
-   ],
-   "file": "page29.html"
-  },
-  "/projects/web-razraborka/razrabotka-promosayta-kachay-press-kachay-muzyku-/": {
-   "title": "Разработка промосайта «Качай пресс! Качай музыку!» под ключ",
-   "description": "Результатом разработки стал сочный промосайт с удобной регистрацией в конкурсе. Яркие цвета воплотились в стильный дизайн согласно брендбукам продвигаемой продукции.",
-   "keywords": "",
-   "robots": "",
-   "canonical": "https://nuts-agency.ru/projects/web-razraborka/razrabotka-promosayta-kachay-press-kachay-muzyku-/",
-   "h1": [
-    "Разработка промосайта «Качай пресс! Качай музыку!»"
-   ],
-   "file": "page30.html"
-  },
-  "/projects/web-razraborka/razrabotka-sayta-tyetka-zapekanka/": {
-   "title": "Разработка сайта «Тётка Запеканка» - Digital Nuts Agency",
-   "description": "Уникальный дизайн, быстрая работа, качественный контент — мы гордимся этим проектом. Корпоративный сайт с каталогом продукции. Проведена первичная оптимизация.",
-   "keywords": "",
-   "robots": "",
-   "canonical": "https://nuts-agency.ru/projects/web-razraborka/razrabotka-sayta-tyetka-zapekanka/",
-   "h1": [
-    "Разработка сайта «Тётка Запеканка»"
-   ],
-   "file": "page31.html"
-  },
-  "/projects/web-razraborka/razrabotka-promosayta-dlya-aktsii-pepsi-fixprice/": {
-   "title": "Разработка промосайта для акции Pepsi-FixPrice",
-   "description": "Основной упор в дизайне сделал на стиле Пепси. Регистрацию чеков на сайте настроили через бота WhatsApp, что существенно облегчило регистрацию и модерацию.",
-   "keywords": "",
-   "robots": "",
-   "canonical": "https://nuts-agency.ru/projects/web-razraborka/razrabotka-promosayta-dlya-aktsii-pepsi-fixprice/",
-   "h1": [
-    "Разработка промосайта для акции Pepsi-FixPrice"
-   ],
-   "file": "page32.html"
-  },
-  "/projects/web-razraborka/razrabotka-sayta-schaumann/": {
-   "title": "Разработка сайта официальному представителю Schaumann в России",
-   "description": "Итеративная разработка позволяет здорово оптимизировать производство — можно сосредоточиться на самом важном, а менее важный функционал доработать после релиза.",
-   "keywords": "",
-   "robots": "",
-   "canonical": "https://nuts-agency.ru/projects/web-razraborka/razrabotka-sayta-schaumann/",
-   "h1": [
-    "Разработка сайта Schaumann"
-   ],
-   "file": "page33.html"
-  },
-  "/projects/web-razraborka/razrabotka-sayta-upravlyay-zhiznyu/": {
-   "title": "Разработка сайта \"Управляй жизнью\" - Nuts Digital Agency",
-   "description": "Создание одностраничного сайта, который максимально полно раскроет идею сообщества #Управляйжизнью. Планируется развитие проекта и добавление функционала.",
-   "keywords": "",
-   "robots": "",
-   "canonical": "https://nuts-agency.ru/projects/web-razraborka/razrabotka-sayta-upravlyay-zhiznyu/",
-   "h1": [
-    "Разработка сайта «Управляй жизнью»"
-   ],
-   "file": "page34.html"
-  },
-  "/projects/web-razraborka/razrabotka-sayta-bazar/": {
-   "title": "Разработка сайта для ресторана «Базар» - Nuts Agency",
-   "description": "Адаптивный сайт-визитка для ресторана The Bazar: меню, новости, доставка, контакты. Сайт должен поддерживать отображение контента на нескольких языках.",
-   "keywords": "",
-   "robots": "",
-   "canonical": "https://nuts-agency.ru/projects/web-razraborka/razrabotka-sayta-bazar/",
-   "h1": [
-    "Разработка сайта для ресторана «Базар»"
-   ],
-   "file": "page35.html"
-  },
-  "/projects/web-razraborka/razrabotka-sayta-podsolnechnoe-maslo-novosergievskoe/": {
-   "title": "Разработка сайта для Подсолнечное масло Новосергиевское",
-   "description": "Создан лендинг с адаптивным, приятным дизайном, который красиво смотрится как на мобильных устройствах, так и на ПК. Сайт привлекает пользователей внешним видом.",
-   "keywords": "",
-   "robots": "",
-   "canonical": "https://nuts-agency.ru/projects/web-razraborka/razrabotka-sayta-podsolnechnoe-maslo-novosergievskoe/",
-   "h1": [
-    "Разработка сайта Подсолнечное масло Новосергиевское"
-   ],
-   "file": "page36.html"
-  },
-  "/projects/web-razraborka/razrabotka-interaktivnoy-karty-sbs-megamall/": {
-   "title": "Разработка интерактивной карты SBS MEGAMALL - Nuts Digital",
-   "description": "Интерактивный план торгово-развлекательного комплекса, который помогает хорошо подготовиться к шопингу, и получить максимум удовольствия от посещения «СБС Мегамолл».",
-   "keywords": "",
-   "robots": "",
-   "canonical": "https://nuts-agency.ru/projects/web-razraborka/razrabotka-interaktivnoy-karty-sbs-megamall/",
-   "h1": [
-    "Разработка интерактивной карты SBS MEGAMALL"
-   ],
-   "file": "page37.html"
-  },
-  "/projects/web-razraborka/razrabotka-sayta-dlya-franshizy-seti-parikmakherskikh-/": {
-   "title": "Разработка сайта для франшизы парикмахерских «Супермен»",
-   "description": "Вместо лендинга о франшизе было необходимо сделать современный сайт-визитку, способный жить, продвигаться в поиске, и управляться сотрудником со стороны клиента.",
-   "keywords": "",
-   "robots": "",
-   "canonical": "https://nuts-agency.ru/projects/web-razraborka/razrabotka-sayta-dlya-franshizy-seti-parikmakherskikh-/",
-   "h1": [
-    "Разработка сайта для франшизы сети парикмахерских «Супермен»"
-   ],
-   "file": "page38.html"
-  },
-  "/projects/web-razraborka/razrabotka-sayta-dlya-the-coffee-soldiers/": {
-   "title": "Разработка сайта для The Coffee Soldiers - Nuts Agency",
-   "description": "Создание стильного лендинга для The Coffee Soldiers. На сайте должен быть каталог кофе собственной обжарки с матрицей цен в зависимости от объёма поставки.",
-   "keywords": "",
-   "robots": "",
-   "canonical": "https://nuts-agency.ru/projects/web-razraborka/razrabotka-sayta-dlya-the-coffee-soldiers/",
-   "h1": [
-    "Разработка сайта для The Coffee Soldiers"
-   ],
-   "file": "page39.html"
-  },
-  "/projects/web-razraborka/razrabotka-sayta-sovmestnykh-pokupok-parkovok-v-zhilykh-kompleksakh-ot-development-yug/": {
-   "title": "Разработка сайта для покупки парковок от «Девелопмент‑Юг»",
-   "description": "Стильный и лаконичный лендинг, который доносит всю необходимую информацию о совместных покупках парковочных мест со скидкой, готовый к дальнейшей рекламе.",
-   "keywords": "",
-   "robots": "",
-   "canonical": "https://nuts-agency.ru/projects/web-razraborka/razrabotka-sayta-sovmestnykh-pokupok-parkovok-v-zhilykh-kompleksakh-ot-development-yug/",
-   "h1": [
-    "Разработка лендинга совместных покупок парковок от «Девелопмент‑Юг»"
-   ],
-   "file": "page40.html"
-  },
-  "/projects/web-razraborka/sayt-dlya-event-agenstva-big-show-company/": {
-   "title": "Разработка сайта для event-агенства Big Show Company",
-   "description": "Мы сделали одностраничный сайт для презентации event-агентства Big Show Company в интернете, чтобы показать лучшие проекты и направления работы компании.",
-   "keywords": "",
-   "robots": "",
-   "canonical": "https://nuts-agency.ru/projects/web-razraborka/sayt-dlya-event-agenstva-big-show-company/",
-   "h1": [
-    "Разработка сайта для event-агенства Big Show Company"
-   ],
-   "file": "page41.html"
-  },
-  "/projects/web-razraborka/refaktoring-sayta-alkoteka/": {
-   "title": "Модернизация сайта магазинов «Алкотека» с переработкой кода",
-   "description": "Мы переработали код сайта «Алкотека», без изменения внешнего вида, для смены технологий на более масштабируемые, создать новый механизм для интеграции с 1С.",
-   "keywords": "",
-   "robots": "",
-   "canonical": "https://nuts-agency.ru/projects/web-razraborka/refaktoring-sayta-alkoteka/",
-   "h1": [
-    "Рефакторинг сайта «Алкотека»"
-   ],
-   "file": "page42.html"
-  },
-  "/projects/web-razraborka/razrabotka-sayta-kompanii-ironwork/": {
-   "title": "Разработка сайта компании IronWork на OctoberCMS - Nuts Agency",
-   "description": "Современный адаптивный сайт компании IronWork на OctoberCMS, разработанный в полном соответствии с поставленными задачами.",
-   "keywords": "",
-   "robots": "",
-   "canonical": "https://nuts-agency.ru/projects/web-razraborka/razrabotka-sayta-kompanii-ironwork/",
-   "h1": [
-    "Разработка сайта компании IronWork"
-   ],
-   "file": "page43.html"
-  },
-  "/projects/web-razraborka/razrabotka-sayta-dlya-studii-koloristiki-color-me/": {
-   "title": "Разработан адаптивный лендинг для студии колористики Color Me",
-   "description": "Стильный лендинг с крутой анимацией, еще и удобной записью. Поддерживать сайт можно самостоятельно благодаря удобной и понятной OctoberCMS.",
-   "keywords": "",
-   "robots": "",
-   "canonical": "https://nuts-agency.ru/projects/web-razraborka/razrabotka-sayta-dlya-studii-koloristiki-color-me/",
-   "h1": [
-    "Разработка сайта для студии колористики Color Me"
-   ],
-   "file": "page44.html"
-  },
-  "/projects/web-razraborka/razrabotka-sayta-golosovaniya-doroga-na-yaltu/": {
-   "title": "Разработка сайта голосования «Дорога на Ялту» - Nuts",
-   "description": "Адаптивный сайт на двух языках, способный выдержать миллион посетителей в сутки. Голосование и запуск трансляции «без сучка и задоринки». Всё это за 10 дней.",
-   "keywords": "",
-   "robots": "",
-   "canonical": "https://nuts-agency.ru/projects/web-razraborka/razrabotka-sayta-golosovaniya-doroga-na-yaltu/",
-   "h1": [
-    "Разработка сайта голосования «Дорога на Ялту»"
-   ],
-   "file": "page45.html"
-  },
-  "/projects/web-razraborka/razrabotka-sayta-dlya-sbs-mebel-/": {
-   "title": "«СБС Мебель» - разработка сайта для мебельного центра",
-   "description": "Разработан адаптивный сайт с каталогом товаров, списком салонов и страниц для позиционирования мебельного центра и сбора лидов потенциальных арендаторов.",
-   "keywords": "",
-   "robots": "",
-   "canonical": "https://nuts-agency.ru/projects/web-razraborka/razrabotka-sayta-dlya-sbs-mebel-/",
-   "h1": [
-    "Разработка сайта для «СБС Мебель»"
-   ],
-   "file": "page46.html"
-  },
-  "/projects/web-razraborka/razrabotka-firmennogo-stilya-i-lendinga-dlya-ozeleni/": {
-   "title": "Разработка фирменного стиля и лендинга для «ОЗЕЛЕНИ»",
-   "description": "Серверная часть разработана на Laravel+OctoberCMS. Сайт очень быстро можно сделать многостраничным. Рекомендуем зайти на сайт Озелени и полистать портфолио.",
-   "keywords": "",
-   "robots": "",
-   "canonical": "https://nuts-agency.ru/projects/web-razraborka/razrabotka-firmennogo-stilya-i-lendinga-dlya-ozeleni/",
-   "h1": [
-    "Разработка фирменного стиля и лендинга для «ОЗЕЛЕНИ»"
-   ],
-   "file": "page47.html"
-  },
-  "/projects/web-razraborka/klyuchavto-veb-offer-i-chat-kviz/": {
-   "title": "Веб-Оффер и чат-квиз для «КЛЮЧАВТО» | Nuts Digital Agency",
-   "description": "КЛЮЧАВТО получил два качественных сервиса, являющихся дополнительным инструментом для повышения лояльности и удобства покупателей.",
-   "keywords": "",
-   "robots": "",
-   "canonical": "https://nuts-agency.ru/projects/web-razraborka/klyuchavto-veb-offer-i-chat-kviz/",
-   "h1": [
-    "Веб-оффер и чат-квиз для «КЛЮЧАВТО»"
-   ],
-   "file": "page48.html"
-  },
-  "/projects/web-razraborka/delovaya-gazeta-yug/": {
-   "title": "Перенос сайта «Деловая газета» на CMS October - Nuts",
-   "description": "Сейчас мы занимаемся развитием сайта и обеспечиваем полную техническую поддержку проекта. Разработка проектов любой сложности. Ждем вас к нам в офис.",
-   "keywords": "",
-   "robots": "",
-   "canonical": "https://nuts-agency.ru/projects/web-razraborka/delovaya-gazeta-yug/",
-   "h1": [
-    "Перенос сайта «Деловая газета. Юг» на новую CMS"
-   ],
-   "file": "page49.html"
-  },
-  "/projects/web-razraborka/razrabotka-korporativnogo-sayta-dlya-kompanii-profpotok/": {
-   "title": "Разработка корпоративного сайта для компании «Профпоток»",
-   "description": "Сайт получился стильный, чётко отражающий как позицию и услуги компании, так и конкретную пользу для потенциального партнёра и в меру динамичный.",
-   "keywords": "",
-   "robots": "",
-   "canonical": "https://nuts-agency.ru/projects/web-razraborka/razrabotka-korporativnogo-sayta-dlya-kompanii-profpotok/",
-   "h1": [
-    "Разработка корпоративного сайта для компании «Профпоток»"
-   ],
-   "file": "page50.html"
-  },
-  "/projects/web-razraborka/tochka-molochka/": {
-   "title": "Разработка лендинга для «Точка молочка» - Nuts Agency",
-   "description": "Разработан имиджевый одностраничный сайт с каталогом продукции, точками дистрибуции и рассказом о всех особенностях производства.",
-   "keywords": "",
-   "robots": "",
-   "canonical": "https://nuts-agency.ru/projects/web-razraborka/tochka-molochka/",
-   "h1": [
-    "Разработка лендинга для «Точка молочка»"
-   ],
-   "file": "page51.html"
-  },
-  "/projects/reklama/": {
-   "title": "Кейсы по рекламным компаниям - Nuts Agency",
-   "description": "Успешная рекламная компания - залог успеха наших клиентов. Примеры наших рекламных компаний, вы можете найти на нашем сайте. Настройка контекстной рекламы.",
-   "keywords": "",
-   "robots": "",
-   "canonical": "https://nuts-agency.ru/projects/reklama/",
-   "h1": [
-    "Реклама"
-   ],
-   "file": "page52.html"
-  },
-  "/projects/reklama/otkrytie-novogo-dilerskogo-tsentra-foltsvagen/": {
-   "title": "Открытие нового дилерского центра Фольцваген — Nuts Agency",
-   "description": "Анонсировать открытие нового дилерского центра Фольцваген в формате digital в Краснодаре. Опубликовать приглашение на открытие — доверьте эту задачу Nuts Agency",
-   "keywords": "",
-   "robots": "",
-   "canonical": "https://nuts-agency.ru/projects/reklama/otkrytie-novogo-dilerskogo-tsentra-foltsvagen/",
-   "h1": [
-    "Анонс открытия нового дилерского центра Volkswagen «КЛЮЧАВТО Краснодар»"
-   ],
-   "file": "page53.html"
-  },
-  "/projects/reklama/reklamnaya-kampaniya-vw-keyauto-krasnodar/": {
-   "title": "Рекламная кампания «Фольксваген Краснодар» — Nuts Agency",
-   "description": "Семь раз отмерь – один раз отрежь. Агентство Nuts Agency поможет составить медиаплан перед запуском рекламной кампании, чтобы застраховать Вас от непредвиденных ситуаций",
-   "keywords": "",
-   "robots": "",
-   "canonical": "https://nuts-agency.ru/projects/reklama/reklamnaya-kampaniya-vw-keyauto-krasnodar/",
-   "h1": [
-    "Рекламная кампания дилерского центра Volkswagen «КЛЮЧАВТО Краснодар»"
-   ],
-   "file": "page54.html"
-  },
-  "/projects/reklama/kontekstnaya-reklama-yug-avto/": {
-   "title": "Контекстная реклама для автомобильного дилера «ЮГ-Авто»",
-   "description": "Создание рекламных кампаний для конкретных моделей авто и по общим запросам с брендом. Увеличение целевого трафика на сайт. Снижение цены клика и заявки.",
-   "keywords": "",
-   "robots": "",
-   "canonical": "https://nuts-agency.ru/projects/reklama/kontekstnaya-reklama-yug-avto/",
-   "h1": [
-    "Контекстная реклама «Юг-Авто»"
-   ],
-   "file": "page55.html"
-  },
-  "/projects/reklama/reklamnaya-kampaniya-po-dostavke-sushi-i-rollov-v-krasnodare/": {
-   "title": "Рекламная кампания по доставке суши и роллов в Краснодаре",
-   "description": "Посмотрите несколько наших проектов, чтобы вы знали, что мы тут действительно работаем. Разработка, реклама или SEO — всё можем. И можем на 10/10.",
-   "keywords": "",
-   "robots": "",
-   "canonical": "https://nuts-agency.ru/projects/reklama/reklamnaya-kampaniya-po-dostavke-sushi-i-rollov-v-krasnodare/",
-   "h1": [
-    "Рекламная кампания по доставке суши и роллов в Краснодаре"
-   ],
-   "file": "page56.html"
-  },
-  "/projects/reklama/reklamnaya-kampaniya-dlya-sayta-avantsto-po-remontu-avto/": {
-   "title": "Рекламная кампания для сайта «АвантСТО» по ремонту авто",
-   "description": "Привлечение на сайт максимум качественного трафика за выделенный клиентом бюджет, еженедельная чистка &quot;мусорных&quot; запросов. Качественная настройка контекста.",
-   "keywords": "",
-   "robots": "",
-   "canonical": "https://nuts-agency.ru/projects/reklama/reklamnaya-kampaniya-dlya-sayta-avantsto-po-remontu-avto/",
-   "h1": [
-    "Рекламная кампания для сайта «АвантСТО» по ремонту авто"
-   ],
-   "file": "page57.html"
-  },
-  "/projects/seo/": {
-   "title": "Кейсы по SEO-продвижению сайтов от Nuts Agency",
-   "description": "У нашей компании имеется множество примеров успешного продвижения  сайтов. SEO-оптимизация, интернет-магазинов, сайтов визиток, корпоративных сайтов.",
-   "keywords": "",
-   "robots": "",
-   "canonical": "https://nuts-agency.ru/projects/seo/",
-   "h1": [
-    "SEO продвижение"
-   ],
-   "file": "page58.html"
-  },
-  "/projects/seo/prodvizhenie-internet-zhurnala-dlya-stomatologov-dental-magazine/": {
-   "title": "Продвижение интернет-журнала для стоматологов Dental Magazine",
-   "description": "Проведены работы по оптимизации сайта - интернет-журнала по стоматологии. Посещаемость сайта из поисковых систем за пол года выросла в 1,5 раза.",
-   "keywords": "",
-   "robots": "",
-   "canonical": "https://nuts-agency.ru/projects/seo/prodvizhenie-internet-zhurnala-dlya-stomatologov-dental-magazine/",
-   "h1": [
-    "Продвижение интернет-журнала для стоматологов Dental Magazine"
-   ],
-   "file": "page59.html"
-  },
-  "/projects/seo/prodvizhenie-sayta-seti-kulinariy-patrik-mari/": {
-   "title": "Продвижение сайта сети кулинарий «Патрик&Мари»",
-   "description": "Проведены работы по оптимизации сайта. Посещемость сайта из поисковых систем за год выросла в два раза. Число переходов с других сайтов выросло в 3 раза.",
-   "keywords": "",
-   "robots": "",
-   "canonical": "https://nuts-agency.ru/projects/seo/prodvizhenie-sayta-seti-kulinariy-patrik-mari/",
-   "h1": [
-    "Продвижение сайта сети кулинарий «Патрик&Мари»"
-   ],
-   "file": "page60.html"
-  },
-  "/projects/seo/prodvizhenie-sayta-seti-dostavki-sushi-i-rollov-sushifan/": {
-   "title": "Продвижение сайта сети доставки суши и роллов «Сушифан»",
-   "description": "Увеличение количества переходов из поисковых систем в 1,5 раза. Увеличение числа показов сайта в поисковой выдаче по данным Google Search Console в 3 раза.",
-   "keywords": "",
-   "robots": "",
-   "canonical": "https://nuts-agency.ru/projects/seo/prodvizhenie-sayta-seti-dostavki-sushi-i-rollov-sushifan/",
-   "h1": [
-    "Продвижение сайта сети доставки суши и роллов «Сушифан»"
-   ],
-   "file": "page61.html"
-  },
-  "/projects/seo/prodvizhenie-sayta-po-remontu-sadovoy-tekhniki-everest-servis/": {
-   "title": "Продвижение сайта по ремонту садовой техники «Эверест Сервис»",
-   "description": "Проведена оптимизация сайта по продаже и ремонту садовой и строительной техники. Посещаемость сайта из поисковых систем за пол года выросла в 2 раза.",
-   "keywords": "",
-   "robots": "",
-   "canonical": "https://nuts-agency.ru/projects/seo/prodvizhenie-sayta-po-remontu-sadovoy-tekhniki-everest-servis/",
-   "h1": [
-    "Продвижение сайта по ремонту садовой техники «Эверест Сервис»"
-   ],
-   "file": "page62.html"
-  },
-  "/projects/seo/prodvizhenie-sayta-shelby-limited/": {
-   "title": "Shelby Limited - оптимизация, поддержка и продвижение сайта",
-   "description": "6 месяцев продвижения: более 35 запросов занимают позиции 1-3 в поисковой системе Яндекс, и более 90 запросов в топ-10. SEO-оптимизация интернет-магазина.",
-   "keywords": "",
-   "robots": "",
-   "canonical": "https://nuts-agency.ru/projects/seo/prodvizhenie-sayta-shelby-limited/",
-   "h1": [
-    "Продвижение интернет-магазина Shelby Limited"
-   ],
-   "file": "page63.html"
-  },
-  "/projects/seo/prodvizhenie-i-podderzhka-sayta-trk-sbs-megamoll/": {
-   "title": "Продвижение и поддержка сайта ТРК «СБС Мегамолл»",
-   "description": "Этот кейс о долгосрочном и продуктивном сотрудничестве с одним из крупнейших торгово-развлекательных центров города Краснодар — ТРК «СБС Мегамолл».",
-   "keywords": "",
-   "robots": "",
-   "canonical": "https://nuts-agency.ru/projects/seo/prodvizhenie-i-podderzhka-sayta-trk-sbs-megamoll/",
-   "h1": [
-    "Продвижение и поддержка сайта ТРК «СБС Мегамолл»"
-   ],
-   "file": "page64.html"
-  },
-  "/projects/seo/razvitie-sayta-glavstroyblok-rf/": {
-   "title": "Раскрутка сайта Главстройблок.рф в поисковых системах",
-   "description": "Наполнение сайта статьями по тематике, важный и полезный этап работ! Именно благодаря ему происходит рост посещаемости и улучшение позиций сайта в поисковой выдаче.",
-   "keywords": "",
-   "robots": "",
-   "canonical": "https://nuts-agency.ru/projects/seo/razvitie-sayta-glavstroyblok-rf/",
-   "h1": [
-    "Раскрутка интернет-магазина Главстройблок.рф"
-   ],
-   "file": "page65.html"
-  },
-  "/projects/seo/prodvizhenie-sayta-po-dostavke-sushi-v-krasnodare-chast-2/": {
-   "title": "Продвижение сайта по доставке суши в Краснодаре - Sushi Fun",
-   "description": "Видимость сайта в поисковых системах Яндекс и Google по 277 запросам ~90%. Кейс по продвижению сайта компании Sushi Fun. Прирост трафика за год - более 20%.",
-   "keywords": "",
-   "robots": "",
-   "canonical": "https://nuts-agency.ru/projects/seo/prodvizhenie-sayta-po-dostavke-sushi-v-krasnodare-chast-2/",
-   "h1": [
-    "Продвижение сайта по доставке суши в Краснодаре (часть 2)"
-   ],
-   "file": "page66.html"
-  },
-  "/company/partners/laravel/": {
-   "title": "Laravel - мощный фреймворк для решения задач бизнеса",
-   "description": "Если вы устали от уныния, хотите классный сайт на разработанный на фреймворке Laravel, клиентов и прибыли — посмотрите наши кейсы и заполните заявку.",
-   "keywords": "",
-   "robots": "",
-   "canonical": "https://nuts-agency.ru/company/partners/laravel/",
-   "h1": [
-    "Laravel"
-   ],
-   "file": "page67.html"
-  },
-  "/company/partners/october-cms/": {
-   "title": "October CMS - платформа с открытым исходным кодом",
-   "description": "Мощный framework Laravel под капотом. Не работает с php ниже 7 версии. Технологичен, быстр и прекрасен. Нужен качественный сайт — обращайтесь в Nuts Agency.",
-   "keywords": "",
-   "robots": "",
-   "canonical": "https://nuts-agency.ru/company/partners/october-cms/",
-   "h1": [
-    "October CMS"
-   ],
-   "file": "page68.html"
-  },
-  "/company/partners/vue-js/": {
-   "title": "Vue.js - фреймворк для разработки пользовательского интерфейса",
-   "description": "Преимущества фреймворка: Vue.js поддерживается всеми браузерами, которые совместимы с ECMAScript 5. Сайты, сделанные на VueJS, работают максимально быстро.",
-   "keywords": "",
-   "robots": "",
-   "canonical": "https://nuts-agency.ru/company/partners/vue-js/",
-   "h1": [
-    "Vue.js"
-   ],
-   "file": "page69.html"
-  },
-  "/company/partners/react-native/": {
-   "title": "React Native – фреймворк для создания приложений на JavaScript",
-   "description": "Хотите классное кроссплатформенное мобильное приложение на React Native в разумные сроки и по доступной цене? Заполните заявку на сайте или напишите в чат.",
-   "keywords": "",
-   "robots": "",
-   "canonical": "https://nuts-agency.ru/company/partners/react-native/",
-   "h1": [
-    "React Native"
-   ],
-   "file": "page70.html"
-  },
-  "/company/partners/gitlab/": {
-   "title": "GitLab - это онлайн сервис для работы с git репозиториями",
-   "description": "Возможности GitLab: отслеживание ошибок, деплой, анализ кода; интеграция с разными CI-системами и пр. Это самый важный инструмент для команды разработки.",
-   "keywords": "",
-   "robots": "",
-   "canonical": "https://nuts-agency.ru/company/partners/gitlab/",
-   "h1": [
-    "GitLab"
-   ],
-   "file": "page71.html"
-  },
-  "/company/partners/restful-api/": {
-   "title": "REST API позволяет вашему приложению взаимодействовать с другими",
-   "description": "REST API может использоваться любым приложением, которое может подключаться к Интернету. Мы используем REST API при разработке наших проектов.",
-   "keywords": "",
-   "robots": "",
-   "canonical": "https://nuts-agency.ru/company/partners/restful-api/",
-   "h1": [
-    "Restful API"
-   ],
-   "file": "page72.html"
-  },
-  "/company/partners/teamcity/": {
-   "title": "TeamCity - серверное ПО для интеграции (CI) кода",
-   "description": "Основные характеристики TeamCity: unit-тестирование, поиск дубликатов и анализ кода, режим предварительного тестирования, несколько систем контроля версий.",
-   "keywords": "",
-   "robots": "",
-   "canonical": "https://nuts-agency.ru/company/partners/teamcity/",
-   "h1": [
-    "TeamCity"
-   ],
-   "file": "page73.html"
-  },
-  "/company/partners/node-js/": {
-   "title": "Node.js — среда выполнения кода JavaScript вне браузера",
-   "description": "Платформа позволяет писать серверный код для динамических веб-страниц и веб-приложений, а также для программ командной строки. Проекты на Node.js: Mozilla, Paypal, eBay.",
-   "keywords": "",
-   "robots": "",
-   "canonical": "https://nuts-agency.ru/company/partners/node-js/",
-   "h1": [
-    "Node.js"
-   ],
-   "file": "page74.html"
-  },
-  "/company/partners/figma/": {
-   "title": "Figma — онлайн-сервис для дизайна и разработки сайтов",
-   "description": "Кросс-платформенный онлайн-сервис Figma, для дизайнеров и веб-разработчиков, позволяет создавать интерактивные прототипы сайтов и мобильных приложений.",
-   "keywords": "",
-   "robots": "",
-   "canonical": "https://nuts-agency.ru/company/partners/figma/",
-   "h1": [
-    "Figma"
-   ],
-   "file": "page75.html"
-  },
-  "/company/partners/docker/": {
-   "title": "Docker - ПО для разработки, тестирования и запуска веб-приложений",
-   "description": "Преимущества использования Docker: низкое потребление ресурсов, скоростное развертывание, работа с небезопасным кодом, удобный запуск, простое масштабирование.",
-   "keywords": "",
-   "robots": "",
-   "canonical": "https://nuts-agency.ru/company/partners/docker/",
-   "h1": [
-    "Docker"
-   ],
-   "file": "page76.html"
-  },
-  "/company/partners/flutter/": {
-   "title": "Flutter - фреймворк для создания мобильных приложений",
-   "description": "Кроссплатформенный фреймворк от Google, для создания мобильных приложений под Android, iOS и Fuchsia. Для Fuchsia – это пока единственный способ создать приложение.",
-   "keywords": "",
-   "robots": "",
-   "canonical": "https://nuts-agency.ru/company/partners/flutter/",
-   "h1": [
-    "Flutter"
-   ],
-   "file": "page77.html"
-  },
-  "/company/partners/nuxt-js/": {
-   "title": "Nuxt.js — фреймворк для создания приложений на Vue.js",
-   "description": "Преимущества Nuxt.js: простое создание универсальных приложений, статический рендеринг, автоматическое разбиение кода, удобная структура проекта по умолчанию.",
-   "keywords": "",
-   "robots": "",
-   "canonical": "https://nuts-agency.ru/company/partners/nuxt-js/",
-   "h1": [
-    "Nuxt.js"
-   ],
-   "file": "page78.html"
-  },
-  "/services/razrabatyvaem/": {
-   "title": "Разработка сайта под ключ (создание сайтов) в Nuts Agency",
-   "description": "Мы создаем сайты: которые быстро поднимаются в топе, отличаются качественным и индивидуальным софтом, красочным дизайном и актуальной информацией о компании.",
-   "keywords": "разработка, создание, верстка, заказать сайт, сделать, купить, разрабдиджитал",
-   "robots": "",
-   "canonical": "https://nuts-agency.ru/services/razrabatyvaem/",
-   "h1": [
-    "Разработка сайта"
-   ],
-   "file": "page79.html"
-  },
-  "/services/razrabatyvaem/internet-magaziny/": {
-   "title": "Разработка интернет-магазинов и продающих сайтов - Nuts",
-   "description": "Заказать интернет-магазин у профессионалов digital агентства Nuts Agency - верное решение. Экономия времени и бюджета. Доступные цены, полноценный функционал сайта.",
-   "keywords": "",
-   "robots": "",
-   "canonical": "https://nuts-agency.ru/services/razrabatyvaem/internet-magaziny/",
-   "h1": [
-    "Интернет-магазины"
-   ],
-   "file": "page80.html"
-  },
-  "/services/reklamiryem/": {
-   "title": "Реклама сайта в интернете - агентство Nuts Agency",
-   "description": "Настройка медийной и контекстной рекламы для сайта. Широкий охват аудитории, индивидуальный подход к каждому клиенту. Приводим целевой трафик.",
-   "keywords": "",
-   "robots": "",
-   "canonical": "https://nuts-agency.ru/services/reklamiryem/",
-   "h1": [
-    "Настройка рекламы в интернете"
-   ],
-   "file": "page81.html"
-  },
-  "/services/reklamiryem/kontekstnaya-reklama/": {
-   "title": "Настройка контекстной рекламы для сайта - услуги NUTS Agency",
-   "description": "Контекстная реклама – это быстрый способ привести на сайт клиентов или покупателей. Настройка и ведение компаний в Яндекс.Директ, РСЯ и Google Adwords.",
-   "keywords": "",
-   "robots": "",
-   "canonical": "https://nuts-agency.ru/services/reklamiryem/kontekstnaya-reklama/",
-   "h1": [
-    "Контекстная реклама"
-   ],
-   "file": "page82.html"
-  },
-  "/services/reklamiryem/mediynaya-reklama/": {
-   "title": "Медийная реклама в Краснодаре - настройка и ведение",
-   "description": "Целью баннера является – обратить на себя внимание, заинтриговать и вызвать желание совершить клик, который приведет на ваш сайт потенциальных клиентов.",
-   "keywords": "",
-   "robots": "",
-   "canonical": "https://nuts-agency.ru/services/reklamiryem/mediynaya-reklama/",
-   "h1": [
-    "Медийная реклама"
-   ],
-   "file": "page83.html"
-  },
-  "/services/reklamiryem/programmatic-reklama/": {
-   "title": "Programmatic реклама для вашей рекламы в интернете - Nuts Digital",
-   "description": "Programmatic-реклама — это активно развивающийся подход в интернет-маркетинге. Его преимущество - бренды могут легче обращаться к своей целевой аудитории.",
-   "keywords": "",
-   "robots": "",
-   "canonical": "https://nuts-agency.ru/services/reklamiryem/programmatic-reklama/",
-   "h1": [
-    "Programmatic реклама"
-   ],
-   "file": "page84.html"
-  },
-  "/services/prodvigaem-v-poiskovikah/": {
-   "title": "Продвижение сайтов в топ поисковых систем с Nuts Agency",
-   "description": "SEO-продвижение сайта позволяет вашему ресурсу занять место на первой странице поиска. Продвижение сайта в ТОП-10. Привлекаем клиентов из поисковых систем.",
-   "keywords": "продвижение сайтов сео оптимизация раскрутка трафик поисковые системы лиды цены",
-   "robots": "",
-   "canonical": "https://nuts-agency.ru/services/prodvigaem-v-poiskovikah/",
-   "h1": [
-    "Продвижение сайта в ТОП 10"
-   ],
-   "file": "page85.html"
-  },
-  "/services/prodvigaem-v-poiskovikah/seo/": {
-   "title": "Оптимизация сайтов под поисковые запросы в Nuts Agency",
-   "description": "Выполняем seo оптимизацию сайтов в Краснодаре. Профессиональный подход и работа на результат в Nuts Agency. Seo оптимизация и продвижение сайтов под ключ!",
-   "keywords": "оптимизация сайта сео, сео оптимизация",
-   "robots": "",
-   "canonical": "https://nuts-agency.ru/services/prodvigaem-v-poiskovikah/seo/",
-   "h1": [
-    "Поисковая SEO оптимизация сайта"
-   ],
-   "file": "page86.html"
-  },
-  "/services/podderzhivaem/": {
-   "title": "Комплексная поддержка и доработка сайтов - Nuts Agency",
-   "description": "Тестирование мобильных приложений и сайтов. Проведение анализа и выявление ошибок. Техническая поддержка и доработка сайтов. Расширение функционала сайта.",
-   "keywords": "техническая информационная поддержка сайта наполнение копирайтинг размещение текстов тестирование сайтов и приложений",
-   "robots": "",
-   "canonical": "https://nuts-agency.ru/services/podderzhivaem/",
-   "h1": [
-    "Комплексная поддержка сайта"
-   ],
-   "file": "page87.html"
-  },
-  "/services/podderzhivaem/tekhnicheskaya-podderzhka-sayta/": {
-   "title": "Техническая поддержка сайта - Nuts Digital Agency",
-   "description": "Техническая поддержка сайта обеспечивает его доступность для пользователей и функциональность. Наши клиенты: Девелопмент-ЮГ, СБС, Арт Сайд, ГлавСтройБлок.",
-   "keywords": "",
-   "robots": "",
-   "canonical": "https://nuts-agency.ru/services/podderzhivaem/tekhnicheskaya-podderzhka-sayta/",
-   "h1": [
-    "Техническая поддержка сайта"
-   ],
-   "file": "page88.html"
-  },
-  "/services/podderzhivaem/informatsionnaya-podderzhka-sayta/": {
-   "title": "Информационная поддержка сайта - Nuts Agency",
-   "description": "Информационная поддержка – комплексная услуга, позволяющая обновлять и поддерживать в актуальном состоянии информацию на вашем сайте.",
-   "keywords": "",
-   "robots": "",
-   "canonical": "https://nuts-agency.ru/services/podderzhivaem/informatsionnaya-podderzhka-sayta/",
-   "h1": [
-    "Информационная поддержка сайта"
-   ],
-   "file": "page89.html"
-  },
-  "/services/smm/": {
-   "title": "SMM продвижение в социальных сетях - агентство Nuts Agency",
-   "description": "Генерируем креативные решения для ведения соцсетей, имеем богатый опыт и знание трендов. Закрываем большой объем работ и сложные задачи по SMM продвижению.",
-   "keywords": "смм продвижение соц сетей ведение страниц раскрутка аккаунтов",
-   "robots": "",
-   "canonical": "https://nuts-agency.ru/services/smm/",
-   "h1": [
-    "SMM услуги. Ведение соцсетей"
-   ],
-   "file": "page90.html"
-  },
-  "/articles/prodvizhenie/": {
-   "title": "Статьи про SEO-продвижение, от практикующих специалистов",
-   "description": "Все что вы хотели знать про SEO, но стеснялись спросить. Полезная информация о продвижении сайта, доступным языком. Информация для клиентов компании Nuts Agency.",
-   "keywords": "",
-   "robots": "",
-   "canonical": "https://nuts-agency.ru/articles/prodvizhenie/",
-   "h1": [
-    "Продвижение сайта"
-   ],
-   "file": "page93.html"
-  },
-  "/articles/prodvizhenie/prodvinut-sayt-besplatno-realno/": {
-   "title": "Продвижение сайта бесплатно (очень дешево) - это реально",
-   "description": "Но стоит задуматься - какой результат вы получите? Подробнее о плюсах и минусах бесплатного продвижения сайтов читайте в нашей статье. Nuts Digital - мы не делаем х**ни",
-   "keywords": "",
-   "robots": "",
-   "canonical": "https://nuts-agency.ru/articles/prodvizhenie/prodvinut-sayt-besplatno-realno/",
-   "h1": [
-    "Продвинуть сайт бесплатно — реально!"
-   ],
-   "file": "page94.html"
-  },
-  "/articles/prodvizhenie/garantii-v-seo/": {
-   "title": "Гарантия результата в SEO продвижении: трафик, позиции, лиды",
-   "description": "Что обещают агентства когда дают гарантии на продвижение сайта? Действительно ли гарантии являются выполнимыми? Nuts Digital: мы не даем гарантий - мы делаем!",
-   "keywords": "",
-   "robots": "",
-   "canonical": "https://nuts-agency.ru/articles/prodvizhenie/garantii-v-seo/",
-   "h1": [
-    "Гарантии в SEO"
-   ],
-   "file": "page95.html"
-  },
-  "/articles/prodvizhenie/semanticheskoe-yadro/": {
-   "title": "Семантическое ядро - что это? Как собрать семантику для сайта?",
-   "description": "Сбор семантического ядра — важный этап, ведь от правильно собранного списка запросов зависит, насколько целевые пользователи будут приходить на ваш сайт.",
-   "keywords": "",
-   "robots": "",
-   "canonical": "https://nuts-agency.ru/articles/prodvizhenie/semanticheskoe-yadro/",
-   "h1": [
-    "Семантическое ядро"
-   ],
-   "file": "page96.html"
-  },
-  "/articles/productivity/": {
-   "title": "Разработка сайтов - как мы работаем? Nuts Digital Agency",
-   "description": "Здесь вы можете узнать, какие технологии мы используем при разработке сайтов, и получить полезную информацию о процессах создания сайтов.",
-   "keywords": "",
-   "robots": "",
-   "canonical": "https://nuts-agency.ru/articles/productivity/",
-   "h1": [
-    "Разработка сайтов"
-   ],
-   "file": "page97.html"
-  },
-  "/articles/productivity/frontend-i-bekend-dostupnym-yazykom/": {
-   "title": "Фронтенд и бэкенд: доступным языком | Nuts Agency",
-   "description": "Фронтенд — это все, что красиво отображается в браузере, бэкенд — остальное. То есть во втором случае можно использовать любые языки программирования, а в первом ограничиться лишь HTML, CSS и JavaScript.",
-   "keywords": "",
-   "robots": "",
-   "canonical": "https://nuts-agency.ru/articles/productivity/frontend-i-bekend-dostupnym-yazykom/",
-   "h1": [
-    "Фронтенд и бэкенд: доступным языком"
-   ],
-   "file": "page98.html"
-  },
-  "/articles/productivity/integratsiya-sayta-s-1s/": {
-   "title": "Интеграция «1С» с сайтом - для чего это нужно?",
-   "description": "Интеграция с программным обеспечением «1С», а также создание и разработка интернет-магазинов и сайтов, является приоритетным направлением Digital Nuts Agency.",
-   "keywords": "",
-   "robots": "",
-   "canonical": "https://nuts-agency.ru/articles/productivity/integratsiya-sayta-s-1s/",
-   "h1": [
-    "Интеграция сайта с 1С"
-   ],
-   "file": "page99.html"
-  },
-  "/articles/productivity/nepreryvnaya-integratsiya-i-dostavka-koda/": {
-   "title": "Непрерывная интеграция и доставка кода - Nuts Agency",
-   "description": "Автоматизацией выпуска версий и их путешествия по сайтам занимаются специальные программы. Мы используем Docker, GitLab и Teamcity.",
-   "keywords": "",
-   "robots": "",
-   "canonical": "https://nuts-agency.ru/articles/productivity/nepreryvnaya-integratsiya-i-dostavka-koda/",
-   "h1": [
-    "Непрерывная интеграция и доставка кода"
-   ],
-   "file": "page100.html"
-  },
-  "/articles/elektronnaya-kommertsiya/": {
-   "title": "Реклама в интернете - что это и для чего?",
-   "description": "В цикле статей, попытаемся разобрать - что такое интернет реклама, и как повысить ее эффективность. А также рассмотрим наиболее популярные вопросы про цифровой маркетинг.",
-   "keywords": "",
-   "robots": "",
-   "canonical": "https://nuts-agency.ru/articles/elektronnaya-kommertsiya/",
-   "h1": [
-    "Реклама"
-   ],
-   "file": "page101.html"
-  },
-  "/company/index.php": {
-   "title": "О компании Nuts Digital: разработка и продвижение сайтов",
-   "description": "Nuts — digital-агентство полного цикла с упором на веб-разработку и создание сложных проектов. SEO-продвижение, поддержка сайтов и интернет-маркетинг.",
-   "keywords": "",
-   "robots": "",
-   "canonical": "https://nuts-agency.ru/company/",
-   "h1": [
-    "О компании"
-   ],
-   "file": "page104.html"
-  },
-  "/services/razrabatyvaem/landing-page/": {
-   "title": "Лендинг под ключ. Разработка landing page - Nuts Agency",
-   "description": "Создаем landing page в короткие сроки. Высокие конверсионные показатели. Доступные цены. Разработка лендинга с индивидуальным дизайном и под любые цели.",
-   "keywords": "",
-   "robots": "",
-   "canonical": "https://nuts-agency.ru/services/razrabatyvaem/landing-page/",
-   "h1": [
-    "Лендинг (landing page) создание под ключ"
-   ],
-   "file": "page105.html"
-  },
-  "/services/reklamiryem/target-reklama/": {
-   "title": "Таргетированная реклама - настройка таргетированной рекламы в соцсетях",
-   "description": "Nuts Agency﻿ уже более 5 лет занимается настройкой таргетированной рекламы. Делаем популяризацию бренда для любых сфер.",
-   "keywords": "",
-   "robots": "",
-   "canonical": "https://nuts-agency.ru/services/reklamiryem/target-reklama/",
-   "h1": [
-    "Таргетированная реклама"
-   ],
-   "file": "page106.html"
-  },
-  "/services/prodvigaem-v-poiskovikah/prodvizhenie-v-google/": {
-   "title": "Продвижение сайта в Google, обзор основных критериев",
-   "description": "Google использует более 200 ключевых факторов для ранжирования веб-сайтов. Заказывая продвижение в компании Nuts, вы можете быть уверены в качестве услуг.",
-   "keywords": "Google оптимизация сайта под алгоритмы поисковых систем",
-   "robots": "",
-   "canonical": "https://nuts-agency.ru/services/prodvigaem-v-poiskovikah/prodvizhenie-v-google/",
-   "h1": [
-    "Продвижение в Google"
-   ],
-   "file": "page107.html"
-  },
-  "/services/prodvigaem-v-poiskovikah/audit-sayta/": {
-   "title": "SEO аудит сайта заказать у Nuts Digital",
-   "description": "Заказывайте seo аудит сайта в Nuts Digital. Выявляем ошибки и предлагаем комплексное решение согласно с рекомендациями поисковых систем. Аудит вашего сайта от профессионалов!",
-   "keywords": "аудит продвижения сайта под ключ, сео анализ коммерческих факторов",
-   "robots": "",
-   "canonical": "https://nuts-agency.ru/services/prodvigaem-v-poiskovikah/audit-sayta/",
-   "h1": [
-    "Аудит сайта для SEO продвижения"
-   ],
-   "file": "page108.html"
-  },
-  "/services/prodvigaem-v-poiskovikah/prodvizhenie-v-yandeks/": {
-   "title": "Продвижение сайта в Яндекс в Nuts Digital",
-   "description": "Заказывайте продвижение сайта в Яндекс. Мы поделимся основными критериями «качественного сайта», который сможет занять позиции в топ 10 поисковой выдачи Яндекс.",
-   "keywords": "яндекс seo продвижение сайта и оптимизация под алгоритмы поисковой системы",
-   "robots": "",
-   "canonical": "https://nuts-agency.ru/services/prodvigaem-v-poiskovikah/prodvizhenie-v-yandeks/",
-   "h1": [
-    "Продвижение в Яндекс"
-   ],
-   "file": "page109.html"
-  },
-  "/services/smm/vedenie-sotssetey-pod-klyuch/": {
-   "title": "Ведение соцсетей под ключ (СММ) от Nuts Digital Agency",
-   "description": "Анализируем цели и задачи, генерируем креативные решения, подключаем насмотренность и знание трендов, закрываем любой объем работ и сложные задачи по SMM.",
-   "keywords": "соцсети под ключ создание каналов ведение групп размещение публикаций наполнение контентом креатив",
-   "robots": "",
-   "canonical": "https://nuts-agency.ru/services/smm/vedenie-sotssetey-pod-klyuch/",
-   "h1": [
-    "SMM продвижение под ключ"
-   ],
-   "file": "page110.html"
-  },
-  "/services/smm/posevy-v-sotsialnykh-setyakh/": {
-   "title": "Посевы в социальных сетях и публикации у блогеров с Nuts Agency",
-   "description": "Услуги по размещению публикаций в популярных группах в соцсетях под ключ. Посевы в Телеграм, Вконтакте, Дзен, Youtube, Rutube, и других социальных сетях.",
-   "keywords": "посевы в группах социальных сетей работа с блогерами публикации постов",
-   "robots": "",
-   "canonical": "https://nuts-agency.ru/services/smm/posevy-v-sotsialnykh-setyakh/",
-   "h1": [
-    "Посевы в социальных сетях"
-   ],
-   "file": "page111.html"
-  },
-  "/services/smm/vk-klipy/": {
-   "title": "VK-Клипы - короткие видео для вашего бизнеса - Nuts Digital",
-   "description": "VK-клипы - эффективный способ для продвижения вашего бизнеса. Агентство Nuts Digital знает, как вам привлечь новых клиентов.",
-   "keywords": "Вконтакте видео ролики клипы съемка монтаж публикация",
-   "robots": "",
-   "canonical": "https://nuts-agency.ru/services/smm/vk-klipy/",
-   "h1": [
-    "VK-Клипы"
-   ],
-   "file": "page112.html"
-  },
-  "/services/smm/roliki-dzen/": {
-   "title": "Создание роликов для Дзен Видео от компании Nuts Agency",
-   "description": "Новый формат контента на платформе Дзена - аналог ТикТока. Аудитория и преимущества нового формата стоят того, чтобы попробовать.",
-   "keywords": "дзен ролики видео клипы съёмка монтаж публикация",
-   "robots": "",
-   "canonical": "https://nuts-agency.ru/services/smm/roliki-dzen/",
-   "h1": [
-    "Ролики Дзен"
-   ],
-   "file": "page113.html"
-  },
-  "/services/it-resheniya/": {
-   "title": "IT-решения для бизнеса под ключ - Nuts Digital Agency",
-   "description": "Nuts Agency может разработать любое IT-решение для вашего бизнеса. Погружаемся в бизнес процессы и разрабатываем индивидуальные решения для каждого клиента.",
-   "keywords": "",
-   "robots": "",
-   "canonical": "https://nuts-agency.ru/services/it-resheniya/",
-   "h1": [
-    "IT-решения для бизнеса"
-   ],
-   "file": "page114.html"
-  },
-  "/services/it-resheniya/it-reshenie-dlya-zastroyshchikov/": {
-   "title": "IT-решения для застройщиков от Nuts Digital",
-   "description": "Это не шаблонное решение, под которое необходимо адаптировать бизнес-процессы и переучивать сотрудников, а индивидуальная разработка для вашей компании.",
-   "keywords": "",
-   "robots": "",
-   "canonical": "https://nuts-agency.ru/services/it-resheniya/it-reshenie-dlya-zastroyshchikov/",
-   "h1": [
-    "IT-решения для застройщиков"
-   ],
-   "file": "page115.html"
-  },
-  "/projects/smm/": {
-   "title": "Примеры работ по SMM продвижению - Nuts Agency",
-   "description": "Наше агентство занимается SMM продвижением. Большое количество интересных кейсов, с которыми можно ознакомиться на нашем сайте. Подробнее о комплексном продвижении в социальных сетях.",
-   "keywords": "",
-   "robots": "",
-   "canonical": "https://nuts-agency.ru/projects/smm/",
-   "h1": [
-    "SMM"
-   ],
-   "file": "page116.html"
-  },
-  "/projects/smm/iz-vinodelni-v-premialnyy-kurort-kak-my-vystroili-novuyu-identichnost-doliny-lefkadiya-v-sotsialnykh/": {
-   "title": "Из винодельни — в премиальный курорт: репозиционирование «Долины Лефкадия» в социальных сетях",
-   "description": "Посмотрите несколько наших проектов, чтобы вы знали, что мы тут действительно работаем. Разработка, реклама или SEO — всё можем. И можем на 10/10.",
-   "keywords": "кейс о продвижении",
-   "robots": "",
-   "canonical": "https://nuts-agency.ru/projects/smm/iz-vinodelni-v-premialnyy-kurort-kak-my-vystroili-novuyu-identichnost-doliny-lefkadiya-v-sotsialnykh/",
-   "h1": [
-    "Из винодельни — в премиальный курорт: репозиционирование «Долины Лефкадия» в социальных сетях"
-   ],
-   "file": "page117.html"
-  },
-  "/projects/web-razraborka/metch-professii-i-prizvaniya-karernyy-portal-dlya-cherkizovo/": {
-   "title": "Мэтч профессии и призвания: карьерный портал для «Черкизово»",
-   "description": "Посмотрите несколько наших проектов, чтобы вы знали, что мы тут действительно работаем. Разработка, реклама или SEO — всё можем. И можем на 10/10.",
-   "keywords": "",
-   "robots": "",
-   "canonical": "https://nuts-agency.ru/projects/web-razraborka/metch-professii-i-prizvaniya-karernyy-portal-dlya-cherkizovo/",
-   "h1": [
-    "Мэтч профессии и призвания: карьерный портал для «Черкизово»"
-   ],
-   "file": "page118.html"
-  },
-  "/projects/web-razraborka/kak-my-razrabotali-sayt-dlya-korporatsii-development-yug/": {
-   "title": "Разработка мультирегионального сайта для корпорации «Девелопмент-Юг»",
-   "description": "Посмотрите несколько наших проектов, чтобы вы знали, что мы тут действительно работаем. Разработка, реклама или SEO — всё можем. И можем на 10/10.",
-   "keywords": "",
-   "robots": "",
-   "canonical": "https://nuts-agency.ru/projects/web-razraborka/kak-my-razrabotali-sayt-dlya-korporatsii-development-yug/",
-   "h1": [
-    "Разработка мультирегионального сайта для корпорации «Девелопмент-Юг»"
-   ],
-   "file": "page119.html"
-  },
-  "/projects/smm/kompleksnoe-prodvizhenie-federalnogo-developera-dogma-v-sotsialnykh-setyakh-/": {
-   "title": "Комплексное продвижение федерального девелопера DOGMA в социальных сетях",
-   "description": "Посмотрите несколько наших проектов, чтобы вы знали, что мы тут действительно работаем. Разработка, реклама или SEO — всё можем. И можем на 10/10.",
-   "keywords": "",
-   "robots": "",
-   "canonical": "https://nuts-agency.ru/projects/smm/kompleksnoe-prodvizhenie-federalnogo-developera-dogma-v-sotsialnykh-setyakh-/",
-   "h1": [
-    "Комплексное продвижение федерального девелопера DOGMA в социальных сетях"
-   ],
-   "file": "page120.html"
-  },
-  "/projects/web-razraborka/razrabotka-sayta-krasnodarskogo-filiala-nmits-mntk-mikrokhirurgiya-glaza-imeni-akademika-s-n-fyedoro/": {
-   "title": "Разработка сайта краснодарского филиала «МНТК «Микрохирургия глаза»",
-   "description": "Посмотрите несколько наших проектов, чтобы вы знали, что мы тут действительно работаем. Разработка, реклама или SEO — всё можем. И можем на 10/10.",
-   "keywords": "",
-   "robots": "",
-   "canonical": "https://nuts-agency.ru/projects/web-razraborka/razrabotka-sayta-krasnodarskogo-filiala-nmits-mntk-mikrokhirurgiya-glaza-imeni-akademika-s-n-fyedoro/",
-   "h1": [
-    "Разработка сайта краснодарского филиала «МНТК «Микрохирургия глаза»"
-   ],
-   "file": "page121.html"
-  },
-  "/projects/web-razraborka/mobilnoe-prilozhenie-partnyer-development-yug/": {
-   "title": "Разработка мобильного приложения «Партнёр Девелопмент-Юг»",
-   "description": "Причина запуска проекта — вовлечь в продажи недвижимости максимальное большое количество партнёров, и обеспечить их удобным инструментом для работы.",
-   "keywords": "",
-   "robots": "",
-   "canonical": "https://nuts-agency.ru/projects/web-razraborka/mobilnoe-prilozhenie-partnyer-development-yug/",
-   "h1": [
-    "Разработка мобильного приложения для партнеров корпорации «Девелопмент-Юг»"
-   ],
-   "file": "page122.html"
-  },
-  "/projects/web-razraborka/razrabotka-crm-sistemy-dlya-franshizy-supermen/": {
-   "title": "Разработка CRM-системы для франшизы «Супермен»",
-   "description": "Посмотрите несколько наших проектов, чтобы вы знали, что мы тут действительно работаем. Разработка, реклама или SEO — всё можем. И можем на 10/10.",
-   "keywords": "",
-   "robots": "",
-   "canonical": "https://nuts-agency.ru/projects/web-razraborka/razrabotka-crm-sistemy-dlya-franshizy-supermen/",
-   "h1": [
-    "Разработка CRM-системы для франшизы «Супермен»"
-   ],
-   "file": "page123.html"
-  },
-  "/projects/web-razraborka/razrabotka-korporativnogo-sayta-dlya-agentstva-po-upravleniyu-restorannymi-proektami-pelby/": {
-   "title": "Разработка корпоративного сайта для агентства по управлению ресторанными проектами Pelby",
-   "description": "Посмотрите несколько наших проектов, чтобы вы знали, что мы тут действительно работаем. Разработка, реклама или SEO — всё можем. И можем на 10/10.",
-   "keywords": "",
-   "robots": "",
-   "canonical": "https://nuts-agency.ru/projects/web-razraborka/razrabotka-korporativnogo-sayta-dlya-agentstva-po-upravleniyu-restorannymi-proektami-pelby/",
-   "h1": [
-    "Разработка корпоративного сайта для агентства по управлению ресторанными проектами Pelby"
-   ],
-   "file": "page124.html"
-  },
-  "/projects/web-razraborka/razrabotka-elektronnoy-sistemy-tenderov-dlya-korporatsii-development-yug/": {
-   "title": "Разработка электронной системы тендеров для корпорации «Девелопмент-Юг»",
-   "description": "Посмотрите несколько наших проектов, чтобы вы знали, что мы тут действительно работаем. Разработка, реклама или SEO — всё можем. И можем на 10/10.",
-   "keywords": "",
-   "robots": "",
-   "canonical": "https://nuts-agency.ru/projects/web-razraborka/razrabotka-elektronnoy-sistemy-tenderov-dlya-korporatsii-development-yug/",
-   "h1": [
-    "Разработка электронной системы тендеров для корпорации «Девелопмент-Юг»"
-   ],
-   "file": "page125.html"
-  },
-  "/projects/web-razraborka/razvitie-ploshchadki-dlya-provedeniya-torgov-i-zakupok-dlya-sk-semya/": {
-   "title": "Разработка нового функционала на портале для проведения торгов и закупок СК «Семья»",
-   "description": "Посмотрите несколько наших проектов, чтобы вы знали, что мы тут действительно работаем. Разработка, реклама или SEO — всё можем. И можем на 10/10.",
-   "keywords": "",
-   "robots": "",
-   "canonical": "https://nuts-agency.ru/projects/web-razraborka/razvitie-ploshchadki-dlya-provedeniya-torgov-i-zakupok-dlya-sk-semya/",
-   "h1": [
-    "Разработка нового функционала на портале для проведения торгов и закупок СК «Семья»"
-   ],
-   "file": "page126.html"
-  },
-  "/projects/web-razraborka/razrabotka-mobilnogo-prilozheniya-dlya-trts-grad/": {
-   "title": "Разработка мобильного приложения для крупнейшего ТРЦ в Центрально-Черноземном регионе",
-   "description": "Посмотрите несколько наших проектов, чтобы вы знали, что мы тут действительно работаем. Разработка, реклама или SEO — всё можем. И можем на 10/10.",
-   "keywords": "",
-   "robots": "",
-   "canonical": "https://nuts-agency.ru/projects/web-razraborka/razrabotka-mobilnogo-prilozheniya-dlya-trts-grad/",
-   "h1": [
-    "Разработка мобильного приложения для крупнейшего ТРЦ в Центрально-Черноземном регионе"
-   ],
-   "file": "page127.html"
-  },
-  "/projects/web-razraborka/sayt-dlya-mezhdunarodnoy-serii-pokernykh-turnirov-ea-poker-tour/": {
-   "title": "Сайт для международной серии покерных турниров EA Poker Tour",
-   "description": "Посмотрите несколько наших проектов, чтобы вы знали, что мы тут действительно работаем. Разработка, реклама или SEO — всё можем. И можем на 10/10.",
-   "keywords": "",
-   "robots": "",
-   "canonical": "https://nuts-agency.ru/projects/web-razraborka/sayt-dlya-mezhdunarodnoy-serii-pokernykh-turnirov-ea-poker-tour/",
-   "h1": [
-    "Сайт для международной серии покерных турниров EA Poker Tour"
-   ],
-   "file": "page128.html"
-  },
-  "/projects/web-razraborka/limpid-pools/": {
-   "title": "Разработка презентационного сайта для Limpid Pools",
-   "description": "Посмотрите несколько наших проектов, чтобы вы знали, что мы тут действительно работаем. Разработка, реклама или SEO — всё можем. И можем на 10/10.",
-   "keywords": "",
-   "robots": "",
-   "canonical": "https://nuts-agency.ru/projects/web-razraborka/limpid-pools/",
-   "h1": [
-    "Разработка презентационного сайта для Limpid Pools"
-   ],
-   "file": "page129.html"
-  },
-  "/projects/web-razraborka/lending-dlya-patrik-mari/": {
-   "title": "Разработка лендинга для кулинарии «Патрик & Мари» - Nuts",
-   "description": "Получился очень аккуратный, понятный и стильный лендинг, закрывающий первичные вопросы клиентов о заказных тортах. Разработали удобную карту кафе и доставки.",
-   "keywords": "",
-   "robots": "",
-   "canonical": "https://nuts-agency.ru/projects/web-razraborka/lending-dlya-patrik-mari/",
-   "h1": [
-    "Разработка адаптивного лендинга для сети «Патрик & Мари»"
-   ],
-   "file": "page130.html"
-  },
-  "/projects/web-razraborka/korporativnyy-portal-dlya-ilskogo-npz/": {
-   "title": "Разработка портала для корпоративной коммуникации отделов Ильского НПЗ",
-   "description": "Посмотрите несколько наших проектов, чтобы вы знали, что мы тут действительно работаем. Разработка, реклама или SEO — всё можем. И можем на 10/10.",
-   "keywords": "",
-   "robots": "",
-   "canonical": "https://nuts-agency.ru/projects/web-razraborka/korporativnyy-portal-dlya-ilskogo-npz/",
-   "h1": [
-    "Разработка портала для корпоративной коммуникации отделов Ильского НПЗ"
-   ],
-   "file": "page131.html"
-  },
-  "/projects/web-razraborka/razrabotka-internet-magazina-dlya-kerasol/": {
-   "title": "Разработка интернет-магазина для «Керасоль» | Nuts Agency",
-   "description": "Разработали современный, стильный сайт, находящийся под управлением гибкой CMS. Заложен быстрый обмен с базой и возможность подключения новых модулей и разделов.",
-   "keywords": "",
-   "robots": "",
-   "canonical": "https://nuts-agency.ru/projects/web-razraborka/razrabotka-internet-magazina-dlya-kerasol/",
-   "h1": [
-    "Разработка интернет-магазина для «Керасоль»"
-   ],
-   "file": "page132.html"
-  },
-  "/projects/web-razraborka/razrabotka-ploshchadki-po-zakupkam-dlya-sk-semya/": {
-   "title": "Разработка площадки по закупкам для «СК Семья»",
-   "description": "Посмотрите несколько наших проектов, чтобы вы знали, что мы тут действительно работаем. Разработка, реклама или SEO — всё можем. И можем на 10/10.",
-   "keywords": "",
-   "robots": "",
-   "canonical": "https://nuts-agency.ru/projects/web-razraborka/razrabotka-ploshchadki-po-zakupkam-dlya-sk-semya/",
-   "h1": [
-    "Разработка площадки по закупкам для «СК Семья»"
-   ],
-   "file": "page133.html"
-  },
-  "/projects/smm/kompleksnoe-prodvizhenie-bara-videosalon-zakryt/": {
-   "title": "Комплексное продвижение бара Видеосалон закрыт",
-   "description": "Кейс СММ продвижения бара Видеосалон закрыт в Краснодаре. Методы продвижения в социальных сетях, которые приносят узнаваемость заведению.",
-   "keywords": "",
-   "robots": "",
-   "canonical": "https://nuts-agency.ru/projects/smm/kompleksnoe-prodvizhenie-bara-videosalon-zakryt/",
-   "h1": [
-    "Запасаемся попкорном: комплексное продвижение бара «Видеосалон закрыт»"
-   ],
-   "file": "page134.html"
-  },
-  "/projects/reklama/video-o-kompanii-tochka-molochka/": {
-   "title": "Кейс - Видео о компании Точка Молочка Nuts Digital",
-   "description": "Видео о компании Точка Молочка - описание продуктов, услуг и истории компании. Ролик создан Nuts-digital агентством разработки сайтов и продвижения.",
-   "keywords": "",
-   "robots": "",
-   "canonical": "https://nuts-agency.ru/projects/reklama/video-o-kompanii-tochka-molochka/",
-   "h1": [
-    "Сыр, Италия, Кубань: как мы поймали коров и сняли ролик с итальянцем в России для компании «Точка Молочка»"
-   ],
-   "file": "page135.html"
-  },
-  "/projects/smm/video-dlya-kompanii-schaumann/": {
-   "title": "Создание видео для компании Schaumann",
-   "description": "Производство видеоролика о продукте для сайта Шауманн. Видео в формате отзыва клиента с практическими рекомендациями. Подробнее на нашем сайте.",
-   "keywords": "",
-   "robots": "",
-   "canonical": "https://nuts-agency.ru/projects/smm/video-dlya-kompanii-schaumann/",
-   "h1": [
-    "Как мы сняли понятное видео о сложном продукте Schaumann. Без воды, но с коровками!"
-   ],
-   "file": "page136.html"
-  },
-  "/projects/reklama/kak-menshe-chem-za-god-nabrat-14-mln-prosmotrov-v-tiktok-/": {
-   "title": "Как меньше, чем за год набрать 14 млн просмотров в ТикТок?",
-   "description": "Посмотрите несколько наших проектов, чтобы вы знали, что мы тут действительно работаем. Разработка, реклама или SEO — всё можем. И можем на 10/10.",
-   "keywords": "",
-   "robots": "",
-   "canonical": "https://nuts-agency.ru/projects/reklama/kak-menshe-chem-za-god-nabrat-14-mln-prosmotrov-v-tiktok-/",
-   "h1": [
-    "Как меньше, чем за год набрать 14 млн просмотров в ТикТок?"
-   ],
-   "file": "page137.html"
-  },
-  "/projects/smm/kompleksnoe-prodvizhenie-torgovo-razvlekatelnogo-tsentra-sbs-megamall/": {
-   "title": "Комплексное продвижение ТРЦ СБС МЕГАМОЛЛ в социальных сетях",
-   "description": "Результаты SMM продвижения торгово-развлекательного центра SBS Megamall в Краснодаре. Подготовка контент-плана. Разработка макетов и копирайтинг. Ведение компании в социальны сетях. Подробнее о продвижении ТРЦ СБС МЕГАМОЛЛ.",
-   "keywords": "",
-   "robots": "",
-   "canonical": "https://nuts-agency.ru/projects/smm/kompleksnoe-prodvizhenie-torgovo-razvlekatelnogo-tsentra-sbs-megamall/",
-   "h1": [
-    "Комплексное продвижение торгово-развлекательного центра SBS Megamall"
-   ],
-   "file": "page138.html"
-  },
-  "/projects/smm/video-o-kompanii-svyazresurskuban/": {
-   "title": "Люди, на которых держится связь: видеопортрет компании и ее команды в двух роликах",
-   "description": "Посмотрите несколько наших проектов, чтобы вы знали, что мы тут действительно работаем. Разработка, реклама или SEO — всё можем. И можем на 10/10.",
-   "keywords": "",
-   "robots": "",
-   "canonical": "https://nuts-agency.ru/projects/smm/video-o-kompanii-svyazresurskuban/",
-   "h1": [
-    "Люди, на которых держится связь: видеопортрет компании и ее команды в двух роликах"
-   ],
-   "file": "page139.html"
-  },
-  "/projects/reklama/obrashcheniya-po-36-rubley-v-nishe-fitnes-klub/": {
-   "title": "Кейс Nuts Digital - Как мы получили обращения по 36 рублей в нише фитнес-клубов",
-   "description": "Узнайте, как специалисты Nuts Digital достигли обращений в контекстной рекламе по 36 рублей в сфере фитнес-клубов. Читайте наш кейс и узнайте о стратегии и тактиках, которые привели к этим результатам.",
-   "keywords": "",
-   "robots": "",
-   "canonical": "https://nuts-agency.ru/projects/reklama/obrashcheniya-po-36-rubley-v-nishe-fitnes-klub/",
-   "h1": [
-    "Рекламная кампания для фитнес-клуба «Джиматика»: обращения по 36 рублей в нише «фитнес-клуб»"
-   ],
-   "file": "page140.html"
-  },
-  "/projects/reklama/kak-sokratit-stoimost-podpischikov-v-4-raza-v-nishe-nedvizhimost/": {
-   "title": "Сократили стоимость подписчиков в 4 раза в нише «Недвижимость»",
-   "description": "Посмотрите несколько наших проектов, чтобы вы знали, что мы тут действительно работаем. Разработка, реклама или SEO — всё можем. И можем на 10/10.",
-   "keywords": "",
-   "robots": "",
-   "canonical": "https://nuts-agency.ru/projects/reklama/kak-sokratit-stoimost-podpischikov-v-4-raza-v-nishe-nedvizhimost/",
-   "h1": [
-    "Сократили стоимость подписчиков в 4 раза в нише «Недвижимость»"
-   ],
-   "file": "page141.html"
-  },
-  "/projects/reklama/kak-za-1-god-my-snizili-stoimost-konversii-na-59-dlya-kliniki-flebologii-i-uvelichili-kolichestvo-za/": {
-   "title": "Как за 1 год мы снизили стоимость конверсии на 59% для клиники флебологии и увеличили количество заявок в 2 раза",
-   "description": "Узнайте, как команда Nuts Digital смогла значительно снизить стоимость конверсии на 59%. Изучите кейс и узнайте о нашей успешной стратегии и тактике маркетинга в медицинской нише.",
-   "keywords": "",
-   "robots": "",
-   "canonical": "https://nuts-agency.ru/projects/reklama/kak-za-1-god-my-snizili-stoimost-konversii-na-59-dlya-kliniki-flebologii-i-uvelichili-kolichestvo-za/",
-   "h1": [
-    "Как за 1 год мы снизили стоимость конверсии на 59%"
-   ],
-   "file": "page142.html"
-  },
-  "/projects/reklama/25-otkrytykh-salonov-za-2-goda-optimizatsiya-reklamnogo-byudzheta-na-50-franshiza-muzhskikh-salonov-/": {
-   "title": "Оптимизация рекламного бюджета на 50%. Франшиза мужских салонов «Супермен»",
-   "description": "Посмотрите несколько наших проектов, чтобы вы знали, что мы тут действительно работаем. Разработка, реклама или SEO — всё можем. И можем на 10/10.",
-   "keywords": "",
-   "robots": "",
-   "canonical": "https://nuts-agency.ru/projects/reklama/25-otkrytykh-salonov-za-2-goda-optimizatsiya-reklamnogo-byudzheta-na-50-franshiza-muzhskikh-salonov-/",
-   "h1": [
-    "Оптимизация рекламного бюджета на 50%. Франшиза мужских салонов «Супермен»"
-   ],
-   "file": "page143.html"
-  },
-  "/projects/seo/prodvizhenie-sayta-kliniki-santerra/": {
-   "title": "Продвижение сайта клиники SanTerra (Ставрополь) - Nuts Agency",
-   "description": "Увеличение трафика из поисковых систем - более чем в 100 раз, за год работ по продвижению сайта. Рост конверсии по сайту, более чем в 2,5 раза. Подробнее в кейсе.",
-   "keywords": "",
-   "robots": "",
-   "canonical": "https://nuts-agency.ru/projects/seo/prodvizhenie-sayta-kliniki-santerra/",
-   "h1": [
-    "Продвижение медицинского сайта клиники SanTerra"
-   ],
-   "file": "page144.html"
-  },
-  "/projects/seo/prodvizhenie-sayta-mebeli-dlya-gostinits/": {
-   "title": "Продвижение сайта мебели для гостиниц",
-   "description": "Посмотрите несколько наших проектов, чтобы вы знали, что мы тут действительно работаем. Разработка, реклама или SEO — всё можем. И можем на 10/10.",
-   "keywords": "",
-   "robots": "",
-   "canonical": "https://nuts-agency.ru/projects/seo/prodvizhenie-sayta-mebeli-dlya-gostinits/",
-   "h1": [
-    "Продвижение сайта мебели для гостиниц"
-   ],
-   "file": "page145.html"
-  },
-  "/projects/seo/prodvizhenie-sayta-salona-krasoty-colba/": {
-   "title": "Кейс про продвижение сайта салона красоты в Москве ColBa",
-   "description": "Продвижение сайта салона красоты в Москве. Разработка структуры, улучшение юзабилити, оптимизация мета-тегов и написание текстов. Рост позиций и заявок.",
-   "keywords": "",
-   "robots": "",
-   "canonical": "https://nuts-agency.ru/projects/seo/prodvizhenie-sayta-salona-krasoty-colba/",
-   "h1": [
-    "Формула трафика: как мы вывели сайт салона красоты ColBa в топ поисковой выдачи"
-   ],
-   "file": "page146.html"
-  },
-  "/projects/seo/prodvizhenie-kliniki-sovremennoy-khirurgii/": {
-   "title": "Кейс о продвижении клиники частной хирургии Здрава в Краснодаре и крае",
-   "description": "Продвижение сайта частотной клиники в Краснодаре. Разработка стратегии и внедрение комплексных доработок на сайте. Оптимизация мета тегов, структуры и дизайна сайта.",
-   "keywords": "",
-   "robots": "",
-   "canonical": "https://nuts-agency.ru/projects/seo/prodvizhenie-kliniki-sovremennoy-khirurgii/",
-   "h1": [
-    "Продвижение клиники современной хирургии"
-   ],
-   "file": "page147.html"
-  },
-  "/projects/seo/prodvizhenie-magazina-stomatologicheskogo-oborudovaniya/": {
-   "title": "Кейс о seo продвижении магазина стоматологического оборудования в Краснодаре",
-   "description": "Продвижение сайта  магазина стоматологического оборудования в Краснодаре. Разработка стратегии и внедрение комплексных доработок на сайте. Оптимизация мета тегов, структуры и дизайна сайта, улучшение ПФ.",
-   "keywords": "продвижение сайта кейс",
-   "robots": "",
-   "canonical": "https://nuts-agency.ru/projects/seo/prodvizhenie-magazina-stomatologicheskogo-oborudovaniya/",
-   "h1": [
-    "Продвижение магазина стоматологического оборудования"
-   ],
-   "file": "page148.html"
-  },
-  "/projects/seo/kompleksnoe-seo-prodvizhenie-sayta-zastroyshchika-development-yug/": {
-   "title": "Кейс о комплексном сео продвижении сайта Девеломпент Юг",
-   "description": "Продвижение сайта застройщика Девелопмент Юг в Краснодаре. Разработка стратегии и внедрение комплексных доработок на сайте. Оптимизация мета тегов, структуры и дизайна сайта, улучшение ПФ.",
-   "keywords": "кейс продвижения, кейсы seo продвижению, кейс продвижения бренда, кейс продвижения недвижимости, оптимизация сайта, сео продвижения",
-   "robots": "",
-   "canonical": "https://nuts-agency.ru/projects/seo/kompleksnoe-seo-prodvizhenie-sayta-zastroyshchika-development-yug/",
-   "h1": [
-    "Комплексное SEO-продвижение сайта застройщика «Девелопмент Юг»"
-   ],
-   "file": "page149.html"
-  },
-  "/company/partners/winter-cms/": {
-   "title": "Разработка сайтов на Winter CMS в Nuts Digital",
-   "description": "Собираем сайты на Laravel, админка OctoberCMS (она на русском и не перегружена ненужными вещами, в отличие от Битрикса, ModX, WordPress). Разработка сайтов в Краснодаре.",
-   "keywords": "winter cms, разработка сайтов, разработка веб сайтов, разработка дизайна сайта, создание и разработка сайтов",
-   "robots": "",
-   "canonical": "https://nuts-agency.ru/company/partners/winter-cms/",
-   "h1": [
-    "Winter CMS"
-   ],
-   "file": "page150.html"
-  },
-  "/articles/smm/tonkaya-gran-mezhdu-pr-i-manipulyatsiey-keys-edvarda-berneysa/": {
-   "title": "Тонкая грань между PR и манипуляцией: кейс Эдварда Бернейса",
-   "description": "Интересные статьи по разработке и продвижению сайтов, а также по интернет рекламе. Конкретные примеры и исследования.",
-   "keywords": "",
-   "robots": "",
-   "canonical": "https://nuts-agency.ru/articles/smm/tonkaya-gran-mezhdu-pr-i-manipulyatsiey-keys-edvarda-berneysa/",
-   "h1": [
-    "Тонкая грань между PR и манипуляцией: кейс Эдварда Бернейса"
-   ],
-   "file": "page153.html"
-  },
-  "/articles/smm/osnovy-dizayn-v-didzhital-delimsya-sekretami/": {
-   "title": "Основы дизайна сайта и на что стоит обратить внимание",
-   "description": "Дизайн — это важная часть проекта. Расскажем вам на каких принципах основывается разработка дизайна для диджитал-проектов. И, конечно, поделимся секретами!",
-   "keywords": "",
-   "robots": "",
-   "canonical": "https://nuts-agency.ru/articles/smm/osnovy-dizayn-v-didzhital-delimsya-sekretami/",
-   "h1": [
-    "Основы дизайна в диджитал: делимся секретами"
-   ],
-   "file": "page154.html"
-  },
-  "/articles/smm/legko-i-bystro-servisy-dlya-raboty-s-kontentom-/": {
-   "title": "Легко и быстро: Сервисы для работы с контентом",
-   "description": "Откройте мир современных сервисов для эффективной и быстрой работы с контентом.  Узнайте, как автоматизированные инструменты могут сделать управление контентом легким и эффективным",
-   "keywords": "контент, сервисы для работы с контентом, приложения, визуальный контент.",
-   "robots": "",
-   "canonical": "https://nuts-agency.ru/articles/smm/legko-i-bystro-servisy-dlya-raboty-s-kontentom-/",
-   "h1": [
-    "Легко и быстро: Сервисы для работы с контентом"
-   ],
-   "file": "page155.html"
-  },
-  "/articles/prodvizhenie/gayd-pochemu-vash-sayt-rabotaet-neeffektivno/": {
-   "title": "Гайд: Почему ваш сайт работает неэффективно",
-   "description": "Какие ошибки делают ваш сайт менее эффективным и как их исправить. Важные советы для улучшения производительности вашего веб-ресурса.",
-   "keywords": "",
-   "robots": "",
-   "canonical": "https://nuts-agency.ru/articles/prodvizhenie/gayd-pochemu-vash-sayt-rabotaet-neeffektivno/",
-   "h1": [
-    "Гайд: Почему ваш сайт работает неэффективно"
-   ],
-   "file": "page156.html"
-  },
-  "/articles/prodvizhenie/11-mesto-v-reytinge-seo-glazami-klientov-2022/": {
-   "title": "11 место в рейтинге SEO глазами клиентов 2022",
-   "description": "В 2022 году, агентство Nuts Agency поднялось на 17 пунктов в рейтинге &quot;SEO глазами клиента&quot;, и заняло 11 место!",
-   "keywords": "",
-   "robots": "",
-   "canonical": "https://nuts-agency.ru/articles/prodvizhenie/11-mesto-v-reytinge-seo-glazami-klientov-2022/",
-   "h1": [
-    "11 место в рейтинге SEO глазами клиентов 2022"
-   ],
-   "file": "page157.html"
-  },
-  "/articles/prodvizhenie/28-mesto-v-reytinge-seo-glazami-klientov-2021/": {
-   "title": "28 место в рейтинге SEO глазами клиентов 2021",
-   "description": "Интересные статьи по разработке и продвижению сайтов, а также по интернет рекламе. Конкретные примеры и исследования.",
-   "keywords": "",
-   "robots": "",
-   "canonical": "https://nuts-agency.ru/articles/prodvizhenie/28-mesto-v-reytinge-seo-glazami-klientov-2021/",
-   "h1": [
-    "28 место в рейтинге SEO глазами клиентов 2021"
-   ],
-   "file": "page158.html"
-  },
-  "/articles/smm/": {
-   "title": "SMM-маркетинг в интернете",
-   "description": "Интересные статьи по разработке и продвижению сайтов, а также по интернет рекламе. Конкретные примеры и исследования.",
-   "keywords": "Маркетинг в современных условиях. Рассказываем, как помогает SMM в продвижении бизнеса",
-   "robots": "",
-   "canonical": "https://nuts-agency.ru/articles/smm/",
-   "h1": [
-    "SMM"
-   ],
-   "file": "page159.html"
-  },
-  "/company/vacancy/junior-seo/": {
-   "title": "Вакансия Junior SEO в агентстве Nuts Digital",
-   "description": "Nuts Digital Agency ищет уверенного в себе и своих силах сотрудника на должность Junior SEO. От вас требуется знание основ SEO-продвижения и желание работать.",
-   "keywords": "",
-   "robots": "",
-   "canonical": "https://nuts-agency.ru/company/vacancy/junior-seo/",
-   "h1": [
-    "Junior SEO"
-   ],
-   "file": "page161.html"
-  },
-  "/company/vacancy/seo-spetsialist-seo-optimizator/": {
-   "title": "SEO-специалист/SEO-оптимизатор - вакансия агентства Nuts Digital",
-   "description": "Nuts Digital Agency ищет уверенного в своих силах сотрудника на должность SEO-специалист. Требуются специалисты с опытом SEO-продвижения сайтов не менее года.",
-   "keywords": "",
-   "robots": "",
-   "canonical": "https://nuts-agency.ru/company/vacancy/seo-spetsialist-seo-optimizator/",
-   "h1": [
-    "SEO-специалист / SEO-оптимизатор"
-   ],
-   "file": "page162.html"
-  },
-  "/projects/web-razraborka/lending-dlya-development-plaza/": {
-   "title": "Разработка лендинга для Development-Plaza - Nuts Agency",
-   "description": "Разработан одностраничный сайт для компании «Девелопмент-Юг», отражающий преимущества покупки коммерческой недвижимости в Development-Plaza.",
-   "keywords": "",
-   "robots": "",
-   "canonical": "https://nuts-agency.ru/projects/web-razraborka/lending-dlya-development-plaza/",
-   "h1": [
-    "Лендинг для Development-Plaza"
-   ],
-   "file": "page163.html"
-  },
-  "/projects/web-razraborka/sayt-dlya-salona-krasoty-roots/": {
-   "title": "Разработка сайта для салона красоты ROOTS - Nuts Digital",
-   "description": "Обязательно заглядывайте на rootshair.ru и пишите нам, если хотите создать уникальный сайт, подчеркивающий неповторимость вашего бизнеса — мы это умеем.",
-   "keywords": "",
-   "robots": "",
-   "canonical": "https://nuts-agency.ru/projects/web-razraborka/sayt-dlya-salona-krasoty-roots/",
-   "h1": [
-    "Сайт для салона красоты ROOTS"
-   ],
-   "file": "page164.html"
-  },
-  "/projects/smm/video-o-kompanii-tochka-molochka/": {
-   "title": "Кейс - Видео о компании Точка Молочка Nuts Digital",
-   "description": "Видео о компании Точка Молочка - описание продуктов, услуг и истории компании. Ролик создан Nuts-digital агентством разработки сайтов и продвижения.",
-   "keywords": "",
-   "robots": "",
-   "canonical": "https://nuts-agency.ru/projects/smm/video-o-kompanii-tochka-molochka/",
-   "h1": [
-    "Сыр, Италия, Кубань: как мы поймали коров и сняли ролик с итальянцем в России для компании «Точка Молочка»"
-   ],
-   "file": "page165.html"
-  },
-  "/projects/smm/kak-menshe-chem-za-god-nabrat-14-mln-prosmotrov-v-tiktok-/": {
-   "title": "Как меньше, чем за год набрать 14 млн просмотров в ТикТок?",
-   "description": "Посмотрите несколько наших проектов, чтобы вы знали, что мы тут действительно работаем. Разработка, реклама или SEO — всё можем. И можем на 10/10.",
-   "keywords": "",
-   "robots": "",
-   "canonical": "https://nuts-agency.ru/projects/smm/kak-menshe-chem-za-god-nabrat-14-mln-prosmotrov-v-tiktok-/",
-   "h1": [
-    "Как меньше, чем за год набрать 14 млн просмотров в ТикТок?"
-   ],
-   "file": "page166.html"
-  },
-  "/projects/web-razraborka/razrabotka-prezentatsionnogo-sayta-s-prodvinutym-poiskom-dlya-enogram/": {
-   "title": "Разработка презентационного сайта с продвинутым поиском для ENOGRAM",
-   "description": "Посмотрите несколько наших проектов, чтобы вы знали, что мы тут действительно работаем. Разработка, реклама или SEO — всё можем. И можем на 10/10.",
-   "keywords": "",
-   "robots": "",
-   "canonical": "https://nuts-agency.ru/projects/web-razraborka/razrabotka-prezentatsionnogo-sayta-s-prodvinutym-poiskom-dlya-enogram/",
-   "h1": [
-    "Разработка презентационного сайта с продвинутым поиском для ENOGRAM"
-   ],
-   "file": "page167.html"
-  }
- }
+   "pages" : {
+      "/projects/web-razraborka/metch-professii-i-prizvaniya-karernyy-portal-dlya-cherkizovo/" : {
+         "file" : "page118.html",
+         "title" : "Мэтч профессии и призвания: карьерный портал для «Черкизово»",
+         "robots" : "",
+         "canonical" : "https://nuts-agency.ru/projects/web-razraborka/metch-professii-i-prizvaniya-karernyy-portal-dlya-cherkizovo/",
+         "description" : "Посмотрите несколько наших проектов, чтобы вы знали, что мы тут действительно работаем. Разработка, реклама или SEO — всё можем. И можем на 10/10.",
+         "keywords" : "",
+         "h1" : [
+            "Мэтч профессии и призвания: карьерный портал для «Черкизово»"
+         ]
+      },
+      "/projects/web-razraborka/razrabotka-sayta-kompanii-ironwork/" : {
+         "title" : "Разработка сайта компании IronWork на OctoberCMS - Nuts Agency",
+         "robots" : "",
+         "file" : "page43.html",
+         "h1" : [
+            "Разработка сайта компании IronWork"
+         ],
+         "keywords" : "",
+         "description" : "Современный адаптивный сайт компании IronWork на OctoberCMS, разработанный в полном соответствии с поставленными задачами.",
+         "canonical" : "https://nuts-agency.ru/projects/web-razraborka/razrabotka-sayta-kompanii-ironwork/"
+      },
+      "/projects/seo/prodvizhenie-sayta-seti-dostavki-sushi-i-rollov-sushifan/" : {
+         "file" : "page61.html",
+         "robots" : "",
+         "title" : "Продвижение сайта сети доставки суши и роллов «Сушифан»",
+         "canonical" : "https://nuts-agency.ru/projects/seo/prodvizhenie-sayta-seti-dostavki-sushi-i-rollov-sushifan/",
+         "description" : "Увеличение количества переходов из поисковых систем в 1,5 раза. Увеличение числа показов сайта в поисковой выдаче по данным Google Search Console в 3 раза.",
+         "keywords" : "",
+         "h1" : [
+            "Продвижение сайта сети доставки суши и роллов «Сушифан»"
+         ]
+      },
+      "/projects/web-razraborka/tochka-molochka/" : {
+         "h1" : [
+            "Разработка лендинга для «Точка молочка»"
+         ],
+         "keywords" : "",
+         "description" : "Разработан имиджевый одностраничный сайт с каталогом продукции, точками дистрибуции и рассказом о всех особенностях производства.",
+         "canonical" : "https://nuts-agency.ru/projects/web-razraborka/tochka-molochka/",
+         "robots" : "",
+         "title" : "Разработка лендинга для «Точка молочка» - Nuts Agency",
+         "file" : "page51.html"
+      },
+      "/projects/reklama/video-o-kompanii-tochka-molochka/" : {
+         "h1" : [
+            "Сыр, Италия, Кубань: как мы поймали коров и сняли ролик с итальянцем в России для компании «Точка Молочка»"
+         ],
+         "keywords" : "",
+         "description" : "Видео о компании Точка Молочка - описание продуктов, услуг и истории компании. Ролик создан Nuts-digital агентством разработки сайтов и продвижения.",
+         "canonical" : "https://nuts-agency.ru/projects/reklama/video-o-kompanii-tochka-molochka/",
+         "robots" : "",
+         "title" : "Кейс - Видео о компании Точка Молочка Nuts Digital",
+         "file" : "page135.html"
+      },
+      "/projects/web-razraborka/limpid-pools/" : {
+         "h1" : [
+            "Разработка презентационного сайта для Limpid Pools"
+         ],
+         "keywords" : "",
+         "description" : "Посмотрите несколько наших проектов, чтобы вы знали, что мы тут действительно работаем. Разработка, реклама или SEO — всё можем. И можем на 10/10.",
+         "canonical" : "https://nuts-agency.ru/projects/web-razraborka/limpid-pools/",
+         "robots" : "",
+         "title" : "Разработка презентационного сайта для Limpid Pools",
+         "file" : "page129.html"
+      },
+      "/projects/smm/" : {
+         "description" : "Наше агентство занимается SMM продвижением. Большое количество интересных кейсов, с которыми можно ознакомиться на нашем сайте. Подробнее о комплексном продвижении в социальных сетях.",
+         "canonical" : "https://nuts-agency.ru/projects/smm/",
+         "h1" : [
+            "SMM"
+         ],
+         "keywords" : "",
+         "title" : "Примеры работ по SMM продвижению - Nuts Agency",
+         "robots" : "",
+         "file" : "page116.html"
+      },
+      "/projects/reklama/kak-sokratit-stoimost-podpischikov-v-4-raza-v-nishe-nedvizhimost/" : {
+         "file" : "page141.html",
+         "robots" : "",
+         "title" : "Сократили стоимость подписчиков в 4 раза в нише «Недвижимость»",
+         "keywords" : "",
+         "h1" : [
+            "Сократили стоимость подписчиков в 4 раза в нише «Недвижимость»"
+         ],
+         "canonical" : "https://nuts-agency.ru/projects/reklama/kak-sokratit-stoimost-podpischikov-v-4-raza-v-nishe-nedvizhimost/",
+         "description" : "Посмотрите несколько наших проектов, чтобы вы знали, что мы тут действительно работаем. Разработка, реклама или SEO — всё можем. И можем на 10/10."
+      },
+      "/articles/smm/osnovy-dizayn-v-didzhital-delimsya-sekretami/" : {
+         "title" : "Основы дизайна сайта и на что стоит обратить внимание",
+         "robots" : "",
+         "file" : "page154.html",
+         "h1" : [
+            "Основы дизайна в диджитал: делимся секретами"
+         ],
+         "keywords" : "",
+         "description" : "Дизайн — это важная часть проекта. Расскажем вам на каких принципах основывается разработка дизайна для диджитал-проектов. И, конечно, поделимся секретами!",
+         "canonical" : "https://nuts-agency.ru/articles/smm/osnovy-dizayn-v-didzhital-delimsya-sekretami/"
+      },
+      "/services/smm/vedenie-sotssetey-pod-klyuch/" : {
+         "file" : "page110.html",
+         "title" : "Ведение соцсетей под ключ (СММ) от Nuts Digital Agency",
+         "robots" : "",
+         "keywords" : "соцсети под ключ создание каналов ведение групп размещение публикаций наполнение контентом креатив",
+         "h1" : [
+            "SMM продвижение под ключ"
+         ],
+         "canonical" : "https://nuts-agency.ru/services/smm/vedenie-sotssetey-pod-klyuch/",
+         "description" : "Анализируем цели и задачи, генерируем креативные решения, подключаем насмотренность и знание трендов, закрываем любой объем работ и сложные задачи по SMM."
+      },
+      "/services/smm/roliki-dzen/" : {
+         "file" : "page113.html",
+         "robots" : "",
+         "title" : "Создание роликов для Дзен Видео от компании Nuts Agency",
+         "canonical" : "https://nuts-agency.ru/services/smm/roliki-dzen/",
+         "description" : "Новый формат контента на платформе Дзена - аналог ТикТока. Аудитория и преимущества нового формата стоят того, чтобы попробовать.",
+         "keywords" : "дзен ролики видео клипы съёмка монтаж публикация",
+         "h1" : [
+            "Ролики Дзен"
+         ]
+      },
+      "/projects/web-razraborka/razrabotka-interaktivnoy-3d-karty-sbs/" : {
+         "file" : "page21.html",
+         "robots" : "",
+         "title" : "Разработка интерактивной 3D-карты СБС — Nuts Agency",
+         "keywords" : "",
+         "h1" : [
+            "Разработка интерактивной 3D-карты СБС"
+         ],
+         "canonical" : "https://nuts-agency.ru/projects/web-razraborka/razrabotka-interaktivnoy-3d-karty-sbs/",
+         "description" : "Поможем разработать удобную и понятную интерактивную карту комплекса, с возможностью поиска нужного магазина и фильтрацией магазинов по категориям."
+      },
+      "/services/prodvigaem-v-poiskovikah/" : {
+         "h1" : [
+            "Продвижение сайта в ТОП 10"
+         ],
+         "keywords" : "продвижение сайтов сео оптимизация раскрутка трафик поисковые системы лиды цены",
+         "description" : "SEO-продвижение сайта позволяет вашему ресурсу занять место на первой странице поиска. Продвижение сайта в ТОП-10. Привлекаем клиентов из поисковых систем.",
+         "canonical" : "https://nuts-agency.ru/services/prodvigaem-v-poiskovikah/",
+         "robots" : "",
+         "title" : "Продвижение сайтов в топ поисковых систем с Nuts Agency",
+         "file" : "page85.html"
+      },
+      "/projects/web-razraborka/aprel/" : {
+         "title" : "Разработка интернет-магазина для сети аптек - Nuts Agency",
+         "robots" : "",
+         "file" : "page16.html",
+         "h1" : [
+            "Разработка интернет-магазина для сети аптек «Апрель»"
+         ],
+         "keywords" : "",
+         "description" : "Наши специалисты разработали сложный и современный интернет-магазин, который покажет в какой аптеке сети какие товары и в каком количестве есть в наличии.",
+         "canonical" : "https://nuts-agency.ru/projects/web-razraborka/aprel/"
+      },
+      "/projects/reklama/kak-menshe-chem-za-god-nabrat-14-mln-prosmotrov-v-tiktok-/" : {
+         "keywords" : "",
+         "h1" : [
+            "Как меньше, чем за год набрать 14 млн просмотров в ТикТок?"
+         ],
+         "canonical" : "https://nuts-agency.ru/projects/reklama/kak-menshe-chem-za-god-nabrat-14-mln-prosmotrov-v-tiktok-/",
+         "description" : "Посмотрите несколько наших проектов, чтобы вы знали, что мы тут действительно работаем. Разработка, реклама или SEO — всё можем. И можем на 10/10.",
+         "file" : "page137.html",
+         "title" : "Как меньше, чем за год набрать 14 млн просмотров в ТикТок?",
+         "robots" : ""
+      },
+      "/company/reviews/" : {
+         "file" : "page10.html",
+         "title" : "Отзывы клиентов о компании Nuts Digital Agency",
+         "robots" : "",
+         "keywords" : "",
+         "h1" : [
+            "Отзывы клиентов"
+         ],
+         "canonical" : "https://nuts-agency.ru/company/reviews/",
+         "description" : "Мы стремимся оказывать качественные услуги с высоким уровнем сервиса. Мы благодарны нашим клиентам за оказанное доверие и положительные отзывы о совместной работе."
+      },
+      "/projects/web-razraborka/razrabotka-sayta-dlya-the-coffee-soldiers/" : {
+         "canonical" : "https://nuts-agency.ru/projects/web-razraborka/razrabotka-sayta-dlya-the-coffee-soldiers/",
+         "description" : "Создание стильного лендинга для The Coffee Soldiers. На сайте должен быть каталог кофе собственной обжарки с матрицей цен в зависимости от объёма поставки.",
+         "keywords" : "",
+         "h1" : [
+            "Разработка сайта для The Coffee Soldiers"
+         ],
+         "file" : "page39.html",
+         "title" : "Разработка сайта для The Coffee Soldiers - Nuts Agency",
+         "robots" : ""
+      },
+      "/services/prodvigaem-v-poiskovikah/audit-sayta/" : {
+         "file" : "page108.html",
+         "robots" : "",
+         "title" : "SEO аудит сайта заказать у Nuts Digital",
+         "canonical" : "https://nuts-agency.ru/services/prodvigaem-v-poiskovikah/audit-sayta/",
+         "description" : "Заказывайте seo аудит сайта в Nuts Digital. Выявляем ошибки и предлагаем комплексное решение согласно с рекомендациями поисковых систем. Аудит вашего сайта от профессионалов!",
+         "keywords" : "аудит продвижения сайта под ключ, сео анализ коммерческих факторов",
+         "h1" : [
+            "Аудит сайта для SEO продвижения"
+         ]
+      },
+      "/projects/smm/video-dlya-kompanii-schaumann/" : {
+         "file" : "page136.html",
+         "robots" : "",
+         "title" : "Создание видео для компании Schaumann",
+         "keywords" : "",
+         "h1" : [
+            "Как мы сняли понятное видео о сложном продукте Schaumann. Без воды, но с коровками!"
+         ],
+         "canonical" : "https://nuts-agency.ru/projects/smm/video-dlya-kompanii-schaumann/",
+         "description" : "Производство видеоролика о продукте для сайта Шауманн. Видео в формате отзыва клиента с практическими рекомендациями. Подробнее на нашем сайте."
+      },
+      "/projects/smm/video-o-kompanii-tochka-molochka/" : {
+         "file" : "page165.html",
+         "robots" : "",
+         "title" : "Кейс - Видео о компании Точка Молочка Nuts Digital",
+         "keywords" : "",
+         "h1" : [
+            "Сыр, Италия, Кубань: как мы поймали коров и сняли ролик с итальянцем в России для компании «Точка Молочка»"
+         ],
+         "canonical" : "https://nuts-agency.ru/projects/smm/video-o-kompanii-tochka-molochka/",
+         "description" : "Видео о компании Точка Молочка - описание продуктов, услуг и истории компании. Ролик создан Nuts-digital агентством разработки сайтов и продвижения."
+      },
+      "/articles/smm/" : {
+         "keywords" : "Маркетинг в современных условиях. Рассказываем, как помогает SMM в продвижении бизнеса",
+         "h1" : [
+            "SMM"
+         ],
+         "canonical" : "https://nuts-agency.ru/articles/smm/",
+         "description" : "Интересные статьи по разработке и продвижению сайтов, а также по интернет рекламе. Конкретные примеры и исследования.",
+         "file" : "page159.html",
+         "robots" : "",
+         "title" : "SMM-маркетинг в интернете"
+      },
+      "/projects/seo/prodvizhenie-sayta-shelby-limited/" : {
+         "file" : "page63.html",
+         "robots" : "",
+         "title" : "Shelby Limited - оптимизация, поддержка и продвижение сайта",
+         "canonical" : "https://nuts-agency.ru/projects/seo/prodvizhenie-sayta-shelby-limited/",
+         "description" : "6 месяцев продвижения: более 35 запросов занимают позиции 1-3 в поисковой системе Яндекс, и более 90 запросов в топ-10. SEO-оптимизация интернет-магазина.",
+         "keywords" : "",
+         "h1" : [
+            "Продвижение интернет-магазина Shelby Limited"
+         ]
+      },
+      "/projects/web-razraborka/razrabotka-mobilnogo-prilozheniya-dlya-torgovogo-tsentra-sbs-megamoll/" : {
+         "h1" : [
+            "Разработка мобильного приложения для торгового центра СБС Мегамолл"
+         ],
+         "keywords" : "",
+         "description" : "Приложение позволяет ознакомиться со всей информацией о событиях торгового центра, купить билеты в кино, найти нужный магазин на карте, оставить отзыв о работе ТРК.",
+         "canonical" : "https://nuts-agency.ru/projects/web-razraborka/razrabotka-mobilnogo-prilozheniya-dlya-torgovogo-tsentra-sbs-megamoll/",
+         "title" : "Разработка мобильного приложения для торгового центра СБС Мегамолл",
+         "robots" : "",
+         "file" : "page25.html"
+      },
+      "/projects/web-razraborka/razrabotka-sayta-reklamno-proizvodstvennoy-kompanii-art-sayd/" : {
+         "title" : "Разработка сайта рекламной компании «Арт Сайд» — Nuts Agency",
+         "robots" : "",
+         "file" : "page18.html",
+         "description" : "Nuts Agency создал удобный и функциональный сайт для компании «Арт Сайд», где клиенты самостоятельно могут выбрать рекламную поверхность и оформить заказ.",
+         "canonical" : "https://nuts-agency.ru/projects/web-razraborka/razrabotka-sayta-reklamno-proizvodstvennoy-kompanii-art-sayd/",
+         "h1" : [
+            "Разработка сайта рекламно-производственной компании «Арт Сайд»"
+         ],
+         "keywords" : ""
+      },
+      "/services/it-resheniya/it-reshenie-dlya-zastroyshchikov/" : {
+         "title" : "IT-решения для застройщиков от Nuts Digital",
+         "robots" : "",
+         "file" : "page115.html",
+         "h1" : [
+            "IT-решения для застройщиков"
+         ],
+         "keywords" : "",
+         "description" : "Это не шаблонное решение, под которое необходимо адаптировать бизнес-процессы и переучивать сотрудников, а индивидуальная разработка для вашей компании.",
+         "canonical" : "https://nuts-agency.ru/services/it-resheniya/it-reshenie-dlya-zastroyshchikov/"
+      },
+      "/projects/web-razraborka/razrabotka-i-podderzhka-dentalmagazine-/" : {
+         "description" : "Гармоничный дизайн. Интуитивно понятная структура. Корректная и быстрая работа на любых устройствах. За месяц работы, сайт посетило более 10 000 человек.",
+         "canonical" : "https://nuts-agency.ru/projects/web-razraborka/razrabotka-i-podderzhka-dentalmagazine-/",
+         "h1" : [
+            "Разработка и поддержка интернет-журнала Dentalmagazine"
+         ],
+         "keywords" : "",
+         "robots" : "",
+         "title" : "Разработка и поддержка Dental Magazine - Nuts Agency",
+         "file" : "page22.html"
+      },
+      "/projects/web-razraborka/razrabotka-sayta-dlya-franshizy-seti-parikmakherskikh-/" : {
+         "robots" : "",
+         "title" : "Разработка сайта для франшизы парикмахерских «Супермен»",
+         "file" : "page38.html",
+         "description" : "Вместо лендинга о франшизе было необходимо сделать современный сайт-визитку, способный жить, продвигаться в поиске, и управляться сотрудником со стороны клиента.",
+         "canonical" : "https://nuts-agency.ru/projects/web-razraborka/razrabotka-sayta-dlya-franshizy-seti-parikmakherskikh-/",
+         "h1" : [
+            "Разработка сайта для франшизы сети парикмахерских «Супермен»"
+         ],
+         "keywords" : ""
+      },
+      "/projects/web-razraborka/lending-dlya-development-plaza/" : {
+         "keywords" : "",
+         "h1" : [
+            "Лендинг для Development-Plaza"
+         ],
+         "canonical" : "https://nuts-agency.ru/projects/web-razraborka/lending-dlya-development-plaza/",
+         "description" : "Разработан одностраничный сайт для компании «Девелопмент-Юг», отражающий преимущества покупки коммерческой недвижимости в Development-Plaza.",
+         "file" : "page163.html",
+         "robots" : "",
+         "title" : "Разработка лендинга для Development-Plaza - Nuts Agency"
+      },
+      "/projects/seo/prodvizhenie-sayta-po-remontu-sadovoy-tekhniki-everest-servis/" : {
+         "file" : "page62.html",
+         "robots" : "",
+         "title" : "Продвижение сайта по ремонту садовой техники «Эверест Сервис»",
+         "keywords" : "",
+         "h1" : [
+            "Продвижение сайта по ремонту садовой техники «Эверест Сервис»"
+         ],
+         "canonical" : "https://nuts-agency.ru/projects/seo/prodvizhenie-sayta-po-remontu-sadovoy-tekhniki-everest-servis/",
+         "description" : "Проведена оптимизация сайта по продаже и ремонту садовой и строительной техники. Посещаемость сайта из поисковых систем за пол года выросла в 2 раза."
+      },
+      "/company/partners/restful-api/" : {
+         "h1" : [
+            "Restful API"
+         ],
+         "keywords" : "",
+         "description" : "REST API может использоваться любым приложением, которое может подключаться к Интернету. Мы используем REST API при разработке наших проектов.",
+         "canonical" : "https://nuts-agency.ru/company/partners/restful-api/",
+         "robots" : "",
+         "title" : "REST API позволяет вашему приложению взаимодействовать с другими",
+         "file" : "page72.html"
+      },
+      "/projects/seo/" : {
+         "file" : "page58.html",
+         "robots" : "",
+         "title" : "Кейсы по SEO-продвижению сайтов от Nuts Agency",
+         "canonical" : "https://nuts-agency.ru/projects/seo/",
+         "description" : "У нашей компании имеется множество примеров успешного продвижения  сайтов. SEO-оптимизация, интернет-магазинов, сайтов визиток, корпоративных сайтов.",
+         "keywords" : "",
+         "h1" : [
+            "SEO продвижение"
+         ]
+      },
+      "/projects/web-razraborka/kak-my-razrabotali-sayt-dlya-korporatsii-development-yug/" : {
+         "canonical" : "https://nuts-agency.ru/projects/web-razraborka/kak-my-razrabotali-sayt-dlya-korporatsii-development-yug/",
+         "description" : "Посмотрите несколько наших проектов, чтобы вы знали, что мы тут действительно работаем. Разработка, реклама или SEO — всё можем. И можем на 10/10.",
+         "keywords" : "",
+         "h1" : [
+            "Разработка мультирегионального сайта для корпорации «Девелопмент-Юг»"
+         ],
+         "file" : "page119.html",
+         "robots" : "",
+         "title" : "Разработка мультирегионального сайта для корпорации «Девелопмент-Юг»"
+      },
+      "/projects/web-razraborka/razrabotka-elektronnoy-sistemy-tenderov-dlya-korporatsii-development-yug/" : {
+         "description" : "Посмотрите несколько наших проектов, чтобы вы знали, что мы тут действительно работаем. Разработка, реклама или SEO — всё можем. И можем на 10/10.",
+         "canonical" : "https://nuts-agency.ru/projects/web-razraborka/razrabotka-elektronnoy-sistemy-tenderov-dlya-korporatsii-development-yug/",
+         "h1" : [
+            "Разработка электронной системы тендеров для корпорации «Девелопмент-Юг»"
+         ],
+         "keywords" : "",
+         "robots" : "",
+         "title" : "Разработка электронной системы тендеров для корпорации «Девелопмент-Юг»",
+         "file" : "page125.html"
+      },
+      "/projects/web-razraborka/klyuchavto-veb-offer-i-chat-kviz/" : {
+         "title" : "Веб-Оффер и чат-квиз для «КЛЮЧАВТО» | Nuts Digital Agency",
+         "robots" : "",
+         "file" : "page48.html",
+         "h1" : [
+            "Веб-оффер и чат-квиз для «КЛЮЧАВТО»"
+         ],
+         "keywords" : "",
+         "description" : "КЛЮЧАВТО получил два качественных сервиса, являющихся дополнительным инструментом для повышения лояльности и удобства покупателей.",
+         "canonical" : "https://nuts-agency.ru/projects/web-razraborka/klyuchavto-veb-offer-i-chat-kviz/"
+      },
+      "/services/smm/" : {
+         "keywords" : "смм продвижение соц сетей ведение страниц раскрутка аккаунтов",
+         "h1" : [
+            "SMM услуги. Ведение соцсетей"
+         ],
+         "canonical" : "https://nuts-agency.ru/services/smm/",
+         "description" : "Генерируем креативные решения для ведения соцсетей, имеем богатый опыт и знание трендов. Закрываем большой объем работ и сложные задачи по SMM продвижению.",
+         "file" : "page90.html",
+         "title" : "SMM продвижение в социальных сетях - агентство Nuts Agency",
+         "robots" : ""
+      },
+      "/projects/seo/prodvizhenie-internet-zhurnala-dlya-stomatologov-dental-magazine/" : {
+         "canonical" : "https://nuts-agency.ru/projects/seo/prodvizhenie-internet-zhurnala-dlya-stomatologov-dental-magazine/",
+         "description" : "Проведены работы по оптимизации сайта - интернет-журнала по стоматологии. Посещаемость сайта из поисковых систем за пол года выросла в 1,5 раза.",
+         "keywords" : "",
+         "h1" : [
+            "Продвижение интернет-журнала для стоматологов Dental Magazine"
+         ],
+         "file" : "page59.html",
+         "title" : "Продвижение интернет-журнала для стоматологов Dental Magazine",
+         "robots" : ""
+      },
+      "/" : {
+         "file" : "page1.html",
+         "robots" : "",
+         "title" : "Разработка и продвижение сайтов в Краснодаре - Nuts Agency",
+         "keywords" : "",
+         "h1" : [
+            "Разработка и оптимизация сайтов"
+         ],
+         "canonical" : "https://nuts-agency.ru/",
+         "description" : "Занимаемся интернет-маркетингом 24/7.  Беремся за крупные и сложные проекты. Выходим за рамки и превращаем нереальные варианты в реальные.  Решаем любые задачи."
+      },
+      "/company/partners/october-cms/" : {
+         "title" : "October CMS - платформа с открытым исходным кодом",
+         "robots" : "",
+         "file" : "page68.html",
+         "h1" : [
+            "October CMS"
+         ],
+         "keywords" : "",
+         "description" : "Мощный framework Laravel под капотом. Не работает с php ниже 7 версии. Технологичен, быстр и прекрасен. Нужен качественный сайт — обращайтесь в Nuts Agency.",
+         "canonical" : "https://nuts-agency.ru/company/partners/october-cms/"
+      },
+      "/services/prodvigaem-v-poiskovikah/prodvizhenie-v-google/" : {
+         "file" : "page107.html",
+         "robots" : "",
+         "title" : "Продвижение сайта в Google, обзор основных критериев",
+         "canonical" : "https://nuts-agency.ru/services/prodvigaem-v-poiskovikah/prodvizhenie-v-google/",
+         "description" : "Google использует более 200 ключевых факторов для ранжирования веб-сайтов. Заказывая продвижение в компании Nuts, вы можете быть уверены в качестве услуг.",
+         "keywords" : "Google оптимизация сайта под алгоритмы поисковых систем",
+         "h1" : [
+            "Продвижение в Google"
+         ]
+      },
+      "/services/reklamiryem/kontekstnaya-reklama/" : {
+         "robots" : "",
+         "title" : "Настройка контекстной рекламы для сайта - услуги NUTS Agency",
+         "file" : "page82.html",
+         "description" : "Контекстная реклама – это быстрый способ привести на сайт клиентов или покупателей. Настройка и ведение компаний в Яндекс.Директ, РСЯ и Google Adwords.",
+         "canonical" : "https://nuts-agency.ru/services/reklamiryem/kontekstnaya-reklama/",
+         "h1" : [
+            "Контекстная реклама"
+         ],
+         "keywords" : ""
+      },
+      "/company/vacancy/" : {
+         "robots" : "",
+         "title" : "Вакансии компании Nuts Agency в Краснодаре",
+         "file" : "page11.html",
+         "h1" : [
+            "Вакансии"
+         ],
+         "keywords" : "",
+         "description" : "Ищем специалиста, который имеет опыт самостоятельного создания, ведения и анализа рекламных кампаний. Работа в офисе по адресу: Краснодар, Красная 155/2.",
+         "canonical" : "https://nuts-agency.ru/company/vacancy/"
+      },
+      "/projects/web-razraborka/refaktoring-sayta-alkoteka/" : {
+         "file" : "page42.html",
+         "title" : "Модернизация сайта магазинов «Алкотека» с переработкой кода",
+         "robots" : "",
+         "canonical" : "https://nuts-agency.ru/projects/web-razraborka/refaktoring-sayta-alkoteka/",
+         "description" : "Мы переработали код сайта «Алкотека», без изменения внешнего вида, для смены технологий на более масштабируемые, создать новый механизм для интеграции с 1С.",
+         "keywords" : "",
+         "h1" : [
+            "Рефакторинг сайта «Алкотека»"
+         ]
+      },
+      "/projects/reklama/reklamnaya-kampaniya-vw-keyauto-krasnodar/" : {
+         "h1" : [
+            "Рекламная кампания дилерского центра Volkswagen «КЛЮЧАВТО Краснодар»"
+         ],
+         "keywords" : "",
+         "description" : "Семь раз отмерь – один раз отрежь. Агентство Nuts Agency поможет составить медиаплан перед запуском рекламной кампании, чтобы застраховать Вас от непредвиденных ситуаций",
+         "canonical" : "https://nuts-agency.ru/projects/reklama/reklamnaya-kampaniya-vw-keyauto-krasnodar/",
+         "title" : "Рекламная кампания «Фольксваген Краснодар» — Nuts Agency",
+         "robots" : "",
+         "file" : "page54.html"
+      },
+      "/company/vacancy/spetsialist-po-kontekstnoy-reklame/" : {
+         "file" : "page12.html",
+         "robots" : "",
+         "title" : "Вакансии компании Nuts Agency в Краснодаре",
+         "canonical" : "https://nuts-agency.ru/company/vacancy/spetsialist-po-kontekstnoy-reklame/",
+         "description" : "Ищем специалиста, который имеет опыт самостоятельного создания, ведения и анализа рекламных кампаний. Работа в офисе по адресу: Краснодар, Красная 155/2.",
+         "keywords" : "",
+         "h1" : [
+            "Вакансии"
+         ]
+      },
+      "/articles/smm/legko-i-bystro-servisy-dlya-raboty-s-kontentom-/" : {
+         "keywords" : "контент, сервисы для работы с контентом, приложения, визуальный контент.",
+         "h1" : [
+            "Легко и быстро: Сервисы для работы с контентом"
+         ],
+         "canonical" : "https://nuts-agency.ru/articles/smm/legko-i-bystro-servisy-dlya-raboty-s-kontentom-/",
+         "description" : "Откройте мир современных сервисов для эффективной и быстрой работы с контентом.  Узнайте, как автоматизированные инструменты могут сделать управление контентом легким и эффективным",
+         "file" : "page155.html",
+         "title" : "Легко и быстро: Сервисы для работы с контентом",
+         "robots" : ""
+      },
+      "/company/partners/nuxt-js/" : {
+         "file" : "page78.html",
+         "robots" : "",
+         "title" : "Nuxt.js — фреймворк для создания приложений на Vue.js",
+         "canonical" : "https://nuts-agency.ru/company/partners/nuxt-js/",
+         "description" : "Преимущества Nuxt.js: простое создание универсальных приложений, статический рендеринг, автоматическое разбиение кода, удобная структура проекта по умолчанию.",
+         "keywords" : "",
+         "h1" : [
+            "Nuxt.js"
+         ]
+      },
+      "/articles/prodvizhenie/garantii-v-seo/" : {
+         "file" : "page95.html",
+         "robots" : "",
+         "title" : "Гарантия результата в SEO продвижении: трафик, позиции, лиды",
+         "canonical" : "https://nuts-agency.ru/articles/prodvizhenie/garantii-v-seo/",
+         "description" : "Что обещают агентства когда дают гарантии на продвижение сайта? Действительно ли гарантии являются выполнимыми? Nuts Digital: мы не даем гарантий - мы делаем!",
+         "keywords" : "",
+         "h1" : [
+            "Гарантии в SEO"
+         ]
+      },
+      "/projects/seo/prodvizhenie-sayta-salona-krasoty-colba/" : {
+         "robots" : "",
+         "title" : "Кейс про продвижение сайта салона красоты в Москве ColBa",
+         "file" : "page146.html",
+         "description" : "Продвижение сайта салона красоты в Москве. Разработка структуры, улучшение юзабилити, оптимизация мета-тегов и написание текстов. Рост позиций и заявок.",
+         "canonical" : "https://nuts-agency.ru/projects/seo/prodvizhenie-sayta-salona-krasoty-colba/",
+         "h1" : [
+            "Формула трафика: как мы вывели сайт салона красоты ColBa в топ поисковой выдачи"
+         ],
+         "keywords" : ""
+      },
+      "/services/razrabatyvaem/landing-page/" : {
+         "canonical" : "https://nuts-agency.ru/services/razrabatyvaem/landing-page/",
+         "description" : "Создаем landing page в короткие сроки. Высокие конверсионные показатели. Доступные цены. Разработка лендинга с индивидуальным дизайном и под любые цели.",
+         "keywords" : "",
+         "h1" : [
+            "Лендинг (landing page) создание под ключ"
+         ],
+         "file" : "page105.html",
+         "robots" : "",
+         "title" : "Лендинг под ключ. Разработка landing page - Nuts Agency"
+      },
+      "/projects/reklama/reklamnaya-kampaniya-dlya-sayta-avantsto-po-remontu-avto/" : {
+         "keywords" : "",
+         "h1" : [
+            "Рекламная кампания для сайта «АвантСТО» по ремонту авто"
+         ],
+         "canonical" : "https://nuts-agency.ru/projects/reklama/reklamnaya-kampaniya-dlya-sayta-avantsto-po-remontu-avto/",
+         "description" : "Привлечение на сайт максимум качественного трафика за выделенный клиентом бюджет, еженедельная чистка &quot;мусорных&quot; запросов. Качественная настройка контекста.",
+         "file" : "page57.html",
+         "title" : "Рекламная кампания для сайта «АвантСТО» по ремонту авто",
+         "robots" : ""
+      },
+      "/projects/reklama/otkrytie-novogo-dilerskogo-tsentra-foltsvagen/" : {
+         "file" : "page53.html",
+         "robots" : "",
+         "title" : "Открытие нового дилерского центра Фольцваген — Nuts Agency",
+         "keywords" : "",
+         "h1" : [
+            "Анонс открытия нового дилерского центра Volkswagen «КЛЮЧАВТО Краснодар»"
+         ],
+         "canonical" : "https://nuts-agency.ru/projects/reklama/otkrytie-novogo-dilerskogo-tsentra-foltsvagen/",
+         "description" : "Анонсировать открытие нового дилерского центра Фольцваген в формате digital в Краснодаре. Опубликовать приглашение на открытие — доверьте эту задачу Nuts Agency"
+      },
+      "/projects/web-razraborka/razrabotka-sayta-dlya-aktsii-lays/" : {
+         "file" : "page29.html",
+         "robots" : "",
+         "title" : "Создание лендинга для акции Lays под ключ - Nuts Agency",
+         "canonical" : "https://nuts-agency.ru/projects/web-razraborka/razrabotka-sayta-dlya-aktsii-lays/",
+         "description" : "Кейс по созданию промо-сайта для Lays. Здесь вы увидите механику регистрации, интерактивные элементы, а таже сочный дизайн, разработанный нашим агентством.",
+         "keywords" : "",
+         "h1" : [
+            "Разработка сайта для акции Lays"
+         ]
+      },
+      "/projects/web-razraborka/razrabotka-korporativnogo-sayta-dlya-kompanii-profpotok/" : {
+         "h1" : [
+            "Разработка корпоративного сайта для компании «Профпоток»"
+         ],
+         "keywords" : "",
+         "description" : "Сайт получился стильный, чётко отражающий как позицию и услуги компании, так и конкретную пользу для потенциального партнёра и в меру динамичный.",
+         "canonical" : "https://nuts-agency.ru/projects/web-razraborka/razrabotka-korporativnogo-sayta-dlya-kompanii-profpotok/",
+         "robots" : "",
+         "title" : "Разработка корпоративного сайта для компании «Профпоток»",
+         "file" : "page50.html"
+      },
+      "/projects/web-razraborka/korporativnyy-portal-dlya-ilskogo-npz/" : {
+         "h1" : [
+            "Разработка портала для корпоративной коммуникации отделов Ильского НПЗ"
+         ],
+         "keywords" : "",
+         "description" : "Посмотрите несколько наших проектов, чтобы вы знали, что мы тут действительно работаем. Разработка, реклама или SEO — всё можем. И можем на 10/10.",
+         "canonical" : "https://nuts-agency.ru/projects/web-razraborka/korporativnyy-portal-dlya-ilskogo-npz/",
+         "robots" : "",
+         "title" : "Разработка портала для корпоративной коммуникации отделов Ильского НПЗ",
+         "file" : "page131.html"
+      },
+      "/projects/web-razraborka/redizayn-i-podderzhka-sayta-development-yug/" : {
+         "keywords" : "",
+         "h1" : [
+            "Редизайн и поддержка сайта «Девелопмент-Юг»"
+         ],
+         "canonical" : "https://nuts-agency.ru/projects/web-razraborka/redizayn-i-podderzhka-sayta-development-yug/",
+         "description" : "В рамках поддержки сайта были проведены следующие работы: редизайн главной страницы; разработка фильтра для подбора квартир по параметрам; интеграция каталога с 1С.",
+         "file" : "page20.html",
+         "title" : "Редизайн и поддержка сайта «Девелопмент Юг» — Nuts Agency",
+         "robots" : ""
+      },
+      "/projects/web-razraborka/razrabotka-ploshchadki-po-zakupkam-dlya-sk-semya/" : {
+         "keywords" : "",
+         "h1" : [
+            "Разработка площадки по закупкам для «СК Семья»"
+         ],
+         "canonical" : "https://nuts-agency.ru/projects/web-razraborka/razrabotka-ploshchadki-po-zakupkam-dlya-sk-semya/",
+         "description" : "Посмотрите несколько наших проектов, чтобы вы знали, что мы тут действительно работаем. Разработка, реклама или SEO — всё можем. И можем на 10/10.",
+         "file" : "page133.html",
+         "title" : "Разработка площадки по закупкам для «СК Семья»",
+         "robots" : ""
+      },
+      "/services/podderzhivaem/informatsionnaya-podderzhka-sayta/" : {
+         "keywords" : "",
+         "h1" : [
+            "Информационная поддержка сайта"
+         ],
+         "canonical" : "https://nuts-agency.ru/services/podderzhivaem/informatsionnaya-podderzhka-sayta/",
+         "description" : "Информационная поддержка – комплексная услуга, позволяющая обновлять и поддерживать в актуальном состоянии информацию на вашем сайте.",
+         "file" : "page89.html",
+         "title" : "Информационная поддержка сайта - Nuts Agency",
+         "robots" : ""
+      },
+      "/projects/seo/prodvizhenie-i-podderzhka-sayta-trk-sbs-megamoll/" : {
+         "title" : "Продвижение и поддержка сайта ТРК «СБС Мегамолл»",
+         "robots" : "",
+         "file" : "page64.html",
+         "description" : "Этот кейс о долгосрочном и продуктивном сотрудничестве с одним из крупнейших торгово-развлекательных центров города Краснодар — ТРК «СБС Мегамолл».",
+         "canonical" : "https://nuts-agency.ru/projects/seo/prodvizhenie-i-podderzhka-sayta-trk-sbs-megamoll/",
+         "h1" : [
+            "Продвижение и поддержка сайта ТРК «СБС Мегамолл»"
+         ],
+         "keywords" : ""
+      },
+      "/projects/web-razraborka/redizayn-sayta-sbs-megamoll/" : {
+         "file" : "page26.html",
+         "title" : "Редизайн сайта СБС Мегамолл. Создание нового дизайна",
+         "robots" : "",
+         "keywords" : "",
+         "h1" : [
+            "Редизайн сайта СБС Мегамолл"
+         ],
+         "canonical" : "https://nuts-agency.ru/projects/web-razraborka/redizayn-sayta-sbs-megamoll/",
+         "description" : "Создание нового сайта: современного, комфортного, интуитивно понятного для пользователей, с удобным интерфейсом для просмотра информации о ТРК «СБС Мегамолл»."
+      },
+      "/projects/web-razraborka/lending-dlya-patrik-mari/" : {
+         "robots" : "",
+         "title" : "Разработка лендинга для кулинарии «Патрик & Мари» - Nuts",
+         "file" : "page130.html",
+         "description" : "Получился очень аккуратный, понятный и стильный лендинг, закрывающий первичные вопросы клиентов о заказных тортах. Разработали удобную карту кафе и доставки.",
+         "canonical" : "https://nuts-agency.ru/projects/web-razraborka/lending-dlya-patrik-mari/",
+         "h1" : [
+            "Разработка адаптивного лендинга для сети «Патрик & Мари»"
+         ],
+         "keywords" : ""
+      },
+      "/articles/project-management/scrum/" : {
+         "title" : "Scrum - методика для разработки и поддержки сложных проектов",
+         "robots" : "",
+         "file" : "",
+         "h1" : [
+            "Scrum"
+         ],
+         "keywords" : "",
+         "description" : "Scrum логично использовать для прогноза и управления рисками проекта. Реализовать это можно с помощью итеративного подхода, на который он опирается.",
+         "canonical" : "https://nuts-agency.ru/articles/project-management/scrum/"
+      },
+      "/company/partners/laravel/" : {
+         "robots" : "",
+         "title" : "Laravel - мощный фреймворк для решения задач бизнеса",
+         "file" : "page67.html",
+         "description" : "Если вы устали от уныния, хотите классный сайт на разработанный на фреймворке Laravel, клиентов и прибыли — посмотрите наши кейсы и заполните заявку.",
+         "canonical" : "https://nuts-agency.ru/company/partners/laravel/",
+         "h1" : [
+            "Laravel"
+         ],
+         "keywords" : ""
+      },
+      "/articles/prodvizhenie/gayd-pochemu-vash-sayt-rabotaet-neeffektivno/" : {
+         "h1" : [
+            "Гайд: Почему ваш сайт работает неэффективно"
+         ],
+         "keywords" : "",
+         "description" : "Какие ошибки делают ваш сайт менее эффективным и как их исправить. Важные советы для улучшения производительности вашего веб-ресурса.",
+         "canonical" : "https://nuts-agency.ru/articles/prodvizhenie/gayd-pochemu-vash-sayt-rabotaet-neeffektivno/",
+         "title" : "Гайд: Почему ваш сайт работает неэффективно",
+         "robots" : "",
+         "file" : "page156.html"
+      },
+      "/projects/reklama/obrashcheniya-po-36-rubley-v-nishe-fitnes-klub/" : {
+         "file" : "page140.html",
+         "title" : "Кейс Nuts Digital - Как мы получили обращения по 36 рублей в нише фитнес-клубов",
+         "robots" : "",
+         "canonical" : "https://nuts-agency.ru/projects/reklama/obrashcheniya-po-36-rubley-v-nishe-fitnes-klub/",
+         "description" : "Узнайте, как специалисты Nuts Digital достигли обращений в контекстной рекламе по 36 рублей в сфере фитнес-клубов. Читайте наш кейс и узнайте о стратегии и тактиках, которые привели к этим результатам.",
+         "keywords" : "",
+         "h1" : [
+            "Рекламная кампания для фитнес-клуба «Джиматика»: обращения по 36 рублей в нише «фитнес-клуб»"
+         ]
+      },
+      "/projects/web-razraborka/razrabotka-crm-sistemy-dlya-franshizy-supermen/" : {
+         "title" : "Разработка CRM-системы для франшизы «Супермен»",
+         "robots" : "",
+         "file" : "page123.html",
+         "h1" : [
+            "Разработка CRM-системы для франшизы «Супермен»"
+         ],
+         "keywords" : "",
+         "description" : "Посмотрите несколько наших проектов, чтобы вы знали, что мы тут действительно работаем. Разработка, реклама или SEO — всё можем. И можем на 10/10.",
+         "canonical" : "https://nuts-agency.ru/projects/web-razraborka/razrabotka-crm-sistemy-dlya-franshizy-supermen/"
+      },
+      "/projects/web-razraborka/razrabotka-promosayta-kachay-press-kachay-muzyku-/" : {
+         "keywords" : "",
+         "h1" : [
+            "Разработка промосайта «Качай пресс! Качай музыку!»"
+         ],
+         "canonical" : "https://nuts-agency.ru/projects/web-razraborka/razrabotka-promosayta-kachay-press-kachay-muzyku-/",
+         "description" : "Результатом разработки стал сочный промосайт с удобной регистрацией в конкурсе. Яркие цвета воплотились в стильный дизайн согласно брендбукам продвигаемой продукции.",
+         "file" : "page30.html",
+         "robots" : "",
+         "title" : "Разработка промосайта «Качай пресс! Качай музыку!» под ключ"
+      },
+      "/company/vacancy/seo-spetsialist-seo-optimizator/" : {
+         "description" : "Nuts Digital Agency ищет уверенного в своих силах сотрудника на должность SEO-специалист. Требуются специалисты с опытом SEO-продвижения сайтов не менее года.",
+         "canonical" : "https://nuts-agency.ru/company/vacancy/seo-spetsialist-seo-optimizator/",
+         "h1" : [
+            "SEO-специалист / SEO-оптимизатор"
+         ],
+         "keywords" : "",
+         "robots" : "",
+         "title" : "SEO-специалист/SEO-оптимизатор - вакансия агентства Nuts Digital",
+         "file" : "page162.html"
+      },
+      "/services/prodvigaem-v-poiskovikah/prodvizhenie-v-yandeks/" : {
+         "h1" : [
+            "Продвижение в Яндекс"
+         ],
+         "keywords" : "яндекс seo продвижение сайта и оптимизация под алгоритмы поисковой системы",
+         "description" : "Заказывайте продвижение сайта в Яндекс. Мы поделимся основными критериями «качественного сайта», который сможет занять позиции в топ 10 поисковой выдачи Яндекс.",
+         "canonical" : "https://nuts-agency.ru/services/prodvigaem-v-poiskovikah/prodvizhenie-v-yandeks/",
+         "title" : "Продвижение сайта в Яндекс в Nuts Digital",
+         "robots" : "",
+         "file" : "page109.html"
+      },
+      "/projects/web-razraborka/ais/" : {
+         "canonical" : "https://nuts-agency.ru/projects/web-razraborka/ais/",
+         "description" : "Nuts Agency разработает сайт совместно с самой лучшей дизайн-студией на Юге России Eleven. Фирменный стиль и дизайн от них, вся разработка полностью наша.",
+         "keywords" : "",
+         "h1" : [
+            "Создание интернет-магазина халяльной косметики AIS"
+         ],
+         "file" : "page17.html",
+         "title" : "Создание интернет-магазина халяльной косметики AIS — Nuts Agency",
+         "robots" : ""
+      },
+      "/articles/prodvizhenie/11-mesto-v-reytinge-seo-glazami-klientov-2022/" : {
+         "canonical" : "https://nuts-agency.ru/articles/prodvizhenie/11-mesto-v-reytinge-seo-glazami-klientov-2022/",
+         "description" : "В 2022 году, агентство Nuts Agency поднялось на 17 пунктов в рейтинге &quot;SEO глазами клиента&quot;, и заняло 11 место!",
+         "keywords" : "",
+         "h1" : [
+            "11 место в рейтинге SEO глазами клиентов 2022"
+         ],
+         "file" : "page157.html",
+         "title" : "11 место в рейтинге SEO глазами клиентов 2022",
+         "robots" : ""
+      },
+      "/projects/web-razraborka/razrabotka-sayta-upravlyay-zhiznyu/" : {
+         "h1" : [
+            "Разработка сайта «Управляй жизнью»"
+         ],
+         "keywords" : "",
+         "description" : "Создание одностраничного сайта, который максимально полно раскроет идею сообщества #Управляйжизнью. Планируется развитие проекта и добавление функционала.",
+         "canonical" : "https://nuts-agency.ru/projects/web-razraborka/razrabotka-sayta-upravlyay-zhiznyu/",
+         "title" : "Разработка сайта \"Управляй жизнью\" - Nuts Digital Agency",
+         "robots" : "",
+         "file" : "page34.html"
+      },
+      "/company/requisites/" : {
+         "canonical" : "https://nuts-agency.ru/company/requisites/",
+         "description" : "Компания Nuts Agency занимается созданием и продвижением сайтов. Для получения дополнительных документов вы можете обратиться в бухгалтерию нашей компании.",
+         "keywords" : "",
+         "h1" : [
+            "Наши реквизиты"
+         ],
+         "file" : "page9.html",
+         "title" : "Реквизиты компании Nuts - разработка и оптимизация сайта",
+         "robots" : ""
+      },
+      "/company/partners/react-native/" : {
+         "keywords" : "",
+         "h1" : [
+            "React Native"
+         ],
+         "canonical" : "https://nuts-agency.ru/company/partners/react-native/",
+         "description" : "Хотите классное кроссплатформенное мобильное приложение на React Native в разумные сроки и по доступной цене? Заполните заявку на сайте или напишите в чат.",
+         "file" : "page70.html",
+         "title" : "React Native – фреймворк для создания приложений на JavaScript",
+         "robots" : ""
+      },
+      "/projects/smm/kompleksnoe-prodvizhenie-federalnogo-developera-dogma-v-sotsialnykh-setyakh-/" : {
+         "file" : "page120.html",
+         "robots" : "",
+         "title" : "Комплексное продвижение федерального девелопера DOGMA в социальных сетях",
+         "canonical" : "https://nuts-agency.ru/projects/smm/kompleksnoe-prodvizhenie-federalnogo-developera-dogma-v-sotsialnykh-setyakh-/",
+         "description" : "Посмотрите несколько наших проектов, чтобы вы знали, что мы тут действительно работаем. Разработка, реклама или SEO — всё можем. И можем на 10/10.",
+         "keywords" : "",
+         "h1" : [
+            "Комплексное продвижение федерального девелопера DOGMA в социальных сетях"
+         ]
+      },
+      "/projects/web-razraborka/razrabotka-i-vnedrenie-shakhmatki-v-crm-dlya-development-yug/" : {
+         "description" : "Шахматка в строительной организации — один из основных инструментов менеджера по продажам. Теперь актуальные данные о квартирах прямо в CRM. Шахматка квартир.",
+         "canonical" : "https://nuts-agency.ru/projects/web-razraborka/razrabotka-i-vnedrenie-shakhmatki-v-crm-dlya-development-yug/",
+         "h1" : [
+            "CRM с шахматкой для корпорации «Девелопмент-Юг»"
+         ],
+         "keywords" : "",
+         "robots" : "",
+         "title" : "Разработка и внедрение шахматки с CRM для «Девелопмент-Юг»",
+         "file" : "page23.html"
+      },
+      "/services/prodvigaem-v-poiskovikah/seo/" : {
+         "canonical" : "https://nuts-agency.ru/services/prodvigaem-v-poiskovikah/seo/",
+         "description" : "Выполняем seo оптимизацию сайтов в Краснодаре. Профессиональный подход и работа на результат в Nuts Agency. Seo оптимизация и продвижение сайтов под ключ!",
+         "keywords" : "оптимизация сайта сео, сео оптимизация",
+         "h1" : [
+            "Поисковая SEO оптимизация сайта"
+         ],
+         "file" : "page86.html",
+         "title" : "Оптимизация сайтов под поисковые запросы в Nuts Agency",
+         "robots" : ""
+      },
+      "/services/smm/posevy-v-sotsialnykh-setyakh/" : {
+         "h1" : [
+            "Посевы в социальных сетях"
+         ],
+         "keywords" : "посевы в группах социальных сетей работа с блогерами публикации постов",
+         "description" : "Услуги по размещению публикаций в популярных группах в соцсетях под ключ. Посевы в Телеграм, Вконтакте, Дзен, Youtube, Rutube, и других социальных сетях.",
+         "canonical" : "https://nuts-agency.ru/services/smm/posevy-v-sotsialnykh-setyakh/",
+         "title" : "Посевы в социальных сетях и публикации у блогеров с Nuts Agency",
+         "robots" : "",
+         "file" : "page111.html"
+      },
+      "/projects/seo/prodvizhenie-sayta-po-dostavke-sushi-v-krasnodare-chast-2/" : {
+         "file" : "page66.html",
+         "title" : "Продвижение сайта по доставке суши в Краснодаре - Sushi Fun",
+         "robots" : "",
+         "keywords" : "",
+         "h1" : [
+            "Продвижение сайта по доставке суши в Краснодаре (часть 2)"
+         ],
+         "canonical" : "https://nuts-agency.ru/projects/seo/prodvizhenie-sayta-po-dostavke-sushi-v-krasnodare-chast-2/",
+         "description" : "Видимость сайта в поисковых системах Яндекс и Google по 277 запросам ~90%. Кейс по продвижению сайта компании Sushi Fun. Прирост трафика за год - более 20%."
+      },
+      "/company/partners/vue-js/" : {
+         "file" : "page69.html",
+         "robots" : "",
+         "title" : "Vue.js - фреймворк для разработки пользовательского интерфейса",
+         "canonical" : "https://nuts-agency.ru/company/partners/vue-js/",
+         "description" : "Преимущества фреймворка: Vue.js поддерживается всеми браузерами, которые совместимы с ECMAScript 5. Сайты, сделанные на VueJS, работают максимально быстро.",
+         "keywords" : "",
+         "h1" : [
+            "Vue.js"
+         ]
+      },
+      "/company/partners/" : {
+         "title" : "Технологии разработки в компании Nuts Agency",
+         "robots" : "",
+         "file" : "page8.html",
+         "h1" : [
+            "Технологии разработки"
+         ],
+         "keywords" : "",
+         "description" : "Собираем сайты в основном на Laravel, админка OctoberCMS (она на русском, при этом не перегружена ненужными вещами, в отличие от Битрикса, ModX, WordPress).",
+         "canonical" : "https://nuts-agency.ru/company/partners/"
+      },
+      "/projects/seo/prodvizhenie-magazina-stomatologicheskogo-oborudovaniya/" : {
+         "h1" : [
+            "Продвижение магазина стоматологического оборудования"
+         ],
+         "keywords" : "продвижение сайта кейс",
+         "description" : "Продвижение сайта  магазина стоматологического оборудования в Краснодаре. Разработка стратегии и внедрение комплексных доработок на сайте. Оптимизация мета тегов, структуры и дизайна сайта, улучшение ПФ.",
+         "canonical" : "https://nuts-agency.ru/projects/seo/prodvizhenie-magazina-stomatologicheskogo-oborudovaniya/",
+         "robots" : "",
+         "title" : "Кейс о seo продвижении магазина стоматологического оборудования в Краснодаре",
+         "file" : "page148.html"
+      },
+      "/projects/smm/kak-menshe-chem-za-god-nabrat-14-mln-prosmotrov-v-tiktok-/" : {
+         "canonical" : "https://nuts-agency.ru/projects/smm/kak-menshe-chem-za-god-nabrat-14-mln-prosmotrov-v-tiktok-/",
+         "description" : "Посмотрите несколько наших проектов, чтобы вы знали, что мы тут действительно работаем. Разработка, реклама или SEO — всё можем. И можем на 10/10.",
+         "keywords" : "",
+         "h1" : [
+            "Как меньше, чем за год набрать 14 млн просмотров в ТикТок?"
+         ],
+         "file" : "page166.html",
+         "title" : "Как меньше, чем за год набрать 14 млн просмотров в ТикТок?",
+         "robots" : ""
+      },
+      "/projects/web-razraborka/razrabotka-interaktivnoy-karty-sbs-megamall/" : {
+         "robots" : "",
+         "title" : "Разработка интерактивной карты SBS MEGAMALL - Nuts Digital",
+         "file" : "page37.html",
+         "h1" : [
+            "Разработка интерактивной карты SBS MEGAMALL"
+         ],
+         "keywords" : "",
+         "description" : "Интерактивный план торгово-развлекательного комплекса, который помогает хорошо подготовиться к шопингу, и получить максимум удовольствия от посещения «СБС Мегамолл».",
+         "canonical" : "https://nuts-agency.ru/projects/web-razraborka/razrabotka-interaktivnoy-karty-sbs-megamall/"
+      },
+      "/company/vacancy/veb-razrabotchik/" : {
+         "file" : "page13.html",
+         "robots" : "",
+         "title" : "Вакансии компании Nuts Agency в Краснодаре",
+         "canonical" : "https://nuts-agency.ru/company/vacancy/veb-razrabotchik/",
+         "description" : "Ищем специалиста, который имеет опыт самостоятельного создания, ведения и анализа рекламных кампаний. Работа в офисе по адресу: Краснодар, Красная 155/2.",
+         "keywords" : "",
+         "h1" : [
+            "Вакансии"
+         ]
+      },
+      "/company/" : {
+         "description" : "Nuts — digital-агентство полного цикла с упором на веб-разработку и создание сложных проектов. SEO-продвижение, поддержка сайтов и интернет-маркетинг.",
+         "canonical" : "https://nuts-agency.ru/company/",
+         "h1" : [
+            "О компании"
+         ],
+         "keywords" : "",
+         "robots" : "",
+         "title" : "О компании Nuts Digital: разработка и продвижение сайтов",
+         "file" : "page3.html"
+      },
+      "/projects/web-razraborka/razrabotka-sayta-krasnodarskogo-filiala-nmits-mntk-mikrokhirurgiya-glaza-imeni-akademika-s-n-fyedoro/" : {
+         "title" : "Разработка сайта краснодарского филиала «МНТК «Микрохирургия глаза»",
+         "robots" : "",
+         "file" : "page121.html",
+         "description" : "Посмотрите несколько наших проектов, чтобы вы знали, что мы тут действительно работаем. Разработка, реклама или SEO — всё можем. И можем на 10/10.",
+         "canonical" : "https://nuts-agency.ru/projects/web-razraborka/razrabotka-sayta-krasnodarskogo-filiala-nmits-mntk-mikrokhirurgiya-glaza-imeni-akademika-s-n-fyedoro/",
+         "h1" : [
+            "Разработка сайта краснодарского филиала «МНТК «Микрохирургия глаза»"
+         ],
+         "keywords" : ""
+      },
+      "/projects/web-razraborka/razrabotka-sayta-bazar/" : {
+         "canonical" : "https://nuts-agency.ru/projects/web-razraborka/razrabotka-sayta-bazar/",
+         "description" : "Адаптивный сайт-визитка для ресторана The Bazar: меню, новости, доставка, контакты. Сайт должен поддерживать отображение контента на нескольких языках.",
+         "keywords" : "",
+         "h1" : [
+            "Разработка сайта для ресторана «Базар»"
+         ],
+         "file" : "page35.html",
+         "robots" : "",
+         "title" : "Разработка сайта для ресторана «Базар» - Nuts Agency"
+      },
+      "/projects/seo/razvitie-sayta-glavstroyblok-rf/" : {
+         "h1" : [
+            "Раскрутка интернет-магазина Главстройблок.рф"
+         ],
+         "keywords" : "",
+         "description" : "Наполнение сайта статьями по тематике, важный и полезный этап работ! Именно благодаря ему происходит рост посещаемости и улучшение позиций сайта в поисковой выдаче.",
+         "canonical" : "https://nuts-agency.ru/projects/seo/razvitie-sayta-glavstroyblok-rf/",
+         "title" : "Раскрутка сайта Главстройблок.рф в поисковых системах",
+         "robots" : "",
+         "file" : "page65.html"
+      },
+      "/articles/" : {
+         "h1" : [
+            "Блог"
+         ],
+         "keywords" : "",
+         "description" : "Интересные статьи по разработке и продвижению сайтов, а также по интернет рекламе. Конкретные примеры и исследования.",
+         "canonical" : "https://nuts-agency.ru/articles/",
+         "title" : "Блог разработчика сайтов - Nuts Agency",
+         "robots" : "",
+         "file" : "page2.html"
+      },
+      "/services/it-resheniya/" : {
+         "file" : "page114.html",
+         "robots" : "",
+         "title" : "IT-решения для бизнеса под ключ - Nuts Digital Agency",
+         "canonical" : "https://nuts-agency.ru/services/it-resheniya/",
+         "description" : "Nuts Agency может разработать любое IT-решение для вашего бизнеса. Погружаемся в бизнес процессы и разрабатываем индивидуальные решения для каждого клиента.",
+         "keywords" : "",
+         "h1" : [
+            "IT-решения для бизнеса"
+         ]
+      },
+      "/services/reklamiryem/target-reklama/" : {
+         "h1" : [
+            "Таргетированная реклама"
+         ],
+         "keywords" : "",
+         "description" : "Nuts Agency﻿ уже более 5 лет занимается настройкой таргетированной рекламы. Делаем популяризацию бренда для любых сфер.",
+         "canonical" : "https://nuts-agency.ru/services/reklamiryem/target-reklama/",
+         "title" : "Таргетированная реклама - настройка таргетированной рекламы в соцсетях",
+         "robots" : "",
+         "file" : "page106.html"
+      },
+      "/projects/web-razraborka/razrabotka-mobilnogo-prilozheniya-dlya-trts-grad/" : {
+         "file" : "page127.html",
+         "title" : "Разработка мобильного приложения для крупнейшего ТРЦ в Центрально-Черноземном регионе",
+         "robots" : "",
+         "canonical" : "https://nuts-agency.ru/projects/web-razraborka/razrabotka-mobilnogo-prilozheniya-dlya-trts-grad/",
+         "description" : "Посмотрите несколько наших проектов, чтобы вы знали, что мы тут действительно работаем. Разработка, реклама или SEO — всё можем. И можем на 10/10.",
+         "keywords" : "",
+         "h1" : [
+            "Разработка мобильного приложения для крупнейшего ТРЦ в Центрально-Черноземном регионе"
+         ]
+      },
+      "/services/" : {
+         "file" : "page6.html",
+         "title" : "Услуги digital агентства Nuts Agency",
+         "robots" : "",
+         "keywords" : "",
+         "h1" : [
+            "Услуги"
+         ],
+         "canonical" : "https://nuts-agency.ru/services/",
+         "description" : "Наша команда трудится для того, чтобы предоставить решение сложных вопросов для будущего вашего бизнеса. Мы создаем только качественные сайты, которые будут приносить вам прибыль."
+      },
+      "/projects/seo/prodvizhenie-sayta-kliniki-santerra/" : {
+         "robots" : "",
+         "title" : "Продвижение сайта клиники SanTerra (Ставрополь) - Nuts Agency",
+         "file" : "page144.html",
+         "description" : "Увеличение трафика из поисковых систем - более чем в 100 раз, за год работ по продвижению сайта. Рост конверсии по сайту, более чем в 2,5 раза. Подробнее в кейсе.",
+         "canonical" : "https://nuts-agency.ru/projects/seo/prodvizhenie-sayta-kliniki-santerra/",
+         "h1" : [
+            "Продвижение медицинского сайта клиники SanTerra"
+         ],
+         "keywords" : ""
+      },
+      "/services/reklamiryem/" : {
+         "file" : "page81.html",
+         "robots" : "",
+         "title" : "Реклама сайта в интернете - агентство Nuts Agency",
+         "keywords" : "",
+         "h1" : [
+            "Настройка рекламы в интернете"
+         ],
+         "canonical" : "https://nuts-agency.ru/services/reklamiryem/",
+         "description" : "Настройка медийной и контекстной рекламы для сайта. Широкий охват аудитории, индивидуальный подход к каждому клиенту. Приводим целевой трафик."
+      },
+      "/projects/web-razraborka/razrabotka-internet-magazina-dlya-kerasol/" : {
+         "canonical" : "https://nuts-agency.ru/projects/web-razraborka/razrabotka-internet-magazina-dlya-kerasol/",
+         "description" : "Разработали современный, стильный сайт, находящийся под управлением гибкой CMS. Заложен быстрый обмен с базой и возможность подключения новых модулей и разделов.",
+         "keywords" : "",
+         "h1" : [
+            "Разработка интернет-магазина для «Керасоль»"
+         ],
+         "file" : "page132.html",
+         "robots" : "",
+         "title" : "Разработка интернет-магазина для «Керасоль» | Nuts Agency"
+      },
+      "/projects/web-razraborka/sayt-dlya-salona-krasoty-roots/" : {
+         "h1" : [
+            "Сайт для салона красоты ROOTS"
+         ],
+         "keywords" : "",
+         "description" : "Обязательно заглядывайте на rootshair.ru и пишите нам, если хотите создать уникальный сайт, подчеркивающий неповторимость вашего бизнеса — мы это умеем.",
+         "canonical" : "https://nuts-agency.ru/projects/web-razraborka/sayt-dlya-salona-krasoty-roots/",
+         "robots" : "",
+         "title" : "Разработка сайта для салона красоты ROOTS - Nuts Digital",
+         "file" : "page164.html"
+      },
+      "/articles/prodvizhenie/semanticheskoe-yadro/" : {
+         "keywords" : "",
+         "h1" : [
+            "Семантическое ядро"
+         ],
+         "canonical" : "https://nuts-agency.ru/articles/prodvizhenie/semanticheskoe-yadro/",
+         "description" : "Сбор семантического ядра — важный этап, ведь от правильно собранного списка запросов зависит, насколько целевые пользователи будут приходить на ваш сайт.",
+         "file" : "page96.html",
+         "robots" : "",
+         "title" : "Семантическое ядро - что это? Как собрать семантику для сайта?"
+      },
+      "/articles/productivity/frontend-i-bekend-dostupnym-yazykom/" : {
+         "title" : "Фронтенд и бэкенд: доступным языком | Nuts Agency",
+         "robots" : "",
+         "file" : "page98.html",
+         "description" : "Фронтенд — это все, что красиво отображается в браузере, бэкенд — остальное. То есть во втором случае можно использовать любые языки программирования, а в первом ограничиться лишь HTML, CSS и JavaScript.",
+         "canonical" : "https://nuts-agency.ru/articles/productivity/frontend-i-bekend-dostupnym-yazykom/",
+         "h1" : [
+            "Фронтенд и бэкенд: доступным языком"
+         ],
+         "keywords" : ""
+      },
+      "/services/podderzhivaem/tekhnicheskaya-podderzhka-sayta/" : {
+         "file" : "page88.html",
+         "title" : "Техническая поддержка сайта - Nuts Digital Agency",
+         "robots" : "",
+         "canonical" : "https://nuts-agency.ru/services/podderzhivaem/tekhnicheskaya-podderzhka-sayta/",
+         "description" : "Техническая поддержка сайта обеспечивает его доступность для пользователей и функциональность. Наши клиенты: Девелопмент-ЮГ, СБС, Арт Сайд, ГлавСтройБлок.",
+         "keywords" : "",
+         "h1" : [
+            "Техническая поддержка сайта"
+         ]
+      },
+      "/projects/reklama/kak-za-1-god-my-snizili-stoimost-konversii-na-59-dlya-kliniki-flebologii-i-uvelichili-kolichestvo-za/" : {
+         "description" : "Узнайте, как команда Nuts Digital смогла значительно снизить стоимость конверсии на 59%. Изучите кейс и узнайте о нашей успешной стратегии и тактике маркетинга в медицинской нише.",
+         "canonical" : "https://nuts-agency.ru/projects/reklama/kak-za-1-god-my-snizili-stoimost-konversii-na-59-dlya-kliniki-flebologii-i-uvelichili-kolichestvo-za/",
+         "h1" : [
+            "Как за 1 год мы снизили стоимость конверсии на 59%"
+         ],
+         "keywords" : "",
+         "robots" : "",
+         "title" : "Как за 1 год мы снизили стоимость конверсии на 59% для клиники флебологии и увеличили количество заявок в 2 раза",
+         "file" : "page142.html"
+      },
+      "/projects/web-razraborka/razrabotka-prezentatsionnogo-sayta-s-prodvinutym-poiskom-dlya-enogram/" : {
+         "description" : "Посмотрите несколько наших проектов, чтобы вы знали, что мы тут действительно работаем. Разработка, реклама или SEO — всё можем. И можем на 10/10.",
+         "canonical" : "https://nuts-agency.ru/projects/web-razraborka/razrabotka-prezentatsionnogo-sayta-s-prodvinutym-poiskom-dlya-enogram/",
+         "h1" : [
+            "Разработка презентационного сайта с продвинутым поиском для ENOGRAM"
+         ],
+         "keywords" : "",
+         "robots" : "",
+         "title" : "Разработка презентационного сайта с продвинутым поиском для ENOGRAM",
+         "file" : "page167.html"
+      },
+      "/projects/smm/kompleksnoe-prodvizhenie-torgovo-razvlekatelnogo-tsentra-sbs-megamall/" : {
+         "description" : "Результаты SMM продвижения торгово-развлекательного центра SBS Megamall в Краснодаре. Подготовка контент-плана. Разработка макетов и копирайтинг. Ведение компании в социальны сетях. Подробнее о продвижении ТРЦ СБС МЕГАМОЛЛ.",
+         "canonical" : "https://nuts-agency.ru/projects/smm/kompleksnoe-prodvizhenie-torgovo-razvlekatelnogo-tsentra-sbs-megamall/",
+         "h1" : [
+            "Комплексное продвижение торгово-развлекательного центра SBS Megamall"
+         ],
+         "keywords" : "",
+         "title" : "Комплексное продвижение ТРЦ СБС МЕГАМОЛЛ в социальных сетях",
+         "robots" : "",
+         "file" : "page138.html"
+      },
+      "/company/index.php" : {
+         "file" : "page104.html",
+         "robots" : "",
+         "title" : "О компании Nuts Digital: разработка и продвижение сайтов",
+         "keywords" : "",
+         "h1" : [
+            "О компании"
+         ],
+         "canonical" : "https://nuts-agency.ru/company/",
+         "description" : "Nuts — digital-агентство полного цикла с упором на веб-разработку и создание сложных проектов. SEO-продвижение, поддержка сайтов и интернет-маркетинг."
+      },
+      "/company/partners/winter-cms/" : {
+         "title" : "Разработка сайтов на Winter CMS в Nuts Digital",
+         "robots" : "",
+         "file" : "page150.html",
+         "description" : "Собираем сайты на Laravel, админка OctoberCMS (она на русском и не перегружена ненужными вещами, в отличие от Битрикса, ModX, WordPress). Разработка сайтов в Краснодаре.",
+         "canonical" : "https://nuts-agency.ru/company/partners/winter-cms/",
+         "h1" : [
+            "Winter CMS"
+         ],
+         "keywords" : "winter cms, разработка сайтов, разработка веб сайтов, разработка дизайна сайта, создание и разработка сайтов"
+      },
+      "/company/vacancy/junior-seo/" : {
+         "title" : "Вакансия Junior SEO в агентстве Nuts Digital",
+         "robots" : "",
+         "file" : "page161.html",
+         "h1" : [
+            "Junior SEO"
+         ],
+         "keywords" : "",
+         "description" : "Nuts Digital Agency ищет уверенного в себе и своих силах сотрудника на должность Junior SEO. От вас требуется знание основ SEO-продвижения и желание работать.",
+         "canonical" : "https://nuts-agency.ru/company/vacancy/junior-seo/"
+      },
+      "/articles/elektronnaya-kommertsiya/" : {
+         "title" : "Реклама в интернете - что это и для чего?",
+         "robots" : "",
+         "file" : "page101.html",
+         "description" : "В цикле статей, попытаемся разобрать - что такое интернет реклама, и как повысить ее эффективность. А также рассмотрим наиболее популярные вопросы про цифровой маркетинг.",
+         "canonical" : "https://nuts-agency.ru/articles/elektronnaya-kommertsiya/",
+         "h1" : [
+            "Реклама"
+         ],
+         "keywords" : ""
+      },
+      "/company/partners/flutter/" : {
+         "file" : "page77.html",
+         "robots" : "",
+         "title" : "Flutter - фреймворк для создания мобильных приложений",
+         "canonical" : "https://nuts-agency.ru/company/partners/flutter/",
+         "description" : "Кроссплатформенный фреймворк от Google, для создания мобильных приложений под Android, iOS и Fuchsia. Для Fuchsia – это пока единственный способ создать приложение.",
+         "keywords" : "",
+         "h1" : [
+            "Flutter"
+         ]
+      },
+      "/articles/productivity/" : {
+         "canonical" : "https://nuts-agency.ru/articles/productivity/",
+         "description" : "Здесь вы можете узнать, какие технологии мы используем при разработке сайтов, и получить полезную информацию о процессах создания сайтов.",
+         "keywords" : "",
+         "h1" : [
+            "Разработка сайтов"
+         ],
+         "file" : "page97.html",
+         "title" : "Разработка сайтов - как мы работаем? Nuts Digital Agency",
+         "robots" : ""
+      },
+      "/services/podderzhivaem/" : {
+         "file" : "page87.html",
+         "robots" : "",
+         "title" : "Комплексная поддержка и доработка сайтов - Nuts Agency",
+         "keywords" : "техническая информационная поддержка сайта наполнение копирайтинг размещение текстов тестирование сайтов и приложений",
+         "h1" : [
+            "Комплексная поддержка сайта"
+         ],
+         "canonical" : "https://nuts-agency.ru/services/podderzhivaem/",
+         "description" : "Тестирование мобильных приложений и сайтов. Проведение анализа и выявление ошибок. Техническая поддержка и доработка сайтов. Расширение функционала сайта."
+      },
+      "/projects/web-razraborka/mobilnoe-prilozhenie-partnyer-development-yug/" : {
+         "description" : "Причина запуска проекта — вовлечь в продажи недвижимости максимальное большое количество партнёров, и обеспечить их удобным инструментом для работы.",
+         "canonical" : "https://nuts-agency.ru/projects/web-razraborka/mobilnoe-prilozhenie-partnyer-development-yug/",
+         "h1" : [
+            "Разработка мобильного приложения для партнеров корпорации «Девелопмент-Юг»"
+         ],
+         "keywords" : "",
+         "robots" : "",
+         "title" : "Разработка мобильного приложения «Партнёр Девелопмент-Юг»",
+         "file" : "page122.html"
+      },
+      "/projects/" : {
+         "robots" : "",
+         "title" : "Кейсы Nuts Agency",
+         "file" : "page5.html",
+         "h1" : [
+            "Кейсы"
+         ],
+         "keywords" : "",
+         "description" : "Посмотрите несколько наших проектов, чтобы вы знали, что мы тут действительно работаем. Разработка, реклама или SEO — всё можем. И можем на 10/10.",
+         "canonical" : "https://nuts-agency.ru/projects/"
+      },
+      "/company/partners/gitlab/" : {
+         "title" : "GitLab - это онлайн сервис для работы с git репозиториями",
+         "robots" : "",
+         "file" : "page71.html",
+         "h1" : [
+            "GitLab"
+         ],
+         "keywords" : "",
+         "description" : "Возможности GitLab: отслеживание ошибок, деплой, анализ кода; интеграция с разными CI-системами и пр. Это самый важный инструмент для команды разработки.",
+         "canonical" : "https://nuts-agency.ru/company/partners/gitlab/"
+      },
+      "/projects/web-razraborka/sayt-dlya-mezhdunarodnoy-serii-pokernykh-turnirov-ea-poker-tour/" : {
+         "description" : "Посмотрите несколько наших проектов, чтобы вы знали, что мы тут действительно работаем. Разработка, реклама или SEO — всё можем. И можем на 10/10.",
+         "canonical" : "https://nuts-agency.ru/projects/web-razraborka/sayt-dlya-mezhdunarodnoy-serii-pokernykh-turnirov-ea-poker-tour/",
+         "h1" : [
+            "Сайт для международной серии покерных турниров EA Poker Tour"
+         ],
+         "keywords" : "",
+         "robots" : "",
+         "title" : "Сайт для международной серии покерных турниров EA Poker Tour",
+         "file" : "page128.html"
+      },
+      "/projects/web-razraborka/razrabotka-sayta-glavstroyblok-gazobetonnye-bloki-ot-proizvoditelya/" : {
+         "canonical" : "https://nuts-agency.ru/projects/web-razraborka/razrabotka-sayta-glavstroyblok-gazobetonnye-bloki-ot-proizvoditelya/",
+         "description" : "«ГлавСтройБлок» занимается производством газобетонных блоков собственной торговой марки. И мы хотим помочь Вам предоставить возможность пользователю совершить онлайн-заказ и оплатить необходимое количество газоблоков и сопутствующих материалов.",
+         "keywords" : "",
+         "h1" : [
+            "Разработка сайта «ГлавСтройБлок»"
+         ],
+         "file" : "page19.html",
+         "title" : "Разработка сайта «ГлавСтройБлок» — Nuts Agency",
+         "robots" : ""
+      },
+      "/projects/web-razraborka/razrabotka-firmennogo-stilya-i-lendinga-dlya-ozeleni/" : {
+         "canonical" : "https://nuts-agency.ru/projects/web-razraborka/razrabotka-firmennogo-stilya-i-lendinga-dlya-ozeleni/",
+         "description" : "Серверная часть разработана на Laravel+OctoberCMS. Сайт очень быстро можно сделать многостраничным. Рекомендуем зайти на сайт Озелени и полистать портфолио.",
+         "keywords" : "",
+         "h1" : [
+            "Разработка фирменного стиля и лендинга для «ОЗЕЛЕНИ»"
+         ],
+         "file" : "page47.html",
+         "robots" : "",
+         "title" : "Разработка фирменного стиля и лендинга для «ОЗЕЛЕНИ»"
+      },
+      "/projects/web-razraborka/razrabotka-sayta-dlya-ekskursiy-po-portugalii/" : {
+         "file" : "page28.html",
+         "robots" : "",
+         "title" : "Разработка сайта для экскурсий по Португалии - Nuts Agency",
+         "keywords" : "",
+         "h1" : [
+            "Разработка сайта для экскурсий по Португалии"
+         ],
+         "canonical" : "https://nuts-agency.ru/projects/web-razraborka/razrabotka-sayta-dlya-ekskursiy-po-portugalii/",
+         "description" : "Кейс по разработке сайта для экскурсионных туров. Разработка векторной карты, дизайн сайта и иконок городов, подбор фотографий — сайт получился огонь!"
+      },
+      "/projects/reklama/reklamnaya-kampaniya-po-dostavke-sushi-i-rollov-v-krasnodare/" : {
+         "keywords" : "",
+         "h1" : [
+            "Рекламная кампания по доставке суши и роллов в Краснодаре"
+         ],
+         "canonical" : "https://nuts-agency.ru/projects/reklama/reklamnaya-kampaniya-po-dostavke-sushi-i-rollov-v-krasnodare/",
+         "description" : "Посмотрите несколько наших проектов, чтобы вы знали, что мы тут действительно работаем. Разработка, реклама или SEO — всё можем. И можем на 10/10.",
+         "file" : "page56.html",
+         "title" : "Рекламная кампания по доставке суши и роллов в Краснодаре",
+         "robots" : ""
+      },
+      "/articles/productivity/nepreryvnaya-integratsiya-i-dostavka-koda/" : {
+         "file" : "page100.html",
+         "robots" : "",
+         "title" : "Непрерывная интеграция и доставка кода - Nuts Agency",
+         "keywords" : "",
+         "h1" : [
+            "Непрерывная интеграция и доставка кода"
+         ],
+         "canonical" : "https://nuts-agency.ru/articles/productivity/nepreryvnaya-integratsiya-i-dostavka-koda/",
+         "description" : "Автоматизацией выпуска версий и их путешествия по сайтам занимаются специальные программы. Мы используем Docker, GitLab и Teamcity."
+      },
+      "/company/vacancy/rukovoditel-proektov/" : {
+         "file" : "page14.html",
+         "title" : "Менеджер проектов",
+         "robots" : "",
+         "keywords" : "",
+         "h1" : [
+            "Менеджер проектов"
+         ],
+         "canonical" : "https://nuts-agency.ru/company/vacancy/rukovoditel-proektov/",
+         "description" : "Ищем специалиста, который имеет опыт самостоятельного создания, ведения и анализа рекламных кампаний. Работа в офисе по адресу: Краснодар, Красная 155/2."
+      },
+      "/projects/web-razraborka/razrabotka-korporativnogo-sayta-dlya-agentstva-po-upravleniyu-restorannymi-proektami-pelby/" : {
+         "robots" : "",
+         "title" : "Разработка корпоративного сайта для агентства по управлению ресторанными проектами Pelby",
+         "file" : "page124.html",
+         "description" : "Посмотрите несколько наших проектов, чтобы вы знали, что мы тут действительно работаем. Разработка, реклама или SEO — всё можем. И можем на 10/10.",
+         "canonical" : "https://nuts-agency.ru/projects/web-razraborka/razrabotka-korporativnogo-sayta-dlya-agentstva-po-upravleniyu-restorannymi-proektami-pelby/",
+         "h1" : [
+            "Разработка корпоративного сайта для агентства по управлению ресторанными проектами Pelby"
+         ],
+         "keywords" : ""
+      },
+      "/projects/web-razraborka/razrabotka-sayta-dlya-studii-koloristiki-color-me/" : {
+         "keywords" : "",
+         "h1" : [
+            "Разработка сайта для студии колористики Color Me"
+         ],
+         "canonical" : "https://nuts-agency.ru/projects/web-razraborka/razrabotka-sayta-dlya-studii-koloristiki-color-me/",
+         "description" : "Стильный лендинг с крутой анимацией, еще и удобной записью. Поддерживать сайт можно самостоятельно благодаря удобной и понятной OctoberCMS.",
+         "file" : "page44.html",
+         "title" : "Разработан адаптивный лендинг для студии колористики Color Me",
+         "robots" : ""
+      },
+      "/articles/productivity/integratsiya-sayta-s-1s/" : {
+         "file" : "page99.html",
+         "title" : "Интеграция «1С» с сайтом - для чего это нужно?",
+         "robots" : "",
+         "keywords" : "",
+         "h1" : [
+            "Интеграция сайта с 1С"
+         ],
+         "canonical" : "https://nuts-agency.ru/articles/productivity/integratsiya-sayta-s-1s/",
+         "description" : "Интеграция с программным обеспечением «1С», а также создание и разработка интернет-магазинов и сайтов, является приоритетным направлением Digital Nuts Agency."
+      },
+      "/services/reklamiryem/mediynaya-reklama/" : {
+         "file" : "page83.html",
+         "title" : "Медийная реклама в Краснодаре - настройка и ведение",
+         "robots" : "",
+         "keywords" : "",
+         "h1" : [
+            "Медийная реклама"
+         ],
+         "canonical" : "https://nuts-agency.ru/services/reklamiryem/mediynaya-reklama/",
+         "description" : "Целью баннера является – обратить на себя внимание, заинтриговать и вызвать желание совершить клик, который приведет на ваш сайт потенциальных клиентов."
+      },
+      "/projects/seo/kompleksnoe-seo-prodvizhenie-sayta-zastroyshchika-development-yug/" : {
+         "file" : "page149.html",
+         "robots" : "",
+         "title" : "Кейс о комплексном сео продвижении сайта Девеломпент Юг",
+         "keywords" : "кейс продвижения, кейсы seo продвижению, кейс продвижения бренда, кейс продвижения недвижимости, оптимизация сайта, сео продвижения",
+         "h1" : [
+            "Комплексное SEO-продвижение сайта застройщика «Девелопмент Юг»"
+         ],
+         "canonical" : "https://nuts-agency.ru/projects/seo/kompleksnoe-seo-prodvizhenie-sayta-zastroyshchika-development-yug/",
+         "description" : "Продвижение сайта застройщика Девелопмент Юг в Краснодаре. Разработка стратегии и внедрение комплексных доработок на сайте. Оптимизация мета тегов, структуры и дизайна сайта, улучшение ПФ."
+      },
+      "/services/razrabatyvaem/internet-magaziny/" : {
+         "title" : "Разработка интернет-магазинов и продающих сайтов - Nuts",
+         "robots" : "",
+         "file" : "page80.html",
+         "h1" : [
+            "Интернет-магазины"
+         ],
+         "keywords" : "",
+         "description" : "Заказать интернет-магазин у профессионалов digital агентства Nuts Agency - верное решение. Экономия времени и бюджета. Доступные цены, полноценный функционал сайта.",
+         "canonical" : "https://nuts-agency.ru/services/razrabatyvaem/internet-magaziny/"
+      },
+      "/projects/reklama/" : {
+         "title" : "Кейсы по рекламным компаниям - Nuts Agency",
+         "robots" : "",
+         "file" : "page52.html",
+         "h1" : [
+            "Реклама"
+         ],
+         "keywords" : "",
+         "description" : "Успешная рекламная компания - залог успеха наших клиентов. Примеры наших рекламных компаний, вы можете найти на нашем сайте. Настройка контекстной рекламы.",
+         "canonical" : "https://nuts-agency.ru/projects/reklama/"
+      },
+      "/company/partners/node-js/" : {
+         "robots" : "",
+         "title" : "Node.js — среда выполнения кода JavaScript вне браузера",
+         "file" : "page74.html",
+         "description" : "Платформа позволяет писать серверный код для динамических веб-страниц и веб-приложений, а также для программ командной строки. Проекты на Node.js: Mozilla, Paypal, eBay.",
+         "canonical" : "https://nuts-agency.ru/company/partners/node-js/",
+         "h1" : [
+            "Node.js"
+         ],
+         "keywords" : ""
+      },
+      "/services/reklamiryem/programmatic-reklama/" : {
+         "file" : "page84.html",
+         "title" : "Programmatic реклама для вашей рекламы в интернете - Nuts Digital",
+         "robots" : "",
+         "keywords" : "",
+         "h1" : [
+            "Programmatic реклама"
+         ],
+         "canonical" : "https://nuts-agency.ru/services/reklamiryem/programmatic-reklama/",
+         "description" : "Programmatic-реклама — это активно развивающийся подход в интернет-маркетинге. Его преимущество - бренды могут легче обращаться к своей целевой аудитории."
+      },
+      "/projects/web-razraborka/dizayn-mobilnogo-prilozheniya-alkoteka/" : {
+         "robots" : "",
+         "title" : "Разработка дизайна для мобильного приложения Алкотека",
+         "file" : "page27.html",
+         "description" : "Кейс по дизайну мобильного приложения, которым будут активно пользоваться не только для резерва товаров — в нём есть бесконечная лента товаров, конструктор коктейлей, правила сочетания еды и напитков.",
+         "canonical" : "https://nuts-agency.ru/projects/web-razraborka/dizayn-mobilnogo-prilozheniya-alkoteka/",
+         "h1" : [
+            "Дизайн мобильного приложения Алкотека"
+         ],
+         "keywords" : ""
+      },
+      "/articles/prodvizhenie/" : {
+         "file" : "page93.html",
+         "robots" : "",
+         "title" : "Статьи про SEO-продвижение, от практикующих специалистов",
+         "canonical" : "https://nuts-agency.ru/articles/prodvizhenie/",
+         "description" : "Все что вы хотели знать про SEO, но стеснялись спросить. Полезная информация о продвижении сайта, доступным языком. Информация для клиентов компании Nuts Agency.",
+         "keywords" : "",
+         "h1" : [
+            "Продвижение сайта"
+         ]
+      },
+      "/articles/prodvizhenie/prodvinut-sayt-besplatno-realno/" : {
+         "file" : "page94.html",
+         "robots" : "",
+         "title" : "Продвижение сайта бесплатно (очень дешево) - это реально",
+         "keywords" : "",
+         "h1" : [
+            "Продвинуть сайт бесплатно — реально!"
+         ],
+         "canonical" : "https://nuts-agency.ru/articles/prodvizhenie/prodvinut-sayt-besplatno-realno/",
+         "description" : "Но стоит задуматься - какой результат вы получите? Подробнее о плюсах и минусах бесплатного продвижения сайтов читайте в нашей статье. Nuts Digital - мы не делаем х**ни"
+      },
+      "/projects/seo/prodvizhenie-sayta-seti-kulinariy-patrik-mari/" : {
+         "h1" : [
+            "Продвижение сайта сети кулинарий «Патрик&Мари»"
+         ],
+         "keywords" : "",
+         "description" : "Проведены работы по оптимизации сайта. Посещемость сайта из поисковых систем за год выросла в два раза. Число переходов с других сайтов выросло в 3 раза.",
+         "canonical" : "https://nuts-agency.ru/projects/seo/prodvizhenie-sayta-seti-kulinariy-patrik-mari/",
+         "robots" : "",
+         "title" : "Продвижение сайта сети кулинарий «Патрик&Мари»",
+         "file" : "page60.html"
+      },
+      "/projects/web-razraborka/razrabotka-sayta-podsolnechnoe-maslo-novosergievskoe/" : {
+         "keywords" : "",
+         "h1" : [
+            "Разработка сайта Подсолнечное масло Новосергиевское"
+         ],
+         "canonical" : "https://nuts-agency.ru/projects/web-razraborka/razrabotka-sayta-podsolnechnoe-maslo-novosergievskoe/",
+         "description" : "Создан лендинг с адаптивным, приятным дизайном, который красиво смотрится как на мобильных устройствах, так и на ПК. Сайт привлекает пользователей внешним видом.",
+         "file" : "page36.html",
+         "robots" : "",
+         "title" : "Разработка сайта для Подсолнечное масло Новосергиевское"
+      },
+      "/company/partners/teamcity/" : {
+         "title" : "TeamCity - серверное ПО для интеграции (CI) кода",
+         "robots" : "",
+         "file" : "page73.html",
+         "h1" : [
+            "TeamCity"
+         ],
+         "keywords" : "",
+         "description" : "Основные характеристики TeamCity: unit-тестирование, поиск дубликатов и анализ кода, режим предварительного тестирования, несколько систем контроля версий.",
+         "canonical" : "https://nuts-agency.ru/company/partners/teamcity/"
+      },
+      "/projects/web-razraborka/razrabotka-sayta-tyetka-zapekanka/" : {
+         "file" : "page31.html",
+         "title" : "Разработка сайта «Тётка Запеканка» - Digital Nuts Agency",
+         "robots" : "",
+         "canonical" : "https://nuts-agency.ru/projects/web-razraborka/razrabotka-sayta-tyetka-zapekanka/",
+         "description" : "Уникальный дизайн, быстрая работа, качественный контент — мы гордимся этим проектом. Корпоративный сайт с каталогом продукции. Проведена первичная оптимизация.",
+         "keywords" : "",
+         "h1" : [
+            "Разработка сайта «Тётка Запеканка»"
+         ]
+      },
+      "/articles/smm/tonkaya-gran-mezhdu-pr-i-manipulyatsiey-keys-edvarda-berneysa/" : {
+         "title" : "Тонкая грань между PR и манипуляцией: кейс Эдварда Бернейса",
+         "robots" : "",
+         "file" : "page153.html",
+         "h1" : [
+            "Тонкая грань между PR и манипуляцией: кейс Эдварда Бернейса"
+         ],
+         "keywords" : "",
+         "description" : "Интересные статьи по разработке и продвижению сайтов, а также по интернет рекламе. Конкретные примеры и исследования.",
+         "canonical" : "https://nuts-agency.ru/articles/smm/tonkaya-gran-mezhdu-pr-i-manipulyatsiey-keys-edvarda-berneysa/"
+      },
+      "/projects/reklama/25-otkrytykh-salonov-za-2-goda-optimizatsiya-reklamnogo-byudzheta-na-50-franshiza-muzhskikh-salonov-/" : {
+         "file" : "page143.html",
+         "robots" : "",
+         "title" : "Оптимизация рекламного бюджета на 50%. Франшиза мужских салонов «Супермен»",
+         "canonical" : "https://nuts-agency.ru/projects/reklama/25-otkrytykh-salonov-za-2-goda-optimizatsiya-reklamnogo-byudzheta-na-50-franshiza-muzhskikh-salonov-/",
+         "description" : "Посмотрите несколько наших проектов, чтобы вы знали, что мы тут действительно работаем. Разработка, реклама или SEO — всё можем. И можем на 10/10.",
+         "keywords" : "",
+         "h1" : [
+            "Оптимизация рекламного бюджета на 50%. Франшиза мужских салонов «Супермен»"
+         ]
+      },
+      "/company/partners/docker/" : {
+         "robots" : "",
+         "title" : "Docker - ПО для разработки, тестирования и запуска веб-приложений",
+         "file" : "page76.html",
+         "description" : "Преимущества использования Docker: низкое потребление ресурсов, скоростное развертывание, работа с небезопасным кодом, удобный запуск, простое масштабирование.",
+         "canonical" : "https://nuts-agency.ru/company/partners/docker/",
+         "h1" : [
+            "Docker"
+         ],
+         "keywords" : ""
+      },
+      "/articles/prodvizhenie/28-mesto-v-reytinge-seo-glazami-klientov-2021/" : {
+         "canonical" : "https://nuts-agency.ru/articles/prodvizhenie/28-mesto-v-reytinge-seo-glazami-klientov-2021/",
+         "description" : "Интересные статьи по разработке и продвижению сайтов, а также по интернет рекламе. Конкретные примеры и исследования.",
+         "keywords" : "",
+         "h1" : [
+            "28 место в рейтинге SEO глазами клиентов 2021"
+         ],
+         "file" : "page158.html",
+         "robots" : "",
+         "title" : "28 место в рейтинге SEO глазами клиентов 2021"
+      },
+      "/contacts/" : {
+         "robots" : "",
+         "title" : "Контакты Digital Nuts Agency в Краснодаре",
+         "file" : "page4.html",
+         "h1" : [],
+         "keywords" : "",
+         "description" : "Наш адрес: г. Краснодар, ул. Красная 155/2, 7 этаж. Режим работы:  Пн – Пт.: с 9:00 до 18:00. Телефон: 8(800)222-4-604. Нужен сайт? Приходите к нам в офис.",
+         "canonical" : "https://nuts-agency.ru/contacts/"
+      },
+      "/projects/web-razraborka/razrabotka-promosayta-dlya-aktsii-pepsi-fixprice/" : {
+         "h1" : [
+            "Разработка промосайта для акции Pepsi-FixPrice"
+         ],
+         "keywords" : "",
+         "description" : "Основной упор в дизайне сделал на стиле Пепси. Регистрацию чеков на сайте настроили через бота WhatsApp, что существенно облегчило регистрацию и модерацию.",
+         "canonical" : "https://nuts-agency.ru/projects/web-razraborka/razrabotka-promosayta-dlya-aktsii-pepsi-fixprice/",
+         "robots" : "",
+         "title" : "Разработка промосайта для акции Pepsi-FixPrice",
+         "file" : "page32.html"
+      },
+      "/projects/web-razraborka/razrabotka-sayta-schaumann/" : {
+         "title" : "Разработка сайта официальному представителю Schaumann в России",
+         "robots" : "",
+         "file" : "page33.html",
+         "description" : "Итеративная разработка позволяет здорово оптимизировать производство — можно сосредоточиться на самом важном, а менее важный функционал доработать после релиза.",
+         "canonical" : "https://nuts-agency.ru/projects/web-razraborka/razrabotka-sayta-schaumann/",
+         "h1" : [
+            "Разработка сайта Schaumann"
+         ],
+         "keywords" : ""
+      },
+      "/projects/smm/iz-vinodelni-v-premialnyy-kurort-kak-my-vystroili-novuyu-identichnost-doliny-lefkadiya-v-sotsialnykh/" : {
+         "file" : "page117.html",
+         "robots" : "",
+         "title" : "Из винодельни — в премиальный курорт: репозиционирование «Долины Лефкадия» в социальных сетях",
+         "keywords" : "кейс о продвижении",
+         "h1" : [
+            "Из винодельни — в премиальный курорт: репозиционирование «Долины Лефкадия» в социальных сетях"
+         ],
+         "canonical" : "https://nuts-agency.ru/projects/smm/iz-vinodelni-v-premialnyy-kurort-kak-my-vystroili-novuyu-identichnost-doliny-lefkadiya-v-sotsialnykh/",
+         "description" : "Посмотрите несколько наших проектов, чтобы вы знали, что мы тут действительно работаем. Разработка, реклама или SEO — всё можем. И можем на 10/10."
+      },
+      "/services/razrabatyvaem/" : {
+         "file" : "page79.html",
+         "title" : "Разработка сайта под ключ (создание сайтов) в Nuts Agency",
+         "robots" : "",
+         "canonical" : "https://nuts-agency.ru/services/razrabatyvaem/",
+         "description" : "Мы создаем сайты: которые быстро поднимаются в топе, отличаются качественным и индивидуальным софтом, красочным дизайном и актуальной информацией о компании.",
+         "keywords" : "разработка, создание, верстка, заказать сайт, сделать, купить, разрабдиджитал",
+         "h1" : [
+            "Разработка сайта"
+         ]
+      },
+      "/projects/web-razraborka/razrabotka-sayta-dlya-laboratorii-krasoty-colba-color-bar/" : {
+         "robots" : "",
+         "title" : "Разработка сайта для салона красоты Colba Color Bar",
+         "file" : "page24.html",
+         "h1" : [
+            "Разработка сайта для лаборатории красоты Colba Color Bar"
+         ],
+         "keywords" : "",
+         "description" : "Сайт получился динамичным, ярким и запоминающимся. Среднее время пользования сайтом увеличилось в 3,5 раза, а количество просматриваемых страниц - в 2 раза.",
+         "canonical" : "https://nuts-agency.ru/projects/web-razraborka/razrabotka-sayta-dlya-laboratorii-krasoty-colba-color-bar/"
+      },
+      "/projects/smm/kompleksnoe-prodvizhenie-bara-videosalon-zakryt/" : {
+         "description" : "Кейс СММ продвижения бара Видеосалон закрыт в Краснодаре. Методы продвижения в социальных сетях, которые приносят узнаваемость заведению.",
+         "canonical" : "https://nuts-agency.ru/projects/smm/kompleksnoe-prodvizhenie-bara-videosalon-zakryt/",
+         "h1" : [
+            "Запасаемся попкорном: комплексное продвижение бара «Видеосалон закрыт»"
+         ],
+         "keywords" : "",
+         "robots" : "",
+         "title" : "Комплексное продвижение бара Видеосалон закрыт",
+         "file" : "page134.html"
+      },
+      "/projects/smm/video-o-kompanii-svyazresurskuban/" : {
+         "keywords" : "",
+         "h1" : [
+            "Люди, на которых держится связь: видеопортрет компании и ее команды в двух роликах"
+         ],
+         "canonical" : "https://nuts-agency.ru/projects/smm/video-o-kompanii-svyazresurskuban/",
+         "description" : "Посмотрите несколько наших проектов, чтобы вы знали, что мы тут действительно работаем. Разработка, реклама или SEO — всё можем. И можем на 10/10.",
+         "file" : "page139.html",
+         "robots" : "",
+         "title" : "Люди, на которых держится связь: видеопортрет компании и ее команды в двух роликах"
+      },
+      "/projects/web-razraborka/delovaya-gazeta-yug/" : {
+         "h1" : [
+            "Перенос сайта «Деловая газета. Юг» на новую CMS"
+         ],
+         "keywords" : "",
+         "description" : "Сейчас мы занимаемся развитием сайта и обеспечиваем полную техническую поддержку проекта. Разработка проектов любой сложности. Ждем вас к нам в офис.",
+         "canonical" : "https://nuts-agency.ru/projects/web-razraborka/delovaya-gazeta-yug/",
+         "robots" : "",
+         "title" : "Перенос сайта «Деловая газета» на CMS October - Nuts",
+         "file" : "page49.html"
+      },
+      "/projects/web-razraborka/razrabotka-sayta-sovmestnykh-pokupok-parkovok-v-zhilykh-kompleksakh-ot-development-yug/" : {
+         "h1" : [
+            "Разработка лендинга совместных покупок парковок от «Девелопмент‑Юг»"
+         ],
+         "keywords" : "",
+         "description" : "Стильный и лаконичный лендинг, который доносит всю необходимую информацию о совместных покупках парковочных мест со скидкой, готовый к дальнейшей рекламе.",
+         "canonical" : "https://nuts-agency.ru/projects/web-razraborka/razrabotka-sayta-sovmestnykh-pokupok-parkovok-v-zhilykh-kompleksakh-ot-development-yug/",
+         "title" : "Разработка сайта для покупки парковок от «Девелопмент‑Юг»",
+         "robots" : "",
+         "file" : "page40.html"
+      },
+      "/projects/web-razraborka/" : {
+         "description" : "Наше агентство занимается разработкой сайтов и мобильных приложений. Большое количество интересных кейсов, с которыми можно ознакомиться на нашем сайте.",
+         "canonical" : "https://nuts-agency.ru/projects/web-razraborka/",
+         "h1" : [
+            "Разработка"
+         ],
+         "keywords" : "",
+         "robots" : "",
+         "title" : "Примеры работ по разработке сайтов - Nuts Agency",
+         "file" : "page15.html"
+      },
+      "/company/partners/figma/" : {
+         "robots" : "",
+         "title" : "Figma — онлайн-сервис для дизайна и разработки сайтов",
+         "file" : "page75.html",
+         "h1" : [
+            "Figma"
+         ],
+         "keywords" : "",
+         "description" : "Кросс-платформенный онлайн-сервис Figma, для дизайнеров и веб-разработчиков, позволяет создавать интерактивные прототипы сайтов и мобильных приложений.",
+         "canonical" : "https://nuts-agency.ru/company/partners/figma/"
+      },
+      "/services/smm/vk-klipy/" : {
+         "h1" : [
+            "VK-Клипы"
+         ],
+         "keywords" : "Вконтакте видео ролики клипы съемка монтаж публикация",
+         "description" : "VK-клипы - эффективный способ для продвижения вашего бизнеса. Агентство Nuts Digital знает, как вам привлечь новых клиентов.",
+         "canonical" : "https://nuts-agency.ru/services/smm/vk-klipy/",
+         "robots" : "",
+         "title" : "VK-Клипы - короткие видео для вашего бизнеса - Nuts Digital",
+         "file" : "page112.html"
+      },
+      "/projects/seo/prodvizhenie-sayta-mebeli-dlya-gostinits/" : {
+         "file" : "page145.html",
+         "title" : "Продвижение сайта мебели для гостиниц",
+         "robots" : "",
+         "canonical" : "https://nuts-agency.ru/projects/seo/prodvizhenie-sayta-mebeli-dlya-gostinits/",
+         "description" : "Посмотрите несколько наших проектов, чтобы вы знали, что мы тут действительно работаем. Разработка, реклама или SEO — всё можем. И можем на 10/10.",
+         "keywords" : "",
+         "h1" : [
+            "Продвижение сайта мебели для гостиниц"
+         ]
+      },
+      "/projects/web-razraborka/razrabotka-sayta-golosovaniya-doroga-na-yaltu/" : {
+         "robots" : "",
+         "title" : "Разработка сайта голосования «Дорога на Ялту» - Nuts",
+         "file" : "page45.html",
+         "description" : "Адаптивный сайт на двух языках, способный выдержать миллион посетителей в сутки. Голосование и запуск трансляции «без сучка и задоринки». Всё это за 10 дней.",
+         "canonical" : "https://nuts-agency.ru/projects/web-razraborka/razrabotka-sayta-golosovaniya-doroga-na-yaltu/",
+         "h1" : [
+            "Разработка сайта голосования «Дорога на Ялту»"
+         ],
+         "keywords" : ""
+      },
+      "/projects/reklama/kontekstnaya-reklama-yug-avto/" : {
+         "h1" : [
+            "Контекстная реклама «Юг-Авто»"
+         ],
+         "keywords" : "",
+         "description" : "Создание рекламных кампаний для конкретных моделей авто и по общим запросам с брендом. Увеличение целевого трафика на сайт. Снижение цены клика и заявки.",
+         "canonical" : "https://nuts-agency.ru/projects/reklama/kontekstnaya-reklama-yug-avto/",
+         "title" : "Контекстная реклама для автомобильного дилера «ЮГ-Авто»",
+         "robots" : "",
+         "file" : "page55.html"
+      },
+      "/projects/seo/prodvizhenie-kliniki-sovremennoy-khirurgii/" : {
+         "canonical" : "https://nuts-agency.ru/projects/seo/prodvizhenie-kliniki-sovremennoy-khirurgii/",
+         "description" : "Продвижение сайта частотной клиники в Краснодаре. Разработка стратегии и внедрение комплексных доработок на сайте. Оптимизация мета тегов, структуры и дизайна сайта.",
+         "keywords" : "",
+         "h1" : [
+            "Продвижение клиники современной хирургии"
+         ],
+         "file" : "page147.html",
+         "title" : "Кейс о продвижении клиники частной хирургии Здрава в Краснодаре и крае",
+         "robots" : ""
+      },
+      "/articles/project-management/" : {
+         "file" : "",
+         "title" : "Управление проектами - блог Nuts Agency",
+         "robots" : "",
+         "canonical" : "https://nuts-agency.ru/articles/project-management/",
+         "description" : "Статьи по теме управления проектами: как сократить время на выставление счетов; на что обращать внимание, при выборе CRM системы и многие другие.",
+         "keywords" : "",
+         "h1" : [
+            "Управление проектами"
+         ]
+      },
+      "/projects/web-razraborka/razvitie-ploshchadki-dlya-provedeniya-torgov-i-zakupok-dlya-sk-semya/" : {
+         "robots" : "",
+         "title" : "Разработка нового функционала на портале для проведения торгов и закупок СК «Семья»",
+         "file" : "page126.html",
+         "h1" : [
+            "Разработка нового функционала на портале для проведения торгов и закупок СК «Семья»"
+         ],
+         "keywords" : "",
+         "description" : "Посмотрите несколько наших проектов, чтобы вы знали, что мы тут действительно работаем. Разработка, реклама или SEO — всё можем. И можем на 10/10.",
+         "canonical" : "https://nuts-agency.ru/projects/web-razraborka/razvitie-ploshchadki-dlya-provedeniya-torgov-i-zakupok-dlya-sk-semya/"
+      },
+      "/projects/web-razraborka/razrabotka-sayta-dlya-sbs-mebel-/" : {
+         "file" : "page46.html",
+         "robots" : "",
+         "title" : "«СБС Мебель» - разработка сайта для мебельного центра",
+         "keywords" : "",
+         "h1" : [
+            "Разработка сайта для «СБС Мебель»"
+         ],
+         "canonical" : "https://nuts-agency.ru/projects/web-razraborka/razrabotka-sayta-dlya-sbs-mebel-/",
+         "description" : "Разработан адаптивный сайт с каталогом товаров, списком салонов и страниц для позиционирования мебельного центра и сбора лидов потенциальных арендаторов."
+      },
+      "/projects/web-razraborka/sayt-dlya-event-agenstva-big-show-company/" : {
+         "description" : "Мы сделали одностраничный сайт для презентации event-агентства Big Show Company в интернете, чтобы показать лучшие проекты и направления работы компании.",
+         "canonical" : "https://nuts-agency.ru/projects/web-razraborka/sayt-dlya-event-agenstva-big-show-company/",
+         "h1" : [
+            "Разработка сайта для event-агенства Big Show Company"
+         ],
+         "keywords" : "",
+         "robots" : "",
+         "title" : "Разработка сайта для event-агенства Big Show Company",
+         "file" : "page41.html"
+      }
+   },
+   "crawled" : "2026-11-25",
+   "origin" : "https://nuts-agency.ru"
 }
