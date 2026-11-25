@@ -496,3 +496,6 @@ html:not(.has-gl) .nut-hint { display: none; }
 .hero__h1 { display: inline; margin: 0; font: inherit; letter-spacing: inherit; }
 .hero__since { opacity: .7; }
 @media (max-width: 700px) { .hero__since { display: none; } }
+
+/* the tilted marquee strip overlaps the bottom of the hero: keep "скролль" and the buttons above it */
+@media (min-width: 701px) { .hero { padding-bottom: clamp(80px, 5.5vw, 120px); } }

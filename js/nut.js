@@ -311,13 +311,13 @@ let everCracked = false;
 try { everCracked = sessionStorage.getItem('nutsCracked') === '1'; } catch (e) { /* private mode */ }
 const hint = document.createElement('button');
 hint.type = 'button';
-hint.className = 'nut-hint' + (everCracked ? ' is-done' : '');
+hint.className = 'nut-hint' + (clickTarget ? ' is-done' : ''); // shown whenever the nut is closed
 hint.innerHTML = `<i aria-hidden="true"></i><span>${isMobile ? 'Тапни — расколи орех' : 'Кликни — расколи орех'}</span>`;
 hero.appendChild(hint);
 const toggleCrack = () => {
   clickTarget = clickTarget ? 0 : 1;
   if (clickTarget && !everCracked) { everCracked = true; try { sessionStorage.setItem('nutsCracked', '1'); } catch (e) { /* private mode */ } }
-  hint.classList.toggle('is-done', everCracked);
+  hint.classList.toggle('is-done', !!clickTarget);
   wake();
   window.dispatchEvent(new CustomEvent('nut:crack', { detail: clickTarget }));
 };
