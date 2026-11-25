@@ -1,6 +1,3 @@
+# test copy of the site: closed for indexing (tools/build.js, INDEX = false)
 User-agent: *
-Allow: /
-Disallow: /tools/
-Disallow: /data/
-
-Sitemap: https://kvashin23.github.io/nuts/sitemap.xml
+Disallow: /

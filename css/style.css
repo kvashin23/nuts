@@ -479,3 +479,20 @@ body.menu-open { overflow: hidden; }
   .step__n { font-size: 56px; }
   .hero__line:first-child { white-space: nowrap; }
 }
+
+/* client edits 25.11 (2): the 3D nut says it can be cracked — badge under the nut, follows it (js/nut.js) */
+.nut-hint { position: absolute; left: 0; top: 0; z-index: 4; display: inline-flex; align-items: center; gap: 10px; padding: 10px 18px 10px 12px; border-radius: 99px; border: 1px solid rgba(255,90,20,.55); background: rgba(13,13,13,.55); -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); color: var(--white); font: 700 13px/1 var(--f-body, inherit); letter-spacing: .04em; white-space: nowrap; cursor: pointer; transition: opacity .5s, visibility .5s, border-color .3s, background .3s; will-change: transform; }
+.nut-hint:hover { background: var(--orange); border-color: var(--orange); color: #000; }
+.nut-hint i { position: relative; width: 22px; height: 22px; border-radius: 50%; background: var(--orange); flex: 0 0 22px; }
+.nut-hint i::before, .nut-hint i::after { content: ""; position: absolute; inset: 0; border-radius: 50%; border: 2px solid var(--orange); animation: nutPing 1.8s cubic-bezier(.2,.6,.3,1) infinite; }
+.nut-hint i::after { animation-delay: .6s; }
+.nut-hint:hover i, .nut-hint:hover i::before, .nut-hint:hover i::after { background: #000; border-color: #000; }
+@keyframes nutPing { from { transform: scale(1); opacity: .9; } to { transform: scale(2.6); opacity: 0; } }
+.nut-hint.is-away, .nut-hint.is-done { opacity: 0; visibility: hidden; pointer-events: none; }
+html:not(.has-gl) .nut-hint { display: none; }
+@media (prefers-reduced-motion: reduce) { .nut-hint i::before, .nut-hint i::after { animation: none; } }
+
+/* SEO 25.11: the old site's H1 lives in the hero tag line; the big "Мы немного NUTS" is a styled paragraph */
+.hero__h1 { display: inline; margin: 0; font: inherit; letter-spacing: inherit; }
+.hero__since { opacity: .7; }
+@media (max-width: 700px) { .hero__since { display: none; } }

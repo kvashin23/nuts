@@ -1,9 +1,15 @@
 // NUTS static page generator.
 // Open tools/build.html on the local dev server (server.ps1) with tools/save-server.ps1 running:
-// it reads data/content.json and writes cases/, services/, blog/, about.html and contacts.html.
+// it reads data/*.json and writes the inner pages under the old site addresses (projects/, services/, articles/, company/,
+// contacts/), the head of index.html, sitemap.xml and robots.txt. See README, "SEO".
 
 const SAVE = 'http://localhost:5174/save?path=';
-const SITE = 'https://kvashin23.github.io/nuts/';
+// SEO (25.11): the new site keeps every address, title and description of the old nuts-agency.ru.
+// Canonical URLs always point at production. INDEX = false while the site lives on the test domain:
+// robots.txt closes everything and every page carries <meta name="robots" content="noindex, nofollow">.
+// Before switching nuts-agency.ru to this site: INDEX = true, rebuild, push.
+const SITE = 'https://nuts-agency.ru/';
+const INDEX = false;
 const VER = Date.now().toString(36); // appended to our CSS/JS URLs on every build
 
 const CASE_CATS = { 'web-razraborka': 'Разработка', reklama: 'Реклама', smm: 'SMM', seo: 'SEO' };
@@ -36,31 +42,49 @@ const strip = html => { const d = document.createElement('div'); d.innerHTML = h
 const cut = (s, n) => (s.length > n ? s.slice(0, n).replace(/\s+\S*$/, '') + '…' : s);
 const log = m => { document.getElementById('log').textContent += m + '\n'; };
 
-let D, FILES, pages = {};
+let D, FILES, PRICES, SEO, pages = {};
 
-/* ---------- links ---------- */
-function mapOldUrl(href) {
-  const m = href.match(/^https?:\/\/(?:www\.)?nuts-agency\.ru(\/[^?#]*)/);
-  if (!m) return null;
-  const seg = m[1].split('/').filter(Boolean);
-  if (seg[0] === 'projects') return seg[2] && D.cases.some(c => c.slug === seg[2]) ? `cases/${seg[2]}.html` : 'cases/index.html';
-  if (seg[0] === 'articles') return seg[2] && D.articles.some(a => a.slug === seg[2]) ? `blog/${seg[2]}.html` : 'blog/index.html';
-  if (seg[0] === 'services') { const k = seg[2] || seg[1]; return k && D.services.some(s => (s.slug || s.section) === k) ? `services/${k}.html` : 'services/index.html'; }
-  if (seg[0] === "upload") return `assets/files/${seg[seg.length - 1]}`;
-  if (seg[0] === 'company') return 'about.html';
-  if (seg[0] === 'contacts') return 'contacts.html';
-  if (!seg.length) return 'index.html';
+/* ---------- addresses ---------- */
+// Templates speak in short "flat" names (cases/<slug>.html, services/<key>.html, blog/<slug>.html, about.html…);
+// route() turns them into the old site's addresses, which are what the pages are written to and linked by.
+const lowerCat = c => (c === 'Project-management' ? 'project-management' : c); // the old site 301s this one to lower case
+const caseUrl = c => `projects/${c.cat}/${c.slug}/`;
+const postUrl = a => `articles/${lowerCat(a.cat)}/${a.slug}/`;
+const svcUrl = key => { const s = D.services.find(x => (x.slug || x.section) === key); return s ? `services/${s.section}/${s.slug ? s.slug + '/' : ''}` : null; };
+const SVC_URL = key => svcUrl(key) || 'services/';
+function route(flat) {
+  if (flat === 'index.html' || flat === '') return '';
+  const FIXED = { 'cases/index.html': 'projects/', 'blog/index.html': 'articles/', 'services/index.html': 'services/', 'about.html': 'company/', 'contacts.html': 'contacts/' };
+  if (FIXED[flat]) return FIXED[flat];
+  let m;
+  if ((m = flat.match(/^cases\/(.+)\.html$/))) { const c = D.cases.find(x => x.slug === m[1]); return c ? caseUrl(c) : null; }
+  if ((m = flat.match(/^blog\/(.+)\.html$/))) { const a = D.articles.find(x => x.slug === m[1]); return a ? postUrl(a) : null; }
+  if ((m = flat.match(/^services\/(.+)\.html$/))) return svcUrl(m[1]);
   return null;
+}
+const fileOf = out => (out === '' ? 'index.html' : out.endsWith('/') ? out + 'index.html' : out);
+// links to the old site inside imported texts: same address here (uploads live in assets/files)
+function mapOldUrl(href) {
+  const m = href.match(/^https?:\/\/(?:www\.)?nuts-agency\.ru(\/[^?#]*)?(#.*)?$/);
+  if (!m) return null;
+  const path = (m[1] || '/').replace(/\/index\.php$/, '/');
+  const seg = path.split('/').filter(Boolean);
+  if (seg[0] === 'upload') return `assets/files/${seg[seg.length - 1]}`;
+  if (seg.length && seg[0] === 'articles' && seg[1]) seg[1] = lowerCat(seg[1]);
+  return (seg.length ? seg.join('/') + (/\.[a-z]{2,4}$/i.test(path) ? '' : '/') : '') + (m[2] || '');
 }
 // make every relative/old-site URL in a chunk of HTML correct for a page living at `depth`
 function relink(html, depth) {
   const p = depth ? '../'.repeat(depth) : '';
+  const home = p || './';
   return html.replace(/(href|src)="([^"]*)"/g, (all, attr, url) => {
     if (/^(#|mailto:|tel:|data:|javascript:)/.test(url)) return all;
-    if (/^https?:/.test(url)) { const m = mapOldUrl(url); return m ? `${attr}="${p}${m}"` : all; }
+    if (/^https?:/.test(url)) { const m = mapOldUrl(url); return m === null ? all : `${attr}="${m === '' ? home : p + m}"`; }
     const [path, hash = ''] = url.split('#');
     const target = LEGACY[path] || path || 'index.html';
-    return `${attr}="${p}${target}${hash ? '#' + hash : ''}"`;
+    const r = route(target);
+    const to = r === null ? p + target : r === '' ? home : p + r;
+    return `${attr}="${to}${hash ? '#' + hash : ''}"`;
   });
 }
 
@@ -100,6 +124,8 @@ function normalize(html, isCase) {
   const tw = document.createTreeWalker(out, NodeFilter.SHOW_TEXT); let tn;
   while ((tn = tw.nextNode())) if (/\d /.test(tn.textContent)) tn.textContent = tn.textContent.replace(/(\d) (?=\d{3}(?!\d))/g, '$1 ').replace(/(\d) (?=₽|руб|р\.)/g, '$1 ');
   out.querySelectorAll('a[href^="http"]').forEach(a => { if (!/nuts-agency\.ru/.test(a.href)) { a.target = '_blank'; a.rel = 'noopener'; } });
+  // links to pages that answer 404 on the old site too stay as plain text
+  out.querySelectorAll('a[href]').forEach(a => { if (/nuts-agency\.ru\/(services\/smm\/(mytarget-reklama|reklama-facebook-instagram)|company\/licenses)\//.test(a.getAttribute('href'))) a.replaceWith(...a.childNodes); });
   return out.innerHTML;
 }
 // client edits 28.10: service texts lose their images and the old "cases / articles" link blocks;
@@ -174,7 +200,27 @@ function cleanService(html, key) {
     });
   }
   root.querySelectorAll('p').forEach(p => { if (!p.textContent.trim() && !p.querySelector('img')) p.remove(); });
+  insertPrices(root, key);
   return root.innerHTML;
+}
+// client prices 25.11: old price lines leave the text, data/prices.json renders as cards in the price chapter
+function priceSet(key) {
+  const p = PRICES && PRICES.services[key];
+  if (!p) return null;
+  const pack = p.packs ? PRICES.packs[p.packs] : null;
+  return { items: [...(pack ? pack.items : []), ...(p.items || []), ...(p.extra || [])], note: p.note || (pack && pack.note) || '', more: p.more };
+}
+const priceBlock = set => `<div class="prices"><div class="prices__grid">${set.items.map(i => `<div class="price-card${i.hit ? ' is-hit' : ''}"><span class="price-card__name">${esc(i.name)}</span><b class="price-card__price">${esc(i.price)}</b>${i.unit ? `<span class="price-card__unit">${esc(i.unit)}</span>` : ''}</div>`).join('')}</div>${set.note ? `<p class="prices__note">${esc(set.note)}</p>` : ''}${set.more ? `<p class="prices__more"><a href="${SVC_URL(set.more)}">Пакеты SEO с технической поддержкой →</a></p>` : ''}</div>`;
+function insertPrices(root, key) {
+  const set = priceSet(key);
+  if (!set) return;
+  root.querySelectorAll('blockquote').forEach(b => { if (/\d[\d\s ]*(₽|руб)/i.test(b.textContent)) b.remove(); });
+  root.querySelectorAll('table').forEach(t => { if (/Пакет 10 часов/.test(t.textContent)) (t.closest('.table-wrap') || t).remove(); });
+  root.querySelectorAll('p').forEach(p => { if (/^Цены за настройку и ведение|каждый дополнительный час оплачивается/.test(p.textContent.trim())) p.remove(); });
+  const tpl = document.createElement('div'); tpl.innerHTML = priceBlock(set);
+  const h = [...root.querySelectorAll('h2')].find(x => /^\s*(Цены|Сколько стоит|Стоимость)/i.test(x.textContent));
+  if (h) h.after(tpl.firstChild);
+  else { const h2 = document.createElement('h2'); h2.textContent = 'Цены'; root.append(h2, tpl.firstChild); }
 }
 // split body into [{title, html}] by h2
 function chapters(html, firstTitle) {
@@ -207,93 +253,166 @@ const firstText = html => { const d = document.createElement('div'); d.innerHTML
 
 /* ---------- chrome ---------- */
 const NAV = [['services/index.html', 'Услуги', 'services'], ['cases/index.html', 'Кейсы', 'cases'], ['about.html', 'О нас', 'about'], ['blog/index.html', 'Блог', 'blog'], ['contacts.html', 'Контакты', 'contacts']];
-function page({ path, title, desc, active, main, before = '', image, base }) {
-  const depth = base ? 0 : path.split('/').length - 1;
+// footer: the old site's company section stays linked from every page
+const FOOT = [['company/reviews/', 'Отзывы клиентов'], ['company/partners/', 'Технологии разработки'], ['company/vacancy/', 'Вакансии'], ['company/requisites/', 'Реквизиты']];
+const PHONE = '+7 800 222-46-04';
+const ADDRESS = { '@type': 'PostalAddress', streetAddress: 'ул. Красная, 155/2, 7 этаж', addressLocality: 'Краснодар', addressRegion: 'Краснодарский край', addressCountry: 'RU' };
+const ORG = {
+  '@type': 'Organization', '@id': SITE + '#org', name: 'Nuts Digital Agency', alternateName: ['NUTS', 'Nuts Agency'], url: SITE,
+  logo: { '@type': 'ImageObject', url: SITE + 'assets/logo-mark-hd.png', width: 644, height: 752 },
+  email: 'info@nuts-agency.ru', telephone: PHONE, address: ADDRESS, foundingDate: '2017',
+  sameAs: ['https://vk.com/nutsdigital', 'https://t.me/nutsdigitalagency'],
+};
+const OFFICE = {
+  '@type': 'ProfessionalService', '@id': SITE + '#office', name: 'Nuts Digital Agency', url: SITE, image: SITE + 'assets/og.png',
+  telephone: PHONE, email: 'info@nuts-agency.ru', address: ADDRESS, priceRange: '₽₽',
+  geo: { '@type': 'GeoCoordinates', latitude: 45.049593, longitude: 38.977031 },
+  openingHoursSpecification: [{ '@type': 'OpeningHoursSpecification', dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'], opens: '09:00', closes: '18:00' }],
+  parentOrganization: { '@id': SITE + '#org' },
+};
+const PUBLISHER = { '@id': SITE + '#org' };
+// Yandex.Metrika of the old site (counter 48404891) — only on the production domain, never on test or locally
+const METRIKA = `<script>
+if (/^(www\\.)?nuts-agency\\.ru$/.test(location.hostname)) {
+  (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};m[i].l=1*new Date();
+  for (var j = 0; j < document.scripts.length; j++) { if (document.scripts[j].src === r) { return; } }
+  k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+  (window, document, 'script', 'https://mc.yandex.ru/metrika/tag.js', 'ym');
+  ym(48404891, 'init', { clickmap: true, trackLinks: true, accurateTrackBounce: true, webvisor: true });
+}
+</script>`;
+
+// pages are queued and rendered at the end, when every page's name is known (breadcrumbs)
+const QUEUE = [];
+const NAMES = {}; // out path -> short name for breadcrumbs
+function page(opts) {
+  const out = opts.base ? opts.path : (route(opts.path) ?? opts.path);
+  const meta = SEO.pages['/' + out];
+  NAMES[out] = opts.name || (meta && meta.h1[0]) || opts.title;
+  QUEUE.push({ ...opts, out });
+}
+const jsonLd = obj => `<script type="application/ld+json">${JSON.stringify(obj).replace(/</g, '\\u003c')}</script>`;
+const absUrl = (out, file) => SITE + (file ? file.replace(/^(\.\.\/)+/, '') : out);
+function crumbsOf(out) {
+  const segs = out.split('/').filter(Boolean);
+  const list = [{ name: 'Главная', out: '' }];
+  for (let i = 1; i <= segs.length; i++) {
+    const o = segs.slice(0, i).join('/') + '/';
+    if (NAMES[o]) list.push({ name: NAMES[o], out: o });
+  }
+  return list;
+}
+function renderPage({ out, title, desc, active, main, before = '', image, base, ld = [], ogType = 'website', redirect }) {
+  const file = fileOf(out);
+  const depth = base ? 0 : file.split('/').length - 1;
   const p = depth ? '../'.repeat(depth) : '';
-  const url = SITE + path.replace(/(^|\/)index\.html$/, '$1');
+  const meta = SEO.pages['/' + out];
+  // the old site's title and description win: search engines already know the pages by them
+  if (meta && meta.title) title = meta.title;
+  if (meta && meta.description) desc = meta.description;
+  const url = SITE + out;
   const og = SITE + (image || 'assets/og.png');
-  const nav = NAV.map(([href, label, key]) => `<a href="${p}${href}"${key === active ? ' class="is-active"' : ''} data-cursor="hover">${label}</a>`).join('\n    ');
-  const html = `<!doctype html>
-<html lang="ru">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>${esc(title)}</title>
-  <meta name="description" content="${esc(desc)}">
-  <meta property="og:title" content="${esc(title)}">
-  <meta property="og:description" content="${esc(desc)}">
-  <meta property="og:type" content="website">
-  <meta property="og:site_name" content="NUTS digital agency">
-  <meta property="og:url" content="${url}">
-  <meta property="og:image" content="${og}">
-  <meta name="twitter:card" content="summary_large_image">
-  <link rel="canonical" href="${url}">${base ? `\n  <base href="${base}">` : ''}
-  <meta name="theme-color" content="#0d0d0d">
-  <link rel="stylesheet" href="${p}vendor/fonts/fonts.css">
-  <link rel="stylesheet" href="${p}css/style.css?v=${VER}">
-  <link rel="stylesheet" href="${p}css/pages.css?v=${VER}">
-  <link rel="icon" href="${p}assets/logo-mark.png" type="image/png">
-</head>
-<body>
-
-
+  const robots = INDEX ? '' : '\n  <meta name="robots" content="noindex, nofollow">';
+  if (redirect) {
+    // duplicates of the old site (same page under two addresses): point visitors and robots to the main one
+    pages[file] = `<!doctype html>\n<html lang="ru"><head><meta charset="utf-8"><title>${esc(title)}</title><meta name="robots" content="noindex, follow"><link rel="canonical" href="${SITE + redirect}"><meta http-equiv="refresh" content="0; url=${p}${redirect}"></head><body><a href="${p}${redirect}">${esc(title)}</a></body></html>\n`;
+    return;
+  }
+  const crumbs = crumbsOf(out);
+  const graph = [...(out ? [] : [ORG, OFFICE, { '@type': 'WebSite', '@id': SITE + '#site', url: SITE, name: 'Nuts Digital Agency', inLanguage: 'ru', publisher: PUBLISHER }]), ...ld];
+  if (out) graph.push({ '@type': 'BreadcrumbList', itemListElement: crumbs.map((c, i) => ({ '@type': 'ListItem', position: i + 1, name: c.name, item: SITE + c.out })) });
+  const nav = NAV.map(([href, label, key]) => `<a href="${href}"${key === active ? ' class="is-active"' : ''} data-cursor="hover">${label}</a>`).join('\n    ');
+  const chrome = `
 <header class="header" id="header">
-  <a href="${p}index.html" class="logo" aria-label="NUTS — на главную">
-    <img src="${p}assets/logo-mark.png" class="logo__mark" alt="" width="161" height="188"><img src="${p}assets/logo-word.png" class="logo__word" alt="NUTS digital agency" width="325" height="188">
+  <a href="index.html" class="logo" aria-label="NUTS — на главную">
+    <img src="assets/logo-mark.png" class="logo__mark" alt="" width="161" height="188"><img src="assets/logo-word.png" class="logo__word" alt="NUTS digital agency" width="325" height="188">
   </a>
   <nav class="nav" id="nav">
     ${nav}
   </nav>
   <div class="header__right">
     <a href="tel:88002224604" class="header__phone">8 800 222-46-04</a>
-    <a href="${p}contacts.html#brief" class="btn btn--sm magnetic" data-cursor="hover"><span>Обсудить проект</span></a>
+    <a href="contacts.html#brief" class="btn btn--sm magnetic" data-cursor="hover"><span>Обсудить проект</span></a>
     <button class="burger" id="burger" aria-label="Меню"><i></i><i></i></button>
   </div>
 </header>
 <div class="menu" id="menu">
-  <nav class="menu__nav">${NAV.map(([href, label]) => `<a href="${p}${href}">${label}</a>`).join('')}</nav>
+  <nav class="menu__nav">${NAV.map(([href, label]) => `<a href="${href}">${label}</a>`).join('')}</nav>
   <div class="menu__foot"><a href="tel:88002224604">8 800 222-46-04</a><a href="mailto:info@nuts-agency.ru">info@nuts-agency.ru</a></div>
 </div>
 ${before}
 <main>
-${relink(main, depth)}
+${main}
 </main>
 
 <footer class="footer">
   <div class="footer__big" aria-hidden="true"><span>N</span><span>U</span><span>T</span><span>S</span></div>
+  <div class="footer__links">${FOOT.map(([href, label]) => `<a href="${href}">${label}</a>`).join('')}</div>
   <div class="footer__row">
-    <span>© 2017–2026 Nuts Digital Agency</span>
-    <nav>${NAV.map(([href, label]) => `<a href="${p}${href}">${label}</a>`).join('')}</nav>
+    <span>© 2017–2026 Nuts Digital Agency · Краснодар, ул. Красная, 155/2</span>
+    <nav>${NAV.map(([href, label]) => `<a href="${href}">${label}</a>`).join('')}</nav>
     <a href="#" class="footer__up" data-cursor="hover">Наверх ↑</a>
   </div>
-</footer>
+</footer>`;
+  const html = `<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>${esc(title)}</title>
+  <meta name="description" content="${esc(desc)}">${robots}
+  <link rel="canonical" href="${url}">${base ? `\n  <base href="${base}">` : ''}
+  <meta property="og:locale" content="ru_RU">
+  <meta property="og:type" content="${ogType}">
+  <meta property="og:site_name" content="Nuts Digital Agency">
+  <meta property="og:title" content="${esc(title)}">
+  <meta property="og:description" content="${esc(desc)}">
+  <meta property="og:url" content="${url}">
+  <meta property="og:image" content="${og}">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="theme-color" content="#0d0d0d">
+  <link rel="stylesheet" href="${p}vendor/fonts/fonts.css">
+  <link rel="stylesheet" href="${p}css/style.css?v=${VER}">
+  <link rel="stylesheet" href="${p}css/pages.css?v=${VER}">
+  <link rel="icon" href="${p}favicon.ico" sizes="any">
+  <link rel="icon" href="${p}assets/logo-mark.png" type="image/png">
+  <link rel="apple-touch-icon" href="${p}assets/apple-touch-icon.png">
+  ${jsonLd({ '@context': 'https://schema.org', '@graph': graph })}
+</head>
+<body>
+
+${relink(chrome, depth)}
 
 <div class="grain" aria-hidden="true"></div>
 <script src="${p}vendor/gsap.min.js"></script>
 <script src="${p}vendor/ScrollTrigger.min.js"></script>
 <script src="${p}vendor/lenis.min.js"></script>
 <script src="${p}js/main.js?v=${VER}"></script>
+${METRIKA}
 </body>
 </html>
 `;
-  pages[path] = html;
+  pages[file] = html;
 }
 
 /* ---------- shared blocks ---------- */
-const hero = ({ crumbs, tags = '', title, titleHtml, lead = '', after = '', sm }) => `
+// h1: the descriptive heading search engines knew on the old site; when the design shows a playful
+// display title instead, the h1 sits above it as a small kicker and the display title becomes a <p>
+const hero = ({ crumbs, tags = '', title, titleHtml, lead = '', after = '', sm, h1 }) => `
 <section class="page-hero">
   <div class="page-hero__glow" aria-hidden="true"></div>
   <div class="page-hero__rings" aria-hidden="true"><i></i><i></i></div>
   <nav class="crumbs" data-in><a href="index.html">Главная</a>${crumbs.map(([h, t]) => h ? `<span><a href="${h}">${esc(t)}</a></span>` : `<span>${esc(t)}</span>`).join('')}</nav>
   ${tags ? `<div class="tags" data-in style="position:relative;margin-bottom:28px">${tags}</div>` : ''}
-  <h1 class="page-title${sm ? ' page-title--sm' : ''}"><span class="line"><span class="split">${titleHtml || shy(title)}</span></span></h1>
+  ${h1 && h1 !== title ? `<h1 class="page-h1" data-in>${esc(h1)}</h1>
+  <p class="page-title${sm ? ' page-title--sm' : ''}"><span class="line"><span class="split">${titleHtml || shy(title)}</span></span></p>` : `<h1 class="page-title${sm ? ' page-title--sm' : ''}"><span class="line"><span class="split">${titleHtml || shy(title)}</span></span></h1>`}
   ${lead ? `<p class="page-lead" data-in>${esc(lead)}</p>` : ''}
   ${after}
 </section>`;
 
 const caseCard = (c, wide) => `
     <a class="case${wide ? ' case--wide' : ''}" data-cat="${CASE_FILTER[c.cat]}" href="cases/${c.slug}.html" data-cursor="view">
-      <div class="case__media"><img src="${c.cover}" alt="" loading="lazy"></div>
+      <div class="case__media"><img src="${c.cover}" alt="${esc(c.title)}" loading="lazy"></div>
       <div class="case__meta"><span>${CASE_CATS[c.cat]}</span><span>${esc(c.props['Сфера'] || '')}</span></div>
       <h3 class="case__title">${esc(c.title)}</h3>
     </a>`;
@@ -311,13 +430,13 @@ const reviewCard = r => `
 
 const nextCard = n => `
 <a class="next next--sm" href="cases/${n.slug}.html" data-cursor="view">
-  <div class="next__img"><img src="${n.cover}" alt="" loading="lazy"></div>
+  <div class="next__img"><img src="${n.cover}" alt="${esc(n.title)}" loading="lazy"></div>
   <div><span class="next__label">Следующий кейс →</span><h2 class="next__title">${esc(n.title)}</h2></div>
 </a>`;
 
 const postCard = a => `
     <a href="blog/${a.slug}.html" class="post" data-cat="${a.cat}" data-cursor="read">
-      <div class="post__img">${a.cover && FILES.has(a.cover.replace('assets/content/', '')) ? `<img src="${a.cover}" alt="" loading="lazy">` : `<div class="post__art post__art--1"><span>${esc((POST_CATS[a.cat] || '').slice(0, 3))}</span></div>`}</div>
+      <div class="post__img">${a.cover && FILES.has(a.cover.replace('assets/content/', '')) ? `<img src="${a.cover}" alt="${esc(a.title)}" loading="lazy">` : `<div class="post__art post__art--1"><span>${esc((POST_CATS[a.cat] || '').slice(0, 3))}</span></div>`}</div>
       <div class="meta"><span class="cat">${POST_CATS[a.cat] || a.cat}</span><span>${esc(a.date)}</span></div>
       <h3>${esc(a.title)}</h3>
     </a>`;
@@ -387,20 +506,53 @@ async function custom(path) {
 }
 
 /* ---------- pages ---------- */
+const seoH1 = out => { const m = SEO.pages['/' + out]; return m && m.h1[0] ? m.h1[0] : ''; };
+// "26.06.2025" / "26 Июня 2025" -> "2025-06-26"
+const MONTHS = ['января', 'февраля', 'марта', 'апреля', 'мая', 'июня', 'июля', 'августа', 'сентября', 'октября', 'ноября', 'декабря'];
+const isoDate = s => {
+  let m = String(s || '').match(/(\d{1,2})\.(\d{1,2})\.(\d{4})/);
+  if (m) return `${m[3]}-${m[2].padStart(2, '0')}-${m[1].padStart(2, '0')}`;
+  m = String(s || '').toLowerCase().match(/(\d{1,2})\s+([а-яё]+)\s+(\d{4})/);
+  if (m && MONTHS.indexOf(m[2]) >= 0) return `${m[3]}-${String(MONTHS.indexOf(m[2]) + 1).padStart(2, '0')}-${m[1].padStart(2, '0')}`;
+  return undefined;
+};
+// pictures whose alt is a file name ("brandbook.jpg") get their caption or the page title instead
+function fixAlts(html, fallback) {
+  const d = document.createElement('div'); d.innerHTML = html;
+  d.querySelectorAll('img').forEach(img => {
+    const alt = (img.getAttribute('alt') || '').trim();
+    if (alt && !/\.(jpe?g|png|gif|webp|svg)$/i.test(alt) && !/^[\w\s()-]+$/.test(alt)) return;
+    const cap = img.closest('figure')?.querySelector('figcaption')?.textContent.trim();
+    img.setAttribute('alt', cap || fallback);
+  });
+  return d.innerHTML;
+}
+const filterLinks = (base, cats, labels, current, counts) => `<nav class="filters" data-in style="position:relative;margin-top:36px" aria-label="Разделы">
+    <a class="filter${current ? '' : ' is-active'}" href="${base}">Все${counts ? ' · ' + counts.all : ''}</a>
+    ${cats.map(k => `<a class="filter${k === current ? ' is-active' : ''}" href="${base}${k}/">${labels[k] || k}${counts ? ' · ' + counts[k] : ''}</a>`).join('\n    ')}
+  </nav>`;
+
 async function buildCases() {
   const cases = D.cases;
-  page({
-    path: 'cases/index.html', title: 'Кейсы — NUTS', desc: `${cases.length} проектов NUTS: разработка, реклама, SEO и SMM для бизнеса.`, active: 'cases',
-    main: hero({ crumbs: [[null, 'Кейсы']], title: 'Расколотые орешки', lead: `${cases.length} проектов за 9 лет: сайты и приложения, реклама, SEO и соцсети для девелоперов, клиник, ритейла и производств.`,
-      after: `<div class="filters" id="filters" data-in style="position:relative;margin-top:36px">
-    <button class="filter is-active" data-f="all">Все · ${cases.length}</button>
-    ${Object.entries(CASE_FILTER).map(([k, f]) => `<button class="filter" data-f="${f}">${CASE_CATS[k]} · ${cases.filter(c => c.cat === k).length}</button>`).join('\n    ')}
-  </div>` }) + `
+  const cats = Object.keys(CASE_CATS);
+  const counts = { all: cases.length, ...Object.fromEntries(cats.map(k => [k, cases.filter(c => c.cat === k).length])) };
+  const listPage = cat => {
+    const list = cat ? cases.filter(c => c.cat === cat) : cases;
+    const out = cat ? `projects/${cat}/` : 'projects/';
+    page({
+      path: out, name: cat ? CASE_CATS[cat] : 'Кейсы', title: `Кейсы${cat ? ' — ' + CASE_CATS[cat] : ''} — NUTS`, desc: `${list.length} проектов NUTS: разработка, реклама, SEO и SMM для бизнеса.`, active: 'cases',
+      main: hero({ crumbs: cat ? [['cases/index.html', 'Кейсы'], [null, CASE_CATS[cat]]] : [[null, 'Кейсы']], h1: seoH1(out) || (cat ? CASE_CATS[cat] : 'Кейсы'), title: 'Расколотые орешки',
+        lead: cat ? `${list.length} проектов в разделе «${CASE_CATS[cat]}».` : `${cases.length} проектов за 9 лет: сайты и приложения, реклама, SEO и соцсети для девелоперов, клиник, ритейла и производств.`,
+        after: filterLinks('projects/', cats, CASE_CATS, cat, counts) }) + `
 <section class="section" style="padding-top:0">
-  <div class="cases__grid">${cases.map(c => caseCard(c)).join('')}
+  <div class="cases__grid">${list.map(c => caseCard(c)).join('')}
   </div>
 </section>` + ctaBand(),
-  });
+      ld: [{ '@type': 'CollectionPage', name: seoH1(out) || 'Кейсы', url: SITE + out, isPartOf: { '@id': SITE + '#site' }, mainEntity: { '@type': 'ItemList', itemListElement: list.map((c, i) => ({ '@type': 'ListItem', position: i + 1, url: SITE + caseUrl(c), name: c.title })) } }],
+    });
+  };
+  listPage(null);
+  cats.forEach(listPage);
 
   for (const [i, c] of cases.entries()) {
     const path = `cases/${c.slug}.html`;
@@ -408,15 +560,15 @@ async function buildCases() {
     const desc = cut([task, firstText(normalize(c.html, true))].filter(Boolean).join(" "), 160) || cut(strip(c.html), 160);
     let main = await custom(path);
     if (!main) {
-      const body = normalize(c.html, true);
+      const body = fixAlts(normalize(c.html, true), c.title);
       const list = chapters(body, 'О проекте');
       const facts = [['Направление', CASE_CATS[c.cat]], ...Object.entries(c.props)].filter(([, v]) => v);
       const sameCat = cases.filter(x => x.cat === c.cat && x !== c);
       const similar = [...c.similar.map(u => cases.find(x => x.url === u)).filter(Boolean), ...sameCat].filter((x, k, arr) => arr.indexOf(x) === k).slice(0, 3);
       const nextC = cases.slice(i + 1).find(x => x.cat === c.cat) || sameCat[0];
-      main = hero({ crumbs: [['cases/index.html', 'Кейсы'], [null, CASE_CATS[c.cat]]], tags: `<span class="is-hot">${CASE_CATS[c.cat]}</span>${c.props['Сфера'] ? `<span>${esc(c.props['Сфера'])}</span>` : ''}`, title: c.title, lead: task, sm: longTitle(c.title) }) + `
+      main = hero({ crumbs: [['cases/index.html', 'Кейсы'], [`projects/${c.cat}/`, CASE_CATS[c.cat]]], tags: `<span class="is-hot">${CASE_CATS[c.cat]}</span>${c.props['Сфера'] ? `<span>${esc(c.props['Сфера'])}</span>` : ''}`, title: c.title, lead: task, sm: longTitle(c.title) }) + `
 <div class="facts" data-in>
-  ${facts.slice(0, 4).map(([k, v]) => `<div class="fact"><b>${esc(k)}</b>${k === 'Сайт' && /^https?:/.test(v) ? `<a href="${esc(v)}" target="_blank" rel="noopener" data-cursor="hover">${esc(v.replace(/^https?:\/\/(www\.)?/, '').replace(/\/$/, ''))} ↗</a>` : `<span>${esc(v)}</span>`}</div>`).join('\n  ')}
+  ${facts.slice(0, 4).map(([k, v]) => `<div class="fact"><b>${esc(k)}</b>${k === 'Сайт' && /^https?:/.test(v) ? `<a href="${esc(v)}" target="_blank" rel="noopener nofollow" data-cursor="hover">${esc(v.replace(/^https?:\/\/(www\.)?/, '').replace(/\/$/, ''))} ↗</a>` : `<span>${esc(v)}</span>`}</div>`).join('\n  ')}
 </div>
 ${list.length ? chapterHtml(list) : ''}
 ${c.review ? reviewCard(c.review) : ''}
@@ -427,7 +579,14 @@ ${similar.length ? `<section class="section" style="padding-top:clamp(40px,5vw,8
 </section>` : ''}
 ${ctaBand('Хотите так же? Расколем и&nbsp;ваш орешек')}`;
     }
-    page({ path, title: `${c.title} — кейс NUTS`, desc, active: 'cases', main, image: c.cover });
+    const url = SITE + caseUrl(c);
+    page({ path, name: c.title, title: `${c.title} — кейс NUTS`, desc, active: 'cases', main, image: c.cover, ogType: 'article',
+      ld: [{ '@type': 'Article', headline: cut(c.title, 110), description: desc, image: SITE + c.cover, url, mainEntityOfPage: url, datePublished: isoDate(c.props['Дата']), author: PUBLISHER, publisher: PUBLISHER, about: c.props['Сфера'] || undefined, inLanguage: 'ru' }] });
+  }
+  // the old site shows two SMM cases under /projects/smm/ as well — those addresses lead to the main page
+  for (const slug of ['video-o-kompanii-tochka-molochka', 'kak-menshe-chem-za-god-nabrat-14-mln-prosmotrov-v-tiktok-']) {
+    const c = cases.find(x => x.slug === slug);
+    if (c && c.cat !== 'smm') page({ path: `projects/smm/${slug}/`, name: c.title, title: c.title, desc: '', main: '', redirect: caseUrl(c) });
   }
 }
 
@@ -435,8 +594,8 @@ async function buildServices() {
   const S = D.services;
   const sections = SECTION_ORDER.map(k => ({ key: k, page: S.find(s => s.section === k && !s.slug), subs: S.filter(s => s.section === k && s.slug) }));
   page({
-    path: 'services/index.html', title: 'Услуги — NUTS', desc: 'Разработка сайтов и приложений, реклама, SEO, SMM, IT-решения и поддержка. Полный цикл digital.', active: 'services',
-    main: hero({ crumbs: [[null, 'Услуги']], title: 'Что мы колем', titleHtml: 'Что мы <span class="orange">колем</span>', lead: 'Полный цикл: от стратегии и дизайна до трафика и поддержки. Можно целиком, можно по кусочку.' }) + `
+    path: 'services/index.html', name: 'Услуги', title: 'Услуги — NUTS', desc: 'Разработка сайтов и приложений, реклама, SEO, SMM, IT-решения и поддержка. Полный цикл digital.', active: 'services',
+    main: hero({ crumbs: [[null, 'Услуги']], h1: seoH1('services/') || 'Услуги', title: 'Что мы колем', titleHtml: 'Что мы <span class="orange">колем</span>', lead: 'Полный цикл: от стратегии и дизайна до трафика и поддержки. Можно целиком, можно по кусочку.' }) + `
 <section class="section" style="padding-top:0">
   <div class="svc-list">
 ${sections.map((s, i) => `    <article class="svc-block">
@@ -449,17 +608,22 @@ ${sections.map((s, i) => `    <article class="svc-block">
     </article>`).join('\n')}
   </div>
 </section>` + ctaBand(),
+    ld: [{ '@type': 'ItemList', name: 'Услуги Nuts Digital Agency', itemListElement: S.map((s, i) => ({ '@type': 'ListItem', position: i + 1, url: SITE + svcUrl(s.slug || s.section), name: s.title })) }],
   });
 
   for (const s of S) {
     const key = s.slug || s.section;
     const path = `services/${key}.html`;
     const sec = SECTIONS[s.section];
-    const body = cleanService(normalize(fixService(s.html, key)), key);
+    const body = fixAlts(cleanService(normalize(fixService(s.html, key)), key), s.title);
     const lead = cut(firstText(body), 220);
     const desc = cut(firstText(body), 160) || `${s.title} от NUTS: ${sec.short} Под задачи бизнеса — в Краснодаре и по всей России.`;
     let main = await custom(path);
-    if (!main) {
+    if (main) {
+      // handcrafted page: its price cards are rendered here from data/prices.json too
+      const set = priceSet(key);
+      main = main.replace('<!-- @prices -->', set ? priceBlock(set) : '');
+    } else {
       const subs = s.slug ? [] : S.filter(x => x.section === s.section && x.slug);
       const siblings = s.slug ? S.filter(x => x.section === s.section && x.slug && x !== s) : [];
       const list = chapters(body, 'Об услуге');
@@ -479,7 +643,7 @@ ${subs.length ? `<section class="section section--light" style="margin-top:clamp
 </section>` : ''}
 ${list.length ? chapterHtml(list) : ''}
 ${rel.length ? `<section class="section" id="svc-cases"${list.length ? ' style="padding-top:0"' : ''}>
-  <div class="section__head section__head--row"><div><span class="eyebrow">Кейсы</span><h2 class="h2">Уже <span class="orange">раскололи</span></h2></div><a href="cases/index.html" class="link-arrow" data-cursor="hover">Все кейсы →</a></div>
+  <div class="section__head section__head--row"><div><span class="eyebrow">Кейсы</span><h2 class="h2">Уже <span class="orange">раскололи</span></h2></div><a href="projects/${sec.cases}/" class="link-arrow" data-cursor="hover">Все кейсы →</a></div>
   <div class="cases__grid">${rel.slice(0, 3).map(c => caseCard(c)).join('')}</div>
 </section>` : ''}
 ${siblings.length ? `<section class="section" style="padding-top:0">
@@ -495,32 +659,40 @@ ${siblings.length ? `<section class="section" style="padding-top:0">
 </section>` : ''}
 ${BRIEF}`;
     }
-    page({ path, title: `${s.title} — NUTS`, desc, active: 'services', main });
+    // Service + its prices as offers
+    const set = priceSet(key);
+    const num = p => { const m = String(p).replace(/\s| /g, '').match(/(\d+)/); return m && !/%/.test(p) ? Number(m[1]) : null; };
+    const offers = set ? set.items.map(i => ({ i, n: num(i.price) })).filter(x => x.n).map(({ i, n }) => ({ '@type': 'Offer', name: i.name, priceCurrency: 'RUB', price: n, priceSpecification: { '@type': 'UnitPriceSpecification', price: n, priceCurrency: 'RUB', ...(/месяц/.test(i.unit || '') ? { unitText: 'месяц' } : /час/.test(i.unit || '') ? { unitText: 'час' } : {}), ...(/^от/i.test(i.price) ? { minPrice: n } : {}) } })) : [];
+    const url = SITE + svcUrl(key);
+    page({ path, name: s.title, title: `${s.title} — NUTS`, desc, active: 'services', main,
+      ld: [{ '@type': 'Service', name: seoH1(svcUrl(key)) || s.title, serviceType: sec.label, description: desc, url, provider: { '@id': SITE + '#office' }, areaServed: [{ '@type': 'City', name: 'Краснодар' }, { '@type': 'Country', name: 'Россия' }], ...(offers.length ? { offers } : {}) }] });
   }
 }
 
 async function buildBlog() {
   const A = D.articles;
   const cats = [...new Set(A.map(a => a.cat))];
-  const [first, ...rest] = A;
-  page({
-    path: 'blog/index.html', title: 'Блог — NUTS', desc: 'Статьи NUTS о сайтах, SEO, соцсетях, дизайне и digital-маркетинге.', active: 'blog',
-    main: `
+  const lc = Object.fromEntries(cats.map(c => [lowerCat(c), POST_CATS[c] || c]));
+  const listPage = cat => {
+    const list = cat ? A.filter(a => lowerCat(a.cat) === cat) : A;
+    const out = cat ? `articles/${cat}/` : 'articles/';
+    const [first, ...rest] = list;
+    page({
+      path: out, name: cat ? lc[cat] : 'Блог', title: 'Блог — NUTS', desc: 'Статьи NUTS о сайтах, SEO, соцсетях, дизайне и digital-маркетинге.', active: 'blog',
+      main: `
 <section class="page-hero">
   <div class="page-hero__glow" aria-hidden="true"></div>
   <div class="page-hero__rings" aria-hidden="true"><i></i><i></i></div>
-  <nav class="crumbs" data-in><a href="index.html">Главная</a><span>Блог</span></nav>
+  <nav class="crumbs" data-in><a href="index.html">Главная</a>${cat ? `<span><a href="blog/index.html">Блог</a></span><span>${esc(lc[cat])}</span>` : '<span>Блог</span>'}</nav>
+  <h1 class="page-h1" data-in>${esc(seoH1(out) || (cat ? lc[cat] : 'Блог'))}</h1>
   <div class="blog-top">
-    <h1 class="page-title"><span class="line"><span class="split">Орехи</span></span><span class="line"><span class="split orange">для ума</span></span></h1>
-    <div class="filters" id="filters" data-in>
-      <button class="filter is-active" data-f="all">Все</button>
-      ${cats.map(c => `<button class="filter" data-f="${c}">${POST_CATS[c] || c}</button>`).join('\n      ')}
-    </div>
+    <p class="page-title"><span class="line"><span class="split">Орехи</span></span><span class="line"><span class="split orange">для ума</span></span></p>
+    ${filterLinks('articles/', Object.keys(lc), lc, cat).replace(' style="position:relative;margin-top:36px"', '')}
   </div>
   <p class="page-lead" data-in>Пишем о том, что делаем каждый день: сайты, SEO, соцсети, дизайн и digital-маркетинг. Без воды — только ядро.</p>
 </section>
 <a class="feature" href="blog/${first.slug}.html" data-cursor="read">
-  <div class="feature__img"><img src="${first.cover}" alt=""></div>
+  <div class="feature__img"><img src="${first.cover}" alt="${esc(first.title)}"></div>
   <div class="feature__body">
     <div class="meta"><span class="cat">${POST_CATS[first.cat]}</span><span>${esc(first.date)}</span></div>
     <h2>${esc(first.title)}</h2>
@@ -528,43 +700,48 @@ async function buildBlog() {
     <span class="link-arrow" style="align-self:flex-start">Читать →</span>
   </div>
 </a>
-<section class="section" style="padding-top:clamp(60px,8vw,110px)">
+${rest.length ? `<section class="section" style="padding-top:clamp(60px,8vw,110px)">
   <div class="posts">${rest.map(postCard).join('')}
   </div>
-</section>
+</section>` : ''}
 <section class="subscribe">
   <img src="assets/logo-mark.png" class="subscribe__nut" alt="" aria-hidden="true">
   <div><h2>Орехи — <span class="orange">в Telegram</span></h2><p>Новые статьи, кейсы и закулисье агентства. Без спама, только ядро.</p></div>
   <a href="https://t.me/nutsdigitalagency" target="_blank" rel="noopener" class="btn btn--orange magnetic" data-cursor="hover"><span>Подписаться</span><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
 </section>` + ctaBand('Хватит читать — давайте делать'),
-  });
+      ld: [{ '@type': 'Blog', name: 'Блог Nuts Digital Agency', url: SITE + out, publisher: PUBLISHER, blogPost: list.map(a => ({ '@type': 'BlogPosting', headline: a.title, url: SITE + postUrl(a) })) }],
+    });
+  };
+  listPage(null);
+  Object.keys(lc).forEach(listPage);
 
   for (const a of A) {
     const path = `blog/${a.slug}.html`;
-    const body = normalize(a.html);
+    const body = fixAlts(normalize(a.html), a.title);
     const desc = cut(firstText(body), 160);
+    const url = SITE + postUrl(a);
     let main = await custom(path);
     if (!main) {
       const root = document.createElement('div'); root.innerHTML = body;
       const toc = [];
       root.querySelectorAll('h2, h3').forEach((h, i) => { h.id = 's' + (i + 1); toc.push(`<a href="#${h.id}"${h.tagName === 'H3' ? ' class="sub"' : ''} data-cursor="hover">${esc(cut(h.textContent.trim(), 60))}</a>`); });
       const related = [...A.filter(x => x !== a && x.cat === a.cat), ...A.filter(x => x !== a && x.cat !== a.cat)].slice(0, 3);
-      const share = encodeURIComponent(`https://kvashin23.github.io/nuts/${path}`);
+      const share = encodeURIComponent(url);
       main = `
 <section class="page-hero article-hero">
   <div class="page-hero__glow" aria-hidden="true"></div>
-  <nav class="crumbs" data-in><a href="index.html">Главная</a><span><a href="blog/index.html">Блог</a></span><span>${POST_CATS[a.cat] || a.cat}</span></nav>
-  <div class="meta" data-in><span class="cat">${POST_CATS[a.cat] || a.cat}</span><span>${esc(a.date)}</span><span>${Math.max(1, Math.round(root.textContent.split(/\s+/).length / 180))} мин чтения</span></div>
+  <nav class="crumbs" data-in><a href="index.html">Главная</a><span><a href="blog/index.html">Блог</a></span><span><a href="articles/${lowerCat(a.cat)}/">${POST_CATS[a.cat] || a.cat}</a></span></nav>
+  <div class="meta" data-in><span class="cat">${POST_CATS[a.cat] || a.cat}</span><time datetime="${isoDate(a.date) || ''}">${esc(a.date)}</time><span>${Math.max(1, Math.round(root.textContent.split(/\s+/).length / 180))} мин чтения</span></div>
   <h1 class="page-title page-title--sm"><span class="line"><span class="split">${shy(a.title)}</span></span></h1>
   <div class="author" data-in><span class="author__ava">N</span><div><b>Команда NUTS</b><span>Digital-агентство полного цикла</span></div></div>
 </section>
-${a.cover && FILES.has(a.cover.replace('assets/content/', '')) ? `<figure class="cover"><img src="${a.cover}" alt=""></figure>` : ''}
+${a.cover && FILES.has(a.cover.replace('assets/content/', '')) ? `<figure class="cover"><img src="${a.cover}" alt="${esc(a.title)}"></figure>` : ''}
 <div class="article">
   <aside class="toc">
     ${toc.length > 1 ? `<span class="toc__title">Содержание</span>\n    ${toc.join('\n    ')}` : ''}
     <div class="share">
-      <a href="https://t.me/share/url?url=${share}" target="_blank" rel="noopener" data-cursor="hover">Telegram</a>
-      <a href="https://vk.com/share.php?url=${share}" target="_blank" rel="noopener" data-cursor="hover">VK</a>
+      <a href="https://t.me/share/url?url=${share}" target="_blank" rel="noopener nofollow" data-cursor="hover">Telegram</a>
+      <a href="https://vk.com/share.php?url=${share}" target="_blank" rel="noopener nofollow" data-cursor="hover">VK</a>
     </div>
   </aside>
   <article class="article__body prose">${root.innerHTML}</article>
@@ -577,15 +754,18 @@ ${a.cover && FILES.has(a.cover.replace('assets/content/', '')) ? `<figure class=
   <div class="posts">${related.map(postCard).join('')}</div>
 </section>` + ctaBand('Остались вопросы? Расколем вместе');
     }
-    page({ path, title: `${a.title} — блог NUTS`, desc, active: 'blog', main, before: '<div class="readbar" id="readBar" aria-hidden="true"></div>', image: a.cover });
+    page({ path, name: a.title, title: `${a.title} — блог NUTS`, desc, active: 'blog', main, before: '<div class="readbar" id="readBar" aria-hidden="true"></div>', image: a.cover, ogType: 'article',
+      ld: [{ '@type': 'BlogPosting', headline: cut(a.title, 110), description: desc, image: a.cover ? SITE + a.cover : undefined, url, mainEntityOfPage: url, datePublished: isoDate(a.date), author: PUBLISHER, publisher: PUBLISHER, inLanguage: 'ru' }] });
   }
+  // the old "Реклама" blog category has no articles: its address leads to the blog
+  page({ path: 'articles/elektronnaya-kommertsiya/', name: 'Реклама', title: 'Реклама', desc: '', main: '', redirect: 'articles/' });
 }
 
 function buildAbout() {
   const reviews = D.cases.filter(c => c.review);
   page({
-    path: 'about.html', title: 'О компании — NUTS', desc: 'Nuts Digital Agency — digital-агентство полного цикла из Краснодара. С 2017 года делаем сайты, рекламу, SEO и SMM.', active: 'about',
-    main: hero({ crumbs: [[null, 'О нас']], title: 'Привет! Мы Nuts', titleHtml: 'Привет! <span class="orange">Мы Nuts</span>', lead: 'Безумцы в стиле digital. В 2017 году Костя и Данил Квашины открыли агентство полного цикла — и с тех пор превращаем нереальное в реальное.' }) + `
+    path: 'about.html', name: 'О компании', title: 'О компании — NUTS', desc: 'Nuts Digital Agency — digital-агентство полного цикла из Краснодара. С 2017 года делаем сайты, рекламу, SEO и SMM.', active: 'about',
+    main: hero({ crumbs: [[null, 'О нас']], h1: seoH1('company/') || 'О компании', title: 'Привет! Мы Nuts', titleHtml: 'Привет! <span class="orange">Мы Nuts</span>', lead: 'Безумцы в стиле digital. В 2017 году Костя и Данил Квашины открыли агентство полного цикла — и с тех пор превращаем нереальное в реальное.' }) + `
 <section class="section" style="padding-top:0">
   <div class="bigstats" style="padding:0">
     <div class="bigstat"><b>2017</b><span>год основания. Начинали втроём на 20 м²</span></div>
@@ -620,6 +800,12 @@ function buildAbout() {
     </div>
   </article>
 </section>
+<section class="section" style="padding-top:0">
+  <div class="section__head" style="margin-bottom:36px"><h2 class="h3">Ещё о компании</h2></div>
+  <div class="kinds kinds--dark">${FOOT.map(([href, label], i) => `
+    <a class="kind" href="${href}"><span class="kind__ico">${String(i + 1).padStart(2, '0')}</span><h3>${label}</h3><div class="kind__term"><span>Подробнее</span><b>→</b></div></a>`).join('')}
+  </div>
+</section>
 ${reviews.length ? `<section class="section section--light">
   <div class="reviews" style="margin-top:0">
     <div class="reviews__head"><h2 class="h3">Что говорят клиенты</h2>
@@ -639,13 +825,64 @@ ${reviews.length ? `<section class="section section--light">
     ${(() => { const l = ['Девелопмент-Юг', 'Черкизово', 'DOGMA', 'КЛЮЧАВТО', 'СБС Мегамолл', 'МНТК «Микрохирургия глаза»', 'СК Семья', 'Алкотека', 'Лефкадия', 'Schaumann', 'Точка Молочка', 'Арт-Сайд'].map(x => `<span>${x}</span>`).join(''); return l + l; })()}
   </div></div>
 </section>` + ctaBand('Познакомимся поближе?'),
+    ld: [{ '@type': 'AboutPage', url: SITE + 'company/', name: 'О компании Nuts Digital Agency', mainEntity: { '@id': SITE + '#org' } }],
   });
+}
+
+// the old site's company section: technologies, vacancies, requisites, reviews (data/pages.json, tools/import-pages.html)
+function buildCompany() {
+  const P = PAGES;
+  const sub = (out, name, crumbs, main, ld = []) => page({ path: out, name, title: (P['/' + out] || {}).title || name, desc: (P['/' + out] || {}).description || '', active: 'about', main, ld });
+  const about = ['about.html', 'О нас'];
+  const prose = html => `<section class="chapters" style="padding-top:0"><article class="chapter chapter--wide"><div class="chapter__body prose">${fixAlts(normalize(html), 'Nuts Digital Agency')}</div></article></section>`;
+  // technologies
+  const tech = P['/company/partners/'];
+  if (tech) {
+    sub('company/partners/', 'Технологии разработки', null, hero({ crumbs: [about, [null, 'Технологии']], h1: tech.h1, title: 'Чем колем', titleHtml: 'Чем <span class="orange">колем</span>', lead: 'Фреймворки, CMS и сервисы, на которых мы делаем сайты, приложения и порталы.' }) + `
+<section class="section" style="padding-top:0">
+  <div class="tech-grid">${tech.items.map(t => `
+    <a class="tech" href="${t.href || '#'}" data-cursor="hover"><span class="tech__logo">${t.logo ? `<img src="${t.logo}" alt="${esc(t.name)}">` : ''}</span><b>${esc(t.name)}</b><span class="tech__more">Подробнее →</span></a>`).join('')}
+  </div>
+</section>` + ctaBand(), [{ '@type': 'ItemList', name: tech.h1, itemListElement: tech.items.map((t, i) => ({ '@type': 'ListItem', position: i + 1, name: t.name, url: mapOldUrl(t.href) !== null ? SITE + mapOldUrl(t.href) : undefined })) }]);
+    for (const t of tech.items) {
+      const out = mapOldUrl(t.href);
+      const d = P['/' + out];
+      if (!d) continue;
+      sub(out, d.h1, null, hero({ crumbs: [about, ['company/partners/', 'Технологии'], [null, d.h1]], title: d.h1 }) + prose(d.html) + `
+<section class="section" style="padding-top:0"><a href="company/partners/" class="link-arrow">← Все технологии</a></section>` + ctaBand());
+    }
+  }
+  // requisites
+  const req = P['/company/requisites/'];
+  if (req) sub('company/requisites/', 'Реквизиты', null, hero({ crumbs: [about, [null, 'Реквизиты']], title: req.h1 }) + prose(req.html));
+  // reviews
+  const rev = P['/company/reviews/'];
+  if (rev) sub('company/reviews/', 'Отзывы клиентов', null, hero({ crumbs: [about, [null, 'Отзывы']], h1: rev.h1, title: 'Что говорят клиенты', lead: rev.intro }) + `
+<section class="reviews-list">${rev.reviews.map(r => reviewCard(r).replace('<span class="eyebrow">Отзыв клиента</span>', '')).join('')}</section>` + ctaBand('Станете следующим?'));
+  // vacancies
+  const vac = P['/company/vacancy/'];
+  if (vac) {
+    sub('company/vacancy/', 'Вакансии', null, hero({ crumbs: [about, [null, 'Вакансии']], h1: vac.h1, title: 'Ищем безумцев', titleHtml: 'Ищем <span class="orange">безумцев</span>', lead: 'Офис в центре Краснодара, Красная, 155/2. Присылайте резюме на info@nuts-agency.ru.' }) + `
+<section class="section" style="padding-top:0">
+  <div class="vacancies">${vac.items.map(v => `
+    <details class="vacancy">
+      <summary><span class="vacancy__dep">${esc(v.department)}</span><b class="vacancy__name">${esc(v.name)}</b><span class="vacancy__pay">${esc(v.pay)}</span><i aria-hidden="true"></i></summary>
+      <div class="vacancy__body prose">${normalize(v.html)}${v.href ? `<p><a href="${'https://nuts-agency.ru' + v.href}">Страница вакансии →</a></p>` : ''}</div>
+    </details>`).join('')}
+  </div>
+</section>` + ctaBand('Хотите к нам? Пишите'));
+    for (const out of ['company/vacancy/junior-seo/', 'company/vacancy/rukovoditel-proektov/', 'company/vacancy/seo-spetsialist-seo-optimizator/']) {
+      const d = P['/' + out];
+      if (d) sub(out, d.h1, null, hero({ crumbs: [about, ['company/vacancy/', 'Вакансии'], [null, d.h1]], title: d.h1 }) + prose(d.html) + `
+<section class="section" style="padding-top:0"><a href="company/vacancy/" class="link-arrow">← Все вакансии</a></section>` + ctaBand('Откликнуться: info@nuts-agency.ru'));
+    }
+  }
 }
 
 function buildContacts() {
   page({
-    path: 'contacts.html', title: 'Контакты — NUTS', desc: 'Nuts Digital Agency: Краснодар, ул. Красная, 155/2, 7 этаж. 8 800 222-46-04, info@nuts-agency.ru.', active: 'contacts',
-    main: hero({ crumbs: [[null, 'Контакты']], title: 'Давайте знакомиться', lead: 'Пока вы думаете — ваши конкуренты уже едут в наш офис.' }) + `
+    path: 'contacts.html', name: 'Контакты', title: 'Контакты — NUTS', desc: 'Nuts Digital Agency: Краснодар, ул. Красная, 155/2, 7 этаж. 8 800 222-46-04, info@nuts-agency.ru.', active: 'contacts',
+    main: hero({ crumbs: [[null, 'Контакты']], h1: 'Контакты', title: 'Давайте знакомиться', lead: 'Пока вы думаете — ваши конкуренты уже едут в наш офис.' }) + `
 <section class="section" style="padding-top:0">
   <div class="contact-cards">
     <a class="contact-card" href="tel:88002224604" data-cursor="hover"><b>Телефон</b><span>8 800 222-46-04</span></a>
@@ -653,47 +890,81 @@ function buildContacts() {
     <a class="contact-card" href="https://yandex.ru/maps/?text=%D0%9A%D1%80%D0%B0%D1%81%D0%BD%D0%BE%D0%B4%D0%B0%D1%80%2C%20%D0%9A%D1%80%D0%B0%D1%81%D0%BD%D0%B0%D1%8F%20155%2F2" target="_blank" rel="noopener" data-cursor="open"><b>Офис</b><span>Краснодар, Красная, 155/2, 7 этаж ↗</span></a>
     <a class="contact-card" href="https://t.me/nutsdigitalagency" target="_blank" rel="noopener" data-cursor="hover"><b>Telegram</b><span>@nutsdigitalagency ↗</span></a>
   </div>
+  <p class="contact-hours">Работаем пн–пт с 9:00 до 18:00.</p>
 </section>
 ${BRIEF}`,
+    ld: [{ '@type': 'ContactPage', url: SITE + 'contacts/', name: 'Контакты Nuts Digital Agency', mainEntity: { '@id': SITE + '#office' } }, OFFICE],
   });
 }
 
+// homepage: index.html is hand-made; the build relinks it and writes its head from the old site's meta
+function buildHome(home) {
+  const meta = SEO.pages['/'];
+  home = relink(home, 0)
+    .replace(/<a href="#services"( data-cursor="hover")?>Услуги<\/a>/g, '<a href="services/"$1>Услуги</a>')
+    .replace(/<a href="#about"( data-cursor="hover")?>О нас<\/a>/g, '<a href="company/"$1>О нас</a>')
+    .replace(/Все проекты — \d+\+?/, `Все проекты — ${D.cases.length}`)
+    .replace(/ target="_blank" rel="noopener"( class="(?:case|post)[^"]*")/g, '$1');
+  home = home.replace(/(href|src)="((?:css|js)\/[^"?]+)(?:\?v=[^"]*)?"/g, (m, a, f) => `${a}="${f}?v=${VER}"`);
+  // everything between the SEO markers in <head> is written by the build
+  const head = `<!-- @seo -->
+  <title>${esc(meta.title)}</title>
+  <meta name="description" content="${esc(meta.description)}">${INDEX ? '' : '\n  <meta name="robots" content="noindex, nofollow">'}
+  <link rel="canonical" href="${SITE}">
+  <meta property="og:locale" content="ru_RU">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Nuts Digital Agency">
+  <meta property="og:title" content="${esc(meta.title)}">
+  <meta property="og:description" content="${esc(meta.description)}">
+  <meta property="og:url" content="${SITE}">
+  <meta property="og:image" content="${SITE}assets/og.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="favicon.ico" sizes="any">
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+  ${jsonLd({ '@context': 'https://schema.org', '@graph': [ORG, OFFICE, { '@type': 'WebSite', '@id': SITE + '#site', url: SITE, name: 'Nuts Digital Agency', inLanguage: 'ru', publisher: PUBLISHER }] })}
+  <!-- /@seo -->`;
+  if (!/<!-- @seo -->[\s\S]*?<!-- \/@seo -->/.test(home)) throw new Error('index.html: no <!-- @seo --> … <!-- /@seo --> markers in <head>');
+  home = home.replace(/<!-- @seo -->[\s\S]*?<!-- \/@seo -->/, head);
+  if (!home.includes('mc.yandex.ru')) home = home.replace('</body>', METRIKA + '\n</body>');
+  pages['index.html'] = home;
+}
+
 /* ---------- run ---------- */
+let PAGES;
 async function run() {
   D = await (await fetch('../data/content.json?' + Date.now())).json();
   FILES = new Set(await (await fetch('../data/files.json?' + Date.now())).json());
-  log(`content: ${D.cases.length} cases, ${D.services.length} services, ${D.articles.length} articles`);
+  PRICES = await (await fetch('../data/prices.json?' + Date.now())).json();
+  SEO = await (await fetch('../data/seo.json?' + Date.now())).json();
+  PAGES = await (await fetch('../data/pages.json?' + Date.now())).json();
+  log(`content: ${D.cases.length} cases, ${D.services.length} services, ${D.articles.length} articles, ${Object.keys(PAGES).length} company pages`);
   fixCases(D.cases);
-  await buildCases(); await buildServices(); await buildBlog(); buildAbout(); buildContacts();
-  // homepage: point old-site and legacy links at the generated pages
-  let home = await (await fetch('../index.html?' + Date.now())).text();
-  home = relink(home, 0)
-    .replace(/<a href="#services"( data-cursor="hover")?>Услуги<\/a>/g, '<a href="services/index.html"$1>Услуги</a>')
-    .replace(/<a href="#about"( data-cursor="hover")?>О нас<\/a>/g, '<a href="about.html"$1>О нас</a>')
-    .replace(/Все проекты — \d+\+?/, `Все проекты — ${D.cases.length}`)
-    .replace(/ target="_blank" rel="noopener"( class="(?:case|post)[^"]*")/g, '$1');
-  // cache-bust our own CSS/JS so visitors never mix fresh HTML with stale styles or scripts
-  home = home.replace(/(href|src)="((?:css|js)\/[^"?]+)(?:\?v=[^"]*)?"/g, (m, a, f) => `${a}="${f}?v=${VER}"`);
-  pages['index.html'] = home;
-  // keep old flat URLs working
-  for (const [old, now] of Object.entries(LEGACY)) pages[old] = `<!doctype html><meta charset="utf-8"><meta http-equiv="refresh" content="0; url=${now}"><link rel="canonical" href="${now}"><a href="${now}">${now}</a>\n`;
-  // 404: GitHub Pages serves it for any missing path, so links resolve from the site root via <base>
+  await buildCases(); await buildServices(); await buildBlog(); buildAbout(); buildCompany(); buildContacts();
+  // 404: served by the web server for any missing address, so links resolve from the site root via <base>
   page({
-    path: '404.html', base: '/nuts/', title: 'Страница не найдена — NUTS', desc: 'Такой страницы нет. Зато есть кейсы, услуги и блог NUTS.',
+    path: '404.html', base: '/', name: '404', title: 'Страница не найдена — NUTS', desc: 'Такой страницы нет. Зато есть кейсы, услуги и блог NUTS.',
     main: hero({ crumbs: [[null, '404']], title: 'Орех не найден', lead: 'Похоже, эту страницу уже раскололи и съели. Вернитесь на главную или загляните в кейсы.',
       after: `<div class="svc-hero__ctas" data-in style="position:relative;margin-top:32px"><a href="index.html" class="btn btn--orange magnetic" data-cursor="hover"><span>На главную</span></a><a href="cases/index.html" class="btn btn--ghost magnetic" data-cursor="hover"><span>Кейсы</span></a></div>` }),
   });
+  NAMES[''] = 'Главная';
+  QUEUE.forEach(renderPage);
+  buildHome(await (await fetch('../index.html?' + Date.now())).text());
+  // sitemap: every real page under its production address (no redirects, no 404)
   const today = new Date().toISOString().slice(0, 10);
-  const indexable = Object.keys(pages).filter(p => !LEGACY[p] && p !== '404.html').sort();
-  pages['sitemap.xml'] = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${indexable.map(p => `  <url><loc>${SITE}${p.replace(/(^|\/)index\.html$/, '$1')}</loc><lastmod>${today}</lastmod></url>`).join('\n')}\n</urlset>\n`;
-  pages['robots.txt'] = `User-agent: *\nAllow: /\nDisallow: /tools/\nDisallow: /data/\n\nSitemap: ${SITE}sitemap.xml\n`;
+  const real = ['', ...QUEUE.filter(q => !q.redirect && q.out !== '404.html').map(q => q.out)];
+  const prio = out => (out === '' ? '1.0' : /^(services|projects|articles)\/$/.test(out) || /^services\/[^/]+\/$/.test(out) ? '0.8' : /^services\//.test(out) ? '0.7' : '0.5');
+  pages['sitemap.xml'] = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${[...new Set(real)].sort().map(o => `  <url><loc>${SITE}${o}</loc><lastmod>${today}</lastmod><priority>${prio(o)}</priority></url>`).join('\n')}\n</urlset>\n`;
+  pages['robots.txt'] = INDEX
+    ? `User-agent: *\nAllow: /\nDisallow: /tools/\nDisallow: /data/\nDisallow: /*?\nAllow: /*?v=\n\nSitemap: ${SITE}sitemap.xml\n`
+    : `# test copy of the site: closed for indexing (tools/build.js, INDEX = false)\nUser-agent: *\nDisallow: /\n`;
+  log(`pages: ${real.length} in sitemap, ${QUEUE.filter(q => q.redirect).length} redirects`);
   let n = 0;
   for (const [path, html] of Object.entries(pages)) {
     const r = await fetch(SAVE + encodeURIComponent(path), { method: 'POST', body: html });
     if (!r.ok) log('FAIL ' + path + ' ' + (await r.text()));
     n++;
   }
-  log(`written: ${n} pages`);
+  log(`written: ${n} files`);
   window.__built = { n, paths: Object.keys(pages) };
 }
 run().catch(e => { log('ERROR ' + e.stack); window.__built = { error: String(e.stack) }; });

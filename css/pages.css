@@ -433,3 +433,66 @@ h1, h2, h3, .page-title, .chapter__head h2, .h2, .h3, .next__title, .case__title
 
 /* rotated marquee strips must never widen the page on phones */
 main { overflow-x: clip; }
+
+/* ==========================================================
+   Prices, SEO H1, company pages (25.11, part 2)
+   ========================================================== */
+/* descriptive H1 above a playful display title */
+.page-h1 { position: relative; margin: 0 0 14px; font-family: var(--f-body, inherit); font-size: 13px; font-weight: 800; letter-spacing: .16em; text-transform: uppercase; color: var(--orange); }
+
+/* price cards inside a service text (data/prices.json) */
+.prices { margin: 1.2em 0 1.6em; }
+.prices__grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); gap: 12px; }
+.price-card { position: relative; display: flex; flex-direction: column; gap: 8px; padding: 22px 20px; border-radius: 18px; background: var(--ink); border: 1px solid var(--line); }
+.price-card.is-hit { border-color: var(--orange); box-shadow: 0 0 0 1px var(--orange) inset; }
+.price-card.is-hit::after { content: "Чаще берут"; position: absolute; top: -10px; right: 14px; padding: 3px 10px; border-radius: 99px; background: var(--orange); color: #000; font-size: 11px; font-weight: 800; letter-spacing: .04em; }
+.price-card__name { font-size: 14px; font-weight: 700; color: var(--muted); line-height: 1.35; }
+.price-card__price { font-family: var(--f-display); font-weight: 900; font-size: clamp(24px, 2.2vw, 32px); line-height: 1; letter-spacing: -.03em; color: var(--white); white-space: nowrap; }
+.price-card__unit { font-size: 13px; color: var(--muted); line-height: 1.35; }
+.prose .prices__note { margin: 14px 0 0; font-size: 15px; color: var(--muted); }
+.prose .prices__more { margin: 8px 0 0; }
+
+/* footer: company section links */
+.footer__links { display: flex; flex-wrap: wrap; gap: 8px 24px; padding: 0 var(--pad) 18px; font-size: 14px; font-weight: 700; }
+.footer__links a { color: var(--muted); transition: color .3s; }
+.footer__links a:hover { color: var(--orange); }
+
+.contact-hours { margin: 18px 0 0; color: var(--muted); }
+.chapter--wide { grid-template-columns: minmax(0, 1fr); }
+.chapter--wide .chapter__body { max-width: 900px; }
+
+/* technologies */
+.tech-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 14px; }
+.tech { display: flex; flex-direction: column; gap: 12px; padding: 22px; border-radius: var(--r); background: var(--ink); border: 1px solid var(--line); transition: transform .5s var(--ease), border-color .3s; }
+.tech:hover { transform: translateY(-6px); border-color: var(--orange); }
+.tech__logo { height: 72px; display: grid; place-items: center start; }
+.tech__logo img { max-height: 64px; max-width: 160px; width: auto; height: auto; border-radius: 10px; background: #fff; padding: 6px; }
+.tech b { font-family: var(--f-display); font-size: 20px; letter-spacing: -.02em; }
+.tech__more { margin-top: auto; font-size: 13px; font-weight: 700; color: var(--orange); }
+
+/* reviews page */
+.reviews-list { display: grid; gap: 18px; padding-bottom: 20px; }
+.reviews-list .review-card { margin-top: 0; }
+.reviews-list .review-card blockquote { margin-top: 0; }
+
+/* vacancies: crawlable accordion */
+.vacancies { border-top: 1px solid var(--line); }
+.vacancy { border-bottom: 1px solid var(--line); }
+.vacancy summary { list-style: none; display: grid; grid-template-columns: 180px minmax(0, 1fr) auto 44px; gap: 20px; align-items: center; padding: 26px 0; cursor: pointer; }
+.vacancy summary::-webkit-details-marker { display: none; }
+.vacancy__dep { font-size: 12px; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); }
+.vacancy__name { font-family: var(--f-display); font-weight: 800; font-size: clamp(20px, 2vw, 28px); letter-spacing: -.02em; }
+.vacancy__pay { font-weight: 800; color: var(--orange); white-space: nowrap; }
+.vacancy summary i { width: 44px; height: 44px; border-radius: 50%; border: 1.5px solid currentColor; position: relative; transition: transform .4s var(--ease), background .3s; }
+.vacancy summary i::before, .vacancy summary i::after { content: ""; position: absolute; left: 50%; top: 50%; width: 14px; height: 2px; background: currentColor; transform: translate(-50%,-50%); }
+.vacancy summary i::after { transform: translate(-50%,-50%) rotate(90deg); }
+.vacancy[open] summary i { transform: rotate(135deg); background: var(--orange); border-color: var(--orange); color: #000; }
+.vacancy__body { padding: 0 0 28px; max-width: 860px; }
+@media (max-width: 700px) {
+  .vacancy summary { grid-template-columns: minmax(0, 1fr) 40px; gap: 6px 14px; }
+  .vacancy__dep, .vacancy__name, .vacancy__pay { grid-column: 1; }
+  .vacancy summary i { grid-column: 2; grid-row: 1 / span 3; width: 40px; height: 40px; }
+}
+
+/* dev page tiles: price line */
+.kind__price { font-family: var(--f-display); font-weight: 900; font-size: 22px; letter-spacing: -.02em; color: var(--orange); }

@@ -204,4 +204,4 @@ async function run() {
   log(`done: ${ok}/${D.cases.length}, missing files: ${missing.size}`);
   window.__imported = { ok, total: D.cases.length, missing: missing.size };
 }
-run().catch(e => { log('ERROR ' + e.stack); window.__imported = { error: String(e.stack) }; });
+if (!window.IMPORT_LIB) run().catch(e => { log('ERROR ' + e.stack); window.__imported = { error: String(e.stack) }; }); // import-pages.js reuses conv/tidy

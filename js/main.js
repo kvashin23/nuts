@@ -202,8 +202,8 @@
   });
 
   /* ---------- case filters ---------- */
-  $$('.filter').forEach(btn => btn.addEventListener('click', () => {
-    $$('.filter').forEach(b => b.classList.toggle('is-active', b === btn));
+  $$('.filter[data-f]').forEach(btn => btn.addEventListener('click', () => {
+    $$('.filter[data-f]').forEach(b => b.classList.toggle('is-active', b === btn));
     const f = btn.dataset.f;
     const cards = $$('[data-cat]');
     const apply = () => {

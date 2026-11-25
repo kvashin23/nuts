@@ -180,16 +180,20 @@ const nut = new THREE.Group();
 const left = makeHalf(-1), right = makeHalf(1);
 nut.add(left, right);
 
-// glowing kernel revealed when cracked
-const core = new THREE.Mesh(
-  new THREE.SphereGeometry(.42, 32, 24),
-  new THREE.ShaderMaterial({
-    transparent: true, depthWrite: false, blending: THREE.AdditiveBlending,
-    uniforms: { uSplit: uniforms.uSplit, uTime: uniforms.uTime },
-    vertexShader: `varying vec3 vN; varying vec3 vV; void main(){ vec4 mv=modelViewMatrix*vec4(position,1.); vN=normalize(normalMatrix*normal); vV=normalize(-mv.xyz); gl_Position=projectionMatrix*mv; }`,
-    fragmentShader: `uniform float uSplit,uTime; varying vec3 vN; varying vec3 vV; void main(){ float f=pow(max(dot(vN,vV),0.),1.5); float p=.8+.2*sin(uTime*3.); gl_FragColor=vec4(vec3(1.,.55,.15)*f*p*2.2, f*uSplit); }`,
-  })
-);
+// inside the cracked shell: the walnut-with-a-brain from the NUTS logo (a camera-facing sprite) on a warm glow
+const core = new THREE.Group();
+const glow = new THREE.Sprite(new THREE.SpriteMaterial({
+  map: (() => { const c = document.createElement('canvas'); c.width = c.height = 128; const x = c.getContext('2d'); const g = x.createRadialGradient(64, 64, 0, 64, 64, 64); g.addColorStop(0, 'rgba(255,140,40,1)'); g.addColorStop(.45, 'rgba(255,90,20,.35)'); g.addColorStop(1, 'rgba(255,90,20,0)'); x.fillStyle = g; x.fillRect(0, 0, 128, 128); return new THREE.CanvasTexture(c); })(),
+  transparent: true, depthWrite: false, blending: THREE.AdditiveBlending, opacity: 0,
+}));
+glow.scale.set(2.2, 2.2, 1);
+const logoTex = new THREE.TextureLoader().load('assets/logo-mark-hd.png', () => wake());
+logoTex.colorSpace = THREE.SRGBColorSpace;
+logoTex.anisotropy = 4;
+const kernel = new THREE.Sprite(new THREE.SpriteMaterial({ map: logoTex, transparent: true, depthWrite: false, depthTest: false, opacity: 0, toneMapped: false }));
+kernel.renderOrder = 2;
+kernel.scale.set(1.35 * 161 / 188, 1.35, 1); // logo proportions
+core.add(glow, kernel);
 nut.add(core);
 scene.add(nut);
 
@@ -276,11 +280,26 @@ const hitNut = e => {
   hitSphere.set(nut.position, 1.05 * nut.scale.x);
   return raycaster.ray.intersectsSphere(hitSphere);
 };
-hero.addEventListener('click', e => {
-  if (e.target.closest('a,button') || !hitNut(e)) return;
+// the nut doesn't look clickable by itself: a pulsing "crack me" badge sits under it and the shell
+// knocks open a little every few seconds until the visitor has cracked it once
+let everCracked = false;
+try { everCracked = sessionStorage.getItem('nutsCracked') === '1'; } catch (e) { /* private mode */ }
+const hint = document.createElement('button');
+hint.type = 'button';
+hint.className = 'nut-hint' + (everCracked ? ' is-done' : '');
+hint.innerHTML = `<i aria-hidden="true"></i><span>${isMobile ? 'Тапни — расколи орех' : 'Кликни — расколи орех'}</span>`;
+hero.appendChild(hint);
+const toggleCrack = () => {
   clickTarget = clickTarget ? 0 : 1;
+  if (clickTarget && !everCracked) { everCracked = true; try { sessionStorage.setItem('nutsCracked', '1'); } catch (e) { /* private mode */ } }
+  hint.classList.toggle('is-done', everCracked);
   wake();
   window.dispatchEvent(new CustomEvent('nut:crack', { detail: clickTarget }));
+};
+hint.addEventListener('click', toggleCrack);
+hero.addEventListener('click', e => {
+  if (e.target.closest('a,button') || !hitNut(e)) return;
+  toggleCrack();
 });
 hero.addEventListener('pointermove', e => {
   hero.style.cursor = !e.target.closest('a,button') && hitNut(e) ? 'pointer' : '';
@@ -292,11 +311,14 @@ new IntersectionObserver(([en]) => { visible = en.isIntersecting; if (visible) w
 // ---------- loop ----------
 // 60 fps while the user interacts or the intro plays, ~30 fps when idle, nothing off-screen
 const clock = new THREE.Clock();
+const hintPos = new THREE.Vector3();
 let intro = 0, last = 0;
 function tick(now) {
   requestAnimationFrame(tick);
   if (!visible || document.hidden) { clock.getDelta(); return; }
-  const active = now - lastInput < 2500 || intro < 1 || Math.abs(clickTarget - clickSplit) > .01;
+  const tNow = clock.elapsedTime;
+  const knocking = !everCracked && !reduced && tNow > 2.5 && (tNow - 2.5) % 4.5 < 1;
+  const active = now - lastInput < 2500 || intro < 1 || Math.abs(clickTarget - clickSplit) > .01 || knocking;
   if (!active && now - last < 32) return;
   last = now;
   const dt = Math.min(clock.getDelta(), .05);
@@ -315,14 +337,21 @@ function tick(now) {
   // scroll progress through hero
   const sp = Math.min(Math.max(scrollY / (hero.offsetHeight * .8), 0), 1);
   clickSplit += (clickTarget - clickSplit) * .07;
-  const split = Math.max(sp, clickSplit);
+  // "knock": a short double peek of the kernel while the visitor hasn't opened the nut yet
+  const kp = (t - 2.5) % 4.5;
+  const knock = knocking && kp < 1 ? Math.sin(Math.min(kp / .5, 1) * Math.PI) * .1 + (kp > .5 ? Math.sin((kp - .5) / .5 * Math.PI) * .06 : 0) : 0;
+  const split = Math.max(sp, clickSplit, knock);
   uniforms.uSplit.value = split;
 
   const gap = split * .75;
   left.position.x = -gap; right.position.x = gap;
   left.rotation.y = -split * .5; right.rotation.y = split * .5;
   left.rotation.z = split * .15; right.rotation.z = -split * .15;
-  core.scale.setScalar(.6 + split * .8 + Math.sin(t * 3) * .03 * split);
+  // the logo kernel grows out of the shell and stays facing the visitor
+  const open = smooth(.08, .6, split);
+  core.scale.setScalar(.55 + open * .55 + Math.sin(t * 3) * .02 * open);
+  kernel.material.opacity = open;
+  glow.material.opacity = Math.min(split * 1.6, 1) * (.45 + .15 * Math.sin(t * 3));
 
   nut.position.set(layout.x + mouse.x * .15, layout.y + Math.sin(t * .8) * .06 - sp * .4, 0);
   nut.scale.setScalar(layout.s * (.4 + .6 * ei) * (1 + sp * .15));
@@ -338,6 +367,10 @@ function tick(now) {
   rings.children.forEach(r => (r.rotation.z += r.userData.speed * dt * (1 + mouse.vel * 3)));
 
   dust.rotation.y = mouse.x * .2;
+  // keep the hint badge just under the nut on screen; it fades out once the hero scrolls away
+  hintPos.set(nut.position.x, nut.position.y - 1.2 * nut.scale.x, 0).project(camera);
+  hint.style.transform = `translate(${(hintPos.x * .5 + .5) * hero.clientWidth}px, ${(-hintPos.y * .5 + .5) * hero.clientHeight}px) translate(-50%, 0)`;
+  hint.classList.toggle('is-away', sp > .15 || ei < 1);
   renderer.render(scene, camera);
 }
 resize();

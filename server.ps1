@@ -2,7 +2,7 @@
 param([int]$Port = 5173)
 $root = $PSScriptRoot
 $mime = @{ '.html'='text/html; charset=utf-8'; '.css'='text/css; charset=utf-8'; '.js'='text/javascript; charset=utf-8';
-  '.svg'='image/svg+xml'; '.png'='image/png'; '.jpg'='image/jpeg'; '.jpeg'='image/jpeg'; '.webp'='image/webp'; '.json'='application/json'; '.ico'='image/x-icon'; '.gif'='image/gif'; '.pdf'='application/pdf' }
+  '.svg'='image/svg+xml'; '.png'='image/png'; '.jpg'='image/jpeg'; '.jpeg'='image/jpeg'; '.webp'='image/webp'; '.json'='application/json'; '.ico'='image/x-icon'; '.gif'='image/gif'; '.pdf'='application/pdf'; '.xml'='application/xml; charset=utf-8'; '.txt'='text/plain; charset=utf-8' }
 $l = New-Object System.Net.HttpListener
 $l.Prefixes.Add("http://localhost:$Port/")
 $l.Start()
@@ -10,7 +10,8 @@ Write-Host "Serving $root on http://localhost:$Port/"
 while ($l.IsListening) {
   $ctx = $l.GetContext()
   $path = [Uri]::UnescapeDataString($ctx.Request.Url.AbsolutePath).TrimStart('/')
-  if ($path -eq '') { $path = 'index.html' }
+  if ($path -eq '' -or $path.EndsWith('/')) { $path = $path + 'index.html' }
+  elseif (Test-Path (Join-Path $root $path) -PathType Container) { $ctx.Response.Redirect('/' + $path + '/'); $ctx.Response.Close(); continue }
   $file = Join-Path $root $path
   if ((Test-Path $file -PathType Leaf) -and ([IO.Path]::GetFullPath($file).StartsWith($root))) {
     $bytes = [IO.File]::ReadAllBytes($file)

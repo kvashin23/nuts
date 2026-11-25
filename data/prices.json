@@ -1,0 +1,65 @@
+{
+ "_about": "Prices shown on service pages (client prices 25.11.2026). tools/build.js removes the old price lines from the texts and renders these as cards inside the page's price chapter. Keys = service slug (or section for section pages). 'packs' refers to a shared set below.",
+ "packs": {
+  "seo": {
+   "items": [
+    { "name": "SEO", "price": "50 000 ₽", "unit": "в месяц" },
+    { "name": "SEO + поддержка 10 часов", "price": "74 700 ₽", "unit": "в месяц" },
+    { "name": "SEO + поддержка 20 часов", "price": "101 700 ₽", "unit": "в месяц", "hit": true },
+    { "name": "SEO + поддержка 40 часов", "price": "153 000 ₽", "unit": "в месяц" }
+   ],
+   "note": "Цены для сайтов до 10 000 страниц, для больших — по запросу. При оплате за квартал скидка 5%, за полгода — 10%, за год — 20%."
+  },
+  "support": {
+   "items": [
+    { "name": "10 часов в месяц", "price": "33 000 ₽", "unit": "3 300 ₽ за час" },
+    { "name": "20 часов в месяц", "price": "63 000 ₽", "unit": "3 150 ₽ за час", "hit": true },
+    { "name": "40 часов в месяц", "price": "120 000 ₽", "unit": "3 000 ₽ за час" }
+   ],
+   "note": "Разовая работа без пакета — 3 300 ₽ за час. При оплате пакета за квартал скидка 5%, за полгода — 10%, за год — 20%."
+  }
+ },
+ "services": {
+  "landing-page": { "items": [{ "name": "Лендинг под ключ", "price": "от 50 000 ₽" }] },
+  "internet-magaziny": { "items": [{ "name": "Интернет-магазин", "price": "от 300 000 ₽" }] },
+  "reklamiryem": { "items": [{ "name": "Настройка и ведение рекламы", "price": "от 30 000 ₽", "unit": "в месяц" }] },
+  "kontekstnaya-reklama": { "items": [{ "name": "Настройка и ведение контекстной рекламы", "price": "от 30 000 ₽", "unit": "в месяц" }] },
+  "target-reklama": { "items": [{ "name": "Настройка и ведение таргетированной рекламы", "price": "от 30 000 ₽", "unit": "в месяц" }] },
+  "mediynaya-reklama": { "items": [{ "name": "Настройка и ведение медийной рекламы", "price": "от 30 000 ₽", "unit": "в месяц" }] },
+  "programmatic-reklama": { "items": [{ "name": "Programmatic-реклама", "price": "10%", "unit": "от рекламного бюджета, но не менее 50 000 ₽" }] },
+  "prodvigaem-v-poiskovikah": {
+   "packs": "seo",
+   "extra": [
+    { "name": "SEO с гарантией результата", "price": "от 150 000 ₽", "unit": "в месяц" },
+    { "name": "Консультация SEO-специалиста", "price": "3 000 ₽", "unit": "за час" }
+   ]
+  },
+  "seo": { "items": [{ "name": "Базовая оптимизация сайта", "price": "от 50 000 ₽" }] },
+  "prodvizhenie-v-google": { "items": [{ "name": "Продвижение в Google", "price": "от 50 000 ₽", "unit": "в месяц" }], "more": "prodvigaem-v-poiskovikah" },
+  "audit-sayta": { "items": [{ "name": "Комплексный аудит + аудит коммерческих факторов", "price": "от 35 000 ₽" }] },
+  "prodvizhenie-v-yandeks": {
+   "items": [
+    { "name": "Продвижение в Яндексе", "price": "от 50 000 ₽", "unit": "в месяц" },
+    { "name": "Консультация SEO-специалиста", "price": "3 000 ₽", "unit": "за час" }
+   ],
+   "more": "prodvigaem-v-poiskovikah"
+  },
+  "podderzhivaem": { "packs": "support" },
+  "informatsionnaya-podderzhka-sayta": { "packs": "support" },
+  "tekhnicheskaya-podderzhka-sayta": { "packs": "support" },
+  "smm": {
+   "items": [
+    { "name": "Стратегия продвижения в соцсетях", "price": "100 000 ₽" },
+    { "name": "Ведение соцсетей под ключ", "price": "от 150 000 ₽", "unit": "в месяц" }
+   ]
+  },
+  "vedenie-sotssetey-pod-klyuch": { "items": [{ "name": "Ведение соцсетей под ключ", "price": "от 150 000 ₽", "unit": "в месяц" }] },
+  "posevy-v-sotsialnykh-setyakh": {
+   "items": [
+    { "name": "Размещение в паблике", "price": "3 000 ₽", "unit": "за паблик: организация, отчёт, документы" },
+    { "name": "Шорт-лист блогеров", "price": "25 000 ₽", "unit": "от 5 рабочих дней" },
+    { "name": "Работа с блогером", "price": "25 000 ₽", "unit": "за блогера на бартере; на коммерческой основе — бюджет + 27%" }
+   ]
+  }
+ }
+}
