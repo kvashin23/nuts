@@ -144,9 +144,12 @@ void main(){
   vec3 N=normalize(vWNormal);
   vec3 V=normalize(cameraPosition-vWPos);
   if(!gl_FrontFacing){
-    // inside of the shell: hot glowing core
-    float g=.6+.4*sin(uTime*2.+vObj.y*6.);
-    gl_FragColor=vec4(vec3(1.,.42,.08)*(1.2+g*uSplit*1.5),1.);
+    // inside of the shell: pale woody wall, darker deep inside, lighter at the broken rim
+    vec3 Li=normalize(uLight);
+    float d=max(dot(-N,Li),0.)*.6+.4;
+    float rim=smoothstep(.0,.25,abs(vObj.x));       // 0 at the seam/rim
+    vec3 wood=mix(vec3(.78,.6,.4),vec3(.42,.27,.15),rim);
+    gl_FragColor=vec4(wood*d,1.);
     return;
   }
   vec3 L=normalize(uLight);
@@ -180,21 +183,42 @@ const nut = new THREE.Group();
 const left = makeHalf(-1), right = makeHalf(1);
 nut.add(left, right);
 
-// inside the cracked shell: the walnut-with-a-brain from the NUTS logo (a camera-facing sprite) on a warm glow
-const core = new THREE.Group();
-const glow = new THREE.Sprite(new THREE.SpriteMaterial({
-  map: (() => { const c = document.createElement('canvas'); c.width = c.height = 128; const x = c.getContext('2d'); const g = x.createRadialGradient(64, 64, 0, 64, 64, 64); g.addColorStop(0, 'rgba(255,140,40,1)'); g.addColorStop(.45, 'rgba(255,90,20,.35)'); g.addColorStop(1, 'rgba(255,90,20,0)'); x.fillStyle = g; x.fillRect(0, 0, 128, 128); return new THREE.CanvasTexture(c); })(),
-  transparent: true, depthWrite: false, blending: THREE.AdditiveBlending, opacity: 0,
-}));
-glow.scale.set(2.2, 2.2, 1);
-const logoTex = new THREE.TextureLoader().load('assets/logo-mark-hd.png', () => wake());
-logoTex.colorSpace = THREE.SRGBColorSpace;
-logoTex.anisotropy = 4;
-const kernel = new THREE.Sprite(new THREE.SpriteMaterial({ map: logoTex, transparent: true, depthWrite: false, depthTest: false, opacity: 0, toneMapped: false }));
-kernel.renderOrder = 2;
-kernel.scale.set(1.35 * 161 / 188, 1.35, 1); // logo proportions
-core.add(glow, kernel);
-nut.add(core);
+// inside the cracked shell: a real walnut kernel — one convoluted half in each half of the shell
+// (baked once on the CPU like the shell; lumpy lobes, deep folds, a groove between the two lobes
+// on the open face, golden-tan colour darker in the crevices)
+function buildKernel(side, detail) {
+  const g = icosphere(detail);
+  const pos = g.attributes.position, n = pos.count;
+  const col = new Float32Array(n * 3);
+  const v = new THREE.Vector3();
+  const light = [.74, .47, .17], dark = [.24, .12, .03];
+  // soft ridged noise: big rounded convolutions, not spikes
+  const conv = (x, y, z) => { const a = 1 - Math.abs(snoise(x * 1.7, y * 1.7, z * 1.7)); const b = 1 - Math.abs(snoise(x * 3.4 + 7, y * 3.4, z * 3.4)); return a * a * .75 + b * b * .25; };
+  for (let i = 0; i < n; i++) {
+    v.fromBufferAttribute(pos, i).normalize();
+    const open = smooth(0, .5, -v.x * side);                    // 1 on the face that looks out of the shell
+    const lobe = snoise(v.x * 1.4 + side * 3, v.y * 1.4, v.z * 1.4) * .1;
+    const f = conv(v.x + side * 2.3, v.y * .85, v.z);                // brain-like convolutions
+    const groove = Math.exp(-(v.z * v.z) / .02) * (.35 + .65 * open) + Math.exp(-(v.y * v.y) / .03) * .25;
+    const lobes = open * (Math.exp(-((v.z - .42) ** 2) / .07) + Math.exp(-((v.z + .42) ** 2) / .07)) * .14; // two bulging halves of the kernel
+    let r = .8 * (1 + lobe + lobes + f * .22) * (1 - .34 * groove);
+    let x = v.x * r * .88, y = v.y * r * 1.06, z = v.z * r * .9;
+    if (x * side < 0) x *= .4;                                  // the half sits in its shell, open face bulging out
+    pos.setXYZ(i, x + side * .02, y, z);
+    const k = Math.min(Math.max((f - .25) / .7, 0), 1) * (1 - groove * .6);
+    for (let c = 0; c < 3; c++) col[i * 3 + c] = dark[c] + (light[c] - dark[c]) * k;
+  }
+  g.setAttribute('color', new THREE.BufferAttribute(col, 3));
+  g.computeVertexNormals();
+  return g;
+}
+const kernelMat = new THREE.MeshStandardMaterial({ vertexColors: true, roughness: .62, metalness: 0 });
+left.add(new THREE.Mesh(buildKernel(-1, isMobile ? 28 : 44), kernelMat));
+right.add(new THREE.Mesh(buildKernel(1, isMobile ? 28 : 44), kernelMat));
+// lights only touch the kernel (the shell has its own shader)
+scene.add(new THREE.AmbientLight(0xffe6c8, .35));
+const keyLight = new THREE.DirectionalLight(0xfff4e6, 1.6); keyLight.position.set(-2.5, 3, 4); scene.add(keyLight);
+const fillLight = new THREE.DirectionalLight(0xffb070, .55); fillLight.position.set(2, -1, 5); scene.add(fillLight);
 scene.add(nut);
 
 // soft halo behind the nut — replaces the full-screen bloom pass at a fraction of the cost
@@ -204,7 +228,7 @@ const halo = new THREE.Mesh(
     transparent: true, depthWrite: false, blending: THREE.AdditiveBlending,
     uniforms: { uSplit: uniforms.uSplit },
     vertexShader: `varying vec2 vUv; void main(){ vUv=uv; gl_Position=projectionMatrix*modelViewMatrix*vec4(position,1.); }`,
-    fragmentShader: `uniform float uSplit; varying vec2 vUv; void main(){ float d=length(vUv-.5)*2.; float a=pow(max(1.-d,0.),2.2)*(.22+uSplit*.35); gl_FragColor=vec4(1.,.38,.08,a); }`,
+    fragmentShader: `uniform float uSplit; varying vec2 vUv; void main(){ float d=length(vUv-.5)*2.; float a=pow(max(1.-d,0.),2.2)*.22; gl_FragColor=vec4(1.,.38,.08,a); }`,
   })
 );
 halo.position.z = -1.2;
@@ -255,6 +279,7 @@ function resize() {
   layout.x = wide ? 1.35 : 0;
   layout.y = wide ? .1 : .55;
   layout.s = wide ? 1 : .78;
+  layout.narrow = !wide;
   wake();
 }
 addEventListener('resize', resize);
@@ -272,7 +297,7 @@ addEventListener('pointermove', e => {
 addEventListener('scroll', wake, { passive: true });
 
 // hit test against a bounding sphere — the old per-triangle raycast cost a lot of CPU on every mouse move
-let clickSplit = 0, clickTarget = 0;
+let clickSplit = 0, clickTarget = new URLSearchParams(location.search).has('nutopen') ? 1 : 0; // ?nutopen — opened from the start (for checking the kernel)
 const raycaster = new THREE.Raycaster(), hitSphere = new THREE.Sphere();
 const hitNut = e => {
   const r = hero.getBoundingClientRect();
@@ -343,19 +368,18 @@ function tick(now) {
   const split = Math.max(sp, clickSplit, knock);
   uniforms.uSplit.value = split;
 
-  const gap = split * .75;
+  const gap = split * (layout.narrow ? .6 : .75);
   left.position.x = -gap; right.position.x = gap;
-  left.rotation.y = -split * .5; right.rotation.y = split * .5;
+  left.rotation.y = -split * .8; right.rotation.y = split * .8; // open faces turn to the visitor
   left.rotation.z = split * .15; right.rotation.z = -split * .15;
-  // the logo kernel grows out of the shell and stays facing the visitor
-  const open = smooth(.08, .6, split);
-  core.scale.setScalar(.55 + open * .55 + Math.sin(t * 3) * .02 * open);
-  kernel.material.opacity = open;
-  glow.material.opacity = Math.min(split * 1.6, 1) * (.45 + .15 * Math.sin(t * 3));
 
   nut.position.set(layout.x + mouse.x * .15, layout.y + Math.sin(t * .8) * .06 - sp * .4, 0);
-  nut.scale.setScalar(layout.s * (.4 + .6 * ei) * (1 + sp * .15));
-  nut.rotation.y = t * .18 * (reduced ? 0 : 1) + mouse.x * .6 + (1 - ei) * 3;
+  // opened halves take more room: on phones the nut shrinks so both stay on screen
+  nut.scale.setScalar(layout.s * (.4 + .6 * ei) * (1 + sp * .15) * (1 - clickSplit * (layout.narrow ? .3 : .08)));
+  // spins while closed; when it opens it settles facing the visitor so both kernel halves are seen
+  const spin = t * .18 * (reduced ? 0 : 1) + (1 - ei) * 3;
+  const face = Math.round(spin / (Math.PI * 2)) * Math.PI * 2;
+  nut.rotation.y = spin + (face - spin) * smooth(.05, .5, split) + mouse.x * .6 * (1 - smooth(.05, .5, split) * .6);
   nut.rotation.x = -mouse.y * .35 + .15;
   halo.position.x = nut.position.x; halo.position.y = nut.position.y;
   halo.scale.setScalar(nut.scale.x);
