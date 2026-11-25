@@ -442,12 +442,14 @@ main { overflow-x: clip; }
 
 /* price cards inside a service text (data/prices.json) */
 .prices { margin: 1.2em 0 1.6em; }
-.prices__grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); gap: 12px; }
+.prices__grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 10px; }
+.prose .price-card__price { overflow-wrap: normal; word-break: keep-all; }
+@media (max-width: 700px) { .price-card { padding: 18px 14px; } .price-card__price { font-size: 20px; } }
 .price-card { position: relative; display: flex; flex-direction: column; gap: 8px; padding: 22px 20px; border-radius: 18px; background: var(--ink); border: 1px solid var(--line); }
 .price-card.is-hit { border-color: var(--orange); box-shadow: 0 0 0 1px var(--orange) inset; }
 .price-card.is-hit::after { content: "Чаще берут"; position: absolute; top: -10px; right: 14px; padding: 3px 10px; border-radius: 99px; background: var(--orange); color: #000; font-size: 11px; font-weight: 800; letter-spacing: .04em; }
 .price-card__name { font-size: 14px; font-weight: 700; color: var(--muted); line-height: 1.35; }
-.price-card__price { font-family: var(--f-display); font-weight: 900; font-size: clamp(24px, 2.2vw, 32px); line-height: 1; letter-spacing: -.03em; color: var(--white); white-space: nowrap; }
+.price-card__price { font-family: var(--f-display); font-weight: 900; font-size: clamp(24px, 2.2vw, 32px); line-height: 1; letter-spacing: -.03em; color: var(--white); }
 .price-card__unit { font-size: 13px; color: var(--muted); line-height: 1.35; }
 .prose .prices__note { margin: 14px 0 0; font-size: 15px; color: var(--muted); }
 .prose .prices__more { margin: 8px 0 0; }

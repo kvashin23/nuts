@@ -210,7 +210,7 @@ function priceSet(key) {
   const pack = p.packs ? PRICES.packs[p.packs] : null;
   return { items: [...(pack ? pack.items : []), ...(p.items || []), ...(p.extra || [])], note: p.note || (pack && pack.note) || '', more: p.more };
 }
-const priceBlock = set => `<div class="prices"><div class="prices__grid">${set.items.map(i => `<div class="price-card${i.hit ? ' is-hit' : ''}"><span class="price-card__name">${esc(i.name)}</span><b class="price-card__price">${esc(i.price)}</b>${i.unit ? `<span class="price-card__unit">${esc(i.unit)}</span>` : ''}</div>`).join('')}</div>${set.note ? `<p class="prices__note">${esc(set.note)}</p>` : ''}${set.more ? `<p class="prices__more"><a href="${SVC_URL(set.more)}">Пакеты SEO с технической поддержкой →</a></p>` : ''}</div>`;
+const priceBlock = set => `<div class="prices"><div class="prices__grid">${set.items.map(i => `<div class="price-card${i.hit ? ' is-hit' : ''}"><span class="price-card__name">${esc(i.name)}</span><b class="price-card__price">${esc(i.price).replace(/(\d) (?=\d)/g, '$1 ').replace(/ ₽/g, ' ₽')}</b>${i.unit ? `<span class="price-card__unit">${esc(i.unit)}</span>` : ''}</div>`).join('')}</div>${set.note ? `<p class="prices__note">${esc(set.note)}</p>` : ''}${set.more ? `<p class="prices__more"><a href="${SVC_URL(set.more)}">Пакеты SEO с технической поддержкой →</a></p>` : ''}</div>`;
 function insertPrices(root, key) {
   const set = priceSet(key);
   if (!set) return;
