@@ -61,17 +61,30 @@
   if (loader && seen) { loader.remove(); requestAnimationFrame(() => { document.body.classList.remove('is-loading'); heroIn(); }); }
   else if (loader) step();
 
+  // first-screen texts stay hidden (html.intro-wait, set in <head>) until their entrance tweens have set
+  // the start state — otherwise the browser paints them, they vanish and fly in again: a visible blink
+  const introReady = () => document.documentElement.classList.remove('intro-wait');
+  // fonts are font-display: swap — start the entrance only when they are in (max 1.2 s), so the first
+  // screen never shows the fallback font and then jumps to the brand one
+  let introStarted = false;
   function heroIn() {
-    if (!hasGsap) return;
+    if (introStarted) return;
+    introStarted = true;
+    const fontsIn = document.fonts && document.fonts.status !== 'loaded' ? Promise.race([document.fonts.ready, new Promise(r => setTimeout(r, 1200))]) : Promise.resolve();
+    fontsIn.then(heroEntrance);
+  }
+  function heroEntrance() {
+    if (!hasGsap) return introReady();
     if (!$('#hero')) {
       // inner pages
       gsap.from('.page-hero .split', { yPercent: 110, duration: 1.2, ease: 'expo.out', stagger: .1, delay: .1 });
       gsap.from('.page-hero [data-in]', { y: 30, opacity: 0, duration: 1, ease: 'power3.out', stagger: .07, delay: .35 });
-      return;
+      return introReady();
     }
     gsap.from('.hero__line .split', { yPercent: 110, duration: 1.3, ease: 'expo.out', stagger: .12, delay: .35 });
     gsap.from(['.hero__top', '.hero__lead', '.hero__ctas', '.hero__scroll'], { y: 30, opacity: 0, duration: 1, ease: 'power3.out', stagger: .08, delay: .7 });
     gsap.from('.hero__rings i', { scale: .6, opacity: 0, duration: 1.8, ease: 'expo.out', stagger: .1, delay: .4 });
+    introReady();
   }
 
   /* ---------- magnetic buttons ---------- */

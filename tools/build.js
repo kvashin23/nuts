@@ -371,6 +371,7 @@ ${main}
   <meta property="og:image" content="${og}">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="theme-color" content="#0d0d0d">
+  <script>document.documentElement.classList.add('intro-wait');setTimeout(function(){document.documentElement.classList.remove('intro-wait')},4000)</script>
   <link rel="stylesheet" href="${p}vendor/fonts/fonts.css">
   <link rel="stylesheet" href="${p}css/style.css?v=${VER}">
   <link rel="stylesheet" href="${p}css/pages.css?v=${VER}">

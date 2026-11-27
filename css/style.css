@@ -499,3 +499,7 @@ html:not(.has-gl) .nut-hint { display: none; }
 
 /* the tilted marquee strip overlaps the bottom of the hero: keep "скролль" and the buttons above it */
 @media (min-width: 701px) { .hero { padding-bottom: clamp(80px, 5.5vw, 120px); } }
+
+/* no blink on load: first-screen texts wait for their entrance animation (main.js, introReady) */
+.intro-wait .hero__line .split, .intro-wait .hero__top, .intro-wait .hero__lead, .intro-wait .hero__ctas, .intro-wait .hero__scroll,
+.intro-wait .page-hero .split, .intro-wait .page-hero [data-in] { visibility: hidden; }
